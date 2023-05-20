@@ -1,11 +1,11 @@
-lexer grammar Malt;
+grammar Malt;
 
 //options {
 	//language = Java;
 //}
 
 @lexer::header {
-	//package compilerPackage;
+	package compilerPackage;
 }
 
 titleRule 
@@ -20,57 +20,63 @@ titleTypeRule
 
 nameRule
 	:
-		(LETTER | DIGIT)+
+		(LETTER | DIGIT | DO | CM | SE | CL)+
 ;
 
 textRule
 	:
-		(LETTER | DIGIT | DO | CM | SE | CL | SL | AT)+
-; // INSERIRE FORMATTAZIONE, LINK, ... IN TEXT
-
-italicTextRule	
-	:
-		AS textRule AS
-;
-
-boldTextRule
-	:
-		AS AS textRule AS AS
-;
-
-ibTextRule
-	:
-		AS AS AS textRule AS AS AS
-;
-
-strikethroughtTextRule
-	:
-		TI TI textRule TI TI
-;
-
-highlightTextRule
-	:
-		EQ EQ textRule EQ EQ
-;
-
-subscriptTextRule
-	:
-		TI textRule TI
-;
-
-superscriptTextRule
-	:
-		CI textRule CI
-;
-
-codeTextRule
-	:	AP textRule AP
-;
-
+		(LETTER | DIGIT | DO | CM | SE | CL | italicTextRule | boldTextRule | ibTextRule
+		| strikethroughtTextRule | highlightTextRule | subscriptTextRule | superscriptTextRule
+		| codeTextRule)+
+; // SISTEMARE FORMATTAZIONE, LINK, ... IN TEXT
 
 refRule
 	:
 		LCB HA ID RCB
+;
+
+italicTextRule	
+	:
+		AS subtextRule AS
+;
+
+subtextRule 
+	:
+		(LETTER | DIGIT | DO | CM | SE | CL | SL | AT )+
+;
+
+boldTextRule
+	:
+		AS AS subtextRule AS AS
+;
+
+ibTextRule
+	:
+		AS AS AS subtextRule AS AS AS
+;
+
+strikethroughtTextRule
+	:
+		TI TI subtextRule TI TI
+;
+
+highlightTextRule
+	:
+		EQ EQ subtextRule EQ EQ
+;
+
+subscriptTextRule
+	:
+		TI subtextRule TI
+;
+
+superscriptTextRule
+	:
+		CI subtextRule CI
+;
+
+codeTextRule
+	:	AP subtextRule AP
 ;
 
 blockquoteRule 
@@ -119,19 +125,24 @@ horizontalRule
 
 linkRule
 	:
-		LSB (textRule | imageRule) RSB LP textRule RP
+		LSB (textRule | imageRule) RSB LP textLinkRule RP
+;
+
+textLinkRule
+	:
+		(LETTER | DIGIT | DO | CM | SE | CL | SL | AT)+
 ;
 
 imageRule
 	:
-		EX LSB textRule RSB LP textRule (QU textRule QU)? RP
+		EX LSB textLinkRule RSB LP textLinkRule (QU textRule QU)? RP
 ;
 
 quickLinkRule
-		:
-			LAB textRule RAB
+	:
+		LAB textLinkRule RAB
 ;
-// DISTINZIONE TRA TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE
+// DISTINZIONE TRA TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE E TESTO FORMATTATO-DIDASCALIA IMMAGINE-TESTO TABELLA
 
 tableRule 
 	:
