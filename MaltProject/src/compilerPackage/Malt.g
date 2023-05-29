@@ -1,16 +1,22 @@
 grammar Malt;
 
-//options {
-	//language = Java;
-//}
+options {
+	language = Java;
+}
 
 @lexer::header {
 	package compilerPackage;
 }
 
+parseJava
+	: 
+		titleRule
+		(textRule)*
+	;
+
 titleRule 
 	:
-		titleTypeRule nameRule EQ textRule refRule?
+		titleTypeRule nameRule EQ textTitleRule refRule?
 ;
 
 titleTypeRule
@@ -23,6 +29,16 @@ nameRule
 		(LETTER | DIGIT | DO | CM | SE | CL)+
 ;
 
+textTitleRule
+	:
+		(LETTER | DIGIT | DO | CM | SE | CL )+
+;
+
+refRule
+	:
+		LCB HA ID RCB
+;
+
 textRule
 	:
 		(LETTER | DIGIT | DO | CM | SE | CL | italicTextRule | boldTextRule | ibTextRule
@@ -30,14 +46,9 @@ textRule
 		| codeTextRule)+
 ; // SISTEMARE FORMATTAZIONE, LINK, ... IN TEXT
 
-refRule
-	:
-		LCB HA ID RCB
-;
-
 italicTextRule	
 	:
-		AS subtextRule AS
+		IT subtextRule IT
 ;
 
 subtextRule 
@@ -47,36 +58,36 @@ subtextRule
 
 boldTextRule
 	:
-		AS AS subtextRule AS AS
+		BOLD subtextRule BOLD
 ;
 
 ibTextRule
 	:
-		AS AS AS subtextRule AS AS AS
+		ITBOLD subtextRule ITBOLD
 ;
 
 strikethroughtTextRule
 	:
-		TI TI subtextRule TI TI
+		ST subtextRule ST
 ;
 
 highlightTextRule
 	:
-		EQ EQ subtextRule EQ EQ
+		HL subtextRule HL
 ;
 
 subscriptTextRule
 	:
-		TI subtextRule TI
+		SUBS subtextRule SUBS
 ;
 
 superscriptTextRule
 	:
-		CI subtextRule CI
+		SUPS subtextRule SUPS
 ;
 
 codeTextRule
-	:	AP subtextRule AP
+	:	CODE subtextRule CODE
 ;
 
 blockquoteRule 
@@ -105,12 +116,7 @@ tlistRule
 
 blockCodeRule 
 	:
-		bcRule languageRule? textRule bcRule
-;
-
-bcRule
-	:
-		AP AP AP
+		BLOCKCODE languageRule? textRule BLOCKCODE
 ;
 
 languageRule
@@ -120,7 +126,7 @@ languageRule
 
 horizontalRule
 	:
-		UN UN UN
+		HRULE
 ;
 
 linkRule
@@ -209,21 +215,29 @@ LSB : '[';
 RSB : ']';
 LCB : '{';
 RCB : '}';
-LAB : '<'; // PROBLEMA con LT
-RAB : '>'; // PROBLEMA con GT
-AS : '*';
-TI : '~';
-EQ : '=';
-CI : '^';
+LAB : '<';
+RAB : '>';
 HA : '#';
-AP : '\''; // PROBLEMA: ctrl se funziona
-UN : '_';
+S2 : '##';
+S3 : '###';
+S4 : '####';
+S5 : '#####';
+S6 : '######';
+IT		: '*';
+BOLD		: '**';
+ITBOLD		: '***';
+ST		: '~~';
+HL		: '==';
+SUBS		: '~';
+SUPS		: '^';
+CODE		: '\''; // PROBLEMA: ctrl se funziona
+BLOCKCODE	: '\'\'\'';
+HRULE		: '___';
 SL : '/';
 AT : '@';
 EX : '!';
 QU : '"';
-GT : '>';
-LT : '<';
+EQ : '=';
 GET : '>=';
 LET : '<=';
 
