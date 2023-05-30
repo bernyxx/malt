@@ -17,7 +17,7 @@ parseJava
 		initRule
 	;
 initRule:	
-	titleRule | textRule
+	titleRule | subtextRule
 	;
 titleRule 
 	:

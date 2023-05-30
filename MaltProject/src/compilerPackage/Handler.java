@@ -1,3 +1,4 @@
+/*
 package compilerPackage;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class Handler {
 		if (tk == null)
 			tk = input.LT(-1);
 
-		if (tk.getType() == SimpleJava2022Lexer.ERROR_TK)
+		if (tk.getType() == MaltLexer.ERROR_TK)
 			errMsg = "Lexical Error " + LEXICAL_ERROR;
 		else 
 			errMsg = "Syntax Error " + SYNTAX_ERROR;
@@ -173,3 +174,4 @@ public class Handler {
 	}
 
 }
+*/
