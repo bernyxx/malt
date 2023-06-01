@@ -17,11 +17,11 @@ parseJava
 		initRule
 	;
 initRule:	
-	titleRule(titleRule|textDeclRule)*
+	titleRule
 	;
 titleRule 
 	:
-		titleTypeRule VAR EQ STRING refRule?
+		titleTypeRule varName EQ textTitleRule //refRule?
 ;
 
 titleTypeRule
@@ -29,70 +29,76 @@ titleTypeRule
 		TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE
 ;
 
+varName
+	:
+		
+		LETTER(LETTER|DIGIT)*
+;
+
+textTitleRule
+	:
+		QU (LETTER | DIGIT | DO | CM | SE | CL )* QU
+;
+/*
 refRule
 	:
 		LCB HA ID RCB
 ;
 
-textDeclRule 
-	:
-		TEXT VAR EQ textRule
-;
-
 textRule
 	:
-		(LETTER | DIGIT | italicTextRule | boldTextRule | ibTextRule
+		(LETTER | DIGIT | DO | CM | SE | CL | italicTextRule | boldTextRule | ibTextRule
 		| strikethroughtTextRule | highlightTextRule | subscriptTextRule | superscriptTextRule
-		| codeTextRule)*
+		| codeTextRule)+
 ; // SISTEMARE FORMATTAZIONE, LINK, ... IN TEXT
 
 italicTextRule	
 	:
-		IT subtextRule* IT // come dire che il primo è inizio e l'ultimo fine ?
-;
-
-boldTextRule
-	:
-		BOLD subtextRule* BOLD
-;
-
-ibTextRule
-	:
-		ITBOLD subtextRule* ITBOLD
-;
-
-strikethroughtTextRule
-	:
-		ST subtextRule* ST
-;
-
-highlightTextRule
-	:
-		HL subtextRule* HL
-;
-
-subscriptTextRule
-	:
-		SUBS subtextRule* SUBS
-;
-
-superscriptTextRule
-	:
-		SUPS subtextRule* SUPS
-;
-
-codeTextRule
-	:	CODE subtextRule* CODE
+		IT subtextRule IT
 ;
 
 subtextRule 
 	:
-		(LETTER | DIGIT | DO | CM | SE | CL | SL | AT )
+		(LETTER | DIGIT | DO | CM | SE | CL | SL | AT )+
+;
+
+boldTextRule
+	:
+		BOLD subtextRule BOLD
+;
+
+ibTextRule
+	:
+		ITBOLD subtextRule ITBOLD
+;
+
+strikethroughtTextRule
+	:
+		ST subtextRule ST
+;
+
+highlightTextRule
+	:
+		HL subtextRule HL
+;
+
+subscriptTextRule
+	:
+		SUBS subtextRule SUBS
+;
+
+superscriptTextRule
+	:
+		SUPS subtextRule SUPS
+;
+
+codeTextRule
+	:	CODE subtextRule CODE
 ;
 
 blockquoteRule 
 	:
-		BLOCKQUOTE VAR EQ textRule
+		BLOCKQUOTE nameRule EQ textRule
 ;
 
 olistRule 
@@ -170,9 +176,7 @@ trowRule
 		LSB textRule (CM textRule)* RSB;
 
 // GESTIONE ESCAPE
-
-
-
+*/
 
 
 fragment
@@ -183,7 +187,7 @@ HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
 
 fragment
 ESC_SEQ
-    :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\'|'*')
+    :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
     |   UNICODE_ESC
     |   OCTAL_ESC
     ;
@@ -218,6 +222,11 @@ RCB : '}';
 LAB : '<';
 RAB : '>';
 HA : '#';
+S2 : '##';
+S3 : '###';
+S4 : '####';
+S5 : '#####';
+S6 : '######';
 IT		: '*';
 BOLD		: '**';
 ITBOLD		: '***';
@@ -235,7 +244,7 @@ QU : '"';
 EQ : '=';
 GET : '>=';
 LET : '<=';
-PERC	:	'%';
+
 
 TITLE : 'title';
 S1TITLE : 'stitle';
@@ -243,7 +252,6 @@ S2TITLE : 'sstitle';
 S3TITLE : 'ssstitle';
 S4TITLE : 'sssstitle';
 S5TITLE : 'ssssstitle';
-TEXT 	:	'text';
 BLOCKQUOTE : 'blockquote';
 OLIST : 'olist';
 ULIST : 'ulist';
@@ -253,11 +261,9 @@ L : 'l';
 C : 'c';
 R : 'r';
 
-VAR	:	(LETTER) (LETTER | DIGIT |'_')*;
+//ID:	(LETTER |'_') (LETTER |DIGIT |'_')*;
 
 INTEGER :	DIGIT+;
-
-ID	:	(LETTER | DIGIT |'_'|SL|HA|PERC|AT|EQ)+;
 
 FLOAT
     :   DIGIT+ '.' DIGIT* EXPONENT?
@@ -266,7 +272,7 @@ FLOAT
     ;
 
 COMMENT
-    :   ('//' ~('\n'|'\r')* '\r'? '\n' 		{$channel=HIDDEN;}
+    :   ('//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
     |   '/*' ( options {greedy=false;} : . )* '*/') {$channel=HIDDEN;}
     ;
 

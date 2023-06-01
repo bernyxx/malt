@@ -1,9 +1,3 @@
-title myTitolo = Ecco una ricerca
-*Testo in italico*
-**testo in grassetto**
-***testo in grassetto italico***
-~~Testo strikethrough ~~
-==Testo evidenziato==
-testo~pedice
-testo^apice
-blockquote bq = Ecco una citazione
+title myTitolo = "Ecco una ricerca"
+stitle mySubtitle = "Molto interessante"
+text someText = *Per* davvero
