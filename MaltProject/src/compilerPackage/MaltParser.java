@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g 2023-06-01 18:38:00
+// $ANTLR 3.5.1 C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g 2023-06-05 00:10:31
 
 	package compilerPackage;
 
@@ -15,15 +15,15 @@ public class MaltParser extends Parser {
 		"BOLD", "C", "CHAR", "CL", "CM", "CODE", "COMMENT", "DIGIT", "DO", "EQ", 
 		"ESC_SEQ", "EX", "EXPONENT", "FLOAT", "GET", "HA", "HEX_DIGIT", "HL", 
 		"HRULE", "ID", "INTEGER", "IT", "ITBOLD", "L", "LAB", "LCB", "LET", "LETTER", 
-		"LP", "LSB", "OCTAL_ESC", "OLIST", "PERC", "QU", "R", "RAB", "RCB", "RP", 
-		"RSB", "S1TITLE", "S2TITLE", "S3TITLE", "S4TITLE", "S5TITLE", "SE", "SL", 
-		"ST", "STRING", "SUBS", "SUPS", "TABLE", "TEXT", "TITLE", "TLIST", "ULIST", 
+		"LP", "LSB", "OCTAL_ESC", "OLIST", "QU", "R", "RAB", "RCB", "RP", "RSB", 
+		"S1TITLE", "S2TITLE", "S3TITLE", "S4TITLE", "S5TITLE", "SE", "SL", "ST", 
+		"STRING", "SUBS", "SUPS", "TABLE", "TEXT", "TITLE", "TLIST", "ULIST", 
 		"UNICODE_ESC", "VAR", "WS", "'C'", "'C++'", "'Java'"
 	};
 	public static final int EOF=-1;
+	public static final int T__64=64;
 	public static final int T__65=65;
 	public static final int T__66=66;
-	public static final int T__67=67;
 	public static final int AT=4;
 	public static final int BLOCKCODE=5;
 	public static final int BLOCKQUOTE=6;
@@ -59,32 +59,31 @@ public class MaltParser extends Parser {
 	public static final int LSB=36;
 	public static final int OCTAL_ESC=37;
 	public static final int OLIST=38;
-	public static final int PERC=39;
-	public static final int QU=40;
-	public static final int R=41;
-	public static final int RAB=42;
-	public static final int RCB=43;
-	public static final int RP=44;
-	public static final int RSB=45;
-	public static final int S1TITLE=46;
-	public static final int S2TITLE=47;
-	public static final int S3TITLE=48;
-	public static final int S4TITLE=49;
-	public static final int S5TITLE=50;
-	public static final int SE=51;
-	public static final int SL=52;
-	public static final int ST=53;
-	public static final int STRING=54;
-	public static final int SUBS=55;
-	public static final int SUPS=56;
-	public static final int TABLE=57;
-	public static final int TEXT=58;
-	public static final int TITLE=59;
-	public static final int TLIST=60;
-	public static final int ULIST=61;
-	public static final int UNICODE_ESC=62;
-	public static final int VAR=63;
-	public static final int WS=64;
+	public static final int QU=39;
+	public static final int R=40;
+	public static final int RAB=41;
+	public static final int RCB=42;
+	public static final int RP=43;
+	public static final int RSB=44;
+	public static final int S1TITLE=45;
+	public static final int S2TITLE=46;
+	public static final int S3TITLE=47;
+	public static final int S4TITLE=48;
+	public static final int S5TITLE=49;
+	public static final int SE=50;
+	public static final int SL=51;
+	public static final int ST=52;
+	public static final int STRING=53;
+	public static final int SUBS=54;
+	public static final int SUPS=55;
+	public static final int TABLE=56;
+	public static final int TEXT=57;
+	public static final int TITLE=58;
+	public static final int TLIST=59;
+	public static final int ULIST=60;
+	public static final int UNICODE_ESC=61;
+	public static final int VAR=62;
+	public static final int WS=63;
 
 	// delegates
 	public Parser[] getDelegates() {
@@ -102,21 +101,62 @@ public class MaltParser extends Parser {
 	}
 
 	@Override public String[] getTokenNames() { return MaltParser.tokenNames; }
-	@Override public String getGrammarFileName() { return "C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g"; }
+	@Override public String getGrammarFileName() { return "C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g"; }
+
+
+		
 
 
 
 	// $ANTLR start "parseJava"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:15:1: parseJava : initRule ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:19:1: parseJava : titleRule ( titleRule | textDeclRule )* ;
 	public final void parseJava() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:16:2: ( initRule )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:17:3: initRule
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:20:2: ( titleRule ( titleRule | textDeclRule )* )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:21:3: titleRule ( titleRule | textDeclRule )*
 			{
-			pushFollow(FOLLOW_initRule_in_parseJava45);
-			initRule();
+			pushFollow(FOLLOW_titleRule_in_parseJava48);
+			titleRule();
 			state._fsp--;
 
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:22:3: ( titleRule | textDeclRule )*
+			loop1:
+			while (true) {
+				int alt1=3;
+				int LA1_0 = input.LA(1);
+				if ( ((LA1_0 >= S1TITLE && LA1_0 <= S5TITLE)||LA1_0==TITLE) ) {
+					alt1=1;
+				}
+				else if ( (LA1_0==TEXT) ) {
+					alt1=2;
+				}
+
+				switch (alt1) {
+				case 1 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:22:4: titleRule
+					{
+					pushFollow(FOLLOW_titleRule_in_parseJava53);
+					titleRule();
+					state._fsp--;
+
+					}
+					break;
+				case 2 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:22:14: textDeclRule
+					{
+					pushFollow(FOLLOW_textDeclRule_in_parseJava55);
+					textDeclRule();
+					state._fsp--;
+
+					}
+					break;
+
+				default :
+					break loop1;
+				}
+			}
+
+			System.out.println("    - Ho riconosciuto un documento Malt");
 			}
 
 		}
@@ -132,75 +172,12 @@ public class MaltParser extends Parser {
 
 
 
-	// $ANTLR start "initRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:19:1: initRule : titleRule ( titleRule | textDeclRule )* ;
-	public final void initRule() throws RecognitionException {
-		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:19:9: ( titleRule ( titleRule | textDeclRule )* )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:20:2: titleRule ( titleRule | textDeclRule )*
-			{
-			pushFollow(FOLLOW_titleRule_in_initRule55);
-			titleRule();
-			state._fsp--;
-
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:20:11: ( titleRule | textDeclRule )*
-			loop1:
-			while (true) {
-				int alt1=3;
-				int LA1_0 = input.LA(1);
-				if ( ((LA1_0 >= S1TITLE && LA1_0 <= S5TITLE)||LA1_0==TITLE) ) {
-					alt1=1;
-				}
-				else if ( (LA1_0==TEXT) ) {
-					alt1=2;
-				}
-
-				switch (alt1) {
-				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:20:12: titleRule
-					{
-					pushFollow(FOLLOW_titleRule_in_initRule57);
-					titleRule();
-					state._fsp--;
-
-					}
-					break;
-				case 2 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:20:22: textDeclRule
-					{
-					pushFollow(FOLLOW_textDeclRule_in_initRule59);
-					textDeclRule();
-					state._fsp--;
-
-					}
-					break;
-
-				default :
-					break loop1;
-				}
-			}
-
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "initRule"
-
-
-
 	// $ANTLR start "titleRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:22:1: titleRule : titleTypeRule VAR EQ STRING ( refRule )? ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:26:1: titleRule : titleTypeRule VAR EQ STRING ( refRule )? ;
 	public final void titleRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:23:2: ( titleTypeRule VAR EQ STRING ( refRule )? )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:24:3: titleTypeRule VAR EQ STRING ( refRule )?
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:27:2: ( titleTypeRule VAR EQ STRING ( refRule )? )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:28:3: titleTypeRule VAR EQ STRING ( refRule )?
 			{
 			pushFollow(FOLLOW_titleTypeRule_in_titleRule74);
 			titleTypeRule();
@@ -209,7 +186,7 @@ public class MaltParser extends Parser {
 			match(input,VAR,FOLLOW_VAR_in_titleRule76); 
 			match(input,EQ,FOLLOW_EQ_in_titleRule78); 
 			match(input,STRING,FOLLOW_STRING_in_titleRule80); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:24:31: ( refRule )?
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:28:31: ( refRule )?
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0==LCB) ) {
@@ -217,7 +194,7 @@ public class MaltParser extends Parser {
 			}
 			switch (alt2) {
 				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:24:31: refRule
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:28:31: refRule
 					{
 					pushFollow(FOLLOW_refRule_in_titleRule82);
 					refRule();
@@ -228,6 +205,7 @@ public class MaltParser extends Parser {
 
 			}
 
+			System.out.println("    - Ho riconosciuto un titolo");
 			}
 
 		}
@@ -244,11 +222,11 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "titleTypeRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:27:1: titleTypeRule : ( TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE );
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:32:1: titleTypeRule : ( TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE );
 	public final void titleTypeRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:28:2: ( TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:33:2: ( TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 			{
 			if ( (input.LA(1) >= S1TITLE && input.LA(1) <= S5TITLE)||input.LA(1)==TITLE ) {
 				input.consume();
@@ -274,16 +252,16 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "refRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:32:1: refRule : LCB HA ID RCB ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:37:1: refRule : LCB HA ID RCB ;
 	public final void refRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:33:2: ( LCB HA ID RCB )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:34:3: LCB HA ID RCB
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:38:2: ( LCB HA ID RCB )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:39:3: LCB HA ID RCB
 			{
-			match(input,LCB,FOLLOW_LCB_in_refRule127); 
-			match(input,HA,FOLLOW_HA_in_refRule129); 
-			match(input,ID,FOLLOW_ID_in_refRule131); 
-			match(input,RCB,FOLLOW_RCB_in_refRule133); 
+			match(input,LCB,FOLLOW_LCB_in_refRule131); 
+			match(input,HA,FOLLOW_HA_in_refRule133); 
+			match(input,ID,FOLLOW_ID_in_refRule135); 
+			match(input,RCB,FOLLOW_RCB_in_refRule137); 
 			}
 
 		}
@@ -300,19 +278,20 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "textDeclRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:37:1: textDeclRule : TEXT VAR EQ textRule ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:42:1: textDeclRule : TEXT VAR EQ textRule ;
 	public final void textDeclRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:38:2: ( TEXT VAR EQ textRule )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:39:3: TEXT VAR EQ textRule
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:43:2: ( TEXT VAR EQ textRule )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:44:3: TEXT VAR EQ textRule
 			{
-			match(input,TEXT,FOLLOW_TEXT_in_textDeclRule146); 
-			match(input,VAR,FOLLOW_VAR_in_textDeclRule148); 
-			match(input,EQ,FOLLOW_EQ_in_textDeclRule150); 
-			pushFollow(FOLLOW_textRule_in_textDeclRule152);
+			match(input,TEXT,FOLLOW_TEXT_in_textDeclRule150); 
+			match(input,VAR,FOLLOW_VAR_in_textDeclRule152); 
+			match(input,EQ,FOLLOW_EQ_in_textDeclRule154); 
+			pushFollow(FOLLOW_textRule_in_textDeclRule156);
 			textRule();
 			state._fsp--;
 
+			System.out.println("    - Ho riconosciuto un testo");
 			}
 
 		}
@@ -329,148 +308,146 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "textRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:42:1: textRule : ( LETTER | DIGIT | italicTextRule | boldTextRule | ibTextRule | strikethroughtTextRule | highlightTextRule | subscriptTextRule | superscriptTextRule | codeTextRule )* ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:48:1: textRule : ( subtextRule | italicTextRule | boldTextRule | ibTextRule | strikethroughtTextRule | highlightTextRule | subscriptTextRule | superscriptTextRule | codeTextRule )+ ;
 	public final void textRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:43:2: ( ( LETTER | DIGIT | italicTextRule | boldTextRule | ibTextRule | strikethroughtTextRule | highlightTextRule | subscriptTextRule | superscriptTextRule | codeTextRule )* )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:44:3: ( LETTER | DIGIT | italicTextRule | boldTextRule | ibTextRule | strikethroughtTextRule | highlightTextRule | subscriptTextRule | superscriptTextRule | codeTextRule )*
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:49:2: ( ( subtextRule | italicTextRule | boldTextRule | ibTextRule | strikethroughtTextRule | highlightTextRule | subscriptTextRule | superscriptTextRule | codeTextRule )+ )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:50:3: ( subtextRule | italicTextRule | boldTextRule | ibTextRule | strikethroughtTextRule | highlightTextRule | subscriptTextRule | superscriptTextRule | codeTextRule )+
 			{
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:44:3: ( LETTER | DIGIT | italicTextRule | boldTextRule | ibTextRule | strikethroughtTextRule | highlightTextRule | subscriptTextRule | superscriptTextRule | codeTextRule )*
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:50:3: ( subtextRule | italicTextRule | boldTextRule | ibTextRule | strikethroughtTextRule | highlightTextRule | subscriptTextRule | superscriptTextRule | codeTextRule )+
+			int cnt3=0;
 			loop3:
 			while (true) {
-				int alt3=11;
+				int alt3=10;
 				switch ( input.LA(1) ) {
-				case LETTER:
+				case CL:
+				case CM:
+				case DO:
+				case INTEGER:
+				case SE:
+				case VAR:
 					{
 					alt3=1;
 					}
 					break;
-				case DIGIT:
+				case IT:
 					{
 					alt3=2;
 					}
 					break;
-				case IT:
+				case BOLD:
 					{
 					alt3=3;
 					}
 					break;
-				case BOLD:
+				case ITBOLD:
 					{
 					alt3=4;
 					}
 					break;
-				case ITBOLD:
+				case ST:
 					{
 					alt3=5;
 					}
 					break;
-				case ST:
+				case HL:
 					{
 					alt3=6;
 					}
 					break;
-				case HL:
+				case SUBS:
 					{
 					alt3=7;
 					}
 					break;
-				case SUBS:
+				case SUPS:
 					{
 					alt3=8;
 					}
 					break;
-				case SUPS:
-					{
-					alt3=9;
-					}
-					break;
 				case CODE:
 					{
-					alt3=10;
+					alt3=9;
 					}
 					break;
 				}
 				switch (alt3) {
 				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:44:4: LETTER
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:50:4: subtextRule
 					{
-					match(input,LETTER,FOLLOW_LETTER_in_textRule165); 
+					pushFollow(FOLLOW_subtextRule_in_textRule173);
+					subtextRule();
+					state._fsp--;
+
 					}
 					break;
 				case 2 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:44:13: DIGIT
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:51:5: italicTextRule
 					{
-					match(input,DIGIT,FOLLOW_DIGIT_in_textRule169); 
-					}
-					break;
-				case 3 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:44:21: italicTextRule
-					{
-					pushFollow(FOLLOW_italicTextRule_in_textRule173);
+					pushFollow(FOLLOW_italicTextRule_in_textRule179);
 					italicTextRule();
 					state._fsp--;
 
 					}
 					break;
-				case 4 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:44:38: boldTextRule
+				case 3 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:52:5: boldTextRule
 					{
-					pushFollow(FOLLOW_boldTextRule_in_textRule177);
+					pushFollow(FOLLOW_boldTextRule_in_textRule185);
 					boldTextRule();
 					state._fsp--;
 
 					}
 					break;
-				case 5 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:44:53: ibTextRule
+				case 4 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:53:5: ibTextRule
 					{
-					pushFollow(FOLLOW_ibTextRule_in_textRule181);
+					pushFollow(FOLLOW_ibTextRule_in_textRule191);
 					ibTextRule();
 					state._fsp--;
 
 					}
 					break;
-				case 6 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:45:5: strikethroughtTextRule
+				case 5 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:54:5: strikethroughtTextRule
 					{
-					pushFollow(FOLLOW_strikethroughtTextRule_in_textRule187);
+					pushFollow(FOLLOW_strikethroughtTextRule_in_textRule197);
 					strikethroughtTextRule();
 					state._fsp--;
 
 					}
 					break;
-				case 7 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:45:30: highlightTextRule
+				case 6 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:55:5: highlightTextRule
 					{
-					pushFollow(FOLLOW_highlightTextRule_in_textRule191);
+					pushFollow(FOLLOW_highlightTextRule_in_textRule203);
 					highlightTextRule();
 					state._fsp--;
 
 					}
 					break;
-				case 8 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:45:50: subscriptTextRule
+				case 7 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:56:5: subscriptTextRule
 					{
-					pushFollow(FOLLOW_subscriptTextRule_in_textRule195);
+					pushFollow(FOLLOW_subscriptTextRule_in_textRule209);
 					subscriptTextRule();
 					state._fsp--;
 
 					}
 					break;
-				case 9 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:45:70: superscriptTextRule
+				case 8 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:57:5: superscriptTextRule
 					{
-					pushFollow(FOLLOW_superscriptTextRule_in_textRule199);
+					pushFollow(FOLLOW_superscriptTextRule_in_textRule215);
 					superscriptTextRule();
 					state._fsp--;
 
 					}
 					break;
-				case 10 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:46:5: codeTextRule
+				case 9 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:58:5: codeTextRule
 					{
-					pushFollow(FOLLOW_codeTextRule_in_textRule205);
+					pushFollow(FOLLOW_codeTextRule_in_textRule221);
 					codeTextRule();
 					state._fsp--;
 
@@ -478,8 +455,11 @@ public class MaltParser extends Parser {
 					break;
 
 				default :
-					break loop3;
+					if ( cnt3 >= 1 ) break loop3;
+					EarlyExitException eee = new EarlyExitException(3, input);
+					throw eee;
 				}
+				cnt3++;
 			}
 
 			}
@@ -498,39 +478,19 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "italicTextRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:49:1: italicTextRule : IT ( subtextRule )* IT ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:61:1: italicTextRule : IT subtextRule IT ;
 	public final void italicTextRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:50:2: ( IT ( subtextRule )* IT )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:51:3: IT ( subtextRule )* IT
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:62:2: ( IT subtextRule IT )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:63:3: IT subtextRule IT
 			{
-			match(input,IT,FOLLOW_IT_in_italicTextRule221); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:51:6: ( subtextRule )*
-			loop4:
-			while (true) {
-				int alt4=2;
-				int LA4_0 = input.LA(1);
-				if ( (LA4_0==AT||(LA4_0 >= CL && LA4_0 <= CM)||(LA4_0 >= DIGIT && LA4_0 <= DO)||LA4_0==LETTER||(LA4_0 >= SE && LA4_0 <= SL)) ) {
-					alt4=1;
-				}
+			match(input,IT,FOLLOW_IT_in_italicTextRule237); 
+			pushFollow(FOLLOW_subtextRule_in_italicTextRule240);
+			subtextRule();
+			state._fsp--;
 
-				switch (alt4) {
-				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:51:6: subtextRule
-					{
-					pushFollow(FOLLOW_subtextRule_in_italicTextRule223);
-					subtextRule();
-					state._fsp--;
-
-					}
-					break;
-
-				default :
-					break loop4;
-				}
-			}
-
-			match(input,IT,FOLLOW_IT_in_italicTextRule226); 
+			match(input,IT,FOLLOW_IT_in_italicTextRule242); 
+			System.out.println("    - I");
 			}
 
 		}
@@ -547,39 +507,19 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "boldTextRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:54:1: boldTextRule : BOLD ( subtextRule )* BOLD ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:67:1: boldTextRule : BOLD subtextRule BOLD ;
 	public final void boldTextRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:55:2: ( BOLD ( subtextRule )* BOLD )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:56:3: BOLD ( subtextRule )* BOLD
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:68:2: ( BOLD subtextRule BOLD )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:69:3: BOLD subtextRule BOLD
 			{
-			match(input,BOLD,FOLLOW_BOLD_in_boldTextRule239); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:56:8: ( subtextRule )*
-			loop5:
-			while (true) {
-				int alt5=2;
-				int LA5_0 = input.LA(1);
-				if ( (LA5_0==AT||(LA5_0 >= CL && LA5_0 <= CM)||(LA5_0 >= DIGIT && LA5_0 <= DO)||LA5_0==LETTER||(LA5_0 >= SE && LA5_0 <= SL)) ) {
-					alt5=1;
-				}
+			match(input,BOLD,FOLLOW_BOLD_in_boldTextRule259); 
+			pushFollow(FOLLOW_subtextRule_in_boldTextRule261);
+			subtextRule();
+			state._fsp--;
 
-				switch (alt5) {
-				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:56:8: subtextRule
-					{
-					pushFollow(FOLLOW_subtextRule_in_boldTextRule241);
-					subtextRule();
-					state._fsp--;
-
-					}
-					break;
-
-				default :
-					break loop5;
-				}
-			}
-
-			match(input,BOLD,FOLLOW_BOLD_in_boldTextRule244); 
+			match(input,BOLD,FOLLOW_BOLD_in_boldTextRule263); 
+			System.out.println("    - B");
 			}
 
 		}
@@ -596,39 +536,19 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "ibTextRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:59:1: ibTextRule : ITBOLD ( subtextRule )* ITBOLD ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:73:1: ibTextRule : ITBOLD subtextRule ITBOLD ;
 	public final void ibTextRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:60:2: ( ITBOLD ( subtextRule )* ITBOLD )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:61:3: ITBOLD ( subtextRule )* ITBOLD
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:74:2: ( ITBOLD subtextRule ITBOLD )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:75:3: ITBOLD subtextRule ITBOLD
 			{
-			match(input,ITBOLD,FOLLOW_ITBOLD_in_ibTextRule256); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:61:10: ( subtextRule )*
-			loop6:
-			while (true) {
-				int alt6=2;
-				int LA6_0 = input.LA(1);
-				if ( (LA6_0==AT||(LA6_0 >= CL && LA6_0 <= CM)||(LA6_0 >= DIGIT && LA6_0 <= DO)||LA6_0==LETTER||(LA6_0 >= SE && LA6_0 <= SL)) ) {
-					alt6=1;
-				}
+			match(input,ITBOLD,FOLLOW_ITBOLD_in_ibTextRule279); 
+			pushFollow(FOLLOW_subtextRule_in_ibTextRule281);
+			subtextRule();
+			state._fsp--;
 
-				switch (alt6) {
-				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:61:10: subtextRule
-					{
-					pushFollow(FOLLOW_subtextRule_in_ibTextRule258);
-					subtextRule();
-					state._fsp--;
-
-					}
-					break;
-
-				default :
-					break loop6;
-				}
-			}
-
-			match(input,ITBOLD,FOLLOW_ITBOLD_in_ibTextRule261); 
+			match(input,ITBOLD,FOLLOW_ITBOLD_in_ibTextRule283); 
+			System.out.println("    - IB");
 			}
 
 		}
@@ -645,39 +565,19 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "strikethroughtTextRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:64:1: strikethroughtTextRule : ST ( subtextRule )* ST ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:79:1: strikethroughtTextRule : ST subtextRule ST ;
 	public final void strikethroughtTextRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:65:2: ( ST ( subtextRule )* ST )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:66:3: ST ( subtextRule )* ST
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:80:2: ( ST subtextRule ST )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:81:3: ST subtextRule ST
 			{
-			match(input,ST,FOLLOW_ST_in_strikethroughtTextRule273); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:66:6: ( subtextRule )*
-			loop7:
-			while (true) {
-				int alt7=2;
-				int LA7_0 = input.LA(1);
-				if ( (LA7_0==AT||(LA7_0 >= CL && LA7_0 <= CM)||(LA7_0 >= DIGIT && LA7_0 <= DO)||LA7_0==LETTER||(LA7_0 >= SE && LA7_0 <= SL)) ) {
-					alt7=1;
-				}
+			match(input,ST,FOLLOW_ST_in_strikethroughtTextRule299); 
+			pushFollow(FOLLOW_subtextRule_in_strikethroughtTextRule301);
+			subtextRule();
+			state._fsp--;
 
-				switch (alt7) {
-				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:66:6: subtextRule
-					{
-					pushFollow(FOLLOW_subtextRule_in_strikethroughtTextRule275);
-					subtextRule();
-					state._fsp--;
-
-					}
-					break;
-
-				default :
-					break loop7;
-				}
-			}
-
-			match(input,ST,FOLLOW_ST_in_strikethroughtTextRule278); 
+			match(input,ST,FOLLOW_ST_in_strikethroughtTextRule303); 
+			System.out.println("    - ST");
 			}
 
 		}
@@ -694,39 +594,19 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "highlightTextRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:69:1: highlightTextRule : HL ( subtextRule )* HL ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:85:1: highlightTextRule : HL subtextRule HL ;
 	public final void highlightTextRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:70:2: ( HL ( subtextRule )* HL )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:71:3: HL ( subtextRule )* HL
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:86:2: ( HL subtextRule HL )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:87:3: HL subtextRule HL
 			{
-			match(input,HL,FOLLOW_HL_in_highlightTextRule290); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:71:6: ( subtextRule )*
-			loop8:
-			while (true) {
-				int alt8=2;
-				int LA8_0 = input.LA(1);
-				if ( (LA8_0==AT||(LA8_0 >= CL && LA8_0 <= CM)||(LA8_0 >= DIGIT && LA8_0 <= DO)||LA8_0==LETTER||(LA8_0 >= SE && LA8_0 <= SL)) ) {
-					alt8=1;
-				}
+			match(input,HL,FOLLOW_HL_in_highlightTextRule319); 
+			pushFollow(FOLLOW_subtextRule_in_highlightTextRule321);
+			subtextRule();
+			state._fsp--;
 
-				switch (alt8) {
-				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:71:6: subtextRule
-					{
-					pushFollow(FOLLOW_subtextRule_in_highlightTextRule292);
-					subtextRule();
-					state._fsp--;
-
-					}
-					break;
-
-				default :
-					break loop8;
-				}
-			}
-
-			match(input,HL,FOLLOW_HL_in_highlightTextRule295); 
+			match(input,HL,FOLLOW_HL_in_highlightTextRule323); 
+			System.out.println("    - HL");
 			}
 
 		}
@@ -743,39 +623,19 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "subscriptTextRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:74:1: subscriptTextRule : SUBS ( subtextRule )* SUBS ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:91:1: subscriptTextRule : SUBS subtextRule SUBS ;
 	public final void subscriptTextRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:75:2: ( SUBS ( subtextRule )* SUBS )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:76:3: SUBS ( subtextRule )* SUBS
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:92:2: ( SUBS subtextRule SUBS )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:93:3: SUBS subtextRule SUBS
 			{
-			match(input,SUBS,FOLLOW_SUBS_in_subscriptTextRule307); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:76:8: ( subtextRule )*
-			loop9:
-			while (true) {
-				int alt9=2;
-				int LA9_0 = input.LA(1);
-				if ( (LA9_0==AT||(LA9_0 >= CL && LA9_0 <= CM)||(LA9_0 >= DIGIT && LA9_0 <= DO)||LA9_0==LETTER||(LA9_0 >= SE && LA9_0 <= SL)) ) {
-					alt9=1;
-				}
+			match(input,SUBS,FOLLOW_SUBS_in_subscriptTextRule339); 
+			pushFollow(FOLLOW_subtextRule_in_subscriptTextRule341);
+			subtextRule();
+			state._fsp--;
 
-				switch (alt9) {
-				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:76:8: subtextRule
-					{
-					pushFollow(FOLLOW_subtextRule_in_subscriptTextRule309);
-					subtextRule();
-					state._fsp--;
-
-					}
-					break;
-
-				default :
-					break loop9;
-				}
-			}
-
-			match(input,SUBS,FOLLOW_SUBS_in_subscriptTextRule312); 
+			match(input,SUBS,FOLLOW_SUBS_in_subscriptTextRule343); 
+			System.out.println("    - SUBS");
 			}
 
 		}
@@ -792,39 +652,19 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "superscriptTextRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:79:1: superscriptTextRule : SUPS ( subtextRule )* SUPS ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:97:1: superscriptTextRule : SUPS subtextRule SUPS ;
 	public final void superscriptTextRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:80:2: ( SUPS ( subtextRule )* SUPS )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:81:3: SUPS ( subtextRule )* SUPS
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:98:2: ( SUPS subtextRule SUPS )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:99:3: SUPS subtextRule SUPS
 			{
-			match(input,SUPS,FOLLOW_SUPS_in_superscriptTextRule324); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:81:8: ( subtextRule )*
-			loop10:
-			while (true) {
-				int alt10=2;
-				int LA10_0 = input.LA(1);
-				if ( (LA10_0==AT||(LA10_0 >= CL && LA10_0 <= CM)||(LA10_0 >= DIGIT && LA10_0 <= DO)||LA10_0==LETTER||(LA10_0 >= SE && LA10_0 <= SL)) ) {
-					alt10=1;
-				}
+			match(input,SUPS,FOLLOW_SUPS_in_superscriptTextRule359); 
+			pushFollow(FOLLOW_subtextRule_in_superscriptTextRule361);
+			subtextRule();
+			state._fsp--;
 
-				switch (alt10) {
-				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:81:8: subtextRule
-					{
-					pushFollow(FOLLOW_subtextRule_in_superscriptTextRule326);
-					subtextRule();
-					state._fsp--;
-
-					}
-					break;
-
-				default :
-					break loop10;
-				}
-			}
-
-			match(input,SUPS,FOLLOW_SUPS_in_superscriptTextRule329); 
+			match(input,SUPS,FOLLOW_SUPS_in_superscriptTextRule363); 
+			System.out.println("    - SUPS");
 			}
 
 		}
@@ -841,39 +681,19 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "codeTextRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:84:1: codeTextRule : CODE ( subtextRule )* CODE ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:103:1: codeTextRule : CODE subtextRule CODE ;
 	public final void codeTextRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:85:2: ( CODE ( subtextRule )* CODE )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:85:4: CODE ( subtextRule )* CODE
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:104:2: ( CODE subtextRule CODE )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:105:3: CODE subtextRule CODE
 			{
-			match(input,CODE,FOLLOW_CODE_in_codeTextRule339); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:85:9: ( subtextRule )*
-			loop11:
-			while (true) {
-				int alt11=2;
-				int LA11_0 = input.LA(1);
-				if ( (LA11_0==AT||(LA11_0 >= CL && LA11_0 <= CM)||(LA11_0 >= DIGIT && LA11_0 <= DO)||LA11_0==LETTER||(LA11_0 >= SE && LA11_0 <= SL)) ) {
-					alt11=1;
-				}
+			match(input,CODE,FOLLOW_CODE_in_codeTextRule379); 
+			pushFollow(FOLLOW_subtextRule_in_codeTextRule381);
+			subtextRule();
+			state._fsp--;
 
-				switch (alt11) {
-				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:85:9: subtextRule
-					{
-					pushFollow(FOLLOW_subtextRule_in_codeTextRule341);
-					subtextRule();
-					state._fsp--;
-
-					}
-					break;
-
-				default :
-					break loop11;
-				}
-			}
-
-			match(input,CODE,FOLLOW_CODE_in_codeTextRule344); 
+			match(input,CODE,FOLLOW_CODE_in_codeTextRule383); 
+			System.out.println("    - CODE");
 			}
 
 		}
@@ -890,20 +710,49 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "subtextRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:88:1: subtextRule : ( LETTER | DIGIT | DO | CM | SE | CL | SL | AT ) ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:109:1: subtextRule : ( VAR | INTEGER | DO | CM | SE | CL )+ ;
 	public final void subtextRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:89:2: ( ( LETTER | DIGIT | DO | CM | SE | CL | SL | AT ) )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:110:2: ( ( VAR | INTEGER | DO | CM | SE | CL )+ )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:111:3: ( VAR | INTEGER | DO | CM | SE | CL )+
 			{
-			if ( input.LA(1)==AT||(input.LA(1) >= CL && input.LA(1) <= CM)||(input.LA(1) >= DIGIT && input.LA(1) <= DO)||input.LA(1)==LETTER||(input.LA(1) >= SE && input.LA(1) <= SL) ) {
-				input.consume();
-				state.errorRecovery=false;
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:111:3: ( VAR | INTEGER | DO | CM | SE | CL )+
+			int cnt4=0;
+			loop4:
+			while (true) {
+				int alt4=2;
+				int LA4_0 = input.LA(1);
+				if ( (LA4_0==CM) ) {
+					alt4=1;
+				}
+				else if ( (LA4_0==CL||LA4_0==DO||LA4_0==INTEGER||LA4_0==SE||LA4_0==VAR) ) {
+					alt4=1;
+				}
+
+				switch (alt4) {
+				case 1 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+					{
+					if ( (input.LA(1) >= CL && input.LA(1) <= CM)||input.LA(1)==DO||input.LA(1)==INTEGER||input.LA(1)==SE||input.LA(1)==VAR ) {
+						input.consume();
+						state.errorRecovery=false;
+					}
+					else {
+						MismatchedSetException mse = new MismatchedSetException(null,input);
+						throw mse;
+					}
+					}
+					break;
+
+				default :
+					if ( cnt4 >= 1 ) break loop4;
+					EarlyExitException eee = new EarlyExitException(4, input);
+					throw eee;
+				}
+				cnt4++;
 			}
-			else {
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				throw mse;
-			}
+
+			System.out.println("    - SUBTEXT");
 			}
 
 		}
@@ -920,16 +769,16 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "blockquoteRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:93:1: blockquoteRule : BLOCKQUOTE VAR EQ textRule ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:115:1: blockquoteRule : BLOCKQUOTE VAR EQ textRule ;
 	public final void blockquoteRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:94:2: ( BLOCKQUOTE VAR EQ textRule )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:95:3: BLOCKQUOTE VAR EQ textRule
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:116:2: ( BLOCKQUOTE VAR EQ textRule )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:117:3: BLOCKQUOTE VAR EQ textRule
 			{
-			match(input,BLOCKQUOTE,FOLLOW_BLOCKQUOTE_in_blockquoteRule401); 
-			match(input,VAR,FOLLOW_VAR_in_blockquoteRule403); 
-			match(input,EQ,FOLLOW_EQ_in_blockquoteRule405); 
-			pushFollow(FOLLOW_textRule_in_blockquoteRule407);
+			match(input,BLOCKQUOTE,FOLLOW_BLOCKQUOTE_in_blockquoteRule441); 
+			match(input,VAR,FOLLOW_VAR_in_blockquoteRule443); 
+			match(input,EQ,FOLLOW_EQ_in_blockquoteRule445); 
+			pushFollow(FOLLOW_textRule_in_blockquoteRule447);
 			textRule();
 			state._fsp--;
 
@@ -949,19 +798,19 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "olistRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:98:1: olistRule : OLIST LP textListRule RP ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:120:1: olistRule : OLIST LP textListRule RP ;
 	public final void olistRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:99:2: ( OLIST LP textListRule RP )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:100:3: OLIST LP textListRule RP
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:121:2: ( OLIST LP textListRule RP )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:122:3: OLIST LP textListRule RP
 			{
-			match(input,OLIST,FOLLOW_OLIST_in_olistRule420); 
-			match(input,LP,FOLLOW_LP_in_olistRule422); 
-			pushFollow(FOLLOW_textListRule_in_olistRule424);
+			match(input,OLIST,FOLLOW_OLIST_in_olistRule460); 
+			match(input,LP,FOLLOW_LP_in_olistRule462); 
+			pushFollow(FOLLOW_textListRule_in_olistRule464);
 			textListRule();
 			state._fsp--;
 
-			match(input,RP,FOLLOW_RP_in_olistRule426); 
+			match(input,RP,FOLLOW_RP_in_olistRule466); 
 			}
 
 		}
@@ -978,32 +827,32 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "textListRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:103:1: textListRule : textRule ( CM textRule )+ ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:125:1: textListRule : textRule ( CM textRule )+ ;
 	public final void textListRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:104:2: ( textRule ( CM textRule )+ )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:104:4: textRule ( CM textRule )+
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:126:2: ( textRule ( CM textRule )+ )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:126:4: textRule ( CM textRule )+
 			{
-			pushFollow(FOLLOW_textRule_in_textListRule436);
+			pushFollow(FOLLOW_textRule_in_textListRule476);
 			textRule();
 			state._fsp--;
 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:104:13: ( CM textRule )+
-			int cnt12=0;
-			loop12:
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:126:13: ( CM textRule )+
+			int cnt5=0;
+			loop5:
 			while (true) {
-				int alt12=2;
-				int LA12_0 = input.LA(1);
-				if ( (LA12_0==CM) ) {
-					alt12=1;
+				int alt5=2;
+				int LA5_0 = input.LA(1);
+				if ( (LA5_0==CM) ) {
+					alt5=1;
 				}
 
-				switch (alt12) {
+				switch (alt5) {
 				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:104:14: CM textRule
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:126:14: CM textRule
 					{
-					match(input,CM,FOLLOW_CM_in_textListRule439); 
-					pushFollow(FOLLOW_textRule_in_textListRule441);
+					match(input,CM,FOLLOW_CM_in_textListRule479); 
+					pushFollow(FOLLOW_textRule_in_textListRule481);
 					textRule();
 					state._fsp--;
 
@@ -1011,11 +860,11 @@ public class MaltParser extends Parser {
 					break;
 
 				default :
-					if ( cnt12 >= 1 ) break loop12;
-					EarlyExitException eee = new EarlyExitException(12, input);
+					if ( cnt5 >= 1 ) break loop5;
+					EarlyExitException eee = new EarlyExitException(5, input);
 					throw eee;
 				}
-				cnt12++;
+				cnt5++;
 			}
 
 			}
@@ -1034,19 +883,19 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "ulistRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:107:1: ulistRule : ULIST LP textListRule RP ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:129:1: ulistRule : ULIST LP textListRule RP ;
 	public final void ulistRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:108:2: ( ULIST LP textListRule RP )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:109:3: ULIST LP textListRule RP
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:130:2: ( ULIST LP textListRule RP )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:131:3: ULIST LP textListRule RP
 			{
-			match(input,ULIST,FOLLOW_ULIST_in_ulistRule456); 
-			match(input,LP,FOLLOW_LP_in_ulistRule458); 
-			pushFollow(FOLLOW_textListRule_in_ulistRule460);
+			match(input,ULIST,FOLLOW_ULIST_in_ulistRule496); 
+			match(input,LP,FOLLOW_LP_in_ulistRule498); 
+			pushFollow(FOLLOW_textListRule_in_ulistRule500);
 			textListRule();
 			state._fsp--;
 
-			match(input,RP,FOLLOW_RP_in_ulistRule462); 
+			match(input,RP,FOLLOW_RP_in_ulistRule502); 
 			}
 
 		}
@@ -1063,19 +912,19 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "tlistRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:112:1: tlistRule : TLIST LP textListRule RP ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:134:1: tlistRule : TLIST LP textListRule RP ;
 	public final void tlistRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:113:2: ( TLIST LP textListRule RP )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:114:3: TLIST LP textListRule RP
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:135:2: ( TLIST LP textListRule RP )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:136:3: TLIST LP textListRule RP
 			{
-			match(input,TLIST,FOLLOW_TLIST_in_tlistRule475); 
-			match(input,LP,FOLLOW_LP_in_tlistRule477); 
-			pushFollow(FOLLOW_textListRule_in_tlistRule479);
+			match(input,TLIST,FOLLOW_TLIST_in_tlistRule515); 
+			match(input,LP,FOLLOW_LP_in_tlistRule517); 
+			pushFollow(FOLLOW_textListRule_in_tlistRule519);
 			textListRule();
 			state._fsp--;
 
-			match(input,RP,FOLLOW_RP_in_tlistRule481); 
+			match(input,RP,FOLLOW_RP_in_tlistRule521); 
 			}
 
 		}
@@ -1092,24 +941,24 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "blockCodeRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:117:1: blockCodeRule : BLOCKCODE ( languageRule )? textRule BLOCKCODE ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:139:1: blockCodeRule : BLOCKCODE ( languageRule )? textRule BLOCKCODE ;
 	public final void blockCodeRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:118:2: ( BLOCKCODE ( languageRule )? textRule BLOCKCODE )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:119:3: BLOCKCODE ( languageRule )? textRule BLOCKCODE
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:140:2: ( BLOCKCODE ( languageRule )? textRule BLOCKCODE )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:141:3: BLOCKCODE ( languageRule )? textRule BLOCKCODE
 			{
-			match(input,BLOCKCODE,FOLLOW_BLOCKCODE_in_blockCodeRule494); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:119:13: ( languageRule )?
-			int alt13=2;
-			int LA13_0 = input.LA(1);
-			if ( ((LA13_0 >= 65 && LA13_0 <= 67)) ) {
-				alt13=1;
+			match(input,BLOCKCODE,FOLLOW_BLOCKCODE_in_blockCodeRule534); 
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:141:13: ( languageRule )?
+			int alt6=2;
+			int LA6_0 = input.LA(1);
+			if ( ((LA6_0 >= 64 && LA6_0 <= 66)) ) {
+				alt6=1;
 			}
-			switch (alt13) {
+			switch (alt6) {
 				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:119:13: languageRule
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:141:13: languageRule
 					{
-					pushFollow(FOLLOW_languageRule_in_blockCodeRule496);
+					pushFollow(FOLLOW_languageRule_in_blockCodeRule536);
 					languageRule();
 					state._fsp--;
 
@@ -1118,11 +967,11 @@ public class MaltParser extends Parser {
 
 			}
 
-			pushFollow(FOLLOW_textRule_in_blockCodeRule499);
+			pushFollow(FOLLOW_textRule_in_blockCodeRule539);
 			textRule();
 			state._fsp--;
 
-			match(input,BLOCKCODE,FOLLOW_BLOCKCODE_in_blockCodeRule501); 
+			match(input,BLOCKCODE,FOLLOW_BLOCKCODE_in_blockCodeRule541); 
 			}
 
 		}
@@ -1139,13 +988,13 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "languageRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:122:1: languageRule : ( 'Java' | 'C' | 'C++' );
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:144:1: languageRule : ( 'Java' | 'C' | 'C++' );
 	public final void languageRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:123:2: ( 'Java' | 'C' | 'C++' )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:145:2: ( 'Java' | 'C' | 'C++' )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 			{
-			if ( (input.LA(1) >= 65 && input.LA(1) <= 67) ) {
+			if ( (input.LA(1) >= 64 && input.LA(1) <= 66) ) {
 				input.consume();
 				state.errorRecovery=false;
 			}
@@ -1169,13 +1018,13 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "horizontalRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:127:1: horizontalRule : HRULE ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:149:1: horizontalRule : HRULE ;
 	public final void horizontalRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:128:2: ( HRULE )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:129:3: HRULE
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:150:2: ( HRULE )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:151:3: HRULE
 			{
-			match(input,HRULE,FOLLOW_HRULE_in_horizontalRule533); 
+			match(input,HRULE,FOLLOW_HRULE_in_horizontalRule573); 
 			}
 
 		}
@@ -1192,43 +1041,43 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "linkRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:132:1: linkRule : LSB ( textRule | imageRule ) RSB LP textLinkRule RP ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:154:1: linkRule : LSB ( textRule | imageRule ) RSB LP textLinkRule RP ;
 	public final void linkRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:133:2: ( LSB ( textRule | imageRule ) RSB LP textLinkRule RP )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:134:3: LSB ( textRule | imageRule ) RSB LP textLinkRule RP
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:155:2: ( LSB ( textRule | imageRule ) RSB LP textLinkRule RP )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:156:3: LSB ( textRule | imageRule ) RSB LP textLinkRule RP
 			{
-			match(input,LSB,FOLLOW_LSB_in_linkRule545); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:134:7: ( textRule | imageRule )
-			int alt14=2;
-			int LA14_0 = input.LA(1);
-			if ( (LA14_0==EOF||LA14_0==BLOCKCODE||LA14_0==BOLD||(LA14_0 >= CM && LA14_0 <= CODE)||LA14_0==DIGIT||LA14_0==HL||(LA14_0 >= IT && LA14_0 <= ITBOLD)||LA14_0==LETTER||LA14_0==QU||(LA14_0 >= RP && LA14_0 <= S5TITLE)||LA14_0==ST||(LA14_0 >= SUBS && LA14_0 <= SUPS)||(LA14_0 >= TEXT && LA14_0 <= TITLE)) ) {
-				alt14=1;
+			match(input,LSB,FOLLOW_LSB_in_linkRule585); 
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:156:7: ( textRule | imageRule )
+			int alt7=2;
+			int LA7_0 = input.LA(1);
+			if ( (LA7_0==BOLD||(LA7_0 >= CL && LA7_0 <= CODE)||LA7_0==DO||LA7_0==HL||(LA7_0 >= INTEGER && LA7_0 <= ITBOLD)||LA7_0==SE||LA7_0==ST||(LA7_0 >= SUBS && LA7_0 <= SUPS)||LA7_0==VAR) ) {
+				alt7=1;
 			}
-			else if ( (LA14_0==EX) ) {
-				alt14=2;
+			else if ( (LA7_0==EX) ) {
+				alt7=2;
 			}
 
 			else {
 				NoViableAltException nvae =
-					new NoViableAltException("", 14, 0, input);
+					new NoViableAltException("", 7, 0, input);
 				throw nvae;
 			}
 
-			switch (alt14) {
+			switch (alt7) {
 				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:134:8: textRule
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:156:8: textRule
 					{
-					pushFollow(FOLLOW_textRule_in_linkRule548);
+					pushFollow(FOLLOW_textRule_in_linkRule588);
 					textRule();
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:134:19: imageRule
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:156:19: imageRule
 					{
-					pushFollow(FOLLOW_imageRule_in_linkRule552);
+					pushFollow(FOLLOW_imageRule_in_linkRule592);
 					imageRule();
 					state._fsp--;
 
@@ -1237,13 +1086,13 @@ public class MaltParser extends Parser {
 
 			}
 
-			match(input,RSB,FOLLOW_RSB_in_linkRule555); 
-			match(input,LP,FOLLOW_LP_in_linkRule557); 
-			pushFollow(FOLLOW_textLinkRule_in_linkRule559);
+			match(input,RSB,FOLLOW_RSB_in_linkRule595); 
+			match(input,LP,FOLLOW_LP_in_linkRule597); 
+			pushFollow(FOLLOW_textLinkRule_in_linkRule599);
 			textLinkRule();
 			state._fsp--;
 
-			match(input,RP,FOLLOW_RP_in_linkRule561); 
+			match(input,RP,FOLLOW_RP_in_linkRule601); 
 			}
 
 		}
@@ -1260,43 +1109,68 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "textLinkRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:137:1: textLinkRule : ( LETTER | DIGIT | DO | CM | SE | CL | SL | AT )+ ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:159:1: textLinkRule : ( subtextRule | SL | AT )+ ;
 	public final void textLinkRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:138:2: ( ( LETTER | DIGIT | DO | CM | SE | CL | SL | AT )+ )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:139:3: ( LETTER | DIGIT | DO | CM | SE | CL | SL | AT )+
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:160:2: ( ( subtextRule | SL | AT )+ )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:161:3: ( subtextRule | SL | AT )+
 			{
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:139:3: ( LETTER | DIGIT | DO | CM | SE | CL | SL | AT )+
-			int cnt15=0;
-			loop15:
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:161:3: ( subtextRule | SL | AT )+
+			int cnt8=0;
+			loop8:
 			while (true) {
-				int alt15=2;
-				int LA15_0 = input.LA(1);
-				if ( (LA15_0==AT||(LA15_0 >= CL && LA15_0 <= CM)||(LA15_0 >= DIGIT && LA15_0 <= DO)||LA15_0==LETTER||(LA15_0 >= SE && LA15_0 <= SL)) ) {
-					alt15=1;
-				}
-
-				switch (alt15) {
-				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+				int alt8=4;
+				switch ( input.LA(1) ) {
+				case CL:
+				case CM:
+				case DO:
+				case INTEGER:
+				case SE:
+				case VAR:
 					{
-					if ( input.LA(1)==AT||(input.LA(1) >= CL && input.LA(1) <= CM)||(input.LA(1) >= DIGIT && input.LA(1) <= DO)||input.LA(1)==LETTER||(input.LA(1) >= SE && input.LA(1) <= SL) ) {
-						input.consume();
-						state.errorRecovery=false;
+					alt8=1;
 					}
-					else {
-						MismatchedSetException mse = new MismatchedSetException(null,input);
-						throw mse;
+					break;
+				case SL:
+					{
+					alt8=2;
 					}
+					break;
+				case AT:
+					{
+					alt8=3;
+					}
+					break;
+				}
+				switch (alt8) {
+				case 1 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:161:4: subtextRule
+					{
+					pushFollow(FOLLOW_subtextRule_in_textLinkRule614);
+					subtextRule();
+					state._fsp--;
+
+					}
+					break;
+				case 2 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:161:18: SL
+					{
+					match(input,SL,FOLLOW_SL_in_textLinkRule618); 
+					}
+					break;
+				case 3 :
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:161:23: AT
+					{
+					match(input,AT,FOLLOW_AT_in_textLinkRule622); 
 					}
 					break;
 
 				default :
-					if ( cnt15 >= 1 ) break loop15;
-					EarlyExitException eee = new EarlyExitException(15, input);
+					if ( cnt8 >= 1 ) break loop8;
+					EarlyExitException eee = new EarlyExitException(8, input);
 					throw eee;
 				}
-				cnt15++;
+				cnt8++;
 			}
 
 			}
@@ -1315,46 +1189,46 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "imageRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:142:1: imageRule : EX LSB textLinkRule RSB LP textLinkRule ( QU textRule QU )? RP ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:164:1: imageRule : EX LSB textLinkRule RSB LP textLinkRule ( QU textRule QU )? RP ;
 	public final void imageRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:143:2: ( EX LSB textLinkRule RSB LP textLinkRule ( QU textRule QU )? RP )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:144:3: EX LSB textLinkRule RSB LP textLinkRule ( QU textRule QU )? RP
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:165:2: ( EX LSB textLinkRule RSB LP textLinkRule ( QU textRule QU )? RP )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:3: EX LSB textLinkRule RSB LP textLinkRule ( QU textRule QU )? RP
 			{
-			match(input,EX,FOLLOW_EX_in_imageRule616); 
-			match(input,LSB,FOLLOW_LSB_in_imageRule618); 
-			pushFollow(FOLLOW_textLinkRule_in_imageRule620);
+			match(input,EX,FOLLOW_EX_in_imageRule636); 
+			match(input,LSB,FOLLOW_LSB_in_imageRule638); 
+			pushFollow(FOLLOW_textLinkRule_in_imageRule640);
 			textLinkRule();
 			state._fsp--;
 
-			match(input,RSB,FOLLOW_RSB_in_imageRule622); 
-			match(input,LP,FOLLOW_LP_in_imageRule624); 
-			pushFollow(FOLLOW_textLinkRule_in_imageRule626);
+			match(input,RSB,FOLLOW_RSB_in_imageRule642); 
+			match(input,LP,FOLLOW_LP_in_imageRule644); 
+			pushFollow(FOLLOW_textLinkRule_in_imageRule646);
 			textLinkRule();
 			state._fsp--;
 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:144:43: ( QU textRule QU )?
-			int alt16=2;
-			int LA16_0 = input.LA(1);
-			if ( (LA16_0==QU) ) {
-				alt16=1;
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:43: ( QU textRule QU )?
+			int alt9=2;
+			int LA9_0 = input.LA(1);
+			if ( (LA9_0==QU) ) {
+				alt9=1;
 			}
-			switch (alt16) {
+			switch (alt9) {
 				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:144:44: QU textRule QU
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:44: QU textRule QU
 					{
-					match(input,QU,FOLLOW_QU_in_imageRule629); 
-					pushFollow(FOLLOW_textRule_in_imageRule631);
+					match(input,QU,FOLLOW_QU_in_imageRule649); 
+					pushFollow(FOLLOW_textRule_in_imageRule651);
 					textRule();
 					state._fsp--;
 
-					match(input,QU,FOLLOW_QU_in_imageRule633); 
+					match(input,QU,FOLLOW_QU_in_imageRule653); 
 					}
 					break;
 
 			}
 
-			match(input,RP,FOLLOW_RP_in_imageRule637); 
+			match(input,RP,FOLLOW_RP_in_imageRule657); 
 			}
 
 		}
@@ -1371,18 +1245,18 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "quickLinkRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:147:1: quickLinkRule : LAB textLinkRule RAB ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:169:1: quickLinkRule : LAB textLinkRule RAB ;
 	public final void quickLinkRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:148:2: ( LAB textLinkRule RAB )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:149:3: LAB textLinkRule RAB
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:170:2: ( LAB textLinkRule RAB )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:171:3: LAB textLinkRule RAB
 			{
-			match(input,LAB,FOLLOW_LAB_in_quickLinkRule649); 
-			pushFollow(FOLLOW_textLinkRule_in_quickLinkRule651);
+			match(input,LAB,FOLLOW_LAB_in_quickLinkRule669); 
+			pushFollow(FOLLOW_textLinkRule_in_quickLinkRule671);
 			textLinkRule();
 			state._fsp--;
 
-			match(input,RAB,FOLLOW_RAB_in_quickLinkRule653); 
+			match(input,RAB,FOLLOW_RAB_in_quickLinkRule673); 
 			}
 
 		}
@@ -1399,24 +1273,24 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "tableRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:153:1: tableRule : TABLE ( talignmentRule )? LP trowRule ( CM trowRule )* RP ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:175:1: tableRule : TABLE ( talignmentRule )? LP trowRule ( CM trowRule )* RP ;
 	public final void tableRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:154:2: ( TABLE ( talignmentRule )? LP trowRule ( CM trowRule )* RP )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:155:3: TABLE ( talignmentRule )? LP trowRule ( CM trowRule )* RP
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:176:2: ( TABLE ( talignmentRule )? LP trowRule ( CM trowRule )* RP )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:177:3: TABLE ( talignmentRule )? LP trowRule ( CM trowRule )* RP
 			{
-			match(input,TABLE,FOLLOW_TABLE_in_tableRule667); 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:155:9: ( talignmentRule )?
-			int alt17=2;
-			int LA17_0 = input.LA(1);
-			if ( (LA17_0==LSB) ) {
-				alt17=1;
+			match(input,TABLE,FOLLOW_TABLE_in_tableRule687); 
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:177:9: ( talignmentRule )?
+			int alt10=2;
+			int LA10_0 = input.LA(1);
+			if ( (LA10_0==LSB) ) {
+				alt10=1;
 			}
-			switch (alt17) {
+			switch (alt10) {
 				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:155:9: talignmentRule
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:177:9: talignmentRule
 					{
-					pushFollow(FOLLOW_talignmentRule_in_tableRule669);
+					pushFollow(FOLLOW_talignmentRule_in_tableRule689);
 					talignmentRule();
 					state._fsp--;
 
@@ -1425,26 +1299,26 @@ public class MaltParser extends Parser {
 
 			}
 
-			match(input,LP,FOLLOW_LP_in_tableRule672); 
-			pushFollow(FOLLOW_trowRule_in_tableRule674);
+			match(input,LP,FOLLOW_LP_in_tableRule692); 
+			pushFollow(FOLLOW_trowRule_in_tableRule694);
 			trowRule();
 			state._fsp--;
 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:155:37: ( CM trowRule )*
-			loop18:
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:177:37: ( CM trowRule )*
+			loop11:
 			while (true) {
-				int alt18=2;
-				int LA18_0 = input.LA(1);
-				if ( (LA18_0==CM) ) {
-					alt18=1;
+				int alt11=2;
+				int LA11_0 = input.LA(1);
+				if ( (LA11_0==CM) ) {
+					alt11=1;
 				}
 
-				switch (alt18) {
+				switch (alt11) {
 				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:155:38: CM trowRule
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:177:38: CM trowRule
 					{
-					match(input,CM,FOLLOW_CM_in_tableRule677); 
-					pushFollow(FOLLOW_trowRule_in_tableRule679);
+					match(input,CM,FOLLOW_CM_in_tableRule697); 
+					pushFollow(FOLLOW_trowRule_in_tableRule699);
 					trowRule();
 					state._fsp--;
 
@@ -1452,11 +1326,11 @@ public class MaltParser extends Parser {
 					break;
 
 				default :
-					break loop18;
+					break loop11;
 				}
 			}
 
-			match(input,RP,FOLLOW_RP_in_tableRule683); 
+			match(input,RP,FOLLOW_RP_in_tableRule703); 
 			}
 
 		}
@@ -1473,32 +1347,32 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "talignmentRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:158:1: talignmentRule : LSB alignRule ( CM alignRule )* RSB ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:180:1: talignmentRule : LSB alignRule ( CM alignRule )* RSB ;
 	public final void talignmentRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:159:2: ( LSB alignRule ( CM alignRule )* RSB )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:160:3: LSB alignRule ( CM alignRule )* RSB
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:181:2: ( LSB alignRule ( CM alignRule )* RSB )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:182:3: LSB alignRule ( CM alignRule )* RSB
 			{
-			match(input,LSB,FOLLOW_LSB_in_talignmentRule695); 
-			pushFollow(FOLLOW_alignRule_in_talignmentRule697);
+			match(input,LSB,FOLLOW_LSB_in_talignmentRule715); 
+			pushFollow(FOLLOW_alignRule_in_talignmentRule717);
 			alignRule();
 			state._fsp--;
 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:160:17: ( CM alignRule )*
-			loop19:
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:182:17: ( CM alignRule )*
+			loop12:
 			while (true) {
-				int alt19=2;
-				int LA19_0 = input.LA(1);
-				if ( (LA19_0==CM) ) {
-					alt19=1;
+				int alt12=2;
+				int LA12_0 = input.LA(1);
+				if ( (LA12_0==CM) ) {
+					alt12=1;
 				}
 
-				switch (alt19) {
+				switch (alt12) {
 				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:160:18: CM alignRule
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:182:18: CM alignRule
 					{
-					match(input,CM,FOLLOW_CM_in_talignmentRule700); 
-					pushFollow(FOLLOW_alignRule_in_talignmentRule702);
+					match(input,CM,FOLLOW_CM_in_talignmentRule720); 
+					pushFollow(FOLLOW_alignRule_in_talignmentRule722);
 					alignRule();
 					state._fsp--;
 
@@ -1506,11 +1380,11 @@ public class MaltParser extends Parser {
 					break;
 
 				default :
-					break loop19;
+					break loop12;
 				}
 			}
 
-			match(input,RSB,FOLLOW_RSB_in_talignmentRule706); 
+			match(input,RSB,FOLLOW_RSB_in_talignmentRule726); 
 			}
 
 		}
@@ -1527,11 +1401,11 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "alignRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:163:1: alignRule : ( L | C | R );
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:185:1: alignRule : ( L | C | R );
 	public final void alignRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:164:2: ( L | C | R )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:186:2: ( L | C | R )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 			{
 			if ( input.LA(1)==C||input.LA(1)==L||input.LA(1)==R ) {
 				input.consume();
@@ -1557,32 +1431,32 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "trowRule"
-	// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:168:1: trowRule : LSB textRule ( CM textRule )* RSB ;
+	// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:190:1: trowRule : LSB textRule ( CM textRule )* RSB ;
 	public final void trowRule() throws RecognitionException {
 		try {
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:169:2: ( LSB textRule ( CM textRule )* RSB )
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:170:3: LSB textRule ( CM textRule )* RSB
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:191:2: ( LSB textRule ( CM textRule )* RSB )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:192:3: LSB textRule ( CM textRule )* RSB
 			{
-			match(input,LSB,FOLLOW_LSB_in_trowRule738); 
-			pushFollow(FOLLOW_textRule_in_trowRule740);
+			match(input,LSB,FOLLOW_LSB_in_trowRule758); 
+			pushFollow(FOLLOW_textRule_in_trowRule760);
 			textRule();
 			state._fsp--;
 
-			// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:170:16: ( CM textRule )*
-			loop20:
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:192:16: ( CM textRule )*
+			loop13:
 			while (true) {
-				int alt20=2;
-				int LA20_0 = input.LA(1);
-				if ( (LA20_0==CM) ) {
-					alt20=1;
+				int alt13=2;
+				int LA13_0 = input.LA(1);
+				if ( (LA13_0==CM) ) {
+					alt13=1;
 				}
 
-				switch (alt20) {
+				switch (alt13) {
 				case 1 :
-					// C:\\Users\\giuly\\Desktop\\università\\ANNO 5\\S1\\Linguaggi\\progetto\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:170:17: CM textRule
+					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:192:17: CM textRule
 					{
-					match(input,CM,FOLLOW_CM_in_trowRule743); 
-					pushFollow(FOLLOW_textRule_in_trowRule745);
+					match(input,CM,FOLLOW_CM_in_trowRule763); 
+					pushFollow(FOLLOW_textRule_in_trowRule765);
 					textRule();
 					state._fsp--;
 
@@ -1590,11 +1464,11 @@ public class MaltParser extends Parser {
 					break;
 
 				default :
-					break loop20;
+					break loop13;
 				}
 			}
 
-			match(input,RSB,FOLLOW_RSB_in_trowRule749); 
+			match(input,RSB,FOLLOW_RSB_in_trowRule769); 
 			}
 
 		}
@@ -1612,116 +1486,117 @@ public class MaltParser extends Parser {
 
 
 
-	public static final BitSet FOLLOW_initRule_in_parseJava45 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_titleRule_in_initRule55 = new BitSet(new long[]{0x0C07C00000000002L});
-	public static final BitSet FOLLOW_titleRule_in_initRule57 = new BitSet(new long[]{0x0C07C00000000002L});
-	public static final BitSet FOLLOW_textDeclRule_in_initRule59 = new BitSet(new long[]{0x0C07C00000000002L});
-	public static final BitSet FOLLOW_titleTypeRule_in_titleRule74 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_titleRule_in_parseJava48 = new BitSet(new long[]{0x0603E00000000002L});
+	public static final BitSet FOLLOW_titleRule_in_parseJava53 = new BitSet(new long[]{0x0603E00000000002L});
+	public static final BitSet FOLLOW_textDeclRule_in_parseJava55 = new BitSet(new long[]{0x0603E00000000002L});
+	public static final BitSet FOLLOW_titleTypeRule_in_titleRule74 = new BitSet(new long[]{0x4000000000000000L});
 	public static final BitSet FOLLOW_VAR_in_titleRule76 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_EQ_in_titleRule78 = new BitSet(new long[]{0x0040000000000000L});
+	public static final BitSet FOLLOW_EQ_in_titleRule78 = new BitSet(new long[]{0x0020000000000000L});
 	public static final BitSet FOLLOW_STRING_in_titleRule80 = new BitSet(new long[]{0x0000000100000002L});
 	public static final BitSet FOLLOW_refRule_in_titleRule82 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LCB_in_refRule127 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_HA_in_refRule129 = new BitSet(new long[]{0x0000000004000000L});
-	public static final BitSet FOLLOW_ID_in_refRule131 = new BitSet(new long[]{0x0000080000000000L});
-	public static final BitSet FOLLOW_RCB_in_refRule133 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TEXT_in_textDeclRule146 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_VAR_in_textDeclRule148 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_EQ_in_textDeclRule150 = new BitSet(new long[]{0x01A0000431005080L});
-	public static final BitSet FOLLOW_textRule_in_textDeclRule152 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LETTER_in_textRule165 = new BitSet(new long[]{0x01A0000431005082L});
-	public static final BitSet FOLLOW_DIGIT_in_textRule169 = new BitSet(new long[]{0x01A0000431005082L});
-	public static final BitSet FOLLOW_italicTextRule_in_textRule173 = new BitSet(new long[]{0x01A0000431005082L});
-	public static final BitSet FOLLOW_boldTextRule_in_textRule177 = new BitSet(new long[]{0x01A0000431005082L});
-	public static final BitSet FOLLOW_ibTextRule_in_textRule181 = new BitSet(new long[]{0x01A0000431005082L});
-	public static final BitSet FOLLOW_strikethroughtTextRule_in_textRule187 = new BitSet(new long[]{0x01A0000431005082L});
-	public static final BitSet FOLLOW_highlightTextRule_in_textRule191 = new BitSet(new long[]{0x01A0000431005082L});
-	public static final BitSet FOLLOW_subscriptTextRule_in_textRule195 = new BitSet(new long[]{0x01A0000431005082L});
-	public static final BitSet FOLLOW_superscriptTextRule_in_textRule199 = new BitSet(new long[]{0x01A0000431005082L});
-	public static final BitSet FOLLOW_codeTextRule_in_textRule205 = new BitSet(new long[]{0x01A0000431005082L});
-	public static final BitSet FOLLOW_IT_in_italicTextRule221 = new BitSet(new long[]{0x001800041000CC10L});
-	public static final BitSet FOLLOW_subtextRule_in_italicTextRule223 = new BitSet(new long[]{0x001800041000CC10L});
-	public static final BitSet FOLLOW_IT_in_italicTextRule226 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BOLD_in_boldTextRule239 = new BitSet(new long[]{0x001800040000CC90L});
-	public static final BitSet FOLLOW_subtextRule_in_boldTextRule241 = new BitSet(new long[]{0x001800040000CC90L});
-	public static final BitSet FOLLOW_BOLD_in_boldTextRule244 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ITBOLD_in_ibTextRule256 = new BitSet(new long[]{0x001800042000CC10L});
-	public static final BitSet FOLLOW_subtextRule_in_ibTextRule258 = new BitSet(new long[]{0x001800042000CC10L});
-	public static final BitSet FOLLOW_ITBOLD_in_ibTextRule261 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ST_in_strikethroughtTextRule273 = new BitSet(new long[]{0x003800040000CC10L});
-	public static final BitSet FOLLOW_subtextRule_in_strikethroughtTextRule275 = new BitSet(new long[]{0x003800040000CC10L});
-	public static final BitSet FOLLOW_ST_in_strikethroughtTextRule278 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_HL_in_highlightTextRule290 = new BitSet(new long[]{0x001800040100CC10L});
-	public static final BitSet FOLLOW_subtextRule_in_highlightTextRule292 = new BitSet(new long[]{0x001800040100CC10L});
-	public static final BitSet FOLLOW_HL_in_highlightTextRule295 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_SUBS_in_subscriptTextRule307 = new BitSet(new long[]{0x009800040000CC10L});
-	public static final BitSet FOLLOW_subtextRule_in_subscriptTextRule309 = new BitSet(new long[]{0x009800040000CC10L});
-	public static final BitSet FOLLOW_SUBS_in_subscriptTextRule312 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_SUPS_in_superscriptTextRule324 = new BitSet(new long[]{0x011800040000CC10L});
-	public static final BitSet FOLLOW_subtextRule_in_superscriptTextRule326 = new BitSet(new long[]{0x011800040000CC10L});
-	public static final BitSet FOLLOW_SUPS_in_superscriptTextRule329 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CODE_in_codeTextRule339 = new BitSet(new long[]{0x001800040000DC10L});
-	public static final BitSet FOLLOW_subtextRule_in_codeTextRule341 = new BitSet(new long[]{0x001800040000DC10L});
-	public static final BitSet FOLLOW_CODE_in_codeTextRule344 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BLOCKQUOTE_in_blockquoteRule401 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_VAR_in_blockquoteRule403 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_EQ_in_blockquoteRule405 = new BitSet(new long[]{0x01A0000431005080L});
-	public static final BitSet FOLLOW_textRule_in_blockquoteRule407 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_OLIST_in_olistRule420 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_LP_in_olistRule422 = new BitSet(new long[]{0x01A0000431005880L});
-	public static final BitSet FOLLOW_textListRule_in_olistRule424 = new BitSet(new long[]{0x0000100000000000L});
-	public static final BitSet FOLLOW_RP_in_olistRule426 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_textRule_in_textListRule436 = new BitSet(new long[]{0x0000000000000800L});
-	public static final BitSet FOLLOW_CM_in_textListRule439 = new BitSet(new long[]{0x01A0000431005880L});
-	public static final BitSet FOLLOW_textRule_in_textListRule441 = new BitSet(new long[]{0x0000000000000802L});
-	public static final BitSet FOLLOW_ULIST_in_ulistRule456 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_LP_in_ulistRule458 = new BitSet(new long[]{0x01A0000431005880L});
-	public static final BitSet FOLLOW_textListRule_in_ulistRule460 = new BitSet(new long[]{0x0000100000000000L});
-	public static final BitSet FOLLOW_RP_in_ulistRule462 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TLIST_in_tlistRule475 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_LP_in_tlistRule477 = new BitSet(new long[]{0x01A0000431005880L});
-	public static final BitSet FOLLOW_textListRule_in_tlistRule479 = new BitSet(new long[]{0x0000100000000000L});
-	public static final BitSet FOLLOW_RP_in_tlistRule481 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BLOCKCODE_in_blockCodeRule494 = new BitSet(new long[]{0x01A00004310050A0L,0x000000000000000EL});
-	public static final BitSet FOLLOW_languageRule_in_blockCodeRule496 = new BitSet(new long[]{0x01A00004310050A0L});
-	public static final BitSet FOLLOW_textRule_in_blockCodeRule499 = new BitSet(new long[]{0x0000000000000020L});
-	public static final BitSet FOLLOW_BLOCKCODE_in_blockCodeRule501 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_HRULE_in_horizontalRule533 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LSB_in_linkRule545 = new BitSet(new long[]{0x01A0200431045080L});
-	public static final BitSet FOLLOW_textRule_in_linkRule548 = new BitSet(new long[]{0x0000200000000000L});
-	public static final BitSet FOLLOW_imageRule_in_linkRule552 = new BitSet(new long[]{0x0000200000000000L});
-	public static final BitSet FOLLOW_RSB_in_linkRule555 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_LP_in_linkRule557 = new BitSet(new long[]{0x001800040000CC10L});
-	public static final BitSet FOLLOW_textLinkRule_in_linkRule559 = new BitSet(new long[]{0x0000100000000000L});
-	public static final BitSet FOLLOW_RP_in_linkRule561 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_EX_in_imageRule616 = new BitSet(new long[]{0x0000001000000000L});
-	public static final BitSet FOLLOW_LSB_in_imageRule618 = new BitSet(new long[]{0x001800040000CC10L});
-	public static final BitSet FOLLOW_textLinkRule_in_imageRule620 = new BitSet(new long[]{0x0000200000000000L});
-	public static final BitSet FOLLOW_RSB_in_imageRule622 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_LP_in_imageRule624 = new BitSet(new long[]{0x001800040000CC10L});
-	public static final BitSet FOLLOW_textLinkRule_in_imageRule626 = new BitSet(new long[]{0x0000110000000000L});
-	public static final BitSet FOLLOW_QU_in_imageRule629 = new BitSet(new long[]{0x01A0010431005080L});
-	public static final BitSet FOLLOW_textRule_in_imageRule631 = new BitSet(new long[]{0x0000010000000000L});
-	public static final BitSet FOLLOW_QU_in_imageRule633 = new BitSet(new long[]{0x0000100000000000L});
-	public static final BitSet FOLLOW_RP_in_imageRule637 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LAB_in_quickLinkRule649 = new BitSet(new long[]{0x001800040000CC10L});
-	public static final BitSet FOLLOW_textLinkRule_in_quickLinkRule651 = new BitSet(new long[]{0x0000040000000000L});
-	public static final BitSet FOLLOW_RAB_in_quickLinkRule653 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TABLE_in_tableRule667 = new BitSet(new long[]{0x0000001800000000L});
-	public static final BitSet FOLLOW_talignmentRule_in_tableRule669 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_LP_in_tableRule672 = new BitSet(new long[]{0x0000001000000000L});
-	public static final BitSet FOLLOW_trowRule_in_tableRule674 = new BitSet(new long[]{0x0000100000000800L});
-	public static final BitSet FOLLOW_CM_in_tableRule677 = new BitSet(new long[]{0x0000001000000000L});
-	public static final BitSet FOLLOW_trowRule_in_tableRule679 = new BitSet(new long[]{0x0000100000000800L});
-	public static final BitSet FOLLOW_RP_in_tableRule683 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LSB_in_talignmentRule695 = new BitSet(new long[]{0x0000020040000100L});
-	public static final BitSet FOLLOW_alignRule_in_talignmentRule697 = new BitSet(new long[]{0x0000200000000800L});
-	public static final BitSet FOLLOW_CM_in_talignmentRule700 = new BitSet(new long[]{0x0000020040000100L});
-	public static final BitSet FOLLOW_alignRule_in_talignmentRule702 = new BitSet(new long[]{0x0000200000000800L});
-	public static final BitSet FOLLOW_RSB_in_talignmentRule706 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LSB_in_trowRule738 = new BitSet(new long[]{0x01A0200431005880L});
-	public static final BitSet FOLLOW_textRule_in_trowRule740 = new BitSet(new long[]{0x0000200000000800L});
-	public static final BitSet FOLLOW_CM_in_trowRule743 = new BitSet(new long[]{0x01A0200431005880L});
-	public static final BitSet FOLLOW_textRule_in_trowRule745 = new BitSet(new long[]{0x0000200000000800L});
-	public static final BitSet FOLLOW_RSB_in_trowRule749 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LCB_in_refRule131 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_HA_in_refRule133 = new BitSet(new long[]{0x0000000004000000L});
+	public static final BitSet FOLLOW_ID_in_refRule135 = new BitSet(new long[]{0x0000040000000000L});
+	public static final BitSet FOLLOW_RCB_in_refRule137 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_TEXT_in_textDeclRule150 = new BitSet(new long[]{0x4000000000000000L});
+	public static final BitSet FOLLOW_VAR_in_textDeclRule152 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_EQ_in_textDeclRule154 = new BitSet(new long[]{0x40D4000039009C80L});
+	public static final BitSet FOLLOW_textRule_in_textDeclRule156 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_subtextRule_in_textRule173 = new BitSet(new long[]{0x40D4000039009C82L});
+	public static final BitSet FOLLOW_italicTextRule_in_textRule179 = new BitSet(new long[]{0x40D4000039009C82L});
+	public static final BitSet FOLLOW_boldTextRule_in_textRule185 = new BitSet(new long[]{0x40D4000039009C82L});
+	public static final BitSet FOLLOW_ibTextRule_in_textRule191 = new BitSet(new long[]{0x40D4000039009C82L});
+	public static final BitSet FOLLOW_strikethroughtTextRule_in_textRule197 = new BitSet(new long[]{0x40D4000039009C82L});
+	public static final BitSet FOLLOW_highlightTextRule_in_textRule203 = new BitSet(new long[]{0x40D4000039009C82L});
+	public static final BitSet FOLLOW_subscriptTextRule_in_textRule209 = new BitSet(new long[]{0x40D4000039009C82L});
+	public static final BitSet FOLLOW_superscriptTextRule_in_textRule215 = new BitSet(new long[]{0x40D4000039009C82L});
+	public static final BitSet FOLLOW_codeTextRule_in_textRule221 = new BitSet(new long[]{0x40D4000039009C82L});
+	public static final BitSet FOLLOW_IT_in_italicTextRule237 = new BitSet(new long[]{0x4004000008008C00L});
+	public static final BitSet FOLLOW_subtextRule_in_italicTextRule240 = new BitSet(new long[]{0x0000000010000000L});
+	public static final BitSet FOLLOW_IT_in_italicTextRule242 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BOLD_in_boldTextRule259 = new BitSet(new long[]{0x4004000008008C00L});
+	public static final BitSet FOLLOW_subtextRule_in_boldTextRule261 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_BOLD_in_boldTextRule263 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ITBOLD_in_ibTextRule279 = new BitSet(new long[]{0x4004000008008C00L});
+	public static final BitSet FOLLOW_subtextRule_in_ibTextRule281 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_ITBOLD_in_ibTextRule283 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ST_in_strikethroughtTextRule299 = new BitSet(new long[]{0x4004000008008C00L});
+	public static final BitSet FOLLOW_subtextRule_in_strikethroughtTextRule301 = new BitSet(new long[]{0x0010000000000000L});
+	public static final BitSet FOLLOW_ST_in_strikethroughtTextRule303 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_HL_in_highlightTextRule319 = new BitSet(new long[]{0x4004000008008C00L});
+	public static final BitSet FOLLOW_subtextRule_in_highlightTextRule321 = new BitSet(new long[]{0x0000000001000000L});
+	public static final BitSet FOLLOW_HL_in_highlightTextRule323 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_SUBS_in_subscriptTextRule339 = new BitSet(new long[]{0x4004000008008C00L});
+	public static final BitSet FOLLOW_subtextRule_in_subscriptTextRule341 = new BitSet(new long[]{0x0040000000000000L});
+	public static final BitSet FOLLOW_SUBS_in_subscriptTextRule343 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_SUPS_in_superscriptTextRule359 = new BitSet(new long[]{0x4004000008008C00L});
+	public static final BitSet FOLLOW_subtextRule_in_superscriptTextRule361 = new BitSet(new long[]{0x0080000000000000L});
+	public static final BitSet FOLLOW_SUPS_in_superscriptTextRule363 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CODE_in_codeTextRule379 = new BitSet(new long[]{0x4004000008008C00L});
+	public static final BitSet FOLLOW_subtextRule_in_codeTextRule381 = new BitSet(new long[]{0x0000000000001000L});
+	public static final BitSet FOLLOW_CODE_in_codeTextRule383 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BLOCKQUOTE_in_blockquoteRule441 = new BitSet(new long[]{0x4000000000000000L});
+	public static final BitSet FOLLOW_VAR_in_blockquoteRule443 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_EQ_in_blockquoteRule445 = new BitSet(new long[]{0x40D4000039009C80L});
+	public static final BitSet FOLLOW_textRule_in_blockquoteRule447 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_OLIST_in_olistRule460 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_LP_in_olistRule462 = new BitSet(new long[]{0x40D4000039009C80L});
+	public static final BitSet FOLLOW_textListRule_in_olistRule464 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_RP_in_olistRule466 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_textRule_in_textListRule476 = new BitSet(new long[]{0x0000000000000800L});
+	public static final BitSet FOLLOW_CM_in_textListRule479 = new BitSet(new long[]{0x40D4000039009C80L});
+	public static final BitSet FOLLOW_textRule_in_textListRule481 = new BitSet(new long[]{0x0000000000000802L});
+	public static final BitSet FOLLOW_ULIST_in_ulistRule496 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_LP_in_ulistRule498 = new BitSet(new long[]{0x40D4000039009C80L});
+	public static final BitSet FOLLOW_textListRule_in_ulistRule500 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_RP_in_ulistRule502 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_TLIST_in_tlistRule515 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_LP_in_tlistRule517 = new BitSet(new long[]{0x40D4000039009C80L});
+	public static final BitSet FOLLOW_textListRule_in_tlistRule519 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_RP_in_tlistRule521 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BLOCKCODE_in_blockCodeRule534 = new BitSet(new long[]{0x40D4000039009C80L,0x0000000000000007L});
+	public static final BitSet FOLLOW_languageRule_in_blockCodeRule536 = new BitSet(new long[]{0x40D4000039009C80L});
+	public static final BitSet FOLLOW_textRule_in_blockCodeRule539 = new BitSet(new long[]{0x0000000000000020L});
+	public static final BitSet FOLLOW_BLOCKCODE_in_blockCodeRule541 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_HRULE_in_horizontalRule573 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LSB_in_linkRule585 = new BitSet(new long[]{0x40D4000039049C80L});
+	public static final BitSet FOLLOW_textRule_in_linkRule588 = new BitSet(new long[]{0x0000100000000000L});
+	public static final BitSet FOLLOW_imageRule_in_linkRule592 = new BitSet(new long[]{0x0000100000000000L});
+	public static final BitSet FOLLOW_RSB_in_linkRule595 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_LP_in_linkRule597 = new BitSet(new long[]{0x400C000008008C10L});
+	public static final BitSet FOLLOW_textLinkRule_in_linkRule599 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_RP_in_linkRule601 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_subtextRule_in_textLinkRule614 = new BitSet(new long[]{0x400C000008008C12L});
+	public static final BitSet FOLLOW_SL_in_textLinkRule618 = new BitSet(new long[]{0x400C000008008C12L});
+	public static final BitSet FOLLOW_AT_in_textLinkRule622 = new BitSet(new long[]{0x400C000008008C12L});
+	public static final BitSet FOLLOW_EX_in_imageRule636 = new BitSet(new long[]{0x0000001000000000L});
+	public static final BitSet FOLLOW_LSB_in_imageRule638 = new BitSet(new long[]{0x400C000008008C10L});
+	public static final BitSet FOLLOW_textLinkRule_in_imageRule640 = new BitSet(new long[]{0x0000100000000000L});
+	public static final BitSet FOLLOW_RSB_in_imageRule642 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_LP_in_imageRule644 = new BitSet(new long[]{0x400C000008008C10L});
+	public static final BitSet FOLLOW_textLinkRule_in_imageRule646 = new BitSet(new long[]{0x0000088000000000L});
+	public static final BitSet FOLLOW_QU_in_imageRule649 = new BitSet(new long[]{0x40D4000039009C80L});
+	public static final BitSet FOLLOW_textRule_in_imageRule651 = new BitSet(new long[]{0x0000008000000000L});
+	public static final BitSet FOLLOW_QU_in_imageRule653 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_RP_in_imageRule657 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LAB_in_quickLinkRule669 = new BitSet(new long[]{0x400C000008008C10L});
+	public static final BitSet FOLLOW_textLinkRule_in_quickLinkRule671 = new BitSet(new long[]{0x0000020000000000L});
+	public static final BitSet FOLLOW_RAB_in_quickLinkRule673 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_TABLE_in_tableRule687 = new BitSet(new long[]{0x0000001800000000L});
+	public static final BitSet FOLLOW_talignmentRule_in_tableRule689 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_LP_in_tableRule692 = new BitSet(new long[]{0x0000001000000000L});
+	public static final BitSet FOLLOW_trowRule_in_tableRule694 = new BitSet(new long[]{0x0000080000000800L});
+	public static final BitSet FOLLOW_CM_in_tableRule697 = new BitSet(new long[]{0x0000001000000000L});
+	public static final BitSet FOLLOW_trowRule_in_tableRule699 = new BitSet(new long[]{0x0000080000000800L});
+	public static final BitSet FOLLOW_RP_in_tableRule703 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LSB_in_talignmentRule715 = new BitSet(new long[]{0x0000010040000100L});
+	public static final BitSet FOLLOW_alignRule_in_talignmentRule717 = new BitSet(new long[]{0x0000100000000800L});
+	public static final BitSet FOLLOW_CM_in_talignmentRule720 = new BitSet(new long[]{0x0000010040000100L});
+	public static final BitSet FOLLOW_alignRule_in_talignmentRule722 = new BitSet(new long[]{0x0000100000000800L});
+	public static final BitSet FOLLOW_RSB_in_talignmentRule726 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LSB_in_trowRule758 = new BitSet(new long[]{0x40D4000039009C80L});
+	public static final BitSet FOLLOW_textRule_in_trowRule760 = new BitSet(new long[]{0x0000100000000800L});
+	public static final BitSet FOLLOW_CM_in_trowRule763 = new BitSet(new long[]{0x40D4000039009C80L});
+	public static final BitSet FOLLOW_textRule_in_trowRule765 = new BitSet(new long[]{0x0000100000000800L});
+	public static final BitSet FOLLOW_RSB_in_trowRule769 = new BitSet(new long[]{0x0000000000000002L});
 }

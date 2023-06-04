@@ -8,20 +8,25 @@ options {
 	package compilerPackage;
 }
 
-@parser::header {
+@header {
 	package compilerPackage;
+}
+
+@members {
+	
 }
 
 parseJava
 	: 
-		initRule
-	;
-initRule:	
-	titleRule(titleRule|textDeclRule)*
-	;
+		titleRule
+		(titleRule|textDeclRule)*
+		{System.out.println("    - Ho riconosciuto un documento Malt");}
+;
+
 titleRule 
 	:
 		titleTypeRule VAR EQ STRING refRule?
+		{System.out.println("    - Ho riconosciuto un titolo");}
 ;
 
 titleTypeRule
@@ -37,57 +42,74 @@ refRule
 textDeclRule 
 	:
 		TEXT VAR EQ textRule
+		{System.out.println("    - Ho riconosciuto un testo");}
 ;
 
 textRule
 	:
-		(LETTER | DIGIT | italicTextRule | boldTextRule | ibTextRule
-		| strikethroughtTextRule | highlightTextRule | subscriptTextRule | superscriptTextRule
-		| codeTextRule)*
+		(subtextRule
+		| italicTextRule
+		| boldTextRule
+		| ibTextRule
+		| strikethroughtTextRule
+		| highlightTextRule
+		| subscriptTextRule
+		| superscriptTextRule
+		| codeTextRule)+
 ; // SISTEMARE FORMATTAZIONE, LINK, ... IN TEXT
 
 italicTextRule	
 	:
-		IT subtextRule* IT
+		IT  subtextRule IT // come dire che il primo è inizio e l'ultimo fine ?
+		{System.out.println("    - I");}
 ;
 
 boldTextRule
 	:
-		BOLD subtextRule* BOLD
+		BOLD subtextRule BOLD
+		{System.out.println("    - B");}
 ;
 
 ibTextRule
 	:
-		ITBOLD subtextRule* ITBOLD
+		ITBOLD subtextRule ITBOLD
+		{System.out.println("    - IB");}
 ;
 
 strikethroughtTextRule
 	:
-		ST subtextRule* ST
+		ST subtextRule ST
+		{System.out.println("    - ST");}
 ;
 
 highlightTextRule
 	:
-		HL subtextRule* HL
+		HL subtextRule HL
+		{System.out.println("    - HL");}
 ;
 
 subscriptTextRule
 	:
-		SUBS subtextRule* SUBS
+		SUBS subtextRule SUBS
+		{System.out.println("    - SUBS");}
 ;
 
 superscriptTextRule
 	:
-		SUPS subtextRule* SUPS
+		SUPS subtextRule SUPS
+		{System.out.println("    - SUPS");}
 ;
 
 codeTextRule
-	:	CODE subtextRule* CODE
+	:
+		CODE subtextRule CODE
+		{System.out.println("    - CODE");}
 ;
 
 subtextRule 
 	:
-		(LETTER | DIGIT | DO | CM | SE | CL | SL | AT )
+		(VAR | INTEGER | DO | CM | SE | CL )+
+		{System.out.println("    - SUBTEXT");}
 ;
 
 blockquoteRule 
@@ -136,7 +158,7 @@ linkRule
 
 textLinkRule
 	:
-		(LETTER | DIGIT | DO | CM | SE | CL | SL | AT)+
+		(subtextRule | SL | AT)+
 ;
 
 imageRule
@@ -202,6 +224,7 @@ UNICODE_ESC
 
 fragment 
 LETTER : 'a'..'z'|'A'..'Z';
+
 fragment 
 DIGIT : '0'..'9';
 
@@ -235,7 +258,6 @@ QU : '"';
 EQ : '=';
 GET : '>=';
 LET : '<=';
-PERC	:	'%';
 
 TITLE : 'title';
 S1TITLE : 'stitle';
@@ -243,7 +265,7 @@ S2TITLE : 'sstitle';
 S3TITLE : 'ssstitle';
 S4TITLE : 'sssstitle';
 S5TITLE : 'ssssstitle';
-TEXT 	:	'text';
+TEXT : 'text';
 BLOCKQUOTE : 'blockquote';
 OLIST : 'olist';
 ULIST : 'ulist';
@@ -253,11 +275,11 @@ L : 'l';
 C : 'c';
 R : 'r';
 
-VAR	:	(LETTER) (LETTER | DIGIT |'_')*;
+VAR	:	LETTER+;
 
 INTEGER :	DIGIT+;
 
-ID	:	(LETTER | DIGIT |'_'|SL|HA|PERC|AT|EQ)+;
+ID	:	(LETTER |'_') (LETTER | DIGIT |'_')+;
 
 FLOAT
     :   DIGIT+ '.' DIGIT* EXPONENT?
@@ -280,4 +302,3 @@ WS  :   ( ' '
 STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"') )* '"';
 
 CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\'';
-
