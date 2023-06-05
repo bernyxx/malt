@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g 2023-06-05 00:10:31
+// $ANTLR 3.5.1 C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g 2023-06-05 10:34:31
 
 	package compilerPackage;
 
@@ -1480,16 +1480,23 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = VAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:278:5: ( ( LETTER )+ )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:278:7: ( LETTER )+
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:278:5: ( ( LETTER ) ( LETTER | DIGIT | '_' )* )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:278:7: ( LETTER ) ( LETTER | DIGIT | '_' )*
 			{
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:278:7: ( LETTER )+
-			int cnt5=0;
+			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
+				input.consume();
+			}
+			else {
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				recover(mse);
+				throw mse;
+			}
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:278:16: ( LETTER | DIGIT | '_' )*
 			loop5:
 			while (true) {
 				int alt5=2;
 				int LA5_0 = input.LA(1);
-				if ( ((LA5_0 >= 'A' && LA5_0 <= 'Z')||(LA5_0 >= 'a' && LA5_0 <= 'z')) ) {
+				if ( ((LA5_0 >= '0' && LA5_0 <= '9')||(LA5_0 >= 'A' && LA5_0 <= 'Z')||LA5_0=='_'||(LA5_0 >= 'a' && LA5_0 <= 'z')) ) {
 					alt5=1;
 				}
 
@@ -1497,7 +1504,7 @@ public class MaltLexer extends Lexer {
 				case 1 :
 					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 					{
-					if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
+					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
 					}
 					else {
@@ -1509,11 +1516,8 @@ public class MaltLexer extends Lexer {
 					break;
 
 				default :
-					if ( cnt5 >= 1 ) break loop5;
-					EarlyExitException eee = new EarlyExitException(5, input);
-					throw eee;
+					break loop5;
 				}
-				cnt5++;
 			}
 
 			}
@@ -1527,21 +1531,29 @@ public class MaltLexer extends Lexer {
 	}
 	// $ANTLR end "VAR"
 
-	// $ANTLR start "INTEGER"
-	public final void mINTEGER() throws RecognitionException {
+	// $ANTLR start "ID"
+	public final void mID() throws RecognitionException {
 		try {
-			int _type = INTEGER;
+			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:280:9: ( ( DIGIT )+ )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:280:11: ( DIGIT )+
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:280:4: ( '_' ( LETTER ) ( LETTER | DIGIT | '_' )* )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:280:6: '_' ( LETTER ) ( LETTER | DIGIT | '_' )*
 			{
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:280:11: ( DIGIT )+
-			int cnt6=0;
+			match('_'); 
+			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
+				input.consume();
+			}
+			else {
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				recover(mse);
+				throw mse;
+			}
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:280:19: ( LETTER | DIGIT | '_' )*
 			loop6:
 			while (true) {
 				int alt6=2;
 				int LA6_0 = input.LA(1);
-				if ( ((LA6_0 >= '0' && LA6_0 <= '9')) ) {
+				if ( ((LA6_0 >= '0' && LA6_0 <= '9')||(LA6_0 >= 'A' && LA6_0 <= 'Z')||LA6_0=='_'||(LA6_0 >= 'a' && LA6_0 <= 'z')) ) {
 					alt6=1;
 				}
 
@@ -1549,7 +1561,7 @@ public class MaltLexer extends Lexer {
 				case 1 :
 					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 					{
-					if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
 					}
 					else {
@@ -1561,11 +1573,8 @@ public class MaltLexer extends Lexer {
 					break;
 
 				default :
-					if ( cnt6 >= 1 ) break loop6;
-					EarlyExitException eee = new EarlyExitException(6, input);
-					throw eee;
+					break loop6;
 				}
-				cnt6++;
 			}
 
 			}
@@ -1577,31 +1586,23 @@ public class MaltLexer extends Lexer {
 			// do for sure before leaving
 		}
 	}
-	// $ANTLR end "INTEGER"
+	// $ANTLR end "ID"
 
-	// $ANTLR start "ID"
-	public final void mID() throws RecognitionException {
+	// $ANTLR start "INTEGER"
+	public final void mINTEGER() throws RecognitionException {
 		try {
-			int _type = ID;
+			int _type = INTEGER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:282:4: ( ( LETTER | '_' ) ( LETTER | DIGIT | '_' )+ )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:282:6: ( LETTER | '_' ) ( LETTER | DIGIT | '_' )+
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:282:9: ( ( DIGIT )+ )
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:282:11: ( DIGIT )+
 			{
-			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
-				input.consume();
-			}
-			else {
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				recover(mse);
-				throw mse;
-			}
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:282:20: ( LETTER | DIGIT | '_' )+
+			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:282:11: ( DIGIT )+
 			int cnt7=0;
 			loop7:
 			while (true) {
 				int alt7=2;
 				int LA7_0 = input.LA(1);
-				if ( ((LA7_0 >= '0' && LA7_0 <= '9')||(LA7_0 >= 'A' && LA7_0 <= 'Z')||LA7_0=='_'||(LA7_0 >= 'a' && LA7_0 <= 'z')) ) {
+				if ( ((LA7_0 >= '0' && LA7_0 <= '9')) ) {
 					alt7=1;
 				}
 
@@ -1609,7 +1610,7 @@ public class MaltLexer extends Lexer {
 				case 1 :
 					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 					{
-					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
+					if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 						input.consume();
 					}
 					else {
@@ -1637,7 +1638,7 @@ public class MaltLexer extends Lexer {
 			// do for sure before leaving
 		}
 	}
-	// $ANTLR end "ID"
+	// $ANTLR end "INTEGER"
 
 	// $ANTLR start "FLOAT"
 	public final void mFLOAT() throws RecognitionException {
@@ -2167,7 +2168,7 @@ public class MaltLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:8: ( T__64 | T__65 | T__66 | DO | CM | SE | CL | LP | RP | LSB | RSB | LCB | RCB | LAB | RAB | HA | IT | BOLD | ITBOLD | ST | HL | SUBS | SUPS | CODE | BLOCKCODE | HRULE | SL | AT | EX | QU | EQ | GET | LET | TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE | TEXT | BLOCKQUOTE | OLIST | ULIST | TLIST | TABLE | L | C | R | VAR | INTEGER | ID | FLOAT | COMMENT | WS | STRING | CHAR )
+		// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:8: ( T__64 | T__65 | T__66 | DO | CM | SE | CL | LP | RP | LSB | RSB | LCB | RCB | LAB | RAB | HA | IT | BOLD | ITBOLD | ST | HL | SUBS | SUPS | CODE | BLOCKCODE | HRULE | SL | AT | EX | QU | EQ | GET | LET | TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE | TEXT | BLOCKQUOTE | OLIST | ULIST | TLIST | TABLE | L | C | R | VAR | ID | INTEGER | FLOAT | COMMENT | WS | STRING | CHAR )
 		int alt22=56;
 		alt22 = dfa22.predict(input);
 		switch (alt22) {
@@ -2515,16 +2516,16 @@ public class MaltLexer extends Lexer {
 				}
 				break;
 			case 50 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:244: INTEGER
+				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:244: ID
 				{
-				mINTEGER(); 
+				mID(); 
 
 				}
 				break;
 			case 51 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:252: ID
+				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:247: INTEGER
 				{
-				mID(); 
+				mINTEGER(); 
 
 				}
 				break;
@@ -2626,46 +2627,52 @@ public class MaltLexer extends Lexer {
 	}
 
 	static final String DFA22_eotS =
-		"\1\uffff\1\46\1\52\1\53\11\uffff\1\56\1\60\1\uffff\1\62\1\64\1\66\1\uffff"+
-		"\1\70\1\uffff\1\74\2\uffff\1\75\5\52\1\110\1\111\1\112\1\52\1\113\3\uffff"+
-		"\1\52\1\uffff\1\52\7\uffff\1\116\10\uffff\1\50\4\uffff\11\52\4\uffff\1"+
-		"\52\2\uffff\1\133\12\52\1\147\1\uffff\1\52\1\151\11\52\1\uffff\1\164\1"+
-		"\uffff\1\165\1\166\6\52\1\175\1\176\3\uffff\1\177\5\52\3\uffff\1\u0085"+
-		"\4\52\1\uffff\1\u008a\3\52\1\uffff\1\u008e\2\52\1\uffff\1\u0091\1\u0092"+
-		"\2\uffff";
+		"\1\uffff\1\46\1\42\1\50\11\uffff\1\53\1\55\1\uffff\1\57\1\61\1\63\1\uffff"+
+		"\1\65\1\uffff\1\72\2\uffff\1\73\5\42\1\106\1\107\1\110\1\uffff\1\111\3"+
+		"\uffff\1\42\6\uffff\1\114\16\uffff\11\42\4\uffff\1\42\2\uffff\12\42\1"+
+		"\143\1\42\1\145\11\42\1\uffff\1\160\1\uffff\1\161\1\162\6\42\1\171\1\172"+
+		"\3\uffff\1\173\5\42\3\uffff\1\u0081\4\42\1\uffff\1\u0086\3\42\1\uffff"+
+		"\1\u008a\2\42\1\uffff\1\u008d\1\u008e\2\uffff";
 	static final String DFA22_eofS =
-		"\u0093\uffff";
+		"\u008f\uffff";
 	static final String DFA22_minS =
-		"\1\11\1\53\2\60\11\uffff\2\75\1\uffff\1\52\1\176\1\75\1\uffff\1\0\1\60"+
-		"\1\52\2\uffff\1\0\11\60\1\56\3\uffff\1\60\1\uffff\1\60\7\uffff\1\52\10"+
-		"\uffff\1\137\4\uffff\11\60\4\uffff\1\60\2\uffff\14\60\1\uffff\13\60\1"+
-		"\uffff\1\60\1\uffff\12\60\3\uffff\6\60\3\uffff\5\60\1\uffff\4\60\1\uffff"+
-		"\3\60\1\uffff\2\60\2\uffff";
+		"\1\11\1\53\1\141\1\60\11\uffff\2\75\1\uffff\1\52\1\176\1\75\1\uffff\1"+
+		"\0\1\101\1\52\2\uffff\1\0\1\141\1\163\3\154\3\60\1\uffff\1\56\3\uffff"+
+		"\1\166\6\uffff\1\52\16\uffff\1\164\1\170\1\151\1\142\1\151\1\163\1\157"+
+		"\2\151\4\uffff\1\141\2\uffff\1\154\1\164\1\163\1\154\1\164\1\151\1\163"+
+		"\1\143\2\163\1\60\1\145\1\60\1\164\1\145\1\154\1\164\1\151\1\163\1\153"+
+		"\2\164\1\uffff\1\60\1\uffff\2\60\1\145\1\154\1\164\1\151\1\164\1\161\2"+
+		"\60\3\uffff\1\60\1\145\1\154\1\164\1\151\1\165\3\uffff\1\60\1\145\1\154"+
+		"\1\164\1\157\1\uffff\1\60\1\145\1\154\1\164\1\uffff\1\60\2\145\1\uffff"+
+		"\2\60\2\uffff";
 	static final String DFA22_maxS =
-		"\1\176\2\172\1\71\11\uffff\2\75\1\uffff\1\52\1\176\1\75\1\uffff\1\uffff"+
-		"\1\172\1\57\2\uffff\1\uffff\11\172\1\145\3\uffff\1\172\1\uffff\1\172\7"+
-		"\uffff\1\52\10\uffff\1\137\4\uffff\11\172\4\uffff\1\172\2\uffff\14\172"+
-		"\1\uffff\13\172\1\uffff\1\172\1\uffff\12\172\3\uffff\6\172\3\uffff\5\172"+
-		"\1\uffff\4\172\1\uffff\3\172\1\uffff\2\172\2\uffff";
+		"\1\176\1\172\1\141\1\71\11\uffff\2\75\1\uffff\1\52\1\176\1\75\1\uffff"+
+		"\1\uffff\1\172\1\57\2\uffff\1\uffff\1\154\1\164\3\154\3\172\1\uffff\1"+
+		"\145\3\uffff\1\166\6\uffff\1\52\16\uffff\1\164\1\170\1\151\1\142\1\151"+
+		"\1\164\1\157\2\151\4\uffff\1\141\2\uffff\1\154\1\164\1\163\1\154\1\164"+
+		"\1\151\1\164\1\143\2\163\1\172\1\145\1\172\1\164\1\145\1\154\1\164\1\151"+
+		"\1\164\1\153\2\164\1\uffff\1\172\1\uffff\2\172\1\145\1\154\1\164\1\151"+
+		"\1\164\1\161\2\172\3\uffff\1\172\1\145\1\154\1\164\1\151\1\165\3\uffff"+
+		"\1\172\1\145\1\154\1\164\1\157\1\uffff\1\172\1\145\1\154\1\164\1\uffff"+
+		"\1\172\2\145\1\uffff\2\172\2\uffff";
 	static final String DFA22_acceptS =
 		"\4\uffff\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\2\uffff\1\20\3\uffff"+
-		"\1\27\3\uffff\1\34\1\35\13\uffff\1\66\1\2\1\1\1\uffff\1\63\1\uffff\1\61"+
-		"\1\4\1\64\1\41\1\16\1\40\1\17\1\uffff\1\21\1\24\1\26\1\25\1\37\1\31\1"+
-		"\30\1\70\1\uffff\1\65\1\33\1\36\1\67\11\uffff\1\56\1\57\1\60\1\62\1\uffff"+
-		"\1\23\1\22\14\uffff\1\32\13\uffff\1\3\1\uffff\1\50\12\uffff\1\42\1\54"+
-		"\1\55\6\uffff\1\52\1\53\1\43\5\uffff\1\44\4\uffff\1\45\3\uffff\1\46\2"+
-		"\uffff\1\47\1\51";
+		"\1\27\3\uffff\1\34\1\35\11\uffff\1\61\1\uffff\1\66\1\2\1\1\1\uffff\1\4"+
+		"\1\64\1\41\1\16\1\40\1\17\1\uffff\1\21\1\24\1\26\1\25\1\37\1\31\1\30\1"+
+		"\70\1\32\1\62\1\65\1\33\1\36\1\67\11\uffff\1\56\1\57\1\60\1\63\1\uffff"+
+		"\1\23\1\22\26\uffff\1\3\1\uffff\1\50\12\uffff\1\42\1\54\1\55\6\uffff\1"+
+		"\52\1\53\1\43\5\uffff\1\44\4\uffff\1\45\3\uffff\1\46\2\uffff\1\47\1\51";
 	static final String DFA22_specialS =
-		"\24\uffff\1\0\4\uffff\1\1\171\uffff}>";
+		"\24\uffff\1\1\4\uffff\1\0\165\uffff}>";
 	static final String[] DFA22_transitionS = {
 			"\2\44\2\uffff\1\44\22\uffff\1\44\1\30\1\31\1\17\3\uffff\1\24\1\7\1\10"+
 			"\1\20\1\uffff\1\4\1\uffff\1\3\1\26\12\43\1\6\1\5\1\15\1\22\1\16\1\uffff"+
 			"\1\27\2\42\1\1\6\42\1\2\20\42\1\11\1\uffff\1\12\1\23\1\25\1\uffff\1\42"+
 			"\1\34\1\40\10\42\1\37\2\42\1\35\2\42\1\41\1\33\1\32\1\36\5\42\1\13\1"+
 			"\uffff\1\14\1\21",
-			"\1\45\4\uffff\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\1\51\31\47",
-			"\12\54",
+			"\1\45\4\uffff\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\47",
+			"\12\51",
 			"",
 			"",
 			"",
@@ -2675,36 +2682,47 @@ public class MaltLexer extends Lexer {
 			"",
 			"",
 			"",
-			"\1\55",
-			"\1\57",
+			"\1\52",
+			"\1\54",
 			"",
-			"\1\61",
-			"\1\63",
-			"\1\65",
+			"\1\56",
+			"\1\60",
+			"\1\62",
 			"",
-			"\47\71\1\67\uffd8\71",
-			"\12\50\7\uffff\32\50\4\uffff\1\72\1\uffff\32\50",
-			"\1\73\4\uffff\1\73",
-			"",
-			"",
-			"\0\76",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\1\102\3\47\1\100\3\47\1\77"+
-			"\2\47\1\101\16\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\22\47\1\104\1\103\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\13\47\1\105\16\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\13\47\1\106\16\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\13\47\1\107\16\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\1\54\1\uffff\12\43\13\uffff\1\54\37\uffff\1\54",
+			"\47\66\1\64\uffd8\66",
+			"\32\70\4\uffff\1\67\1\uffff\32\70",
+			"\1\71\4\uffff\1\71",
 			"",
 			"",
+			"\0\74",
+			"\1\100\3\uffff\1\76\3\uffff\1\75\2\uffff\1\77",
+			"\1\102\1\101",
+			"\1\103",
+			"\1\104",
+			"\1\105",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
 			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
+			"\1\51\1\uffff\12\43\13\uffff\1\51\37\uffff\1\51",
 			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\25\47\1\114\4\47",
+			"",
+			"",
+			"\1\112",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"\1\113",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
 			"",
 			"",
 			"",
@@ -2713,101 +2731,85 @@ public class MaltLexer extends Lexer {
 			"",
 			"",
 			"\1\115",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
+			"\1\116",
 			"\1\117",
+			"\1\120",
+			"\1\121",
+			"\1\123\1\122",
+			"\1\124",
+			"\1\125",
+			"\1\126",
 			"",
 			"",
 			"",
 			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\120\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\27\47\1\121\2\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\10\47\1\122\21\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\1\47\1\123\30\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\10\47\1\124\21\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\22\47\1\126\1\125\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\16\47\1\127\13\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\10\47\1\130\21\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\10\47\1\131\21\47",
+			"\1\127",
+			"",
+			"",
+			"\1\130",
+			"\1\131",
+			"\1\132",
+			"\1\133",
+			"\1\134",
+			"\1\135",
+			"\1\137\1\136",
+			"\1\140",
+			"\1\141",
+			"\1\142",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\144",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\146",
+			"\1\147",
+			"\1\150",
+			"\1\151",
+			"\1\152",
+			"\1\154\1\153",
+			"\1\155",
+			"\1\156",
+			"\1\157",
+			"",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\163",
+			"\1\164",
+			"\1\165",
+			"\1\166",
+			"\1\167",
+			"\1\170",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
 			"",
 			"",
 			"",
-			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\1\132\31\47",
-			"",
-			"",
-			"\12\50\7\uffff\32\50\4\uffff\1\50\1\uffff\32\50",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\13\47\1\134\16\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\135\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\22\47\1\136\7\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\13\47\1\137\16\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\140\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\10\47\1\141\21\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\22\47\1\143\1\142\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\2\47\1\144\27\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\22\47\1\145\7\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\22\47\1\146\7\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\4\47\1\150\25\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\152\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\4\47\1\153\25\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\13\47\1\154\16\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\155\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\10\47\1\156\21\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\22\47\1\160\1\157\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\12\47\1\161\17\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\162\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\163\6\47",
-			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\4\47\1\167\25\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\13\47\1\170\16\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\171\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\10\47\1\172\21\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\173\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\20\47\1\174\11\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\174",
+			"\1\175",
+			"\1\176",
+			"\1\177",
+			"\1\u0080",
 			"",
 			"",
 			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\4\47\1\u0080\25\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\13\47\1\u0081\16\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\u0082\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\10\47\1\u0083\21\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\24\47\1\u0084\5\47",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\u0082",
+			"\1\u0083",
+			"\1\u0084",
+			"\1\u0085",
 			"",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\u0087",
+			"\1\u0088",
+			"\1\u0089",
 			"",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\1\u008b",
+			"\1\u008c",
 			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\4\47\1\u0086\25\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\13\47\1\u0087\16\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\u0088\6\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\16\47\1\u0089\13\47",
-			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\4\47\1\u008b\25\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\13\47\1\u008c\16\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\23\47\1\u008d\6\47",
-			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\4\47\1\u008f\25\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\4\47\1\u0090\25\47",
-			"",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
-			"\12\50\7\uffff\32\47\4\uffff\1\50\1\uffff\32\47",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+			"\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
 			"",
 			""
 	};
@@ -2843,7 +2845,7 @@ public class MaltLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( T__64 | T__65 | T__66 | DO | CM | SE | CL | LP | RP | LSB | RSB | LCB | RCB | LAB | RAB | HA | IT | BOLD | ITBOLD | ST | HL | SUBS | SUPS | CODE | BLOCKCODE | HRULE | SL | AT | EX | QU | EQ | GET | LET | TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE | TEXT | BLOCKQUOTE | OLIST | ULIST | TLIST | TABLE | L | C | R | VAR | INTEGER | ID | FLOAT | COMMENT | WS | STRING | CHAR );";
+			return "1:1: Tokens : ( T__64 | T__65 | T__66 | DO | CM | SE | CL | LP | RP | LSB | RSB | LCB | RCB | LAB | RAB | HA | IT | BOLD | ITBOLD | ST | HL | SUBS | SUPS | CODE | BLOCKCODE | HRULE | SL | AT | EX | QU | EQ | GET | LET | TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE | TEXT | BLOCKQUOTE | OLIST | ULIST | TLIST | TABLE | L | C | R | VAR | ID | INTEGER | FLOAT | COMMENT | WS | STRING | CHAR );";
 		}
 		@Override
 		public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
@@ -2851,19 +2853,19 @@ public class MaltLexer extends Lexer {
 			int _s = s;
 			switch ( s ) {
 					case 0 : 
-						int LA22_20 = input.LA(1);
+						int LA22_25 = input.LA(1);
 						s = -1;
-						if ( (LA22_20=='\'') ) {s = 55;}
-						else if ( ((LA22_20 >= '\u0000' && LA22_20 <= '&')||(LA22_20 >= '(' && LA22_20 <= '\uFFFF')) ) {s = 57;}
-						else s = 56;
+						if ( ((LA22_25 >= '\u0000' && LA22_25 <= '\uFFFF')) ) {s = 60;}
+						else s = 59;
 						if ( s>=0 ) return s;
 						break;
 
 					case 1 : 
-						int LA22_25 = input.LA(1);
+						int LA22_20 = input.LA(1);
 						s = -1;
-						if ( ((LA22_25 >= '\u0000' && LA22_25 <= '\uFFFF')) ) {s = 62;}
-						else s = 61;
+						if ( (LA22_20=='\'') ) {s = 52;}
+						else if ( ((LA22_20 >= '\u0000' && LA22_20 <= '&')||(LA22_20 >= '(' && LA22_20 <= '\uFFFF')) ) {s = 54;}
+						else s = 53;
 						if ( s>=0 ) return s;
 						break;
 			}

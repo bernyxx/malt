@@ -1,5 +1,5 @@
 title myTitolo = "Ecco una ricerca"
-stitle mySubtitle = "Molto interessante"
+stitle mySubtitle = "Molto interessante" {#_id}
 text someText = *Testo in italico* **testo in grassetto** ***testo in grassetto italico***
 text someText = ~~Testo strikethrough~~ ==Testo evidenziato== ~Testo tilde~
-text someText = ^Testo apice^ 'Testo apostrofo' title, text; 24.
+text someText = ^Testo apice^ 'Testo apostrofo' title, text ; 24 .

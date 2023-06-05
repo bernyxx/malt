@@ -275,11 +275,11 @@ L : 'l';
 C : 'c';
 R : 'r';
 
-VAR	:	LETTER+;
+VAR	:	(LETTER) (LETTER | DIGIT |'_')*;
+
+ID	:	'_' (LETTER) (LETTER | DIGIT |'_')*;
 
 INTEGER :	DIGIT+;
-
-ID	:	(LETTER |'_') (LETTER | DIGIT |'_')+;
 
 FLOAT
     :   DIGIT+ '.' DIGIT* EXPONENT?
