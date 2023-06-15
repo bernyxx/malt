@@ -19,13 +19,14 @@ options {
 parseJava
 	: 
 		titleRule
-		(titleRule|textDeclRule)*
+		(titleRule)*
+		(textDeclRule | blockquoteRule | olistRule | ulistRule | tlistRule | blockCodeRule | horizontalRule | tableRule | imageRule)+
 		{System.out.println("    - Ho riconosciuto un documento Malt");}
 ;
 
 titleRule 
 	:
-		titleTypeRule VAR EQ STRING refRule?
+		titleTypeRule VAR EQ subtextRule+ refRule?
 		{System.out.println("    - Ho riconosciuto un titolo");}
 ;
 
@@ -37,6 +38,7 @@ titleTypeRule
 refRule
 	:
 		LCB HA ID RCB
+		{System.out.println("    - REF");}
 ;
 
 textDeclRule 
@@ -55,126 +57,138 @@ textRule
 		| highlightTextRule
 		| subscriptTextRule
 		| superscriptTextRule
-		| codeTextRule)+
-; // SISTEMARE FORMATTAZIONE, LINK, ... IN TEXT
+		| codeTextRule
+		| linkRule
+		| quickLinkRule)+
+;
 
 italicTextRule	
 	:
-		IT  subtextRule IT // come dire che il primo è inizio e l'ultimo fine ?
+		IT  subtextRule+ IT // come dire che il primo è inizio e l'ultimo fine ?
 		{System.out.println("    - I");}
 ;
 
 boldTextRule
 	:
-		BOLD subtextRule BOLD
+		BOLD subtextRule+ BOLD
 		{System.out.println("    - B");}
 ;
 
 ibTextRule
 	:
-		ITBOLD subtextRule ITBOLD
+		ITBOLD subtextRule+ ITBOLD
 		{System.out.println("    - IB");}
 ;
 
 strikethroughtTextRule
 	:
-		ST subtextRule ST
+		ST subtextRule+ ST
 		{System.out.println("    - ST");}
 ;
 
 highlightTextRule
 	:
-		HL subtextRule HL
+		HL subtextRule+ HL
 		{System.out.println("    - HL");}
 ;
 
 subscriptTextRule
 	:
-		SUBS subtextRule SUBS
+		SUBS subtextRule+ SUBS
 		{System.out.println("    - SUBS");}
 ;
 
 superscriptTextRule
 	:
-		SUPS subtextRule SUPS
+		SUPS subtextRule+ SUPS
 		{System.out.println("    - SUPS");}
 ;
 
 codeTextRule
 	:
-		CODE subtextRule CODE
+		CODE subtextRule+ CODE
 		{System.out.println("    - CODE");}
 ;
 
 subtextRule 
 	:
-		(VAR | INTEGER | DO | CM | SE | CL )+
+		(VAR | INTEGER | DO | CM | SE | CL)
 		{System.out.println("    - SUBTEXT");}
-;
+; // TODO: CONSENTIRE DI USARE APOSTROFO NEL TESTO SENZA CONFONDERE CON codeTextRule
 
 blockquoteRule 
 	:
 		BLOCKQUOTE VAR EQ textRule
+		{System.out.println("    - Ho riconosciuto un BLOCKQUOTE");}
 ;
 
 olistRule 
 	:
-		OLIST LP textListRule RP
+		OLIST textListRule
+		{System.out.println("    - Ho riconosciuto un OLIST");}
 ;
 
 textListRule
-	:	textRule (CM textRule)+
+	:	LP VAR (CM VAR)+ RP
 ;
 
 ulistRule 
 	:
-		ULIST LP textListRule RP
+		ULIST textListRule
+		{System.out.println("    - Ho riconosciuto un ULIST");}
 ;
 
 tlistRule 
 	:
-		TLIST LP textListRule RP
+		TLIST textListRule
+		{System.out.println("    - Ho riconosciuto un TLIST");}
 ;
 
 blockCodeRule 
 	:
 		BLOCKCODE languageRule? textRule BLOCKCODE
+		{System.out.println("    - Ho riconosciuto un BLOCKCODE");}
 ;
 
 languageRule
 	:
-		'Java' | 'C' | 'C++'
+		JAVALANGUAGE | CLANGUAGE | CPPLANGUAGE
 ;
 
 horizontalRule
 	:
 		HRULE
+		{System.out.println("    - Ho riconosciuto un HORIZ");}
 ;
 
 linkRule
 	:
 		LSB (textRule | imageRule) RSB LP textLinkRule RP
+		{System.out.println("    - Ho riconosciuto un link");}
 ;
 
 textLinkRule
 	:
 		(subtextRule | SL | AT)+
-;
+		{System.out.println("    - LINK");}
+; // TODO: DISTINZIONE TRA SUBTEXT-TEXT-VAR E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
 imageRule
 	:
-		EX LSB textLinkRule RSB LP textLinkRule (QU textRule QU)? RP
-;
+		EX LSB textLinkRule RSB LP textLinkRule (QU subtextRule+ QU)? RP
+		{System.out.println("    - Ho riconosciuto un'immagine");}
+; // TODO: DISTINZIONE TRA SUBTEXT-TEXT-VAR E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
 quickLinkRule
 	:
-		LAB textLinkRule RAB
-;
-// DISTINZIONE TRA TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE E TESTO FORMATTATO-DIDASCALIA IMMAGINE-TESTO TABELLA
+		LAB (((HTTP | HTTPS) subtextRule+ DOTCOM) | (subtextRule+ AT subtextRule+ DOTCOM)) RAB
+		{System.out.println("    - Ho riconosciuto un quicklink");}
+; // TODO: DISTINZIONE TRA SUBTEXT-TEXT-VAR E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
 tableRule 
 	:
 		TABLE talignmentRule? LP trowRule (CM trowRule)* RP
+		{System.out.println("    - Ho riconosciuto una tabella");}
 ;
 
 talignmentRule
@@ -189,9 +203,11 @@ alignRule
 
 trowRule
 	:
-		LSB textRule (CM textRule)* RSB;
+		LSB VAR (CM VAR)* RSB
+; // TODO: DISTINZIONE TRA SUBTEXT-TEXT-VAR E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
-// GESTIONE ESCAPE
+
+// TODO: VA FATTA GESTIONE ESCAPE?
 
 
 
@@ -248,7 +264,7 @@ ST		: '~~';
 HL		: '==';
 SUBS		: '~';
 SUPS		: '^';
-CODE		: '\''; // PROBLEMA: ctrl se funziona
+CODE		: '\'';
 BLOCKCODE	: '\'\'\'';
 HRULE		: '___';
 SL : '/';
@@ -274,6 +290,12 @@ TABLE : 'table';
 L : 'l';
 C : 'c';
 R : 'r';
+JAVALANGUAGE : 'Java';
+CLANGUAGE : 'C';
+CPPLANGUAGE : 'C++';
+HTTP : 'http://';
+HTTPS : 'https://';
+DOTCOM : '.com';
 
 VAR	:	(LETTER) (LETTER | DIGIT |'_')*;
 
@@ -299,6 +321,6 @@ WS  :   ( ' '
         )+ {$channel=HIDDEN;}
     ;
 
-STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"') )* '"';
+//STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"') )* '"'; --> VA COMMENTATO PERCHè SENNò NON RICONOSCE IL TITOLO DI imageRule
 
-CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\'';
+//CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\''; --> VA COMMENTATO PERCHè SENNò NON RICONOSCE codeTextRule

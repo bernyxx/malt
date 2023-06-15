@@ -1,24 +1,19 @@
-title myTitolo = "Ecco una ricerca"
-*Testo in italico*
-**testo in grassetto**
-***testo in grassetto italico***
-~~Testo strikethrough~~
-==Testo evidenziato==
-testo~pedice
-testo^apice
-blockquote bq = Ecco una citazione
-
-title myTitolo = "Ecco una ricerca"
-stitle mySubtitle = "Molto interessante"
-text someText = *Per* davvero
-
-*Testo in italico*
-**testo in grassetto**
-***testo in grassetto italico***
-~~Testo strikethrough~~
-==Testo evidenziato==
-~Testo tilde~
-^Testo apice^
-'Testo apostrofo'
-title
-24
+title myTitolo = Ecco una ricerca
+stitle mySubtitle = Molto interessante {#_id}
+text someText = *Testo in italico* **testo in grassetto** ***testo in grassetto italico***
+text someText = ~~Testo strikethrough~~ ==Testo evidenziato== ~Testo tilde~
+text someText = ^Testo apice^ 'Testo apostrofo' title, text; ciao. mondo: 44 abc.
+blockquote someText = altro testo
+olist(uno,due,tre)
+ulist(quattro,cinque,sei)
+tlist(sette,otto,nove)
+''' C ciao mondo '''
+''' ciao mondo '''
+___
+text someText = Questo testo contiene un link [ciao *it*](m/ondo@gmail.it)
+text someText = Questo testo contiene un immagine [![Immagine](/percorso/immagine.jpg "Titolo immagine")](link) oppure [![Immagine](/percorso/immagine.jpg)](/percorso/immagine)](link)
+![Immagine](/percorso/immagine.jpg "Titolo immagine")
+![Immagine](/percorso/immagine.jpg)](/percorso/immagine)
+text someText = Questo testo contiene un link <mondo@gmail.com> oppure <https://www.mondo.com>
+table [l,r,c] ([uno,due,tre],[quattro,cinque,sei],[sette,otto,nove])
+table ([uno,due,tre])
