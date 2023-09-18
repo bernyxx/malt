@@ -1,9 +1,9 @@
-title myTitolo = Ecco una ricerca
-stitle mySubtitle = Molto interessante {#_id}
-text someText = Questo testo contiene un link [ciao *it*](m/ondo@gmail.it)
-text someText = Questo testo contiene un immagine [![Immagine](/percorso/immagine.jpg "Titolo immagine")](link) oppure [![Immagine](/percorso/immagine.jpg)](/percorso/immagine)](link)
+title myTitolo = "Ecco una ricerca"
+stitle mySubtitle = "Molto interessante" {#id}
+text someText = "Questo testo contiene un link" [ciao *it*](m/ondo@gmail.it)
+text someText = "Questo testo contiene un immagine" [![Immagine](/percorso/immagine.jpg "Titolo immagine")](link) oppure [![Immagine](/percorso/immagine.jpg)](/percorso/immagine)](link)
 ![Immagine](/percorso/immagine.jpg "Titolo immagine")
 ![Immagine](/percorso/immagine.jpg)](/percorso/immagine)
-text someText = Questo testo contiene un link <mondo@gmail.com> oppure <https://www.mondo.com>
+text someText = "Questo testo contiene un link <mondo@gmail.com> oppure <https://www.mondo.com>"
 table [l,r,c] ([uno,due,tre],[quattro,cinque,sei],[sette,otto,nove])
 table ([uno,due,tre])

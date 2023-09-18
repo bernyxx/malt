@@ -17,10 +17,8 @@ options {
 }
 
 parseJava
-	: 
-		titleRule
-		(titleRule)*
-		(textDeclRule | blockquoteRule | olistRule | ulistRule | tlistRule | blockCodeRule | horizontalRule | tableRule | imageRule)+
+	:
+		(titleRule | textDeclRule | blockquoteRule | olistRule | ulistRule | tlistRule | blockCodeRule | horizontalRule | tableRule | imageRule)+
 		{System.out.println("    - Ho riconosciuto un documento Malt");}
 ;
 
@@ -37,7 +35,7 @@ titleTypeRule
 
 refRule
 	:
-		LCB HA ID RCB
+		LCB HA VAR RCB
 		{System.out.println("    - REF");}
 ;
 
@@ -112,7 +110,7 @@ codeTextRule
 
 subtextRule 
 	:
-		(VAR | INTEGER | DO | CM | SE | CL)
+		(STRING | INTEGER | DO | CM | SE | CL)
 		{System.out.println("    - SUBTEXT");}
 ; // TODO: CONSENTIRE DI USARE APOSTROFO NEL TESTO SENZA CONFONDERE CON codeTextRule
 
@@ -129,7 +127,7 @@ olistRule
 ;
 
 textListRule
-	:	LP VAR (CM VAR)+ RP
+	:	LP STRING (CM STRING)+ RP
 ;
 
 ulistRule 
@@ -175,7 +173,7 @@ textLinkRule
 
 imageRule
 	:
-		EX LSB textLinkRule RSB LP textLinkRule (QU subtextRule+ QU)? RP
+		EX LSB textLinkRule RSB LP textLinkRule (STRING)? RP
 		{System.out.println("    - Ho riconosciuto un'immagine");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT-VAR E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
@@ -203,7 +201,7 @@ alignRule
 
 trowRule
 	:
-		LSB VAR (CM VAR)* RSB
+		LSB STRING (CM STRING)* RSB
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT-VAR E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
 
@@ -267,6 +265,7 @@ SUPS		: '^';
 CODE		: '\'';
 BLOCKCODE	: '\'\'\'';
 HRULE		: '___';
+US : '_';
 SL : '/';
 AT : '@';
 EX : '!';
@@ -299,8 +298,6 @@ DOTCOM : '.com';
 
 VAR	:	(LETTER) (LETTER | DIGIT |'_')*;
 
-ID	:	'_' (LETTER) (LETTER | DIGIT |'_')*;
-
 INTEGER :	DIGIT+;
 
 FLOAT
@@ -321,6 +318,6 @@ WS  :   ( ' '
         )+ {$channel=HIDDEN;}
     ;
 
-//STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"') )* '"'; --> VA COMMENTATO PERCHè SENNò NON RICONOSCE IL TITOLO DI imageRule
+STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*') )* '"'; //--> VA COMMENTATO PERCHè SENNò NON RICONOSCE IL TITOLO DI imageRule
 
-//CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\''; --> VA COMMENTATO PERCHè SENNò NON RICONOSCE codeTextRule
+//CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\''; //--> VA COMMENTATO PERCHè SENNò NON RICONOSCE codeTextRule
