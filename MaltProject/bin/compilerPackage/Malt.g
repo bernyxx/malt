@@ -18,7 +18,7 @@ options {
 
 parseJava
 	:
-		(titleRule | textDeclRule | blockquoteRule | olistRule | ulistRule | tlistRule | blockCodeRule | horizontalRule | tableRule | imageRule)+
+		(titleRule | textDeclRule | blockquoteRule | olistRule | ulistRule | tlistRule | codeBlockRule | horizontalRule | tableRule | imageRule)+
 		{System.out.println("    - Ho riconosciuto un documento Malt");}
 ;
 
@@ -38,6 +38,7 @@ refRule
 		LCB HA VAR RCB
 		{System.out.println("    - REF");}
 ;
+// TODO: SOSTITUIRE VAR CON UN TOKEN = (LETTER) (LETTER | DIGIT |'-')*
 
 textDeclRule 
 	:
@@ -110,9 +111,9 @@ codeTextRule
 
 subtextRule 
 	:
-		(STRING | INTEGER | DO | CM | SE | CL)
+		STRING
 		{System.out.println("    - SUBTEXT");}
-; // TODO: CONSENTIRE DI USARE APOSTROFO NEL TESTO SENZA CONFONDERE CON codeTextRule
+;
 
 blockquoteRule 
 	:
@@ -142,15 +143,10 @@ tlistRule
 		{System.out.println("    - Ho riconosciuto un TLIST");}
 ;
 
-blockCodeRule 
+codeBlockRule 
 	:
-		BLOCKCODE languageRule? textRule BLOCKCODE
+		CODEBLOCK STR? VAR EQ textRule
 		{System.out.println("    - Ho riconosciuto un BLOCKCODE");}
-;
-
-languageRule
-	:
-		JAVALANGUAGE | CLANGUAGE | CPPLANGUAGE
 ;
 
 horizontalRule
@@ -161,27 +157,21 @@ horizontalRule
 
 linkRule
 	:
-		LSB (textRule | imageRule) RSB LP textLinkRule RP
+		LSB (textRule | imageRule) RSB LP STR RP
 		{System.out.println("    - Ho riconosciuto un link");}
 ;
 
-textLinkRule
-	:
-		(subtextRule | SL | AT)+
-		{System.out.println("    - LINK");}
-; // TODO: DISTINZIONE TRA SUBTEXT-TEXT-VAR E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
-
 imageRule
 	:
-		EX LSB textLinkRule RSB LP textLinkRule (STRING)? RP
+		IMG VAR EQ LP STR (CM STR)? RP // STR (' ' STR)+)? RP
 		{System.out.println("    - Ho riconosciuto un'immagine");}
-; // TODO: DISTINZIONE TRA SUBTEXT-TEXT-VAR E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
+; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
 quickLinkRule
 	:
 		LAB (((HTTP | HTTPS) subtextRule+ DOTCOM) | (subtextRule+ AT subtextRule+ DOTCOM)) RAB
 		{System.out.println("    - Ho riconosciuto un quicklink");}
-; // TODO: DISTINZIONE TRA SUBTEXT-TEXT-VAR E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
+; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
 tableRule 
 	:
@@ -202,7 +192,7 @@ alignRule
 trowRule
 	:
 		LSB STRING (CM STRING)* RSB
-; // TODO: DISTINZIONE TRA SUBTEXT-TEXT-VAR E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
+; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
 
 // TODO: VA FATTA GESTIONE ESCAPE?
@@ -242,6 +232,7 @@ LETTER : 'a'..'z'|'A'..'Z';
 fragment 
 DIGIT : '0'..'9';
 
+// TODO: ELIMINARE TOKEN INUTILI
 DO : '.';
 CM :',';
 SE : ';';
@@ -263,7 +254,6 @@ HL		: '==';
 SUBS		: '~';
 SUPS		: '^';
 CODE		: '\'';
-BLOCKCODE	: '\'\'\'';
 HRULE		: '___';
 US : '_';
 SL : '/';
@@ -285,13 +275,12 @@ BLOCKQUOTE : 'blockquote';
 OLIST : 'olist';
 ULIST : 'ulist';
 TLIST : 'tlist';
+CODEBLOCK : 'codeblock';
+IMG : 'img';
 TABLE : 'table';
 L : 'l';
 C : 'c';
 R : 'r';
-JAVALANGUAGE : 'Java';
-CLANGUAGE : 'C';
-CPPLANGUAGE : 'C++';
 HTTP : 'http://';
 HTTPS : 'https://';
 DOTCOM : '.com';
@@ -318,6 +307,8 @@ WS  :   ( ' '
         )+ {$channel=HIDDEN;}
     ;
 
-STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*') )* '"'; //--> VA COMMENTATO PERCHè SENNò NON RICONOSCE IL TITOLO DI imageRule
+STR 	:	LP (~(LP | RP | '"'))* RP;
+
+STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*') )* '"';
 
 //CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\''; //--> VA COMMENTATO PERCHè SENNò NON RICONOSCE codeTextRule
