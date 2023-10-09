@@ -20,10 +20,26 @@ parseJava
 	:
 		(instrRule)+
 		{System.out.println("    - Ho riconosciuto un documento Malt");}
+		// TODO: capire come sistemare il fatto che si può aggiungere qualsiasi altro token alla fine del file input
 ;
 
 instrRule
-	:	(titleRule | textDeclRule | blockquoteRule | olistRule | ulistRule | tlistRule | codeBlockRule | horizontalRule | tableRule | imageRule) SE
+	:	(titleRule
+		| textDeclRule
+		| blockquoteRule
+		| olistRule
+		| ulistRule
+		| tlistRule
+		| codeBlockRule
+		| horizontalRule
+		| tableRule
+		| imageRule
+		| linkRule
+		| quickLinkRule
+		//| subscriptTextRule
+		//| superscriptTextRule
+		| formatTextRule
+		) SE
 		{System.out.println("    - Ho riconosciuto un'istruzione");}	
 ;	
 
@@ -53,66 +69,67 @@ textDeclRule
 
 textRule
 	:
-		(subtextRule
-		| italicTextRule
-		| boldTextRule
-		| ibTextRule
-		| strikethroughtTextRule
-		| highlightTextRule
-		| subscriptTextRule
-		| superscriptTextRule
-		| codeTextRule
-		| linkRule
-		| quickLinkRule)
+		//(
+		subtextRule
+		//| italicTextRule
+		//| boldTextRule
+		//| ibTextRule
+		//| strikethroughtTextRule
+		//| highlightTextRule
+		//| subscriptTextRule
+		//| superscriptTextRule
+		//| codeTextRule
+		//| linkRule
+		//| quickLinkRule)
 ;
 
-italicTextRule	
-	:
-		IT  subtextRule IT // come dire che il primo ï¿½ inizio e l'ultimo fine ?
-		{System.out.println("    - I");}
-;
+//italicTextRule	
+	//:
+		//IT  subtextRule IT // come dire che il primo ï¿½ inizio e l'ultimo fine ?
+		//{System.out.println("    - I");}
+//;
 
-boldTextRule
-	:
-		BOLD subtextRule BOLD
-		{System.out.println("    - B");}
-;
+//boldTextRule
+	//:
+		//BOLD subtextRule BOLD
+		//{System.out.println("    - B");}
+//;
 
-ibTextRule
-	:
-		ITBOLD subtextRule ITBOLD
-		{System.out.println("    - IB");}
-;
+//ibTextRule
+	//:
+		//ITBOLD subtextRule ITBOLD
+		//{System.out.println("    - IB");}
+//;
 
-strikethroughtTextRule
-	:
-		ST subtextRule ST
-		{System.out.println("    - ST");}
-;
+//strikethroughtTextRule
+	//:
+		//ST subtextRule ST
+		//{System.out.println("    - ST");}
+//;
 
-highlightTextRule
-	:
-		HL subtextRule HL
-		{System.out.println("    - HL");}
-;
+//highlightTextRule
+	//:
+		//HL subtextRule HL
+		//{System.out.println("    - HL");}
+//;
 
-subscriptTextRule
-	:
-		SUBS subtextRule SUBS
-		{System.out.println("    - SUBS");}
-;
+//subscriptTextRule
+	//:
+		//SUBS subtextRule SUBS
+		//{System.out.println("    - SUBS");}
+//;
 
-superscriptTextRule
-	:
-		SUPS subtextRule SUPS
-		{System.out.println("    - SUPS");}
-;
+//superscriptTextRule
+	//:
+		//SUPS subtextRule SUPS
+		//{System.out.println("    - SUPS");}
+//;
 
-codeTextRule
-	:
-		CODE subtextRule CODE
-		{System.out.println("    - CODE");}
-;
+//codeTextRule
+	//:
+		//CODE subtextRule CODE
+		//{System.out.println("    - CODE");}
+//;
 
 subtextRule 
 	:
@@ -150,7 +167,7 @@ tlistRule
 
 codeBlockRule 
 	:
-		CODEBLOCK STR? (VAR EQ)? textRule
+		CODEBLOCK (LP (~(LP | RP | '"'))* RP)? (VAR EQ)? textRule
 		{System.out.println("    - Ho riconosciuto un BLOCKCODE");}
 ;
 
@@ -162,13 +179,13 @@ horizontalRule
 
 linkRule
 	:
-		LINK (VAR EQ)? LP (textRule | imageRule) CM STR RP
+		LINK (VAR EQ)? LP (textRule | imageRule) CM (LP (~(LP | RP | '"'))* RP) RP
 		{System.out.println("    - Ho riconosciuto un link");}
 ;
 
 imageRule
 	:
-		IMG (VAR EQ)? LP STR (CM STR)? RP
+		IMG (VAR EQ)? LP (LP (~(LP | RP | '"'))* RP) (CM (LP (~(LP | RP | '"'))* RP))? RP
 		{System.out.println("    - Ho riconosciuto un'immagine");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
@@ -187,6 +204,7 @@ tableRule
 talignmentRule
 	:
 		LSB alignRule (CM alignRule)* RSB
+		{System.out.println("    - Ho riconosciuto talign");}
 ;
 
 alignRule
@@ -197,11 +215,16 @@ alignRule
 trowRule
 	:
 		LSB STRING (CM STRING)* RSB
+		{System.out.println("    - Ho riconosciuto trow");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
 
 // TODO: VA FATTA GESTIONE ESCAPE?
 
+formatTextRule
+	:
+		FORMATTEXT (VAR EQ)? STRING
+;
 
 
 
@@ -290,6 +313,9 @@ R : 'r';
 HTTP : 'http://';
 HTTPS : 'https://';
 DOTCOM : '.com';
+FORMATTEXT : 'formattext';
+G : '\g';
+I : '\i';
 
 VAR	:	(LETTER) (LETTER | DIGIT |'_')*;
 
@@ -315,8 +341,11 @@ WS  :   ( ' '
 
 
 
-STR 	:	LP (~(LP | RP | '"'))* RP;
+//STR 	:	LP (~(LP | RP | '"'))* RP;
 
-STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*') )* '"';
+STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*'|'\i'|'\g') )* '"';
+// TODO: sistemare formattext
+
+//FORMATSTRING	: 	'"' ( ESC_SEQ | ~('\i'|'\g') )* '"';
 
 //CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\''; //--> VA COMMENTATO PERCHï¿½ SENNï¿½ NON RICONOSCE codeTextRule

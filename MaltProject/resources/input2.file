@@ -43,16 +43,16 @@ table [l,r,c] ([uno,due,tre],[quattro,cinque,sei],[sette,otto,nove])
 table ([uno,due,tre])
 
 
-
-stitle myTitolo = "Ecco una ricerca"
-sstitle mySubtitle = "Molto interessante" {#id}
-text someText = "Questo testo contiene un link"
-blockquote bq1 = "Questo testo contiene un link"
-olist olist1 = ("primo", "secondo")
-codeblock (Java) cb1 = "Questo testo contiene un link"
-___
-link link1 = ((ciao *(it)*),(m/ondo@gmail.it))
-img foto1 = ((/percorso/immagine.jpg),(Titolo immagine))
-text someText = "Questo testo contiene un link <mondo@gmail.com> oppure <https://www.mondo.com>"
-table [l,r,c] ([uno,due,tre],[quattro,cinque,sei],[sette,otto,nove])
-table ([uno,due,tre])
+---
+NUOVA VERSIONE
+stitle myTitolo = "Ecco una ricerca";
+sstitle mySubtitle = "Molto interessante" {#id};
+text someText = "Questo testo contiene un link";
+blockquote bq1 = "Questo testo contiene un link";
+olist olist1 = ("primo", "secondo");
+codeblock (Java) cb1 = "Questo testo contiene un link";
+___;
+link link1 = ("ciao",(mit));
+img foto1 = ((/percorso/immagine.jpg),(Titolo immagine));
+text someText = "Questo testo contiene un link <mondo@gmail.com> oppure <https://www.mondo.com>";
+table tabella1 = [l,r,c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
