@@ -18,9 +18,14 @@ options {
 
 parseJava
 	:
-		(titleRule | textDeclRule | blockquoteRule | olistRule | ulistRule | tlistRule | codeBlockRule | horizontalRule | tableRule | imageRule)+
+		(instrRule)+
 		{System.out.println("    - Ho riconosciuto un documento Malt");}
 ;
+
+instrRule
+	:	(titleRule | textDeclRule | blockquoteRule | olistRule | ulistRule | tlistRule | codeBlockRule | horizontalRule | tableRule | imageRule) SE
+		{System.out.println("    - Ho riconosciuto un'istruzione");}	
+;	
 
 titleRule 
 	:
@@ -58,12 +63,12 @@ textRule
 		| superscriptTextRule
 		| codeTextRule
 		| linkRule
-		| quickLinkRule)+
+		| quickLinkRule)
 ;
 
 italicTextRule	
 	:
-		IT  subtextRule IT // come dire che il primo è inizio e l'ultimo fine ?
+		IT  subtextRule IT // come dire che il primo ï¿½ inizio e l'ultimo fine ?
 		{System.out.println("    - I");}
 ;
 
@@ -308,8 +313,10 @@ WS  :   ( ' '
         )+ {$channel=HIDDEN;}
     ;
 
+
+
 STR 	:	LP (~(LP | RP | '"'))* RP;
 
 STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*') )* '"';
 
-//CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\''; //--> VA COMMENTATO PERCHè SENNò NON RICONOSCE codeTextRule
+//CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\''; //--> VA COMMENTATO PERCHï¿½ SENNï¿½ NON RICONOSCE codeTextRule

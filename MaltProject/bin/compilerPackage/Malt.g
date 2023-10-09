@@ -18,13 +18,18 @@ options {
 
 parseJava
 	:
-		(titleRule | textDeclRule | blockquoteRule | olistRule | ulistRule | tlistRule | codeBlockRule | horizontalRule | tableRule | imageRule)+
+		(instrRule)+
 		{System.out.println("    - Ho riconosciuto un documento Malt");}
 ;
 
+instrRule
+	:	(titleRule | textDeclRule | blockquoteRule | olistRule | ulistRule | tlistRule | codeBlockRule | horizontalRule | tableRule | imageRule) SE
+		{System.out.println("    - Ho riconosciuto un'istruzione");}	
+;	
+
 titleRule 
 	:
-		titleTypeRule VAR EQ subtextRule+ refRule?
+		titleTypeRule (VAR EQ)? subtextRule refRule?
 		{System.out.println("    - Ho riconosciuto un titolo");}
 ;
 
@@ -42,7 +47,7 @@ refRule
 
 textDeclRule 
 	:
-		TEXT VAR EQ textRule
+		TEXT (VAR EQ)? textRule
 		{System.out.println("    - Ho riconosciuto un testo");}
 ;
 
@@ -58,54 +63,54 @@ textRule
 		| superscriptTextRule
 		| codeTextRule
 		| linkRule
-		| quickLinkRule)+
+		| quickLinkRule)
 ;
 
 italicTextRule	
 	:
-		IT  subtextRule+ IT // come dire che il primo è inizio e l'ultimo fine ?
+		IT  subtextRule IT // come dire che il primo ï¿½ inizio e l'ultimo fine ?
 		{System.out.println("    - I");}
 ;
 
 boldTextRule
 	:
-		BOLD subtextRule+ BOLD
+		BOLD subtextRule BOLD
 		{System.out.println("    - B");}
 ;
 
 ibTextRule
 	:
-		ITBOLD subtextRule+ ITBOLD
+		ITBOLD subtextRule ITBOLD
 		{System.out.println("    - IB");}
 ;
 
 strikethroughtTextRule
 	:
-		ST subtextRule+ ST
+		ST subtextRule ST
 		{System.out.println("    - ST");}
 ;
 
 highlightTextRule
 	:
-		HL subtextRule+ HL
+		HL subtextRule HL
 		{System.out.println("    - HL");}
 ;
 
 subscriptTextRule
 	:
-		SUBS subtextRule+ SUBS
+		SUBS subtextRule SUBS
 		{System.out.println("    - SUBS");}
 ;
 
 superscriptTextRule
 	:
-		SUPS subtextRule+ SUPS
+		SUPS subtextRule SUPS
 		{System.out.println("    - SUPS");}
 ;
 
 codeTextRule
 	:
-		CODE subtextRule+ CODE
+		CODE subtextRule CODE
 		{System.out.println("    - CODE");}
 ;
 
@@ -117,13 +122,13 @@ subtextRule
 
 blockquoteRule 
 	:
-		BLOCKQUOTE VAR EQ textRule
+		BLOCKQUOTE (VAR EQ)? textRule
 		{System.out.println("    - Ho riconosciuto un BLOCKQUOTE");}
 ;
 
 olistRule 
 	:
-		OLIST textListRule
+		OLIST (VAR EQ)? textListRule
 		{System.out.println("    - Ho riconosciuto un OLIST");}
 ;
 
@@ -133,19 +138,19 @@ textListRule
 
 ulistRule 
 	:
-		ULIST textListRule
+		ULIST (VAR EQ)? textListRule
 		{System.out.println("    - Ho riconosciuto un ULIST");}
 ;
 
 tlistRule 
 	:
-		TLIST textListRule
+		TLIST (VAR EQ)? textListRule
 		{System.out.println("    - Ho riconosciuto un TLIST");}
 ;
 
 codeBlockRule 
 	:
-		CODEBLOCK STR? VAR EQ textRule
+		CODEBLOCK STR? (VAR EQ)? textRule
 		{System.out.println("    - Ho riconosciuto un BLOCKCODE");}
 ;
 
@@ -157,25 +162,25 @@ horizontalRule
 
 linkRule
 	:
-		LSB (textRule | imageRule) RSB LP STR RP
+		LINK (VAR EQ)? LP (textRule | imageRule) CM STR RP
 		{System.out.println("    - Ho riconosciuto un link");}
 ;
 
 imageRule
 	:
-		IMG VAR EQ LP STR (CM STR)? RP // STR (' ' STR)+)? RP
+		IMG (VAR EQ)? LP STR (CM STR)? RP
 		{System.out.println("    - Ho riconosciuto un'immagine");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
 quickLinkRule
 	:
-		LAB (((HTTP | HTTPS) subtextRule+ DOTCOM) | (subtextRule+ AT subtextRule+ DOTCOM)) RAB
+		LAB (((HTTP | HTTPS)? subtextRule DOTCOM) | (subtextRule AT subtextRule DOTCOM)) RAB
 		{System.out.println("    - Ho riconosciuto un quicklink");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
 tableRule 
 	:
-		TABLE talignmentRule? LP trowRule (CM trowRule)* RP
+		TABLE (VAR EQ)? talignmentRule? LP trowRule (CM trowRule)* RP
 		{System.out.println("    - Ho riconosciuto una tabella");}
 ;
 
@@ -276,6 +281,7 @@ OLIST : 'olist';
 ULIST : 'ulist';
 TLIST : 'tlist';
 CODEBLOCK : 'codeblock';
+LINK : 'link';
 IMG : 'img';
 TABLE : 'table';
 L : 'l';
@@ -307,8 +313,10 @@ WS  :   ( ' '
         )+ {$channel=HIDDEN;}
     ;
 
+
+
 STR 	:	LP (~(LP | RP | '"'))* RP;
 
 STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*') )* '"';
 
-//CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\''; //--> VA COMMENTATO PERCHè SENNò NON RICONOSCE codeTextRule
+//CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\''; //--> VA COMMENTATO PERCHï¿½ SENNï¿½ NON RICONOSCE codeTextRule
