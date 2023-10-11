@@ -45,8 +45,8 @@ table ([uno,due,tre])
 
 ---
 NUOVA VERSIONE
-stitle myTitolo = "Ecco una ricerca";
-sstitle mySubtitle = "Molto interessante" {#id};
+s1title myTitolo = "Ecco una ricerca";
+s2title mySubtitle = "Molto interessante" {#id};
 text someText = "Questo testo contiene un link";
 blockquote bq1 = "Questo testo contiene un link";
 olist olist1 = ("primo", "secondo");
@@ -56,3 +56,24 @@ link link1 = ("ciao",(mit));
 img foto1 = ((/percorso/immagine.jpg),(Titolo immagine));
 text someText = "Questo testo contiene un link <mondo@gmail.com> oppure <https://www.mondo.com>";
 table tabella1 = [l,r,c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+
+formattext pino = "ecco una passeggiata in %i alle %g";
+
+fun printResults(list r){
+      s1title myTitolo = "Ecco una ricerca";
+}
+
+for(l in r){
+      s1title myTitolo = "Ecco una ricerca in c";
+}
+
+class classe1 {
+text someText;
+text someText = "Questo testo";
+olist lista1;
+olist lista2 = ("primo", "secondo");
+ulist lista3;
+ulist lista4 = ("primo", "secondo");
+tlist lista5;
+tlist lista6 = ("primo", "secondo");
+}

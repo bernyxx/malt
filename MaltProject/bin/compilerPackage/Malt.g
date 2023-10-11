@@ -18,13 +18,12 @@ options {
 
 parseJava
 	:
-		(instrRule)+
+		(instrRule | functionRule | classRule)+ EOF
 		{System.out.println("    - Ho riconosciuto un documento Malt");}
-		// TODO: capire come sistemare il fatto che si può aggiungere qualsiasi altro token alla fine del file input
 ;
 
 instrRule
-	:	(titleRule
+	:	((titleRule
 		| textDeclRule
 		| blockquoteRule
 		| olistRule
@@ -39,13 +38,13 @@ instrRule
 		//| subscriptTextRule
 		//| superscriptTextRule
 		| formatTextRule
-		) SE
+		) SE) | forRule
 		{System.out.println("    - Ho riconosciuto un'istruzione");}	
 ;	
 
 titleRule 
 	:
-		titleTypeRule (VAR EQ)? subtextRule refRule?
+		titleTypeRule (VAR EQ)? STRING refRule?
 		{System.out.println("    - Ho riconosciuto un titolo");}
 ;
 
@@ -59,7 +58,6 @@ refRule
 		LCB HA VAR RCB
 		{System.out.println("    - REF");}
 ;
-// TODO: SOSTITUIRE VAR CON UN TOKEN = (LETTER) (LETTER | DIGIT |'-')*
 
 textDeclRule 
 	:
@@ -70,7 +68,7 @@ textDeclRule
 textRule
 	:
 		//(
-		subtextRule
+		STRING
 		//| italicTextRule
 		//| boldTextRule
 		//| ibTextRule
@@ -85,57 +83,51 @@ textRule
 
 //italicTextRule	
 	//:
-		//IT  subtextRule IT // come dire che il primo ï¿½ inizio e l'ultimo fine ?
+		//IT  STRING IT // come dire che il primo ï¿½ inizio e l'ultimo fine ?
 		//{System.out.println("    - I");}
 //;
 
 //boldTextRule
 	//:
-		//BOLD subtextRule BOLD
+		//BOLD STRING BOLD
 		//{System.out.println("    - B");}
 //;
 
 //ibTextRule
 	//:
-		//ITBOLD subtextRule ITBOLD
+		//ITBOLD STRING ITBOLD
 		//{System.out.println("    - IB");}
 //;
 
 //strikethroughtTextRule
 	//:
-		//ST subtextRule ST
+		//ST STRING ST
 		//{System.out.println("    - ST");}
 //;
 
 //highlightTextRule
 	//:
-		//HL subtextRule HL
+		//HL STRING HL
 		//{System.out.println("    - HL");}
 //;
 
 //subscriptTextRule
 	//:
-		//SUBS subtextRule SUBS
+		//SUBS STRING SUBS
 		//{System.out.println("    - SUBS");}
 //;
 
 //superscriptTextRule
 	//:
-		//SUPS subtextRule SUPS
+		//SUPS STRING SUPS
 		//{System.out.println("    - SUPS");}
 //;
 
 //codeTextRule
 	//:
-		//CODE subtextRule CODE
+		//CODE STRING CODE
 		//{System.out.println("    - CODE");}
 //;
-
-subtextRule 
-	:
-		STRING
-		{System.out.println("    - SUBTEXT");}
-;
 
 blockquoteRule 
 	:
@@ -191,7 +183,7 @@ imageRule
 
 quickLinkRule
 	:
-		LAB (((HTTP | HTTPS)? subtextRule DOTCOM) | (subtextRule AT subtextRule DOTCOM)) RAB
+		LAB STRING RAB
 		{System.out.println("    - Ho riconosciuto un quicklink");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
@@ -218,15 +210,57 @@ trowRule
 		{System.out.println("    - Ho riconosciuto trow");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
-
-// TODO: VA FATTA GESTIONE ESCAPE?
-
 formatTextRule
 	:
 		FORMATTEXT (VAR EQ)? STRING
+		{System.out.println("    - Ho riconosciuto formattext");}
 ;
 
+functionRule
+	:
+		FUN VAR LP TYPE VAR RP LCB instrRule RCB
+		{System.out.println("    - Ho riconosciuto una funzione");}
+;
 
+forRule
+	:
+		FOR LP VAR IN VAR RP LCB instrRule RCB
+;
+
+classRule
+	:
+		CLASS VAR LCB fieldRule* functionRule* RCB
+;
+
+fieldRule
+	:
+		(fieldTextRule
+		| fieldOlistRule
+		| fieldUlistRule
+		| fieldTlistRule) SE
+;
+
+fieldTextRule 
+	:
+		TEXT VAR (EQ textRule)?
+;
+
+fieldOlistRule 
+	:
+		OLIST VAR (EQ textListRule)?
+;
+
+fieldUlistRule 
+	:
+		ULIST VAR (EQ textListRule)?
+;
+
+fieldTlistRule 
+	:
+		TLIST VAR (EQ textListRule)?
+;
+
+// TODO: VA FATTA LA GESTIONE DEGLI ESCAPE? --> SISTEMARE %g e %i
 
 
 fragment
@@ -260,7 +294,7 @@ LETTER : 'a'..'z'|'A'..'Z';
 fragment 
 DIGIT : '0'..'9';
 
-// TODO: ELIMINARE TOKEN INUTILI
+
 DO : '.';
 CM :',';
 SE : ';';
@@ -285,7 +319,6 @@ CODE		: '\'';
 HRULE		: '___';
 US : '_';
 SL : '/';
-AT : '@';
 EX : '!';
 QU : '"';
 EQ : '=';
@@ -293,11 +326,11 @@ GET : '>=';
 LET : '<=';
 
 TITLE : 'title';
-S1TITLE : 'stitle';
-S2TITLE : 'sstitle';
-S3TITLE : 'ssstitle';
-S4TITLE : 'sssstitle';
-S5TITLE : 'ssssstitle';
+S1TITLE : 's1title';
+S2TITLE : 's2title';
+S3TITLE : 's3title';
+S4TITLE : 's4title';
+S5TITLE : 's5title';
 TEXT : 'text';
 BLOCKQUOTE : 'blockquote';
 OLIST : 'olist';
@@ -307,15 +340,21 @@ CODEBLOCK : 'codeblock';
 LINK : 'link';
 IMG : 'img';
 TABLE : 'table';
-L : 'l';
-C : 'c';
-R : 'r';
-HTTP : 'http://';
-HTTPS : 'https://';
-DOTCOM : '.com';
+L : '$l';
+C : '$c';
+R : '$r';
 FORMATTEXT : 'formattext';
-G : '\g';
-I : '\i';
+FUN : 'fun';
+FOR : 'for';
+IN : 'in';
+CLASS : 'class';
+TYPE : TEXT|'list'; // TODO: |'double'|'float'|'int'|'string'|'char'|'boolean'
+
+
+fragment
+G : '%g';
+fragment
+I : '%i';
 
 VAR	:	(LETTER) (LETTER | DIGIT |'_')*;
 
@@ -343,9 +382,6 @@ WS  :   ( ' '
 
 //STR 	:	LP (~(LP | RP | '"'))* RP;
 
-STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*'|'\i'|'\g') )* '"';
-// TODO: sistemare formattext
+STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*') )* '"';
 
-//FORMATSTRING	: 	'"' ( ESC_SEQ | ~('\i'|'\g') )* '"';
-
-//CHAR	:	'\'' ( ESC_SEQ | ~('\''|'\\') ) '\''; //--> VA COMMENTATO PERCHï¿½ SENNï¿½ NON RICONOSCE codeTextRule
+FORMATSTRING	: 	'f' '"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*'|I|G) )* '"'; // TODO: sistemare formattext, in particolare %g %i

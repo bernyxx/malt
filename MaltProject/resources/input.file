@@ -1,1 +1,10 @@
-formattext pino = "ecco una g passeggiata in i alle g";
+class classe1 {
+text someText;
+text someText = "Questo testo";
+olist lista1;
+olist lista2 = ("primo", "secondo");
+ulist lista3;
+ulist lista4 = ("primo", "secondo");
+tlist lista5;
+tlist lista6 = ("primo", "secondo");
+}
