@@ -76,4 +76,13 @@ ulist lista3;
 ulist lista4 = ("primo", "secondo");
 tlist lista5;
 tlist lista6 = ("primo", "secondo");
+list lista1 = ["primo", "secondo"];
+}
+list lista1 = ["primo", "secondo"];
+
+fun printResults(list r){
+      list lista1 = ["primo", "secondo"];
+	for(l in r){
+		list lista1 = ["primo", "secondo"];
+	}
 }

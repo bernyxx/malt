@@ -13,10 +13,15 @@ options {
 }
 
 @members {
+	Handler h;
 	
+	void initHandler () {
+	h = new Handler();
+	}
 }
 
 parseJava
+@init{initHandler();}
 	:
 		(instrRule | functionRule | classRule)+ EOF
 		{System.out.println("    - Ho riconosciuto un documento Malt");}
@@ -38,19 +43,19 @@ instrRule
 		//| subscriptTextRule
 		//| superscriptTextRule
 		| formatTextRule
+		| listRule
 		) SE) | forRule
-		{System.out.println("    - Ho riconosciuto un'istruzione");}	
+		{h.hello();}	
 ;	
 
 titleRule 
 	:
-		titleTypeRule (VAR EQ)? STRING refRule?
-		{System.out.println("    - Ho riconosciuto un titolo");}
+		t=titleTypeRule (n=VAR {h.declareVar(t, $n);} EQ)? STRING refRule?
 ;
 
-titleTypeRule
+titleTypeRule returns [String type]
 	:
-		TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE
+		(t=TITLE | t=S1TITLE | t=S2TITLE | t=S3TITLE | t=S4TITLE | t=S5TITLE) {type = $t;}
 ;
 
 refRule
@@ -61,8 +66,7 @@ refRule
 
 textDeclRule 
 	:
-		TEXT (VAR EQ)? textRule
-		{System.out.println("    - Ho riconosciuto un testo");}
+		t=TEXT (n=VAR {h.declareVar($t, $n);} EQ)? textRule
 ;
 
 textRule
@@ -131,13 +135,13 @@ textRule
 
 blockquoteRule 
 	:
-		BLOCKQUOTE (VAR EQ)? textRule
+		t=BLOCKQUOTE (n=VAR {h.declareVar($t, $n);} EQ)? textRule
 		{System.out.println("    - Ho riconosciuto un BLOCKQUOTE");}
 ;
 
 olistRule 
 	:
-		OLIST (VAR EQ)? textListRule
+		t=OLIST (n=VAR {h.declareVar($t, $n);} EQ)? textListRule
 		{System.out.println("    - Ho riconosciuto un OLIST");}
 ;
 
@@ -147,20 +151,25 @@ textListRule
 
 ulistRule 
 	:
-		ULIST (VAR EQ)? textListRule
+		t=ULIST (n=VAR {h.declareVar($t, $n);} EQ)? textListRule
 		{System.out.println("    - Ho riconosciuto un ULIST");}
 ;
 
 tlistRule 
 	:
-		TLIST (VAR EQ)? textListRule
+		t=TLIST (n=VAR {h.declareVar($t, $n);} EQ)? textListRule
 		{System.out.println("    - Ho riconosciuto un TLIST");}
 ;
 
 codeBlockRule 
 	:
-		CODEBLOCK (LP (~(LP | RP | '"'))* RP)? (VAR EQ)? textRule
+		t=CODEBLOCK genericTextRule? (n=VAR {h.declareVar($t, $n);} EQ)? textRule
 		{System.out.println("    - Ho riconosciuto un BLOCKCODE");}
+;
+
+genericTextRule
+	:
+		(LP (~(LP | RP | '"'))* RP)
 ;
 
 horizontalRule
@@ -171,13 +180,13 @@ horizontalRule
 
 linkRule
 	:
-		LINK (VAR EQ)? LP (textRule | imageRule) CM (LP (~(LP | RP | '"'))* RP) RP
+		t=LINK (n=VAR {h.declareVar($t, $n);} EQ)? LP (textRule | imageRule) CM genericTextRule RP
 		{System.out.println("    - Ho riconosciuto un link");}
 ;
 
 imageRule
 	:
-		IMG (VAR EQ)? LP (LP (~(LP | RP | '"'))* RP) (CM (LP (~(LP | RP | '"'))* RP))? RP
+		t=IMG (n=VAR {h.declareVar($t, $n);} EQ)? LP genericTextRule (CM genericTextRule)? RP
 		{System.out.println("    - Ho riconosciuto un'immagine");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
@@ -189,7 +198,7 @@ quickLinkRule
 
 tableRule 
 	:
-		TABLE (VAR EQ)? talignmentRule? LP trowRule (CM trowRule)* RP
+		t=TABLE (n=VAR {h.declareVar($t, $n);} EQ)? talignmentRule? LP trowRule (CM trowRule)* RP
 		{System.out.println("    - Ho riconosciuto una tabella");}
 ;
 
@@ -212,19 +221,19 @@ trowRule
 
 formatTextRule
 	:
-		FORMATTEXT (VAR EQ)? STRING
+		t=FORMATTEXT (n=VAR {h.declareVar($t, $n);} EQ)? STRING
 		{System.out.println("    - Ho riconosciuto formattext");}
 ;
 
 functionRule
 	:
-		FUN VAR LP TYPE VAR RP LCB instrRule RCB
+		FUN VAR LP (TEXT | LIST) VAR RP LCB instrRule+ RCB
 		{System.out.println("    - Ho riconosciuto una funzione");}
 ;
 
 forRule
 	:
-		FOR LP VAR IN VAR RP LCB instrRule RCB
+		FOR LP VAR IN VAR RP LCB instrRule+ RCB
 ;
 
 classRule
@@ -237,7 +246,8 @@ fieldRule
 		(fieldTextRule
 		| fieldOlistRule
 		| fieldUlistRule
-		| fieldTlistRule) SE
+		| fieldTlistRule
+		| listRule) SE
 ;
 
 fieldTextRule 
@@ -259,6 +269,28 @@ fieldTlistRule
 	:
 		TLIST VAR (EQ textListRule)?
 ;
+
+listRule
+	:
+		t=LIST n=VAR (EQ LSB STRING (CM STRING)+ RSB)?
+{h.declareVar($t, $n);}; // TODO: cambiare string con formattext
+
+// TODO: nei controlli capire come controllare l'esistenza di una varibiale oppure il suo tipo nel caso sia se è stata definita
+
+fieldTextAssignRule 
+	:
+		VAR EQ textRule
+;
+
+fieldListAssignRule 
+	:
+		VAR EQ textListRule
+;
+
+listAssignRule
+	:
+		VAR EQ LSB STRING (CM STRING)+ RSB
+; // TODO: cambiare string con formattext
 
 // TODO: VA FATTA LA GESTIONE DEGLI ESCAPE? --> SISTEMARE %g e %i
 
@@ -348,7 +380,7 @@ FUN : 'fun';
 FOR : 'for';
 IN : 'in';
 CLASS : 'class';
-TYPE : TEXT|'list'; // TODO: |'double'|'float'|'int'|'string'|'char'|'boolean'
+LIST : 'list';
 
 
 fragment
