@@ -24,11 +24,12 @@ parseJava
 @init{initHandler();}
 	:
 		(instrRule | functionRule | classRule)+ EOF
-		{System.out.println("    - Ho riconosciuto un documento Malt");}
+		{h.printTable();
+		System.out.println("    - Ho riconosciuto un documento Malt");}
 ;
 
-instrRule
-	:	((titleRule
+instrRule returns [Token name, Token type]
+	:	((r = titleRule {name = r.name; type = r.type; h.prova(r.name,r.type);}
 		| textDeclRule
 		| blockquoteRule
 		| olistRule
@@ -48,12 +49,12 @@ instrRule
 		{h.hello();}	
 ;	
 
-titleRule 
+titleRule returns [Token name, Token type]
 	:
-		t=titleTypeRule (n=VAR {h.declareVar(t, $n);} EQ)? STRING refRule?
+		t=titleTypeRule (n=VAR {h.declareVar(t, $n); name = $n; type = t;} EQ)? STRING refRule?
 ;
 
-titleTypeRule returns [String type]
+titleTypeRule returns [Token type]
 	:
 		(t=TITLE | t=S1TITLE | t=S2TITLE | t=S3TITLE | t=S4TITLE | t=S5TITLE) {type = $t;}
 ;
@@ -227,7 +228,7 @@ formatTextRule
 
 functionRule
 	:
-		FUN VAR LP (TEXT | LIST) VAR RP LCB instrRule+ RCB
+		FUN n=VAR {h.declareFun($n);} LP (TEXT | LIST) VAR RP LCB (r=instrRule {h.prova(r.name,r.type);})+ RCB
 		{System.out.println("    - Ho riconosciuto una funzione");}
 ;
 

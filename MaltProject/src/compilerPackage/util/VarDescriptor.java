@@ -10,4 +10,10 @@ public class VarDescriptor {
 		varType = t;
 		value = 0;
 	}
+	
+	@Override
+	public String toString() {
+		String str = this.varType + " | " + this.varName + " | " + this.value;
+		return str;
+	}
 }

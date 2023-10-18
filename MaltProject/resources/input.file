@@ -8,11 +8,21 @@ ___;
 link link1 = ("ciao",(mit));
 img foto1 = ((/percorso/immagine.jpg),(Titolo immagine));
 text someText1 = "Questo testo contiene un link <mondo@gmail.com> oppure <https://www.mondo.com>";
-table tabella1 = [l,r,c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+table tabella2 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
 
 formattext pino = "ecco una passeggiata in %i alle %g";
 
 fun printResults(list r){
+      s1title myTitolo = "Ecco una ricerca";
+}
+
+fun printResults(list r){
+      s1title myTitolo = "Ecco una ricerca";
+}
+
+fun printResultss(list r){
       s1title myTitolo = "Ecco una ricerca";
 }
 
