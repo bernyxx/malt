@@ -23,35 +23,37 @@ options {
 parseJava
 @init{initHandler();}
 	:
-		(instrRule | functionRule | classRule)+ EOF
+		(instrRule[""] | functionRule | classRule )+ EOF 
 		{h.printTable();
 		System.out.println("    - Ho riconosciuto un documento Malt");}
 ;
 
-instrRule returns [Token name, Token type]
-	:	((r = titleRule {name = r.name; type = r.type; h.prova(r.name,r.type);}
-		| textDeclRule
-		| blockquoteRule
-		| olistRule
-		| ulistRule
-		| tlistRule
-		| codeBlockRule
+
+instrRule [String functionName]
+	:	(((r1 = titleRule {h.declareNew(functionName, $r1.type, $r1.name);}
+		| r2 = textDeclRule {h.declareNew(functionName, $r2.type, $r2.name);}
+		| r3 = blockquoteRule {h.declareNew(functionName, $r3.type, $r3.name);}
+		| r4 = olistRule {h.declareNew(functionName, $r4.type, $r4.name);}
+		| r5 = ulistRule {h.declareNew(functionName, $r5.type, $r5.name);}
+		| r6 = tlistRule {h.declareNew(functionName, $r6.type, $r6.name);}
+		| r7 = codeBlockRule {h.declareNew(functionName, $r7.type, $r7.name);}
+		| r8 = tableRule {h.declareNew(functionName, $r8.type, $r8.name);}
+		| r9 = imageRule {h.declareNew(functionName, $r9.type, $r9.name);}
+		| r10 = linkRule {h.declareNew(functionName, $r10.type, $r10.name);}
+		| r11 = listRule {h.declareNew(functionName, $r11.type, $r11.name);}
+		| r12 = formatTextRule {h.declareNew(functionName, $r12.type, $r12.name);}) SE ) 
+		| (( quickLinkRule
 		| horizontalRule
-		| tableRule
-		| imageRule
-		| linkRule
-		| quickLinkRule
 		//| subscriptTextRule
 		//| superscriptTextRule
-		| formatTextRule
-		| listRule
-		) SE) | forRule
-		{h.hello();}	
+		) SE) | forRule) 
+		
 ;	
+
 
 titleRule returns [Token name, Token type]
 	:
-		t=titleTypeRule (n=VAR {h.declareVar(t, $n); name = $n; type = t;} EQ)? STRING refRule?
+		t=titleTypeRule (n=VAR EQ)? STRING refRule? {$name = $n; $type = t;}
 ;
 
 titleTypeRule returns [Token type]
@@ -65,9 +67,9 @@ refRule
 		{System.out.println("    - REF");}
 ;
 
-textDeclRule 
+textDeclRule returns [Token name, Token type] 
 	:
-		t=TEXT (n=VAR {h.declareVar($t, $n);} EQ)? textRule
+		t=TEXT (n=VAR EQ)? textRule {$name = $n; $type = $t;}
 ;
 
 textRule
@@ -134,15 +136,15 @@ textRule
 		//{System.out.println("    - CODE");}
 //;
 
-blockquoteRule 
+blockquoteRule returns [Token name, Token type]
 	:
-		t=BLOCKQUOTE (n=VAR {h.declareVar($t, $n);} EQ)? textRule
+		t=BLOCKQUOTE (n=VAR {$name = $n; $type = $t;} EQ)? textRule
 		{System.out.println("    - Ho riconosciuto un BLOCKQUOTE");}
 ;
 
-olistRule 
+olistRule returns [Token name, Token type]
 	:
-		t=OLIST (n=VAR {h.declareVar($t, $n);} EQ)? textListRule
+		t=OLIST (n=VAR {$name = $n; $type = $t;} EQ)? textListRule
 		{System.out.println("    - Ho riconosciuto un OLIST");}
 ;
 
@@ -150,21 +152,21 @@ textListRule
 	:	LP STRING (CM STRING)+ RP
 ;
 
-ulistRule 
+ulistRule returns [Token name, Token type]
 	:
-		t=ULIST (n=VAR {h.declareVar($t, $n);} EQ)? textListRule
+		t=ULIST (n=VAR {$name = $n; $type = $t;} EQ)? textListRule
 		{System.out.println("    - Ho riconosciuto un ULIST");}
 ;
 
-tlistRule 
+tlistRule returns [Token name, Token type]
 	:
-		t=TLIST (n=VAR {h.declareVar($t, $n);} EQ)? textListRule
+		t=TLIST (n=VAR {$name = $n; $type = $t;} EQ)? textListRule
 		{System.out.println("    - Ho riconosciuto un TLIST");}
 ;
 
-codeBlockRule 
+codeBlockRule returns [Token name, Token type]
 	:
-		t=CODEBLOCK genericTextRule? (n=VAR {h.declareVar($t, $n);} EQ)? textRule
+		t=CODEBLOCK genericTextRule? (n=VAR {$name = $n; $type = $t;} EQ)? textRule
 		{System.out.println("    - Ho riconosciuto un BLOCKCODE");}
 ;
 
@@ -179,15 +181,15 @@ horizontalRule
 		{System.out.println("    - Ho riconosciuto un HORIZ");}
 ;
 
-linkRule
+linkRule returns [Token name, Token type]
 	:
-		t=LINK (n=VAR {h.declareVar($t, $n);} EQ)? LP (textRule | imageRule) CM genericTextRule RP
+		t=LINK (n=VAR {$name = $n; $type = $t;} EQ)? LP (textRule | imageRule) CM genericTextRule RP
 		{System.out.println("    - Ho riconosciuto un link");}
 ;
 
-imageRule
+imageRule returns [Token name, Token type]
 	:
-		t=IMG (n=VAR {h.declareVar($t, $n);} EQ)? LP genericTextRule (CM genericTextRule)? RP
+		t=IMG (n=VAR {$name = $n; $type = $t;} EQ)? LP genericTextRule (CM genericTextRule)? RP
 		{System.out.println("    - Ho riconosciuto un'immagine");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
@@ -197,9 +199,9 @@ quickLinkRule
 		{System.out.println("    - Ho riconosciuto un quicklink");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
-tableRule 
+tableRule returns [Token name, Token type]
 	:
-		t=TABLE (n=VAR {h.declareVar($t, $n);} EQ)? talignmentRule? LP trowRule (CM trowRule)* RP
+		t=TABLE (n=VAR {$name = $n; $type = $t;} EQ)? talignmentRule? LP trowRule (CM trowRule)* RP
 		{System.out.println("    - Ho riconosciuto una tabella");}
 ;
 
@@ -220,63 +222,64 @@ trowRule
 		{System.out.println("    - Ho riconosciuto trow");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
-formatTextRule
+formatTextRule returns [Token name, Token type]
 	:
-		t=FORMATTEXT (n=VAR {h.declareVar($t, $n);} EQ)? STRING
+		t=FORMATTEXT (n=VAR {$name = $n; $type = $t;} EQ)? STRING
 		{System.out.println("    - Ho riconosciuto formattext");}
 ;
 
 functionRule
 	:
-		FUN n=VAR {h.declareFun($n);} LP (TEXT | LIST) VAR RP LCB (r=instrRule {h.prova(r.name,r.type);})+ RCB
+		FUN n=VAR {h.declareFun($n);} LP (TEXT | LIST) VAR RP LCB (r=instrRule[$n.getText()])+ RCB
 		{System.out.println("    - Ho riconosciuto una funzione");}
 ;
 
 forRule
 	:
-		FOR LP VAR IN VAR RP LCB instrRule+ RCB
+		FOR LP VAR IN VAR RP LCB (instrRule[""])+ RCB
 ;
 
 classRule
 	:
-		CLASS VAR LCB fieldRule* functionRule* RCB
+		CLASS n=VAR {h.declareFun($n);} LCB fieldRule[$n.getText()]* functionRule* RCB
 ;
 
-fieldRule
+fieldRule [String className]
 	:
-		(fieldTextRule
-		| fieldOlistRule
-		| fieldUlistRule
-		| fieldTlistRule
-		| listRule) SE
+		( r1 = fieldTextRule {h.declareNew(className, $r1.type, $r1.name);}
+		| r2 = fieldOlistRule {h.declareNew(className, $r2.type, $r2.name);}
+		| r3 = fieldUlistRule {h.declareNew(className, $r3.type, $r3.name);}
+		| r4 = fieldTlistRule {h.declareNew(className, $r4.type, $r4.name);}
+		| r5 = listRule {h.declareNew(className, $r5.type, $r5.name);}) SE
 ;
 
-fieldTextRule 
+fieldTextRule returns [Token name, Token type]
 	:
-		TEXT VAR (EQ textRule)?
+		t=TEXT n=VAR (EQ textRule)? {$name = $n; $type = $t;}
 ;
 
-fieldOlistRule 
+fieldOlistRule returns [Token name, Token type]
 	:
-		OLIST VAR (EQ textListRule)?
+		t=OLIST n=VAR (EQ textListRule)? {$name = $n; $type = $t;}
 ;
 
-fieldUlistRule 
+fieldUlistRule returns [Token name, Token type]
 	:
-		ULIST VAR (EQ textListRule)?
+		t=ULIST n=VAR (EQ textListRule)? {$name = $n; $type = $t;}
 ;
 
-fieldTlistRule 
+fieldTlistRule returns [Token name, Token type]
 	:
-		TLIST VAR (EQ textListRule)?
+		t=TLIST n=VAR (EQ textListRule)? {$name = $n; $type = $t;}
 ;
 
-listRule
+listRule returns [Token name, Token type]
 	:
 		t=LIST n=VAR (EQ LSB STRING (CM STRING)+ RSB)?
-{h.declareVar($t, $n);}; // TODO: cambiare string con formattext
+		{$name = $n; $type = t;}
+; // TODO: cambiare string con formattext
 
-// TODO: nei controlli capire come controllare l'esistenza di una varibiale oppure il suo tipo nel caso sia se è stata definita
+// TODO: nei controlli capire come controllare l'esistenza di una varibiale oppure il suo tipo nel caso sia se ï¿½ stata definita
 
 fieldTextAssignRule 
 	:

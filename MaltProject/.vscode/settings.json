@@ -1,0 +1,6 @@
+{
+  "java.project.referencedLibraries": {
+    "include": ["lib/**/*.jar", "d:\\Documenti\\ANTLR\\antlr-3.4-complete.jar"],
+    "exclude": []
+  }
+}

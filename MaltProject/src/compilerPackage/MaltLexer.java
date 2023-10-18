@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g 2023-10-18 16:19:05
+// $ANTLR 3.5.1 D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g 2023-10-18 19:39:42
 
 	package compilerPackage;
 
@@ -94,13 +94,13 @@ public class MaltLexer extends Lexer {
 	public MaltLexer(CharStream input, RecognizerSharedState state) {
 		super(input,state);
 	}
-	@Override public String getGrammarFileName() { return "C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g"; }
+	@Override public String getGrammarFileName() { return "D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g"; }
 
 	// $ANTLR start "EXPONENT"
 	public final void mEXPONENT() throws RecognitionException {
 		try {
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:301:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:301:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:304:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:304:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
 			{
 			if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
 				input.consume();
@@ -110,7 +110,7 @@ public class MaltLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:301:22: ( '+' | '-' )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:304:22: ( '+' | '-' )?
 			int alt1=2;
 			int LA1_0 = input.LA(1);
 			if ( (LA1_0=='+'||LA1_0=='-') ) {
@@ -118,7 +118,7 @@ public class MaltLexer extends Lexer {
 			}
 			switch (alt1) {
 				case 1 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 					{
 					if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
 						input.consume();
@@ -133,7 +133,7 @@ public class MaltLexer extends Lexer {
 
 			}
 
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:301:33: ( '0' .. '9' )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:304:33: ( '0' .. '9' )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -145,7 +145,7 @@ public class MaltLexer extends Lexer {
 
 				switch (alt2) {
 				case 1 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 						input.consume();
@@ -178,8 +178,8 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "HEX_DIGIT"
 	public final void mHEX_DIGIT() throws RecognitionException {
 		try {
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:304:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:307:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
 				input.consume();
@@ -201,7 +201,7 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "ESC_SEQ"
 	public final void mESC_SEQ() throws RecognitionException {
 		try {
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:308:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | '*' ) | UNICODE_ESC | OCTAL_ESC )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:311:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | '*' ) | UNICODE_ESC | OCTAL_ESC )
 			int alt3=3;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0=='\\') ) {
@@ -257,7 +257,7 @@ public class MaltLexer extends Lexer {
 
 			switch (alt3) {
 				case 1 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:308:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | '*' )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:311:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | '*' )
 					{
 					match('\\'); 
 					if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='*'||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -271,14 +271,14 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:309:9: UNICODE_ESC
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:312:9: UNICODE_ESC
 					{
 					mUNICODE_ESC(); 
 
 					}
 					break;
 				case 3 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:310:9: OCTAL_ESC
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:313:9: OCTAL_ESC
 					{
 					mOCTAL_ESC(); 
 
@@ -296,7 +296,7 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "OCTAL_ESC"
 	public final void mOCTAL_ESC() throws RecognitionException {
 		try {
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:315:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:318:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
 			int alt4=3;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='\\') ) {
@@ -354,7 +354,7 @@ public class MaltLexer extends Lexer {
 
 			switch (alt4) {
 				case 1 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:315:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:318:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '3') ) {
@@ -384,7 +384,7 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:316:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:319:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -406,7 +406,7 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:317:9: '\\\\' ( '0' .. '7' )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:320:9: '\\\\' ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -431,8 +431,8 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "UNICODE_ESC"
 	public final void mUNICODE_ESC() throws RecognitionException {
 		try {
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:322:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:322:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:325:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:325:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
 			{
 			match('\\'); 
 			match('u'); 
@@ -456,8 +456,8 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "LETTER"
 	public final void mLETTER() throws RecognitionException {
 		try {
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:326:8: ( 'a' .. 'z' | 'A' .. 'Z' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:329:8: ( 'a' .. 'z' | 'A' .. 'Z' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -479,8 +479,8 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:329:7: ( '0' .. '9' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:332:7: ( '0' .. '9' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 				input.consume();
@@ -504,8 +504,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = DO;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:331:4: ( '.' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:331:6: '.'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:334:4: ( '.' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:334:6: '.'
 			{
 			match('.'); 
 			}
@@ -524,8 +524,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = CM;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:332:4: ( ',' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:332:5: ','
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:335:4: ( ',' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:335:5: ','
 			{
 			match(','); 
 			}
@@ -544,8 +544,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = SE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:333:4: ( ';' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:333:6: ';'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:336:4: ( ';' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:336:6: ';'
 			{
 			match(';'); 
 			}
@@ -564,8 +564,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = CL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:334:4: ( ':' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:334:5: ':'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:337:4: ( ':' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:337:5: ':'
 			{
 			match(':'); 
 			}
@@ -584,8 +584,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:335:4: ( '(' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:335:6: '('
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:338:4: ( '(' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:338:6: '('
 			{
 			match('('); 
 			}
@@ -604,8 +604,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = RP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:336:4: ( ')' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:336:6: ')'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:339:4: ( ')' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:339:6: ')'
 			{
 			match(')'); 
 			}
@@ -624,8 +624,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LSB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:337:5: ( '[' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:337:7: '['
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:340:5: ( '[' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:340:7: '['
 			{
 			match('['); 
 			}
@@ -644,8 +644,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = RSB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:338:5: ( ']' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:338:7: ']'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:341:5: ( ']' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:341:7: ']'
 			{
 			match(']'); 
 			}
@@ -664,8 +664,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LCB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:339:5: ( '{' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:339:7: '{'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:342:5: ( '{' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:342:7: '{'
 			{
 			match('{'); 
 			}
@@ -684,8 +684,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = RCB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:340:5: ( '}' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:340:7: '}'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:343:5: ( '}' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:343:7: '}'
 			{
 			match('}'); 
 			}
@@ -704,8 +704,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LAB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:341:5: ( '<' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:341:7: '<'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:344:5: ( '<' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:344:7: '<'
 			{
 			match('<'); 
 			}
@@ -724,8 +724,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = RAB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:342:5: ( '>' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:342:7: '>'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:345:5: ( '>' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:345:7: '>'
 			{
 			match('>'); 
 			}
@@ -744,8 +744,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = HA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:343:4: ( '#' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:343:6: '#'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:346:4: ( '#' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:346:6: '#'
 			{
 			match('#'); 
 			}
@@ -764,8 +764,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = IT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:344:5: ( '*' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:344:7: '*'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:347:5: ( '*' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:347:7: '*'
 			{
 			match('*'); 
 			}
@@ -784,8 +784,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = BOLD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:345:7: ( '**' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:345:9: '**'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:348:7: ( '**' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:348:9: '**'
 			{
 			match("**"); 
 
@@ -805,8 +805,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = ITBOLD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:346:9: ( '***' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:346:11: '***'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:349:9: ( '***' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:349:11: '***'
 			{
 			match("***"); 
 
@@ -826,8 +826,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = ST;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:347:5: ( '~~' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:347:7: '~~'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:350:5: ( '~~' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:350:7: '~~'
 			{
 			match("~~"); 
 
@@ -847,8 +847,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = HL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:348:5: ( '==' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:348:7: '=='
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:351:5: ( '==' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:351:7: '=='
 			{
 			match("=="); 
 
@@ -868,8 +868,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = SUBS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:349:7: ( '~' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:349:9: '~'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:352:7: ( '~' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:352:9: '~'
 			{
 			match('~'); 
 			}
@@ -888,8 +888,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = SUPS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:350:7: ( '^' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:350:9: '^'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:353:7: ( '^' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:353:9: '^'
 			{
 			match('^'); 
 			}
@@ -908,8 +908,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = CODE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:351:7: ( '\\'' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:351:9: '\\''
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:354:7: ( '\\'' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:354:9: '\\''
 			{
 			match('\''); 
 			}
@@ -928,8 +928,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = HRULE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:352:8: ( '___' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:352:10: '___'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:355:8: ( '___' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:355:10: '___'
 			{
 			match("___"); 
 
@@ -949,8 +949,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = US;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:353:4: ( '_' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:353:6: '_'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:356:4: ( '_' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:356:6: '_'
 			{
 			match('_'); 
 			}
@@ -969,8 +969,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = SL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:354:4: ( '/' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:354:6: '/'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:357:4: ( '/' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:357:6: '/'
 			{
 			match('/'); 
 			}
@@ -989,8 +989,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = EX;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:355:4: ( '!' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:355:6: '!'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:358:4: ( '!' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:358:6: '!'
 			{
 			match('!'); 
 			}
@@ -1009,8 +1009,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = QU;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:356:4: ( '\"' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:356:6: '\"'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:359:4: ( '\"' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:359:6: '\"'
 			{
 			match('\"'); 
 			}
@@ -1029,8 +1029,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = EQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:357:4: ( '=' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:357:6: '='
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:360:4: ( '=' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:360:6: '='
 			{
 			match('='); 
 			}
@@ -1049,8 +1049,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = GET;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:358:5: ( '>=' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:358:7: '>='
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:361:5: ( '>=' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:361:7: '>='
 			{
 			match(">="); 
 
@@ -1070,8 +1070,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LET;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:359:5: ( '<=' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:359:7: '<='
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:362:5: ( '<=' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:362:7: '<='
 			{
 			match("<="); 
 
@@ -1091,8 +1091,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:361:7: ( 'title' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:361:9: 'title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:364:7: ( 'title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:364:9: 'title'
 			{
 			match("title"); 
 
@@ -1112,8 +1112,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = S1TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:362:9: ( 's1title' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:362:11: 's1title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:365:9: ( 's1title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:365:11: 's1title'
 			{
 			match("s1title"); 
 
@@ -1133,8 +1133,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = S2TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:363:9: ( 's2title' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:363:11: 's2title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:366:9: ( 's2title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:366:11: 's2title'
 			{
 			match("s2title"); 
 
@@ -1154,8 +1154,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = S3TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:364:9: ( 's3title' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:364:11: 's3title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:367:9: ( 's3title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:367:11: 's3title'
 			{
 			match("s3title"); 
 
@@ -1175,8 +1175,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = S4TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:365:9: ( 's4title' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:365:11: 's4title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:368:9: ( 's4title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:368:11: 's4title'
 			{
 			match("s4title"); 
 
@@ -1196,8 +1196,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = S5TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:366:9: ( 's5title' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:366:11: 's5title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:369:9: ( 's5title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:369:11: 's5title'
 			{
 			match("s5title"); 
 
@@ -1217,8 +1217,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = TEXT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:367:6: ( 'text' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:367:8: 'text'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:370:6: ( 'text' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:370:8: 'text'
 			{
 			match("text"); 
 
@@ -1238,8 +1238,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = BLOCKQUOTE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:368:12: ( 'blockquote' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:368:14: 'blockquote'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:371:12: ( 'blockquote' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:371:14: 'blockquote'
 			{
 			match("blockquote"); 
 
@@ -1259,8 +1259,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = OLIST;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:369:7: ( 'olist' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:369:9: 'olist'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:372:7: ( 'olist' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:372:9: 'olist'
 			{
 			match("olist"); 
 
@@ -1280,8 +1280,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = ULIST;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:370:7: ( 'ulist' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:370:9: 'ulist'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:373:7: ( 'ulist' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:373:9: 'ulist'
 			{
 			match("ulist"); 
 
@@ -1301,8 +1301,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = TLIST;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:371:7: ( 'tlist' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:371:9: 'tlist'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:374:7: ( 'tlist' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:374:9: 'tlist'
 			{
 			match("tlist"); 
 
@@ -1322,8 +1322,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = CODEBLOCK;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:372:11: ( 'codeblock' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:372:13: 'codeblock'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:375:11: ( 'codeblock' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:375:13: 'codeblock'
 			{
 			match("codeblock"); 
 
@@ -1343,8 +1343,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LINK;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:373:6: ( 'link' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:373:8: 'link'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:376:6: ( 'link' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:376:8: 'link'
 			{
 			match("link"); 
 
@@ -1364,8 +1364,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = IMG;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:374:5: ( 'img' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:374:7: 'img'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:377:5: ( 'img' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:377:7: 'img'
 			{
 			match("img"); 
 
@@ -1385,8 +1385,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = TABLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:375:7: ( 'table' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:375:9: 'table'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:378:7: ( 'table' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:378:9: 'table'
 			{
 			match("table"); 
 
@@ -1406,8 +1406,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = L;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:376:3: ( '$l' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:376:5: '$l'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:379:3: ( '$l' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:379:5: '$l'
 			{
 			match("$l"); 
 
@@ -1427,8 +1427,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = C;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:377:3: ( '$c' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:377:5: '$c'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:380:3: ( '$c' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:380:5: '$c'
 			{
 			match("$c"); 
 
@@ -1448,8 +1448,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = R;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:378:3: ( '$r' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:378:5: '$r'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:381:3: ( '$r' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:381:5: '$r'
 			{
 			match("$r"); 
 
@@ -1469,8 +1469,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = FORMATTEXT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:379:12: ( 'formattext' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:379:14: 'formattext'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:382:12: ( 'formattext' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:382:14: 'formattext'
 			{
 			match("formattext"); 
 
@@ -1490,8 +1490,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = FUN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:380:5: ( 'fun' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:380:7: 'fun'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:383:5: ( 'fun' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:383:7: 'fun'
 			{
 			match("fun"); 
 
@@ -1511,8 +1511,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = FOR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:381:5: ( 'for' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:381:7: 'for'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:384:5: ( 'for' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:384:7: 'for'
 			{
 			match("for"); 
 
@@ -1532,8 +1532,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = IN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:382:4: ( 'in' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:382:6: 'in'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:385:4: ( 'in' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:385:6: 'in'
 			{
 			match("in"); 
 
@@ -1553,8 +1553,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = CLASS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:383:7: ( 'class' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:383:9: 'class'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:386:7: ( 'class' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:386:9: 'class'
 			{
 			match("class"); 
 
@@ -1574,8 +1574,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LIST;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:384:6: ( 'list' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:384:8: 'list'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:387:6: ( 'list' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:387:8: 'list'
 			{
 			match("list"); 
 
@@ -1593,8 +1593,8 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "G"
 	public final void mG() throws RecognitionException {
 		try {
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:389:3: ( '%g' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:389:5: '%g'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:392:3: ( '%g' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:392:5: '%g'
 			{
 			match("%g"); 
 
@@ -1610,8 +1610,8 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "I"
 	public final void mI() throws RecognitionException {
 		try {
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:391:3: ( '%i' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:391:5: '%i'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:394:3: ( '%i' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:394:5: '%i'
 			{
 			match("%i"); 
 
@@ -1629,8 +1629,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = VAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:392:5: ( ( LETTER ) ( LETTER | DIGIT | '_' )* )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:392:7: ( LETTER ) ( LETTER | DIGIT | '_' )*
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:395:5: ( ( LETTER ) ( LETTER | DIGIT | '_' )* )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:395:7: ( LETTER ) ( LETTER | DIGIT | '_' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -1640,7 +1640,7 @@ public class MaltLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:392:16: ( LETTER | DIGIT | '_' )*
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:395:16: ( LETTER | DIGIT | '_' )*
 			loop5:
 			while (true) {
 				int alt5=2;
@@ -1651,7 +1651,7 @@ public class MaltLexer extends Lexer {
 
 				switch (alt5) {
 				case 1 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
@@ -1685,10 +1685,10 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = INTEGER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:394:9: ( ( DIGIT )+ )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:394:11: ( DIGIT )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:397:9: ( ( DIGIT )+ )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:397:11: ( DIGIT )+
 			{
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:394:11: ( DIGIT )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:397:11: ( DIGIT )+
 			int cnt6=0;
 			loop6:
 			while (true) {
@@ -1700,7 +1700,7 @@ public class MaltLexer extends Lexer {
 
 				switch (alt6) {
 				case 1 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 						input.consume();
@@ -1737,14 +1737,14 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = FLOAT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:397:5: ( ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )? | '.' ( DIGIT )+ ( EXPONENT )? | ( DIGIT )+ EXPONENT )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:400:5: ( ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )? | '.' ( DIGIT )+ ( EXPONENT )? | ( DIGIT )+ EXPONENT )
 			int alt13=3;
 			alt13 = dfa13.predict(input);
 			switch (alt13) {
 				case 1 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:397:9: ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )?
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:400:9: ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )?
 					{
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:397:9: ( DIGIT )+
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:400:9: ( DIGIT )+
 					int cnt7=0;
 					loop7:
 					while (true) {
@@ -1756,7 +1756,7 @@ public class MaltLexer extends Lexer {
 
 						switch (alt7) {
 						case 1 :
-							// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 							{
 							if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 								input.consume();
@@ -1778,7 +1778,7 @@ public class MaltLexer extends Lexer {
 					}
 
 					match('.'); 
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:397:20: ( DIGIT )*
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:400:20: ( DIGIT )*
 					loop8:
 					while (true) {
 						int alt8=2;
@@ -1789,7 +1789,7 @@ public class MaltLexer extends Lexer {
 
 						switch (alt8) {
 						case 1 :
-							// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 							{
 							if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 								input.consume();
@@ -1807,7 +1807,7 @@ public class MaltLexer extends Lexer {
 						}
 					}
 
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:397:27: ( EXPONENT )?
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:400:27: ( EXPONENT )?
 					int alt9=2;
 					int LA9_0 = input.LA(1);
 					if ( (LA9_0=='E'||LA9_0=='e') ) {
@@ -1815,7 +1815,7 @@ public class MaltLexer extends Lexer {
 					}
 					switch (alt9) {
 						case 1 :
-							// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:397:27: EXPONENT
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:400:27: EXPONENT
 							{
 							mEXPONENT(); 
 
@@ -1827,10 +1827,10 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:398:9: '.' ( DIGIT )+ ( EXPONENT )?
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:401:9: '.' ( DIGIT )+ ( EXPONENT )?
 					{
 					match('.'); 
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:398:13: ( DIGIT )+
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:401:13: ( DIGIT )+
 					int cnt10=0;
 					loop10:
 					while (true) {
@@ -1842,7 +1842,7 @@ public class MaltLexer extends Lexer {
 
 						switch (alt10) {
 						case 1 :
-							// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 							{
 							if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 								input.consume();
@@ -1863,7 +1863,7 @@ public class MaltLexer extends Lexer {
 						cnt10++;
 					}
 
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:398:20: ( EXPONENT )?
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:401:20: ( EXPONENT )?
 					int alt11=2;
 					int LA11_0 = input.LA(1);
 					if ( (LA11_0=='E'||LA11_0=='e') ) {
@@ -1871,7 +1871,7 @@ public class MaltLexer extends Lexer {
 					}
 					switch (alt11) {
 						case 1 :
-							// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:398:20: EXPONENT
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:401:20: EXPONENT
 							{
 							mEXPONENT(); 
 
@@ -1883,9 +1883,9 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:399:9: ( DIGIT )+ EXPONENT
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:402:9: ( DIGIT )+ EXPONENT
 					{
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:399:9: ( DIGIT )+
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:402:9: ( DIGIT )+
 					int cnt12=0;
 					loop12:
 					while (true) {
@@ -1897,7 +1897,7 @@ public class MaltLexer extends Lexer {
 
 						switch (alt12) {
 						case 1 :
-							// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 							{
 							if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 								input.consume();
@@ -1938,10 +1938,10 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:403:5: ( ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' ) )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:403:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:406:5: ( ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:406:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
 			{
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:403:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:406:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
 			int alt17=2;
 			int LA17_0 = input.LA(1);
 			if ( (LA17_0=='/') ) {
@@ -1975,11 +1975,11 @@ public class MaltLexer extends Lexer {
 
 			switch (alt17) {
 				case 1 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:403:10: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:406:10: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
 					{
 					match("//"); 
 
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:403:15: (~ ( '\\n' | '\\r' ) )*
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:406:15: (~ ( '\\n' | '\\r' ) )*
 					loop14:
 					while (true) {
 						int alt14=2;
@@ -1990,7 +1990,7 @@ public class MaltLexer extends Lexer {
 
 						switch (alt14) {
 						case 1 :
-							// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 							{
 							if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '\uFFFF') ) {
 								input.consume();
@@ -2008,7 +2008,7 @@ public class MaltLexer extends Lexer {
 						}
 					}
 
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:403:29: ( '\\r' )?
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:406:29: ( '\\r' )?
 					int alt15=2;
 					int LA15_0 = input.LA(1);
 					if ( (LA15_0=='\r') ) {
@@ -2016,7 +2016,7 @@ public class MaltLexer extends Lexer {
 					}
 					switch (alt15) {
 						case 1 :
-							// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:403:29: '\\r'
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:406:29: '\\r'
 							{
 							match('\r'); 
 							}
@@ -2029,11 +2029,11 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:404:9: '/*' ( options {greedy=false; } : . )* '*/'
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:407:9: '/*' ( options {greedy=false; } : . )* '*/'
 					{
 					match("/*"); 
 
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:404:14: ( options {greedy=false; } : . )*
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:407:14: ( options {greedy=false; } : . )*
 					loop16:
 					while (true) {
 						int alt16=2;
@@ -2054,7 +2054,7 @@ public class MaltLexer extends Lexer {
 
 						switch (alt16) {
 						case 1 :
-							// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:404:42: .
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:407:42: .
 							{
 							matchAny(); 
 							}
@@ -2089,10 +2089,10 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:407:5: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:407:9: ( ' ' | '\\t' | '\\r' | '\\n' )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:410:5: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:410:9: ( ' ' | '\\t' | '\\r' | '\\n' )+
 			{
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:407:9: ( ' ' | '\\t' | '\\r' | '\\n' )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:410:9: ( ' ' | '\\t' | '\\r' | '\\n' )+
 			int cnt18=0;
 			loop18:
 			while (true) {
@@ -2104,7 +2104,7 @@ public class MaltLexer extends Lexer {
 
 				switch (alt18) {
 				case 1 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 					{
 					if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 						input.consume();
@@ -2142,11 +2142,11 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = STRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:418:8: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )* '\"' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:418:11: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )* '\"'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:421:8: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )* '\"' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:421:11: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )* '\"'
 			{
 			match('\"'); 
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:418:15: ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )*
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:421:15: ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )*
 			loop19:
 			while (true) {
 				int alt19=3;
@@ -2160,14 +2160,14 @@ public class MaltLexer extends Lexer {
 
 				switch (alt19) {
 				case 1 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:418:17: ESC_SEQ
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:421:17: ESC_SEQ
 					{
 					mESC_SEQ(); 
 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:418:27: ~ ( '\\\\' | '\"' | '[' | ']' | '*' )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:421:27: ~ ( '\\\\' | '\"' | '[' | ']' | '*' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= ')')||(input.LA(1) >= '+' && input.LA(1) <= 'Z')||(input.LA(1) >= '^' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -2202,12 +2202,12 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = FORMATSTRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:420:14: ( 'f' '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' | I | G ) )* '\"' )
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:420:17: 'f' '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' | I | G ) )* '\"'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:423:14: ( 'f' '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' | I | G ) )* '\"' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:423:17: 'f' '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' | I | G ) )* '\"'
 			{
 			match('f'); 
 			match('\"'); 
-			// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:420:25: ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' | I | G ) )*
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:423:25: ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' | I | G ) )*
 			loop20:
 			while (true) {
 				int alt20=3;
@@ -2221,14 +2221,14 @@ public class MaltLexer extends Lexer {
 
 				switch (alt20) {
 				case 1 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:420:27: ESC_SEQ
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:423:27: ESC_SEQ
 					{
 					mESC_SEQ(); 
 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:420:37: ~ ( '\\\\' | '\"' | '[' | ']' | '*' | I | G )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:423:37: ~ ( '\\\\' | '\"' | '[' | ']' | '*' | I | G )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= ')')||(input.LA(1) >= '+' && input.LA(1) <= 'Z')||(input.LA(1) >= '^' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -2260,425 +2260,425 @@ public class MaltLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:8: ( DO | CM | SE | CL | LP | RP | LSB | RSB | LCB | RCB | LAB | RAB | HA | IT | BOLD | ITBOLD | ST | HL | SUBS | SUPS | CODE | HRULE | US | SL | EX | QU | EQ | GET | LET | TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE | TEXT | BLOCKQUOTE | OLIST | ULIST | TLIST | CODEBLOCK | LINK | IMG | TABLE | L | C | R | FORMATTEXT | FUN | FOR | IN | CLASS | LIST | VAR | INTEGER | FLOAT | COMMENT | WS | STRING | FORMATSTRING )
+		// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:8: ( DO | CM | SE | CL | LP | RP | LSB | RSB | LCB | RCB | LAB | RAB | HA | IT | BOLD | ITBOLD | ST | HL | SUBS | SUPS | CODE | HRULE | US | SL | EX | QU | EQ | GET | LET | TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE | TEXT | BLOCKQUOTE | OLIST | ULIST | TLIST | CODEBLOCK | LINK | IMG | TABLE | L | C | R | FORMATTEXT | FUN | FOR | IN | CLASS | LIST | VAR | INTEGER | FLOAT | COMMENT | WS | STRING | FORMATSTRING )
 		int alt21=60;
 		alt21 = dfa21.predict(input);
 		switch (alt21) {
 			case 1 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:10: DO
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:10: DO
 				{
 				mDO(); 
 
 				}
 				break;
 			case 2 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:13: CM
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:13: CM
 				{
 				mCM(); 
 
 				}
 				break;
 			case 3 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:16: SE
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:16: SE
 				{
 				mSE(); 
 
 				}
 				break;
 			case 4 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:19: CL
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:19: CL
 				{
 				mCL(); 
 
 				}
 				break;
 			case 5 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:22: LP
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:22: LP
 				{
 				mLP(); 
 
 				}
 				break;
 			case 6 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:25: RP
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:25: RP
 				{
 				mRP(); 
 
 				}
 				break;
 			case 7 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:28: LSB
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:28: LSB
 				{
 				mLSB(); 
 
 				}
 				break;
 			case 8 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:32: RSB
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:32: RSB
 				{
 				mRSB(); 
 
 				}
 				break;
 			case 9 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:36: LCB
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:36: LCB
 				{
 				mLCB(); 
 
 				}
 				break;
 			case 10 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:40: RCB
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:40: RCB
 				{
 				mRCB(); 
 
 				}
 				break;
 			case 11 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:44: LAB
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:44: LAB
 				{
 				mLAB(); 
 
 				}
 				break;
 			case 12 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:48: RAB
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:48: RAB
 				{
 				mRAB(); 
 
 				}
 				break;
 			case 13 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:52: HA
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:52: HA
 				{
 				mHA(); 
 
 				}
 				break;
 			case 14 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:55: IT
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:55: IT
 				{
 				mIT(); 
 
 				}
 				break;
 			case 15 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:58: BOLD
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:58: BOLD
 				{
 				mBOLD(); 
 
 				}
 				break;
 			case 16 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:63: ITBOLD
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:63: ITBOLD
 				{
 				mITBOLD(); 
 
 				}
 				break;
 			case 17 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:70: ST
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:70: ST
 				{
 				mST(); 
 
 				}
 				break;
 			case 18 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:73: HL
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:73: HL
 				{
 				mHL(); 
 
 				}
 				break;
 			case 19 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:76: SUBS
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:76: SUBS
 				{
 				mSUBS(); 
 
 				}
 				break;
 			case 20 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:81: SUPS
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:81: SUPS
 				{
 				mSUPS(); 
 
 				}
 				break;
 			case 21 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:86: CODE
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:86: CODE
 				{
 				mCODE(); 
 
 				}
 				break;
 			case 22 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:91: HRULE
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:91: HRULE
 				{
 				mHRULE(); 
 
 				}
 				break;
 			case 23 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:97: US
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:97: US
 				{
 				mUS(); 
 
 				}
 				break;
 			case 24 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:100: SL
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:100: SL
 				{
 				mSL(); 
 
 				}
 				break;
 			case 25 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:103: EX
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:103: EX
 				{
 				mEX(); 
 
 				}
 				break;
 			case 26 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:106: QU
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:106: QU
 				{
 				mQU(); 
 
 				}
 				break;
 			case 27 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:109: EQ
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:109: EQ
 				{
 				mEQ(); 
 
 				}
 				break;
 			case 28 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:112: GET
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:112: GET
 				{
 				mGET(); 
 
 				}
 				break;
 			case 29 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:116: LET
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:116: LET
 				{
 				mLET(); 
 
 				}
 				break;
 			case 30 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:120: TITLE
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:120: TITLE
 				{
 				mTITLE(); 
 
 				}
 				break;
 			case 31 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:126: S1TITLE
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:126: S1TITLE
 				{
 				mS1TITLE(); 
 
 				}
 				break;
 			case 32 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:134: S2TITLE
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:134: S2TITLE
 				{
 				mS2TITLE(); 
 
 				}
 				break;
 			case 33 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:142: S3TITLE
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:142: S3TITLE
 				{
 				mS3TITLE(); 
 
 				}
 				break;
 			case 34 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:150: S4TITLE
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:150: S4TITLE
 				{
 				mS4TITLE(); 
 
 				}
 				break;
 			case 35 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:158: S5TITLE
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:158: S5TITLE
 				{
 				mS5TITLE(); 
 
 				}
 				break;
 			case 36 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:166: TEXT
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:166: TEXT
 				{
 				mTEXT(); 
 
 				}
 				break;
 			case 37 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:171: BLOCKQUOTE
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:171: BLOCKQUOTE
 				{
 				mBLOCKQUOTE(); 
 
 				}
 				break;
 			case 38 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:182: OLIST
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:182: OLIST
 				{
 				mOLIST(); 
 
 				}
 				break;
 			case 39 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:188: ULIST
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:188: ULIST
 				{
 				mULIST(); 
 
 				}
 				break;
 			case 40 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:194: TLIST
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:194: TLIST
 				{
 				mTLIST(); 
 
 				}
 				break;
 			case 41 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:200: CODEBLOCK
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:200: CODEBLOCK
 				{
 				mCODEBLOCK(); 
 
 				}
 				break;
 			case 42 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:210: LINK
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:210: LINK
 				{
 				mLINK(); 
 
 				}
 				break;
 			case 43 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:215: IMG
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:215: IMG
 				{
 				mIMG(); 
 
 				}
 				break;
 			case 44 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:219: TABLE
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:219: TABLE
 				{
 				mTABLE(); 
 
 				}
 				break;
 			case 45 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:225: L
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:225: L
 				{
 				mL(); 
 
 				}
 				break;
 			case 46 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:227: C
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:227: C
 				{
 				mC(); 
 
 				}
 				break;
 			case 47 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:229: R
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:229: R
 				{
 				mR(); 
 
 				}
 				break;
 			case 48 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:231: FORMATTEXT
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:231: FORMATTEXT
 				{
 				mFORMATTEXT(); 
 
 				}
 				break;
 			case 49 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:242: FUN
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:242: FUN
 				{
 				mFUN(); 
 
 				}
 				break;
 			case 50 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:246: FOR
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:246: FOR
 				{
 				mFOR(); 
 
 				}
 				break;
 			case 51 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:250: IN
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:250: IN
 				{
 				mIN(); 
 
 				}
 				break;
 			case 52 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:253: CLASS
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:253: CLASS
 				{
 				mCLASS(); 
 
 				}
 				break;
 			case 53 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:259: LIST
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:259: LIST
 				{
 				mLIST(); 
 
 				}
 				break;
 			case 54 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:264: VAR
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:264: VAR
 				{
 				mVAR(); 
 
 				}
 				break;
 			case 55 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:268: INTEGER
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:268: INTEGER
 				{
 				mINTEGER(); 
 
 				}
 				break;
 			case 56 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:276: FLOAT
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:276: FLOAT
 				{
 				mFLOAT(); 
 
 				}
 				break;
 			case 57 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:282: COMMENT
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:282: COMMENT
 				{
 				mCOMMENT(); 
 
 				}
 				break;
 			case 58 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:290: WS
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:290: WS
 				{
 				mWS(); 
 
 				}
 				break;
 			case 59 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:293: STRING
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:293: STRING
 				{
 				mSTRING(); 
 
 				}
 				break;
 			case 60 :
-				// C:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\progetto\\Github\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:300: FORMATSTRING
+				// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:1:300: FORMATSTRING
 				{
 				mFORMATSTRING(); 
 
@@ -2742,7 +2742,7 @@ public class MaltLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "396:1: FLOAT : ( ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )? | '.' ( DIGIT )+ ( EXPONENT )? | ( DIGIT )+ EXPONENT );";
+			return "399:1: FLOAT : ( ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )? | '.' ( DIGIT )+ ( EXPONENT )? | ( DIGIT )+ EXPONENT );";
 		}
 	}
 

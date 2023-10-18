@@ -15,31 +15,33 @@ table tabella2 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["se
 formattext pino = "ecco una passeggiata in %i alle %g";
 
 fun printResults(list r){
-      s1title myTitolo = "Ecco una ricerca";
+      s1title myTitolo1 = "Ecco una ricerca";
 }
 
 fun printResults(list r){
-      s1title myTitolo = "Ecco una ricerca";
+      s1title myTitolo2 = "Ecco una ricerca";
 }
 
 fun printResultss(list r){
-      s1title myTitolo = "Ecco una ricerca";
+      s1title myTitolo3 = "Ecco una ricerca";
+      text t = "pino";
+      table tab1 = [$l,$r,$c](["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
 }
 
 for(l in r){
-      s1title myTitolo = "Ecco una ricerca in c";
+      s1title myTitolo4 = "Ecco una ricerca in c";
 }
 
 class classe1 {
-text someText;
-text someText = "Questo testo";
-olist lista1;
-olist lista2 = ("primo", "secondo");
-ulist lista3;
-ulist lista4 = ("primo", "secondo");
-tlist lista5;
-tlist lista6 = ("primo", "secondo");
-list lista1 = ["primo", "secondo"];
+      text someText;
+      text someText = "Questo testo";
+      olist lista1;
+      olist lista2 = ("primo", "secondo");
+      ulist lista3;
+      ulist lista4 = ("primo", "secondo");
+      tlist lista5;
+      tlist lista6 = ("primo", "secondo");
+      list lista1 = ["primo", "secondo"];
 }
 list lista2 = ["primo", "secondo"];
 
@@ -48,4 +50,9 @@ fun printResults(list r){
 	for(l in r){
 		list lista4 = ["primo", "secondo"];
 	}
+}
+
+class printClass{
+      text someText = "Questo testo";
+
 }
