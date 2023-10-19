@@ -1,58 +1,21 @@
-s1title myTitolo = "Ecco una ricerca";
-s2title mySubtitle = "Molto interessante" {#id};
-text someText = "Questo testo contiene un link";
-blockquote bq1 = "Questo testo contiene un link";
-olist olist1 = ("primo", "secondo");
-codeblock (Java) cb1 = "Questo testo contiene un link";
-___;
-link link1 = ("ciao",(mit));
-img foto1 = ((/percorso/immagine.jpg),(Titolo immagine));
-text someText1 = "Questo testo contiene un link <mondo@gmail.com> oppure <https://www.mondo.com>";
-table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
-table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
-table tabella2 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+text text1 = "pino";
 
-formattext pino = "ecco una passeggiata in %i alle %g";
-
-fun printResults(list r){
-      s1title myTitolo1 = "Ecco una ricerca";
+fun pino(){
+text text1 = "luigi";
 }
 
-fun printResults(list r){
-      s1title myTitolo2 = "Ecco una ricerca";
-}
-
-fun printResultss(list r){
-      s1title myTitolo3 = "Ecco una ricerca";
-      text t = "pino";
-      table tab1 = [$l,$r,$c](["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
-}
-
-for(l in r){
-      s1title myTitolo4 = "Ecco una ricerca in c";
-}
-
-class classe1 {
-      text someText;
-      text someText = "Questo testo";
-      olist lista1;
-      olist lista2 = ("primo", "secondo");
-      ulist lista3;
-      ulist lista4 = ("primo", "secondo");
-      tlist lista5;
-      tlist lista6 = ("primo", "secondo");
-      list lista1 = ["primo", "secondo"];
-}
-list lista2 = ["primo", "secondo"];
-
-fun printResults(list r){
-      list lista3 = ["primo", "secondo"];
-	for(l in r){
-		list lista4 = ["primo", "secondo"];
+class albero{
+	text text1 = "testo classe";
+	
+	fun pino(){
+		text text1 = "testo metodo";
 	}
-}
-
-class printClass{
-      text someText = "Questo testo";
-
+	
+	fun gino(){
+		title titolo = "Gallina";
+	}
+	
+	fun quercia(){
+		title titolo = "Gallina";
+	}
 }

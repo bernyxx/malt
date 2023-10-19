@@ -18,16 +18,49 @@ public class Handler {
 		functionTables = new Hashtable<String, Hashtable<String, VarDescriptor>>();
 	}
 
-	public void declareFun(Token name) {
+	public void declareFunCl(Token id, Token name) {
+		String i = "";
+		if (id != null)
+			i = id.getText();
 		String n = name.getText();
 		VarDescriptor vd = new VarDescriptor(n, "fun");
 
-		if (symbolTable.containsKey(n)) {
-			System.err.println("La funzione" + n + " è già stata dichiarata --> riga (" + name.getLine() + ")");
+		String str = "";
+
+		if (i.equals("fun")) {
+			str = "La funzione ";
+		}
+		if (i.equals("class")) {
+			str = "La classe ";
+		}
+
+		if (!i.equals("") && !i.equals("fun") && !i.equals("class")) {
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(i);
+
+			if (localTable.containsKey(i)) {
+
+				System.err.println("Il metodo " + n + " della classe " + i + " è già stato dichiarato --> riga ("
+						+ name.getLine() + ")");
+
+			} else {
+				localTable.put(n, vd);
+
+				System.out.println("è stato dichiarato un metodo " + n + " della classe " + i + " --> riga ("
+						+ name.getLine() + ")");
+				functionTables.put(i + "." + n, new Hashtable<String, VarDescriptor>());
+			}
 		} else {
-			symbolTable.put(n, vd);
-			System.out.println("è stata dichiarata una funzione " + n + " --> riga (" + name.getLine() + ")");
-			functionTables.put(n, new Hashtable<String, VarDescriptor>());
+
+			if (symbolTable.containsKey(n)) {
+				System.err.println(str + n + " è già stata dichiarata --> riga (" + name.getLine() + ")");
+
+			} else {
+				symbolTable.put(n, vd);
+
+				System.out.println("è stata dichiarata " + str + n + " --> riga (" + name.getLine() + ")");
+
+				functionTables.put(n, new Hashtable<String, VarDescriptor>());
+			}
 		}
 	}
 
@@ -44,39 +77,83 @@ public class Handler {
 		}
 	}
 
-	public void declareVarInFun(String nameFun, Token type, Token name) {
+	public void declareVarInFunCl(Token id, String nameFunCl, Token type, Token name) {
+		String i = "";
+		if (id != null)
+			i = id.getText();
 		String t = type.getText();
 		String n = name.getText();
 		VarDescriptor vd = new VarDescriptor(n, t);
 
-		Hashtable<String, VarDescriptor> localTable = functionTables.get(nameFun);
+		String str = "";
 
+		if (i.equals("fun") || i.equals("")) {
+			str = " della funzione ";
+		} 
+		if (i.equals("class")) {
+			str = " della classe ";
+		}
+		
+		System.out.println("ID bello: " + i);
+		System.out.println("Stringa bella: " + str);
+		
+		if (!i.equals("") && !i.equals("fun") && !i.equals("class")) {
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(i + "." + nameFunCl);
+			
+			if (localTable.containsKey(n)) {
+
+				System.err.println("La variabile " + n + " nel metodo " + nameFunCl + " della classe " + i + " è già stata dichiarata --> riga ("
+						+ type.getLine() + ")");
+
+			} else {
+				localTable.put(n, vd);
+
+				System.out.println(
+						"è stata dichiarata una variabile " + n + " nel metodo " + nameFunCl + " della classe " + i + " --> riga (" + type.getLine() + ")");
+			}
+			return;
+		}
+		
+		Hashtable<String, VarDescriptor> localTable = functionTables.get(nameFunCl);
+		
 		if (localTable.containsKey(n)) {
-			System.err.println("La variabile " + n + " nella funzione " + nameFun + " è già stata dichiarata --> riga ("
+
+			System.err.println("La variabile " + n + str + nameFunCl + " è già stata dichiarata --> riga ("
 					+ type.getLine() + ")");
+
 		} else {
 			localTable.put(n, vd);
-			System.out.println("è stata dichiarata una variabile " + n + " nella funzione " + nameFun + " --> riga ("
-					+ type.getLine() + ")");
+
+			System.out.println(
+					"è stata dichiarata una variabile " + n + str + nameFunCl + " --> riga (" + type.getLine() + ")");
 		}
 	}
 
-	public void declareNew(String nameFun, Token type, Token name) {
-		if (nameFun.equals("")) {
+	public void declareNew(Token id, String nameFunCl, Token type, Token name) {
+		if (nameFunCl.equals("")) {
 			declareVar(type, name);
 		} else {
-			declareVarInFun(nameFun, type, name);
+			declareVarInFunCl(id, nameFunCl, type, name);
 		}
 
 	}
 
 	public void printTable() {
-		System.out.println("--------BEGIN GLOBAL TABLE--------");
-		Set<String> keys = symbolTable.keySet();
-		for (String var : keys) {
-			System.out.println(symbolTable.get(var));
+		System.out.println("\n\n--------BEGIN GLOBAL TABLE--------");
+		Set<String> keysG = symbolTable.keySet();
+		for (String varG : keysG) {
+			System.out.println(symbolTable.get(varG));
 		}
-		System.out.println("--------END GLOBAL TABLE--------");
+		System.out.println("--------END GLOBAL TABLE--------\n\n");
+		
+		
+		System.out.println("--------BEGIN FUNCTION TABLE--------");
+		Set<String> keysL = functionTables.keySet();
+		for (String varL : keysL) {
+			System.out.println(varL);
+			System.out.println(functionTables.get(varL));
+		}
+		System.out.println("--------END FUNCTION TABLE--------");
 	}
 
 	public void prova(Token name, Token type) {
