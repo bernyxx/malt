@@ -1,21 +1,11 @@
-text text1 = "pino";
+text a = "aaa";
 
 fun pino(){
-text text1 = "luigi";
+	text pino;
+	pino = "gino";
 }
 
-class albero{
-	text text1 = "testo classe";
-	
-	fun pino(){
-		text text1 = "testo metodo";
-	}
-	
-	fun gino(){
-		title titolo = "Gallina";
-	}
-	
-	fun quercia(){
-		title titolo = "Gallina";
-	}
+
+class pino{
+	text pino = "testo classe";
 }

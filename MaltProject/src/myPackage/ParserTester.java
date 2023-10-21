@@ -4,7 +4,6 @@ import java.io.FileReader;
 
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.Token;
 
 //import compilerPackage.Handler;
 import compilerPackage.MaltLexer;
@@ -21,7 +20,6 @@ public class ParserTester {
 		try {
 			System.out.println("Parsing con ANTLR lexer");
 			System.out.println("-----------------------");
-			
 
 			// 1.Istanzio il lexer passandogli il documento da analizzare
 			MaltLexer lexer = new MaltLexer(
