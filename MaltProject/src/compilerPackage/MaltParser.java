@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g 2023-10-23 10:22:19
+// $ANTLR 3.5.1 D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g 2023-10-23 13:12:24
 
 	package compilerPackage;
 
@@ -222,8 +222,8 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "instrRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:32:1: instrRule[Token id, Token functionName] : ( ( (r1= titleRule |r2= textDeclRule |r3= blockquoteRule |r4= olistRule |r5= ulistRule |r6= tlistRule |r7= codeBlockRule |r8= tableRule |r9= imageRule |r10= linkRule |r11= listRule |r12= formatText ) SE ) | ( ( quickLinkRule | horizontalRule ) SE ) | forRule ) ;
-	public final void instrRule(Token id, Token functionName) throws RecognitionException {
+	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:32:1: instrRule[Token className, Token functionName] : ( ( (r1= titleRule |r2= textDeclRule |r3= blockquoteRule |r4= olistRule |r5= ulistRule |r6= tlistRule |r7= codeBlockRule |r8= tableRule |r9= imageRule |r10= linkRule |r11= listRule |r12= formatText ) SE ) | ( ( quickLinkRule | horizontalRule ) SE ) | forRule ) ;
+	public final void instrRule(Token className, Token functionName) throws RecognitionException {
 		ParserRuleReturnScope r1 =null;
 		ParserRuleReturnScope r2 =null;
 		ParserRuleReturnScope r3 =null;
@@ -369,7 +369,7 @@ public class MaltParser extends Parser {
 							r1=titleRule();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r1!=null?((MaltParser.titleRule_return)r1).type:null), (r1!=null?((MaltParser.titleRule_return)r1).name:null));
+							h.declareNew(className,functionName, (r1!=null?((MaltParser.titleRule_return)r1).type:null), (r1!=null?((MaltParser.titleRule_return)r1).name:null));
 							}
 							break;
 						case 2 :
@@ -379,7 +379,7 @@ public class MaltParser extends Parser {
 							r2=textDeclRule();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r2!=null?((MaltParser.textDeclRule_return)r2).type:null), (r2!=null?((MaltParser.textDeclRule_return)r2).name:null));
+							h.declareNew(className,functionName, (r2!=null?((MaltParser.textDeclRule_return)r2).type:null), (r2!=null?((MaltParser.textDeclRule_return)r2).name:null));
 							}
 							break;
 						case 3 :
@@ -389,7 +389,7 @@ public class MaltParser extends Parser {
 							r3=blockquoteRule();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r3!=null?((MaltParser.blockquoteRule_return)r3).type:null), (r3!=null?((MaltParser.blockquoteRule_return)r3).name:null));
+							h.declareNew(className,functionName, (r3!=null?((MaltParser.blockquoteRule_return)r3).type:null), (r3!=null?((MaltParser.blockquoteRule_return)r3).name:null));
 							}
 							break;
 						case 4 :
@@ -399,7 +399,7 @@ public class MaltParser extends Parser {
 							r4=olistRule();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r4!=null?((MaltParser.olistRule_return)r4).type:null), (r4!=null?((MaltParser.olistRule_return)r4).name:null));
+							h.declareNew(className,functionName, (r4!=null?((MaltParser.olistRule_return)r4).type:null), (r4!=null?((MaltParser.olistRule_return)r4).name:null));
 							}
 							break;
 						case 5 :
@@ -409,7 +409,7 @@ public class MaltParser extends Parser {
 							r5=ulistRule();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r5!=null?((MaltParser.ulistRule_return)r5).type:null), (r5!=null?((MaltParser.ulistRule_return)r5).name:null));
+							h.declareNew(className,functionName, (r5!=null?((MaltParser.ulistRule_return)r5).type:null), (r5!=null?((MaltParser.ulistRule_return)r5).name:null));
 							}
 							break;
 						case 6 :
@@ -419,7 +419,7 @@ public class MaltParser extends Parser {
 							r6=tlistRule();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r6!=null?((MaltParser.tlistRule_return)r6).type:null), (r6!=null?((MaltParser.tlistRule_return)r6).name:null));
+							h.declareNew(className,functionName, (r6!=null?((MaltParser.tlistRule_return)r6).type:null), (r6!=null?((MaltParser.tlistRule_return)r6).name:null));
 							}
 							break;
 						case 7 :
@@ -429,7 +429,7 @@ public class MaltParser extends Parser {
 							r7=codeBlockRule();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r7!=null?((MaltParser.codeBlockRule_return)r7).type:null), (r7!=null?((MaltParser.codeBlockRule_return)r7).name:null));
+							h.declareNew(className,functionName, (r7!=null?((MaltParser.codeBlockRule_return)r7).type:null), (r7!=null?((MaltParser.codeBlockRule_return)r7).name:null));
 							}
 							break;
 						case 8 :
@@ -439,7 +439,7 @@ public class MaltParser extends Parser {
 							r8=tableRule();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r8!=null?((MaltParser.tableRule_return)r8).type:null), (r8!=null?((MaltParser.tableRule_return)r8).name:null));
+							h.declareNew(className,functionName, (r8!=null?((MaltParser.tableRule_return)r8).type:null), (r8!=null?((MaltParser.tableRule_return)r8).name:null));
 							}
 							break;
 						case 9 :
@@ -449,7 +449,7 @@ public class MaltParser extends Parser {
 							r9=imageRule();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r9!=null?((MaltParser.imageRule_return)r9).type:null), (r9!=null?((MaltParser.imageRule_return)r9).name:null));
+							h.declareNew(className,functionName, (r9!=null?((MaltParser.imageRule_return)r9).type:null), (r9!=null?((MaltParser.imageRule_return)r9).name:null));
 							}
 							break;
 						case 10 :
@@ -459,7 +459,7 @@ public class MaltParser extends Parser {
 							r10=linkRule();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r10!=null?((MaltParser.linkRule_return)r10).type:null), (r10!=null?((MaltParser.linkRule_return)r10).name:null));
+							h.declareNew(className,functionName, (r10!=null?((MaltParser.linkRule_return)r10).type:null), (r10!=null?((MaltParser.linkRule_return)r10).name:null));
 							}
 							break;
 						case 11 :
@@ -469,7 +469,7 @@ public class MaltParser extends Parser {
 							r11=listRule();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r11!=null?((MaltParser.listRule_return)r11).type:null), (r11!=null?((MaltParser.listRule_return)r11).name:null));
+							h.declareNew(className,functionName, (r11!=null?((MaltParser.listRule_return)r11).type:null), (r11!=null?((MaltParser.listRule_return)r11).name:null));
 							}
 							break;
 						case 12 :
@@ -479,7 +479,7 @@ public class MaltParser extends Parser {
 							r12=formatText();
 							state._fsp--;
 
-							h.declareNew(id,functionName, (r12!=null?((MaltParser.formatText_return)r12).type:null), (r12!=null?((MaltParser.formatText_return)r12).name:null));
+							h.declareNew(className,functionName, (r12!=null?((MaltParser.formatText_return)r12).type:null), (r12!=null?((MaltParser.formatText_return)r12).name:null));
 							}
 							break;
 
@@ -1785,14 +1785,14 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "functionRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:164:1: functionRule[Token className] : f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( ( fieldRule[className,$n] ) | ( assignRule[$n, className] ) )+ RCB ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:164:1: functionRule[Token className] : f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( ( fieldRule[className,$n] ) | ( assignRule[className, $n] ) )+ RCB ;
 	public final void functionRule(Token className) throws RecognitionException {
 		Token f=null;
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:165:2: (f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( ( fieldRule[className,$n] ) | ( assignRule[$n, className] ) )+ RCB )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:3: f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( ( fieldRule[className,$n] ) | ( assignRule[$n, className] ) )+ RCB
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:165:2: (f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( ( fieldRule[className,$n] ) | ( assignRule[className, $n] ) )+ RCB )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:3: f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( ( fieldRule[className,$n] ) | ( assignRule[className, $n] ) )+ RCB
 			{
 			f=(Token)match(input,FUN,FOLLOW_FUN_in_functionRule940); 
 			n=(Token)match(input,VAR,FOLLOW_VAR_in_functionRule944); 
@@ -1819,7 +1819,7 @@ public class MaltParser extends Parser {
 
 			match(input,RP,FOLLOW_RP_in_functionRule956); 
 			match(input,LCB,FOLLOW_LCB_in_functionRule958); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:89: ( ( fieldRule[className,$n] ) | ( assignRule[$n, className] ) )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:89: ( ( fieldRule[className,$n] ) | ( assignRule[className, $n] ) )+
 			int cnt28=0;
 			loop28:
 			while (true) {
@@ -1848,13 +1848,13 @@ public class MaltParser extends Parser {
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:118: ( assignRule[$n, className] )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:118: ( assignRule[className, $n] )
 					{
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:118: ( assignRule[$n, className] )
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:119: assignRule[$n, className]
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:118: ( assignRule[className, $n] )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:166:119: assignRule[className, $n]
 					{
 					pushFollow(FOLLOW_assignRule_in_functionRule969);
-					assignRule(n, className);
+					assignRule(className, n);
 					state._fsp--;
 
 					}
@@ -2190,20 +2190,20 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "classRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:186:1: classRule : f= CLASS n= VAR LCB ( fieldRule[$f,$n] )* ( functionRule[$n] )* RCB ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:186:1: classRule : f= CLASS n= VAR LCB ( fieldRule[$n,null] )* ( functionRule[$n] )* RCB ;
 	public final void classRule() throws RecognitionException {
 		Token f=null;
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:187:2: (f= CLASS n= VAR LCB ( fieldRule[$f,$n] )* ( functionRule[$n] )* RCB )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:188:3: f= CLASS n= VAR LCB ( fieldRule[$f,$n] )* ( functionRule[$n] )* RCB
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:187:2: (f= CLASS n= VAR LCB ( fieldRule[$n,null] )* ( functionRule[$n] )* RCB )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:188:3: f= CLASS n= VAR LCB ( fieldRule[$n,null] )* ( functionRule[$n] )* RCB
 			{
 			f=(Token)match(input,CLASS,FOLLOW_CLASS_in_classRule1158); 
 			n=(Token)match(input,VAR,FOLLOW_VAR_in_classRule1162); 
-			h.declareFunCl(f,n);
+			h.declareFunCl(n, null);
 			match(input,LCB,FOLLOW_LCB_in_classRule1166); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:188:46: ( fieldRule[$f,$n] )*
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:188:49: ( fieldRule[$n,null] )*
 			loop32:
 			while (true) {
 				int alt32=2;
@@ -2214,10 +2214,10 @@ public class MaltParser extends Parser {
 
 				switch (alt32) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:188:46: fieldRule[$f,$n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:188:49: fieldRule[$n,null]
 					{
 					pushFollow(FOLLOW_fieldRule_in_classRule1168);
-					fieldRule(f, n);
+					fieldRule(n, null);
 					state._fsp--;
 
 					}
@@ -2228,7 +2228,7 @@ public class MaltParser extends Parser {
 				}
 			}
 
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:188:64: ( functionRule[$n] )*
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:188:69: ( functionRule[$n] )*
 			loop33:
 			while (true) {
 				int alt33=2;
@@ -2239,7 +2239,7 @@ public class MaltParser extends Parser {
 
 				switch (alt33) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:188:65: functionRule[$n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:188:70: functionRule[$n]
 					{
 					pushFollow(FOLLOW_functionRule_in_classRule1173);
 					functionRule(n);
@@ -2271,8 +2271,8 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "fieldRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:192:1: fieldRule[Token id, Token className] : (r1= fieldTitleRule[id, className] |r2= fieldText |r3= fieldBlockQuoteRule |r4= fieldOlistRule |r5= fieldUlistRule |r6= fieldTlistRule |r7= fieldCodeBlockRule |r8= fieldTableRule |r9= fieldImageRule |r10= fieldLinkRule |r11= listRule |r12= fieldFormatText ) SE ;
-	public final void fieldRule(Token id, Token className) throws RecognitionException {
+	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:192:1: fieldRule[Token className, Token functionName] : (r1= fieldTitleRule[className, functionName] |r2= fieldText |r3= fieldBlockQuoteRule |r4= fieldOlistRule |r5= fieldUlistRule |r6= fieldTlistRule |r7= fieldCodeBlockRule |r8= fieldTableRule |r9= fieldImageRule |r10= fieldLinkRule |r11= listRule |r12= fieldFormatText ) SE ;
+	public final void fieldRule(Token className, Token functionName) throws RecognitionException {
 		ParserRuleReturnScope r1 =null;
 		ParserRuleReturnScope r2 =null;
 		ParserRuleReturnScope r3 =null;
@@ -2287,10 +2287,10 @@ public class MaltParser extends Parser {
 		ParserRuleReturnScope r12 =null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:193:2: ( (r1= fieldTitleRule[id, className] |r2= fieldText |r3= fieldBlockQuoteRule |r4= fieldOlistRule |r5= fieldUlistRule |r6= fieldTlistRule |r7= fieldCodeBlockRule |r8= fieldTableRule |r9= fieldImageRule |r10= fieldLinkRule |r11= listRule |r12= fieldFormatText ) SE )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:194:3: (r1= fieldTitleRule[id, className] |r2= fieldText |r3= fieldBlockQuoteRule |r4= fieldOlistRule |r5= fieldUlistRule |r6= fieldTlistRule |r7= fieldCodeBlockRule |r8= fieldTableRule |r9= fieldImageRule |r10= fieldLinkRule |r11= listRule |r12= fieldFormatText ) SE
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:193:2: ( (r1= fieldTitleRule[className, functionName] |r2= fieldText |r3= fieldBlockQuoteRule |r4= fieldOlistRule |r5= fieldUlistRule |r6= fieldTlistRule |r7= fieldCodeBlockRule |r8= fieldTableRule |r9= fieldImageRule |r10= fieldLinkRule |r11= listRule |r12= fieldFormatText ) SE )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:194:3: (r1= fieldTitleRule[className, functionName] |r2= fieldText |r3= fieldBlockQuoteRule |r4= fieldOlistRule |r5= fieldUlistRule |r6= fieldTlistRule |r7= fieldCodeBlockRule |r8= fieldTableRule |r9= fieldImageRule |r10= fieldLinkRule |r11= listRule |r12= fieldFormatText ) SE
 			{
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:194:3: (r1= fieldTitleRule[id, className] |r2= fieldText |r3= fieldBlockQuoteRule |r4= fieldOlistRule |r5= fieldUlistRule |r6= fieldTlistRule |r7= fieldCodeBlockRule |r8= fieldTableRule |r9= fieldImageRule |r10= fieldLinkRule |r11= listRule |r12= fieldFormatText )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:194:3: (r1= fieldTitleRule[className, functionName] |r2= fieldText |r3= fieldBlockQuoteRule |r4= fieldOlistRule |r5= fieldUlistRule |r6= fieldTlistRule |r7= fieldCodeBlockRule |r8= fieldTableRule |r9= fieldImageRule |r10= fieldLinkRule |r11= listRule |r12= fieldFormatText )
 			int alt34=12;
 			switch ( input.LA(1) ) {
 			case S1TITLE:
@@ -2365,13 +2365,13 @@ public class MaltParser extends Parser {
 			}
 			switch (alt34) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:194:5: r1= fieldTitleRule[id, className]
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:194:5: r1= fieldTitleRule[className, functionName]
 					{
 					pushFollow(FOLLOW_fieldTitleRule_in_fieldRule1202);
-					r1=fieldTitleRule(id, className);
+					r1=fieldTitleRule(className, functionName);
 					state._fsp--;
 
-					h.declareNew(id,className, (r1!=null?((MaltParser.fieldTitleRule_return)r1).type:null), (r1!=null?((MaltParser.fieldTitleRule_return)r1).name:null));
+					h.declareNew(className, functionName, (r1!=null?((MaltParser.fieldTitleRule_return)r1).type:null), (r1!=null?((MaltParser.fieldTitleRule_return)r1).name:null));
 					}
 					break;
 				case 2 :
@@ -2381,7 +2381,7 @@ public class MaltParser extends Parser {
 					r2=fieldText();
 					state._fsp--;
 
-					h.declareNew(id,className, (r2!=null?((MaltParser.fieldText_return)r2).type:null), (r2!=null?((MaltParser.fieldText_return)r2).name:null));
+					h.declareNew(className, functionName, (r2!=null?((MaltParser.fieldText_return)r2).type:null), (r2!=null?((MaltParser.fieldText_return)r2).name:null));
 					}
 					break;
 				case 3 :
@@ -2391,7 +2391,7 @@ public class MaltParser extends Parser {
 					r3=fieldBlockQuoteRule();
 					state._fsp--;
 
-					h.declareNew(id,className, (r3!=null?((MaltParser.fieldBlockQuoteRule_return)r3).type:null), (r3!=null?((MaltParser.fieldBlockQuoteRule_return)r3).name:null));
+					h.declareNew(className, functionName, (r3!=null?((MaltParser.fieldBlockQuoteRule_return)r3).type:null), (r3!=null?((MaltParser.fieldBlockQuoteRule_return)r3).name:null));
 					}
 					break;
 				case 4 :
@@ -2401,7 +2401,7 @@ public class MaltParser extends Parser {
 					r4=fieldOlistRule();
 					state._fsp--;
 
-					h.declareNew(id,className, (r4!=null?((MaltParser.fieldOlistRule_return)r4).type:null), (r4!=null?((MaltParser.fieldOlistRule_return)r4).name:null));
+					h.declareNew(className, functionName, (r4!=null?((MaltParser.fieldOlistRule_return)r4).type:null), (r4!=null?((MaltParser.fieldOlistRule_return)r4).name:null));
 					}
 					break;
 				case 5 :
@@ -2411,7 +2411,7 @@ public class MaltParser extends Parser {
 					r5=fieldUlistRule();
 					state._fsp--;
 
-					h.declareNew(id,className, (r5!=null?((MaltParser.fieldUlistRule_return)r5).type:null), (r5!=null?((MaltParser.fieldUlistRule_return)r5).name:null));
+					h.declareNew(className, functionName, (r5!=null?((MaltParser.fieldUlistRule_return)r5).type:null), (r5!=null?((MaltParser.fieldUlistRule_return)r5).name:null));
 					}
 					break;
 				case 6 :
@@ -2421,7 +2421,7 @@ public class MaltParser extends Parser {
 					r6=fieldTlistRule();
 					state._fsp--;
 
-					h.declareNew(id,className, (r6!=null?((MaltParser.fieldTlistRule_return)r6).type:null), (r6!=null?((MaltParser.fieldTlistRule_return)r6).name:null));
+					h.declareNew(className, functionName, (r6!=null?((MaltParser.fieldTlistRule_return)r6).type:null), (r6!=null?((MaltParser.fieldTlistRule_return)r6).name:null));
 					}
 					break;
 				case 7 :
@@ -2431,7 +2431,7 @@ public class MaltParser extends Parser {
 					r7=fieldCodeBlockRule();
 					state._fsp--;
 
-					h.declareNew(id,className, (r7!=null?((MaltParser.fieldCodeBlockRule_return)r7).type:null), (r7!=null?((MaltParser.fieldCodeBlockRule_return)r7).name:null));
+					h.declareNew(className, functionName, (r7!=null?((MaltParser.fieldCodeBlockRule_return)r7).type:null), (r7!=null?((MaltParser.fieldCodeBlockRule_return)r7).name:null));
 					}
 					break;
 				case 8 :
@@ -2441,7 +2441,7 @@ public class MaltParser extends Parser {
 					r8=fieldTableRule();
 					state._fsp--;
 
-					h.declareNew(id,className, (r8!=null?((MaltParser.fieldTableRule_return)r8).type:null), (r8!=null?((MaltParser.fieldTableRule_return)r8).name:null));
+					h.declareNew(className, functionName, (r8!=null?((MaltParser.fieldTableRule_return)r8).type:null), (r8!=null?((MaltParser.fieldTableRule_return)r8).name:null));
 					}
 					break;
 				case 9 :
@@ -2451,7 +2451,7 @@ public class MaltParser extends Parser {
 					r9=fieldImageRule();
 					state._fsp--;
 
-					h.declareNew(id,className, (r9!=null?((MaltParser.fieldImageRule_return)r9).type:null), (r9!=null?((MaltParser.fieldImageRule_return)r9).name:null));
+					h.declareNew(className, functionName, (r9!=null?((MaltParser.fieldImageRule_return)r9).type:null), (r9!=null?((MaltParser.fieldImageRule_return)r9).name:null));
 					}
 					break;
 				case 10 :
@@ -2461,7 +2461,7 @@ public class MaltParser extends Parser {
 					r10=fieldLinkRule();
 					state._fsp--;
 
-					h.declareNew(id,className, (r10!=null?((MaltParser.fieldLinkRule_return)r10).type:null), (r10!=null?((MaltParser.fieldLinkRule_return)r10).name:null));
+					h.declareNew(className, functionName, (r10!=null?((MaltParser.fieldLinkRule_return)r10).type:null), (r10!=null?((MaltParser.fieldLinkRule_return)r10).name:null));
 					}
 					break;
 				case 11 :
@@ -2471,7 +2471,7 @@ public class MaltParser extends Parser {
 					r11=listRule();
 					state._fsp--;
 
-					h.declareNew(id,className, (r11!=null?((MaltParser.listRule_return)r11).type:null), (r11!=null?((MaltParser.listRule_return)r11).name:null));
+					h.declareNew(className, functionName, (r11!=null?((MaltParser.listRule_return)r11).type:null), (r11!=null?((MaltParser.listRule_return)r11).name:null));
 					}
 					break;
 				case 12 :
@@ -2481,7 +2481,7 @@ public class MaltParser extends Parser {
 					r12=fieldFormatText();
 					state._fsp--;
 
-					h.declareNew(id,className, (r12!=null?((MaltParser.fieldFormatText_return)r12).type:null), (r12!=null?((MaltParser.fieldFormatText_return)r12).name:null));
+					h.declareNew(className, functionName, (r12!=null?((MaltParser.fieldFormatText_return)r12).type:null), (r12!=null?((MaltParser.fieldFormatText_return)r12).name:null));
 					}
 					break;
 
@@ -2509,8 +2509,8 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "fieldTitleRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:208:1: fieldTitleRule[Token id, Token className] returns [Token name, Token type] : t= titleTypeRule n= VAR ( assignTitleRule[$id, $className, $n] )? ;
-	public final MaltParser.fieldTitleRule_return fieldTitleRule(Token id, Token className) throws RecognitionException {
+	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:208:1: fieldTitleRule[Token className, Token functionName] returns [Token name, Token type] : t= titleTypeRule n= VAR ( assignTitleRule[$className, $functionName, $n] )? ;
+	public final MaltParser.fieldTitleRule_return fieldTitleRule(Token className, Token functionName) throws RecognitionException {
 		MaltParser.fieldTitleRule_return retval = new MaltParser.fieldTitleRule_return();
 		retval.start = input.LT(1);
 
@@ -2518,15 +2518,15 @@ public class MaltParser extends Parser {
 		Token t =null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:209:2: (t= titleTypeRule n= VAR ( assignTitleRule[$id, $className, $n] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:210:3: t= titleTypeRule n= VAR ( assignTitleRule[$id, $className, $n] )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:209:2: (t= titleTypeRule n= VAR ( assignTitleRule[$className, $functionName, $n] )? )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:210:3: t= titleTypeRule n= VAR ( assignTitleRule[$className, $functionName, $n] )?
 			{
 			pushFollow(FOLLOW_titleTypeRule_in_fieldTitleRule1362);
 			t=titleTypeRule();
 			state._fsp--;
 
 			n=(Token)match(input,VAR,FOLLOW_VAR_in_fieldTitleRule1366); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:210:25: ( assignTitleRule[$id, $className, $n] )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:210:25: ( assignTitleRule[$className, $functionName, $n] )?
 			int alt35=2;
 			int LA35_0 = input.LA(1);
 			if ( (LA35_0==EQ) ) {
@@ -2534,10 +2534,10 @@ public class MaltParser extends Parser {
 			}
 			switch (alt35) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:210:26: assignTitleRule[$id, $className, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:210:26: assignTitleRule[$className, $functionName, $n]
 					{
 					pushFollow(FOLLOW_assignTitleRule_in_fieldTitleRule1369);
-					assignTitleRule(id, className, n);
+					assignTitleRule(className, functionName, n);
 					state._fsp--;
 
 					}
@@ -3223,16 +3223,16 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "assignRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:272:1: assignRule[Token id, Token className] : n= VAR ( assignTitleRule[$id, $className, $n] | assignTextListRule | assignTableRule | assignImageRule | assignLinkRule | assignListRule ) SE ;
-	public final void assignRule(Token id, Token className) throws RecognitionException {
+	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:272:1: assignRule[Token className, Token functionName] : n= VAR ( assignTitleRule[$className, $functionName, $n] | assignTextListRule | assignTableRule | assignImageRule | assignLinkRule | assignListRule ) SE ;
+	public final void assignRule(Token className, Token functionName) throws RecognitionException {
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:273:2: (n= VAR ( assignTitleRule[$id, $className, $n] | assignTextListRule | assignTableRule | assignImageRule | assignLinkRule | assignListRule ) SE )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:2: n= VAR ( assignTitleRule[$id, $className, $n] | assignTextListRule | assignTableRule | assignImageRule | assignLinkRule | assignListRule ) SE
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:273:2: (n= VAR ( assignTitleRule[$className, $functionName, $n] | assignTextListRule | assignTableRule | assignImageRule | assignLinkRule | assignListRule ) SE )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:2: n= VAR ( assignTitleRule[$className, $functionName, $n] | assignTextListRule | assignTableRule | assignImageRule | assignLinkRule | assignListRule ) SE
 			{
 			n=(Token)match(input,VAR,FOLLOW_VAR_in_assignRule1719); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:8: ( assignTitleRule[$id, $className, $n] | assignTextListRule | assignTableRule | assignImageRule | assignLinkRule | assignListRule )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:8: ( assignTitleRule[$className, $functionName, $n] | assignTextListRule | assignTableRule | assignImageRule | assignLinkRule | assignListRule )
 			int alt48=6;
 			int LA48_0 = input.LA(1);
 			if ( (LA48_0==EQ) ) {
@@ -3366,16 +3366,16 @@ public class MaltParser extends Parser {
 
 			switch (alt48) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:9: assignTitleRule[$id, $className, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:9: assignTitleRule[$className, $functionName, $n]
 					{
 					pushFollow(FOLLOW_assignTitleRule_in_assignRule1722);
-					assignTitleRule(id, className, n);
+					assignTitleRule(className, functionName, n);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:48: assignTextListRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:58: assignTextListRule
 					{
 					pushFollow(FOLLOW_assignTextListRule_in_assignRule1727);
 					assignTextListRule();
@@ -3384,7 +3384,7 @@ public class MaltParser extends Parser {
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:69: assignTableRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:79: assignTableRule
 					{
 					pushFollow(FOLLOW_assignTableRule_in_assignRule1731);
 					assignTableRule();
@@ -3393,7 +3393,7 @@ public class MaltParser extends Parser {
 					}
 					break;
 				case 4 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:87: assignImageRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:97: assignImageRule
 					{
 					pushFollow(FOLLOW_assignImageRule_in_assignRule1735);
 					assignImageRule();
@@ -3402,7 +3402,7 @@ public class MaltParser extends Parser {
 					}
 					break;
 				case 5 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:105: assignLinkRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:115: assignLinkRule
 					{
 					pushFollow(FOLLOW_assignLinkRule_in_assignRule1739);
 					assignLinkRule();
@@ -3411,7 +3411,7 @@ public class MaltParser extends Parser {
 					}
 					break;
 				case 6 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:122: assignListRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:274:132: assignListRule
 					{
 					pushFollow(FOLLOW_assignListRule_in_assignRule1743);
 					assignListRule();
@@ -3439,8 +3439,8 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "assignTitleRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:277:1: assignTitleRule[Token id, Token className, Token name] : v= assignString ( refRule )? ;
-	public final void assignTitleRule(Token id, Token className, Token name) throws RecognitionException {
+	// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:277:1: assignTitleRule[Token className, Token functionName, Token name] : v= assignString ( refRule )? ;
+	public final void assignTitleRule(Token className, Token functionName, Token name) throws RecognitionException {
 		Token v =null;
 
 		try {
@@ -3470,7 +3470,7 @@ public class MaltParser extends Parser {
 
 			}
 
-			h.assignVarValue(id, className, name, v);
+			h.assignVarValue(className, functionName, name, v);
 			}
 
 		}

@@ -1,15 +1,22 @@
-text a = "aaa";
+title a = "aaa";
 
 fun topFunction(){
 	title pino;
-	pino = "gino";
+}
+
+fun topFunction(){
+	title pino = "aaa";
 }
 
 
+
+
 class classe1{
-	title pino = "suino";
+	title pino;
 
 	fun metodo(text arg){
-		title titoloMetodo = "pippo";
+		title titoloMetodo;
+		titoloMetodo = "aabb";
 	}
+
 }

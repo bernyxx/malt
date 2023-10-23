@@ -19,65 +19,73 @@ public class Handler {
 
 	/***
 	 * 
-	 * @param id   class/fun/""/ nome della classe (per i metodi)
-	 * @param name Nome della funzione / classe / metodo della classe
+	 * @param isClass  true = creazione di una classe, false = creazione di un
+	 *                 metodo/funzione
+	 * @param function nome della funzione/metodo
+	 * @param name     Nome della funzione / classe / metodo della classe
 	 */
-	public void declareFunCl(Token id, Token name) {
-		String i = "";
-		if (id != null)
-			i = id.getText();
-		String n = name.getText();
-		VarDescriptor vd = new VarDescriptor(n, "fun");
+	public void declareFunCl(Token className, Token name) {
 
-		String str = "";
+		// dichiarazione di un metodo di una classe
+		if (className != null && name != null) {
+			String cn = className.getText();
+			String n = name.getText();
+			System.out.println("declareFunCl() - className: " + cn + " name: " + n);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
 
-		if (i.equals("fun") || i.equals("")) {
-			str = "La funzione ";
-		}
-		if (i.equals("class")) {
-			str = "La classe ";
-		}
+			if (localTable.containsKey("fun_" + n)) {
 
-		System.out.println("ID declareFunCl: " + i);
-
-		// metodo di una classe
-		if (!i.equals("") && !i.equals("fun") && !i.equals("class")) {
-			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + i);
-
-			if (localTable.containsKey(n) && localTable.get(n).varType.equals("fun")) {
-
-				System.err.println("Il metodo " + n + " della classe " + i + " è già stato dichiarato --> riga ("
+				System.err.println("Il metodo " + n + " della classe " + cn + " è già stato dichiarato --> riga ("
 						+ name.getLine() + ")");
 
 			} else {
+				VarDescriptor vd = new VarDescriptor(n, "function");
 				localTable.put("fun_" + n, vd);
 
-				System.out.println("è stato dichiarato un metodo " + n + " della classe " + i + " --> riga ("
+				System.out.println("è stato dichiarato un metodo " + n + " della classe " + cn + " --> riga ("
 						+ name.getLine() + ")");
-				functionTables.put(i + "." + n, new Hashtable<String, VarDescriptor>());
+				functionTables.put(cn + "." + n, new Hashtable<String, VarDescriptor>());
 			}
-		} else {
+		} else if (className == null && name != null) {
+			// dichiarazione di una funzione top-level
 
-			if (symbolTable.containsKey(n) && symbolTable.get(n).varType.equals("fun")) {
-				System.err.println(str + n + " è già stata dichiarata --> riga (" + name.getLine() + ")");
+			String n = name.getText();
+
+			System.out.println("declareFunCl() - className: null" + " functionName: " + n);
+
+			VarDescriptor vd = new VarDescriptor(n, "fun");
+
+			if (symbolTable.containsKey("fun_" + n)) {
+				System.err.println("La funzione " + n + " è già stata dichiarata --> riga (" + name.getLine() + ")");
 
 			} else {
 
-				String key;
+				symbolTable.put("fun_" + n, vd);
+				functionTables.put("fun_" + n, new Hashtable<String, VarDescriptor>());
 
-				if (i.equals("fun") || i.equals("")) {
-					key = "fun_" + n;
-				} else {
-					key = "cl_" + n;
-					vd = new VarDescriptor(n, "class");
-				}
-
-				symbolTable.put(key, vd);
-				functionTables.put(key, new Hashtable<String, VarDescriptor>());
-
-				System.out.println("è stata dichiarata " + str + n + " --> riga (" + name.getLine() + ")");
+				System.out.println("è stata dichiarata la funzione " + n + " --> riga (" + name.getLine() + ")");
 
 			}
+		} else if (className != null && name == null) {
+			// dichiarazione di una classe
+			String cn = className.getText();
+
+			VarDescriptor vd = new VarDescriptor(cn, "class");
+
+			if (symbolTable.containsKey("cl_" + cn)) {
+				System.err
+						.println("La classe " + cn + " è già stata dichiarata --> riga (" + className.getLine() + ")");
+
+			} else {
+
+				symbolTable.put("cl_" + cn, vd);
+				functionTables.put("cl_" + cn, new Hashtable<String, VarDescriptor>());
+
+				System.out.println("È stata dichiarata la classe " + cn + " --> riga (" + className.getLine() + ")");
+
+			}
+		} else {
+			System.err.println("ERRORE declareFunCl(): className e name sono entrambi nulli");
 		}
 	}
 
@@ -92,7 +100,7 @@ public class Handler {
 		String n = name.getText();
 		VarDescriptor vd = new VarDescriptor(n, t);
 
-		if (symbolTable.containsKey(n) && symbolTable.get(n).varType != "fun") {
+		if (symbolTable.containsKey(n)) {
 			System.err.println("La variabile " + n + " è già stata dichiarata --> riga (" + type.getLine() + ")");
 		} else {
 			symbolTable.put(n, vd);
@@ -107,25 +115,24 @@ public class Handler {
 	 * @param type      tipo della variabile
 	 * @param name      nome della variabile
 	 */
-	public void declareVarInFunCl(Token id, Token nameFunCl, Token type, Token name) {
-		String i = "";
-		if (id != null)
-			i = id.getText();
+	public void declareVarInFunCl(Token className, Token functionName, Token type, Token name) {
+
 		String t = type.getText();
 		String n = name.getText();
-		String nf = nameFunCl.getText();
+
 		VarDescriptor vd = new VarDescriptor(n, t);
 
-		System.out.println("ID declareVarInFunCl: " + i);
-		System.out.println("nameFunCl declareVarInFunCl: " + nf);
-
 		// dichiarazione di variabile all'interno di metodi di una classe
-		if (!i.equals("") && !i.equals("fun") && !i.equals("class")) {
-			Hashtable<String, VarDescriptor> localTable = functionTables.get(i + "." + nf);
+		if (className != null && functionName != null) {
+
+			String cn = className.getText();
+			String fn = functionName.getText();
+
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
 
 			if (localTable.containsKey(n)) {
 
-				System.err.println("La variabile " + n + " nel metodo " + nf + " della classe " + i
+				System.err.println("La variabile " + n + " nel metodo " + fn + " della classe " + cn
 						+ " è già stata dichiarata --> riga ("
 						+ type.getLine() + ")");
 
@@ -134,39 +141,49 @@ public class Handler {
 				localTable.put(n, vd);
 
 				System.out.println(
-						"è stata dichiarata una variabile " + n + " nel metodo " + nf + " della classe " + i
+						"è stata dichiarata una variabile " + n + " nel metodo " + fn + " della classe " + cn
 								+ " --> riga (" + type.getLine() + ")");
 			}
-		} else {
-			// dichiarazione di variabili nelle funzioni o come campi nelle classi
+		} else if (className == null && functionName != null) {
+			// dichiarazione di variabili nelle funzioni top level
+			String fn = functionName.getText();
 
-			String str = "";
-			String keyLocalTable = "";
-
-			if (i.equals("fun") || i.equals("")) {
-				str = " della funzione ";
-				keyLocalTable = "fun_" + nf;
-			}
-			if (i.equals("class")) {
-				str = " della classe ";
-				keyLocalTable = "cl_" + nf;
-			}
-
-			Hashtable<String, VarDescriptor> localTable = functionTables.get(keyLocalTable);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
 
 			if (localTable.containsKey(n)) {
 
 				System.err.println(
-						"La variabile " + n + str + nf + " è già stata dichiarata --> riga ("
+						"La variabile " + n + " della funzione " + fn + " è già stata dichiarata --> riga ("
 								+ type.getLine() + ")");
 
 			} else {
 				localTable.put(n, vd);
 
 				System.out.println(
-						"è stata dichiarata una variabile " + n + str + nf + " --> riga (" +
+						"è stata dichiarata una variabile " + n + " nella funzione " + fn + " --> riga (" +
 								type.getLine() + ")");
 			}
+		} else if (className != null && functionName == null) {
+			// dichiarazione di campi di una classe
+			String cn = className.getText();
+
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
+
+			if (localTable.containsKey(n)) {
+
+				System.err.println(
+						"Il campo " + n + " della classe " + cn + " è già stato dichiarato --> riga ("
+								+ type.getLine() + ")");
+
+			} else {
+				localTable.put(n, vd);
+
+				System.out.println(
+						"È stato dichiarato un campo " + n + " nella classe " + cn + " --> riga (" +
+								type.getLine() + ")");
+			}
+		} else {
+			System.err.println("ERRORE declareVarInFunCl(): className e functionName sono entrambi nulli");
 		}
 	}
 
@@ -177,21 +194,21 @@ public class Handler {
 	 * @param type      tipo della variabile
 	 * @param name      nome della variabile
 	 */
-	public void declareNew(Token id, Token nameFunCl, Token type, Token name) {
+	public void declareNew(Token className, Token functionName, Token type, Token name) {
 
-		if (nameFunCl == null) {
-			// dichiarazione di variabili top-level
+		if (className == null && functionName == null) {
+			// dichiarazione di variabili top-level (fuori da funzioni, metodi o classi)
 			declareVar(type, name);
 		} else {
 			// dichiarazione di variabili in funzioni/classi/metodi
-			declareVarInFunCl(id, nameFunCl, type, name);
+			declareVarInFunCl(className, functionName, type, name);
 		}
 
 	}
 
-	public void declareArg(Token className, Token funcName, Token type, Token name) {
+	public void declareArg(Token className, Token functionName, Token type, Token name) {
 
-		String fn = funcName.getText();
+		String fn = functionName.getText();
 		String t = type.getText();
 		String n = name.getText();
 
@@ -231,68 +248,80 @@ public class Handler {
 		}
 	}
 
-	public void assignVarValue(Token id, Token className, Token name, Token value) {
+	public void assignVarValue(Token className, Token functionName, Token name, Token value) {
 
 		String n = name.getText();
 		String v = value.getText();
 
-		// caso della variabile in una funzione
-		if (className == null && id != null) {
+		// caso della variabile in un metodo
+		if (className != null && functionName != null) {
 
-			String i = id.getText();
-			System.out.println("className: null " + " id: " + i);
+			String cn = className.getText();
+			String fn = functionName.getText();
+
 			// localTable della funzione dove viene assegnata la variabile
-			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + i);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
 
 			if (localTable.containsKey(n)) {
 				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
 				System.out
-						.println("Alla variabile " + n + " nella funzione " + i + " è stato assegnato il valore " + v
-								+ "--> riga ("
+						.println("Alla variabile " + n + " del metodo " + fn + " della classe " + cn
+								+ " è stato assegnato il valore " + v
+								+ " --> riga ("
 								+ name.getLine() + ")");
 			} else {
-				System.out.println("Errore assegnamento! La variabile " + n + " nella funzione " + i + " non esiste!"
+				System.out.println("Errore assegnamento! La variabile " + n + " del metodo " + fn + " della classe "
+						+ cn + " non esiste!"
 						+ "--> riga ("
 						+ name.getLine() + ")");
 			}
-		} else if (className != null && id != null) {
-			String i = id.getText();
-			String cn = className.getText();
+		} else if (className == null && functionName != null) {
+			// caso delle variabili in funzioni top-level
 
-			// caso campo
-			if (i.equals("class")) {
-				System.out.println("Assegnamento non ancora implementato!" + "--> riga ("
-						+ name.getLine() + ")");
-				return;
-			}
+			String fn = functionName.getText();
 
-			// caso metodo
-			System.out.println("className: " + cn + " id: " + i);
-			// localTable del metodo della classe di cui fa parte la variabile
-			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." +
-					i);
+			// localTable della funzione dove viene assegnata la variabile
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
 
 			if (localTable.containsKey(n)) {
 				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
 				System.out
-						.println("Alla variabile " + n + " del metodo " + i + " della classe " + cn
+						.println("Alla variabile " + n + " della funzione " + fn
 								+ " è stato assegnato il valore " + v
-								+ "--> riga ("
+								+ " --> riga ("
 								+ name.getLine() + ")");
 			} else {
-				System.out.println("Errore assegnamento! La variabile " + n + " del metodo "
-						+ i + " della classe " + cn
-						+ " non esiste!"
+				System.out.println("Errore assegnamento! La variabile " + n + " della funzione " + fn + " non esiste!"
+						+ "--> riga ("
+						+ name.getLine() + ")");
+			}
+
+		} else if (className != null && functionName == null) {
+			// caso dei campi di una classe
+
+			String cn = className.getText();
+
+			// localTable della funzione dove viene assegnata la variabile
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
+
+			if (localTable.containsKey(n)) {
+				VarDescriptor vd = localTable.get(n);
+				vd.value = v;
+				System.out
+						.println("Al campo " + n + " della classe " + cn
+								+ " è stato assegnato il valore " + v
+								+ " --> riga ("
+								+ name.getLine() + ")");
+			} else {
+				System.out.println("Errore assegnamento! Il campo " + n + " della classe  " + cn + " non esiste!"
 						+ "--> riga ("
 						+ name.getLine() + ")");
 			}
 
 		} else {
-			// caso top-level
-			System.err.println("ERRORE! Non implementato!" + "--> riga ("
-					+ name.getLine() + ")");
+			System.err.println("ERRORE assignVarValue(): className e functionName sono entrambi nulli");
 		}
 
 	}

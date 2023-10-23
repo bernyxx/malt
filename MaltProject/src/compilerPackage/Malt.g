@@ -29,19 +29,19 @@ parseJava
 ;
 
 
-instrRule [Token id, Token functionName]
-	:	(((r1 = titleRule {h.declareNew(id,functionName, $r1.type, $r1.name);}
-		| r2 = textDeclRule {h.declareNew(id,functionName, $r2.type, $r2.name);}
-		| r3 = blockquoteRule {h.declareNew(id,functionName, $r3.type, $r3.name);}
-		| r4 = olistRule {h.declareNew(id,functionName, $r4.type, $r4.name);}
-		| r5 = ulistRule {h.declareNew(id,functionName, $r5.type, $r5.name);}
-		| r6 = tlistRule {h.declareNew(id,functionName, $r6.type, $r6.name);}
-		| r7 = codeBlockRule {h.declareNew(id,functionName, $r7.type, $r7.name);}
-		| r8 = tableRule {h.declareNew(id,functionName, $r8.type, $r8.name);}
-		| r9 = imageRule {h.declareNew(id,functionName, $r9.type, $r9.name);}
-		| r10 = linkRule {h.declareNew(id,functionName, $r10.type, $r10.name);}
-		| r11 = listRule {h.declareNew(id,functionName, $r11.type, $r11.name);}
-		| r12 = formatText {h.declareNew(id,functionName, $r12.type, $r12.name);}) SE ) 
+instrRule [Token className, Token functionName]
+	:	(((r1 = titleRule {h.declareNew(className,functionName, $r1.type, $r1.name);}
+		| r2 = textDeclRule {h.declareNew(className,functionName, $r2.type, $r2.name);}
+		| r3 = blockquoteRule {h.declareNew(className,functionName, $r3.type, $r3.name);}
+		| r4 = olistRule {h.declareNew(className,functionName, $r4.type, $r4.name);}
+		| r5 = ulistRule {h.declareNew(className,functionName, $r5.type, $r5.name);}
+		| r6 = tlistRule {h.declareNew(className,functionName, $r6.type, $r6.name);}
+		| r7 = codeBlockRule {h.declareNew(className,functionName, $r7.type, $r7.name);}
+		| r8 = tableRule {h.declareNew(className,functionName, $r8.type, $r8.name);}
+		| r9 = imageRule {h.declareNew(className,functionName, $r9.type, $r9.name);}
+		| r10 = linkRule {h.declareNew(className,functionName, $r10.type, $r10.name);}
+		| r11 = listRule {h.declareNew(className,functionName, $r11.type, $r11.name);}
+		| r12 = formatText {h.declareNew(className,functionName, $r12.type, $r12.name);}) SE ) 
 		| (( quickLinkRule
 		| horizontalRule
 		) SE) | forRule) 
@@ -163,7 +163,7 @@ formatText returns [Token name, Token type]
 
 functionRule [Token className]
 	:
-		f=FUN n=VAR {h.declareFunCl(className,$n);} LP (argumentsRule[className, $n])? RP LCB ((fieldRule[className,$n]) | (assignRule[$n, className]))+ RCB
+		f=FUN n=VAR {h.declareFunCl(className,$n);} LP (argumentsRule[className, $n])? RP LCB ((fieldRule[className,$n]) | (assignRule[className, $n]))+ RCB
 		{System.out.println("    - Ho riconosciuto una funzione");}
 ;
 
@@ -185,29 +185,29 @@ forRule
 
 classRule
 	:
-		f=CLASS n=VAR {h.declareFunCl($f,$n);} LCB fieldRule[$f,$n]* (functionRule[$n])* RCB
+		f=CLASS n=VAR {h.declareFunCl($n, null);} LCB fieldRule[$n,null]* (functionRule[$n])* RCB
 		{System.out.println("    - Ho riconosciuto una classe");}
 ;
 
-fieldRule [Token id, Token className]
+fieldRule [Token className, Token functionName]
 	:
-		( r1 = fieldTitleRule [id, className] {h.declareNew(id,className, $r1.type, $r1.name);}
-		| r2 = fieldText {h.declareNew(id,className, $r2.type, $r2.name);}
-		| r3 = fieldBlockQuoteRule {h.declareNew(id,className, $r3.type, $r3.name);}
-		| r4 = fieldOlistRule {h.declareNew(id,className, $r4.type, $r4.name);}
-		| r5 = fieldUlistRule {h.declareNew(id,className, $r5.type, $r5.name);}
-		| r6 = fieldTlistRule {h.declareNew(id,className, $r6.type, $r6.name);}
-		| r7 = fieldCodeBlockRule {h.declareNew(id,className, $r7.type, $r7.name);}
-		| r8 = fieldTableRule {h.declareNew(id,className, $r8.type, $r8.name);}
-		| r9 = fieldImageRule {h.declareNew(id,className, $r9.type, $r9.name);}
-		| r10 = fieldLinkRule {h.declareNew(id,className, $r10.type, $r10.name);}
-		| r11 = listRule {h.declareNew(id,className, $r11.type, $r11.name);} 
-		| r12 = fieldFormatText {h.declareNew(id,className, $r12.type, $r12.name);}) SE
+		( r1 = fieldTitleRule [className, functionName] {h.declareNew(className, functionName, $r1.type, $r1.name);}
+		| r2 = fieldText {h.declareNew(className, functionName, $r2.type, $r2.name);}
+		| r3 = fieldBlockQuoteRule {h.declareNew(className, functionName, $r3.type, $r3.name);}
+		| r4 = fieldOlistRule {h.declareNew(className, functionName, $r4.type, $r4.name);}
+		| r5 = fieldUlistRule {h.declareNew(className, functionName, $r5.type, $r5.name);}
+		| r6 = fieldTlistRule {h.declareNew(className, functionName, $r6.type, $r6.name);}
+		| r7 = fieldCodeBlockRule {h.declareNew(className, functionName, $r7.type, $r7.name);}
+		| r8 = fieldTableRule {h.declareNew(className, functionName, $r8.type, $r8.name);}
+		| r9 = fieldImageRule {h.declareNew(className, functionName, $r9.type, $r9.name);}
+		| r10 = fieldLinkRule {h.declareNew(className, functionName, $r10.type, $r10.name);}
+		| r11 = listRule {h.declareNew(className, functionName, $r11.type, $r11.name);} 
+		| r12 = fieldFormatText {h.declareNew(className, functionName, $r12.type, $r12.name);}) SE
 ;
 
-fieldTitleRule [Token id, Token className] returns [Token name, Token type]
+fieldTitleRule [Token className, Token functionName] returns [Token name, Token type]
 	:
-		t=titleTypeRule n=VAR (assignTitleRule[$id, $className, $n])? {$name = $n; $type = t;}
+		t=titleTypeRule n=VAR (assignTitleRule[$className, $functionName, $n])? {$name = $n; $type = t;}
 ;
 
 fieldText returns [Token name, Token type]
@@ -269,14 +269,14 @@ listRule returns [Token name, Token type]
 
 // TODO: nei controlli capire come controllare l'esistenza di una varibiale oppure il suo tipo nel caso sia se � stata definita
 
-assignRule [Token id, Token className]
+assignRule [Token className, Token functionName]
 	:
-	n=VAR (assignTitleRule[$id, $className, $n] | assignTextListRule | assignTableRule | assignImageRule | assignLinkRule | assignListRule) SE
+	n=VAR (assignTitleRule[$className, $functionName, $n] | assignTextListRule | assignTableRule | assignImageRule | assignLinkRule | assignListRule) SE
 ;
 
-assignTitleRule [Token id, Token className, Token name]
+assignTitleRule [Token className, Token functionName, Token name]
 	:
-		v=assignString refRule? {h.assignVarValue($id, $className, $name, v);}
+		v=assignString refRule? {h.assignVarValue($className, $functionName, $name, v);}
 ;
 
 assignString returns [Token value]
