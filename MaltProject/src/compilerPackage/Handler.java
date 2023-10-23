@@ -19,10 +19,10 @@ public class Handler {
 
 	/***
 	 * 
-	 * @param isClass  true = creazione di una classe, false = creazione di un
-	 *                 metodo/funzione
-	 * @param function nome della funzione/metodo
-	 * @param name     Nome della funzione / classe / metodo della classe
+	 * 
+	 * @param className Nome della classe (null se si dichiara una classe o una
+	 *                  funzione top-level)
+	 * @param name      Nome della funzione / classe / metodo della classe
 	 */
 	public void declareFunCl(Token className, Token name) {
 
@@ -248,10 +248,10 @@ public class Handler {
 		}
 	}
 
-	public void assignVarValue(Token className, Token functionName, Token name, Token value) {
+	public void assignVarValue(Token className, Token functionName, Token name, String value) {
 
 		String n = name.getText();
-		String v = value.getText();
+		String v = value;
 
 		// caso della variabile in un metodo
 		if (className != null && functionName != null) {
@@ -321,7 +321,18 @@ public class Handler {
 			}
 
 		} else {
-			System.err.println("ERRORE assignVarValue(): className e functionName sono entrambi nulli");
+			if (symbolTable.containsKey(n)) {
+				VarDescriptor vd = symbolTable.get(n);
+				vd.value = v;
+				System.out
+						.println("Alla variabile " + n + " è stato assegnato il valore " + v
+								+ " --> riga ("
+								+ name.getLine() + ")");
+			} else {
+				System.out.println("Errore assegnamento! La variabile " + n + " non esiste!"
+						+ "--> riga ("
+						+ name.getLine() + ")");
+			}
 		}
 
 	}

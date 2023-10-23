@@ -20,38 +20,37 @@ options {
 	}
 }
 
+
 parseJava
 @init{initHandler();}
 	:
-		(instrRule[null, null] | functionRule[null] | classRule )+ EOF 
+		(instrRule | functionRule[null] | fieldRule[null, null] | classRule | assignRule[null, null] )+ EOF 
 		{h.printTable();
 		System.out.println("    - Ho riconosciuto un documento Malt");}
 ;
 
-
-instrRule [Token className, Token functionName]
-	:	(((r1 = titleRule {h.declareNew(className,functionName, $r1.type, $r1.name);}
-		| r2 = textDeclRule {h.declareNew(className,functionName, $r2.type, $r2.name);}
-		| r3 = blockquoteRule {h.declareNew(className,functionName, $r3.type, $r3.name);}
-		| r4 = olistRule {h.declareNew(className,functionName, $r4.type, $r4.name);}
-		| r5 = ulistRule {h.declareNew(className,functionName, $r5.type, $r5.name);}
-		| r6 = tlistRule {h.declareNew(className,functionName, $r6.type, $r6.name);}
-		| r7 = codeBlockRule {h.declareNew(className,functionName, $r7.type, $r7.name);}
-		| r8 = tableRule {h.declareNew(className,functionName, $r8.type, $r8.name);}
-		| r9 = imageRule {h.declareNew(className,functionName, $r9.type, $r9.name);}
-		| r10 = linkRule {h.declareNew(className,functionName, $r10.type, $r10.name);}
-		| r11 = listRule {h.declareNew(className,functionName, $r11.type, $r11.name);}
-		| r12 = formatText {h.declareNew(className,functionName, $r12.type, $r12.name);}) SE ) 
-		| (( quickLinkRule
+instrRule
+	:	((titleRule 
+		|  textDeclRule 
+		|  blockquoteRule 
+		|  olistRule
+		|  ulistRule 
+		|  tlistRule 
+		|  codeBlockRule 
+		|  tableRule 
+		|  imageRule
+		|  linkRule 
+		|  listRule[null,null]
+		|  formatText 
+		| quickLinkRule
 		| horizontalRule
-		) SE) | forRule) 
+		) SE) | forRule 
 		
 ;	
 
-
-titleRule returns [Token name, Token type]
+titleRule 
 	:
-		t=titleTypeRule (n=VAR EQ)? STRING refRule? {$name = $n; $type = t;}
+		t=titleTypeRule STRING refRule?
 		{System.out.println("    - Ho riconosciuto un titolo");}
 ;
 
@@ -65,50 +64,46 @@ refRule
 		LCB HA VAR RCB
 ;
 
-textDeclRule returns [Token name, Token type] 
+textDeclRule
 	:
-		t=TEXT (n=VAR EQ)? STRING {$name = $n; $type = $t;}
+		t=TEXT STRING 
 		{System.out.println("    - Ho riconosciuto un testo");}
 ;
 
-blockquoteRule returns [Token name, Token type]
+blockquoteRule
 	:
-		t=BLOCKQUOTE (n=VAR {$name = $n; $type = $t;} EQ)? STRING
+		t=BLOCKQUOTE STRING
 		{System.out.println("    - Ho riconosciuto un BLOCKQUOTE");}
 ;
 
-olistRule returns [Token name, Token type]
+olistRule
 	:
-		t=OLIST (n=VAR {$name = $n; $type = $t;} EQ)? textListRule
+		t=OLIST textListRule
 		{System.out.println("    - Ho riconosciuto un OLIST");}
 ;
 
-textListRule
-	:	LP STRING (CM STRING)+ RP
+textListRule returns [String value]
+	:	v1=LP v2=STRING {String cicle = $v2.getText();} (t1=CM t2=STRING {cicle = cicle + $t1.getText() + $t2.getText();})+ v3=RP {value = $v1.getText() + $v2.getText() + cicle + $v3.getText();}
 ;
 
-ulistRule returns [Token name, Token type]
+ulistRule
 	:
-		t=ULIST (n=VAR {$name = $n; $type = $t;} EQ)? textListRule
+		t=ULIST textListRule
 		{System.out.println("    - Ho riconosciuto un ULIST");}
 ;
 
-tlistRule returns [Token name, Token type]
+tlistRule 
 	:
-		t=TLIST (n=VAR {$name = $n; $type = $t;} EQ)? textListRule
+		t=TLIST textListRule
 		{System.out.println("    - Ho riconosciuto un TLIST");}
 ;
 
-codeBlockRule returns [Token name, Token type]
+codeBlockRule 
 	:
-		t=CODEBLOCK genericString? (n=VAR {$name = $n; $type = $t;} EQ)? STRING
+		t=CODEBLOCK STRING? STRING
 		{System.out.println("    - Ho riconosciuto un BLOCKCODE");}
 ;
 
-genericString
-	:
-		(LP (~(LP | RP | '"'))* RP)
-;
 
 horizontalRule
 	:
@@ -116,15 +111,15 @@ horizontalRule
 		{System.out.println("    - Ho riconosciuto un HORIZ");}
 ;
 
-linkRule returns [Token name, Token type]
+linkRule 
 	:
-		t=LINK (n=VAR {$name = $n; $type = $t;} EQ)? LP (STRING | imageRule) CM genericString RP
+		t=LINK LP (STRING | imageRule) CM STRING RP
 		{System.out.println("    - Ho riconosciuto un link");}
 ;
 
-imageRule returns [Token name, Token type]
+imageRule returns [String value]
 	:
-		t=IMG (n=VAR {$name = $n; $type = $t;} EQ)? LP genericString (CM genericString)? RP
+		v1=IMG v2=LP v3=STRING {String cycle = $v3.getText();} (t1=CM t2=STRING {cycle = cycle + $t1.getText() + $t2.getText();})? v4=RP {value = $v1.getText() + $v2.getText() + cycle + $v4.getText();}
 		{System.out.println("    - Ho riconosciuto un'immagine");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
@@ -134,30 +129,31 @@ quickLinkRule
 		{System.out.println("    - Ho riconosciuto un quicklink");}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
-tableRule returns [Token name, Token type]
+tableRule
 	:
-		t=TABLE (n=VAR {$name = $n; $type = $t;} EQ)? talignmentRule? LP trowRule (CM trowRule)* RP
+		t=TABLE talignmentRule? LP trowRule (CM trowRule)* RP
 		{System.out.println("    - Ho riconosciuto una tabella");}
 ;
 
-talignmentRule
+talignmentRule returns [String value]
 	:
-		LSB alignRule (CM alignRule)* RSB
+		v1=LSB v2=alignRule {String cycle = v2;} (t1=CM t2=alignRule {cycle = cycle + $t1.getText() + t2;})* v3=RSB {value = $v1.getText() + cycle + $v3.getText();}
 ;
 
-alignRule
+alignRule returns [String value]
 	:
-		L | C | R
+		v=L | v=C | v=R {value = $v.getText();}
 ;
 
-trowRule
+trowRule returns [String value]
 	:
-		LSB STRING (CM STRING)* RSB
+		v1=LSB v2=STRING {String cycle = $v2.getText();} (v3=CM v4=STRING {cycle = cycle + $v3.getText() + $v4.getText();})* v5=RSB {value = $v1.getText() + cycle + $v5.getText();}
 ; // TODO: DISTINZIONE TRA SUBTEXT-TEXT E LINK-URL-EMAIL-IMAGEPATH-URLIMAGE-DIDASCALIA IMMAGINE-TESTO TABELLA
 
-formatText returns [Token name, Token type]
+
+formatText
 	:
-		t=FORMATTEXT (n=VAR {$name = $n; $type = $t;} EQ)? STRING
+		t=FORMATTEXT STRING
 		{System.out.println("    - Ho riconosciuto formattext");}
 ;
 
@@ -179,7 +175,7 @@ argumentTypeRule returns [Token type]
 
 forRule
 	:
-		FOR LP VAR IN VAR RP LCB (instrRule[null,null])+ RCB
+		FOR LP VAR IN VAR RP LCB (instrRule)+ RCB
 		{System.out.println("    - Ho riconosciuto un for");}
 ;
 
@@ -191,79 +187,80 @@ classRule
 
 fieldRule [Token className, Token functionName]
 	:
-		( r1 = fieldTitleRule [className, functionName] {h.declareNew(className, functionName, $r1.type, $r1.name);}
-		| r2 = fieldText {h.declareNew(className, functionName, $r2.type, $r2.name);}
-		| r3 = fieldBlockQuoteRule {h.declareNew(className, functionName, $r3.type, $r3.name);}
-		| r4 = fieldOlistRule {h.declareNew(className, functionName, $r4.type, $r4.name);}
-		| r5 = fieldUlistRule {h.declareNew(className, functionName, $r5.type, $r5.name);}
-		| r6 = fieldTlistRule {h.declareNew(className, functionName, $r6.type, $r6.name);}
-		| r7 = fieldCodeBlockRule {h.declareNew(className, functionName, $r7.type, $r7.name);}
-		| r8 = fieldTableRule {h.declareNew(className, functionName, $r8.type, $r8.name);}
-		| r9 = fieldImageRule {h.declareNew(className, functionName, $r9.type, $r9.name);}
-		| r10 = fieldLinkRule {h.declareNew(className, functionName, $r10.type, $r10.name);}
-		| r11 = listRule {h.declareNew(className, functionName, $r11.type, $r11.name);} 
-		| r12 = fieldFormatText {h.declareNew(className, functionName, $r12.type, $r12.name);}) SE
+		( fieldTitleRule [className, functionName] 
+		| fieldText [className, functionName] 
+		| fieldBlockQuoteRule [className, functionName] 
+		| fieldOlistRule [className, functionName] 
+		| fieldUlistRule [className, functionName]
+		| fieldTlistRule [className, functionName]
+		| fieldCodeBlockRule [className, functionName]
+		| fieldTableRule [className, functionName] 
+		| fieldImageRule [className, functionName]
+		| fieldLinkRule [className, functionName] 
+		| listRule [className, functionName] 
+		| fieldFormatText [className, functionName]) SE
 ;
 
-fieldTitleRule [Token className, Token functionName] returns [Token name, Token type]
+fieldTitleRule [Token className, Token functionName]
 	:
-		t=titleTypeRule n=VAR (assignTitleRule[$className, $functionName, $n])? {$name = $n; $type = t;}
+		t=titleTypeRule n=VAR {h.declareNew($className, $functionName, t, $n);} (assignTitleRule[$className, $functionName, $n])? 
 ;
 
-fieldText returns [Token name, Token type]
+fieldText [Token className, Token functionName] 
 	:
-		t=TEXT n=VAR (assignString)? {$name = $n; $type = $t;}
+		t=TEXT n=VAR {h.declareNew(className, functionName, $t, $n);} (assignString[$className, $functionName, $n])?
 ;
 
-fieldBlockQuoteRule returns [Token name, Token type]
+fieldBlockQuoteRule [Token className, Token functionName]
 	:
-		t=BLOCKQUOTE n=VAR {$name = $n; $type = $t;} (assignString)?
+		t=BLOCKQUOTE n=VAR {h.declareNew(className, functionName, $t, $n);}  (assignString[$className, $functionName, $n])?
 ;
 
-fieldOlistRule returns [Token name, Token type]
+fieldOlistRule [Token className, Token functionName]
 	:
-		t=OLIST n=VAR (assignTextListRule)? {$name = $n; $type = $t;}
+		t=OLIST n=VAR {h.declareNew(className, functionName, $t, $n);} (assignTextListRule[$className, $functionName, $n])? 
 ;
 
-fieldUlistRule returns [Token name, Token type]
+fieldUlistRule [Token className, Token functionName]
 	:
-		t=ULIST n=VAR (assignTextListRule)? {$name = $n; $type = $t;}
+		t=ULIST n=VAR {h.declareNew(className, functionName, $t, $n);} (assignTextListRule[$className, $functionName, $n])? 
 ;
 
-fieldTlistRule returns [Token name, Token type]
+fieldTlistRule [Token className, Token functionName]
 	:
-		t=TLIST n=VAR (assignTextListRule)? {$name = $n; $type = $t;}
+		t=TLIST n=VAR {h.declareNew(className, functionName, $t, $n);} (assignTextListRule[$className, $functionName, $n])?
 ;
 
-fieldCodeBlockRule returns [Token name, Token type]
+fieldCodeBlockRule [Token className, Token functionName]
 	:
-		t=CODEBLOCK genericString? n=VAR {$name = $n; $type = $t;} (assignString)?
+		t=CODEBLOCK (LP (~(LP | RP | '"'))* RP)? n=VAR  {h.declareNew(className, functionName, $t, $n);} (assignString[$className, $functionName, $n])?
 ;
 
-fieldTableRule returns [Token name, Token type]
+fieldTableRule [Token className, Token functionName]
 	:
-		t=TABLE n=VAR {$name = $n; $type = $t;} (assignTableRule)?
+		t=TABLE n=VAR {h.declareNew(className, functionName, $t, $n);} (assignTableRule[$className, $functionName, $n])?
 ;
 
-fieldImageRule returns [Token name, Token type]
+fieldImageRule [Token className, Token functionName]
 	:
-		t=IMG n=VAR {$name = $n; $type = $t;} (assignImageRule)?
+		t=IMG n=VAR {h.declareNew(className, functionName, $t, $n);} (assignImageRule[$className, $functionName, $n])?
 ;
 
-fieldLinkRule returns [Token name, Token type]
+fieldLinkRule [Token className, Token functionName] returns [Token name, Token type]
 	:
-		t=LINK n=VAR {$name = $n; $type = $t;} (assignLinkRule)?
+		t=LINK n=VAR {h.declareNew(className, functionName, $t, $n);} (assignLinkRule[$className, $functionName, $n])?
 ;
 
-fieldFormatText returns [Token name, Token type]
+fieldFormatText [Token className, Token functionName]
 	:
-		t=FORMATTEXT n=VAR {$name = $n; $type = $t;} (assignString)?
+		t=FORMATTEXT n=VAR {h.declareNew(className, functionName, $t, $n);} (assignString[$className, $functionName, $n])?
 ;
 
 
-listRule returns [Token name, Token type]
+
+listRule [Token className, Token functionName]
 	:
-		t=LIST n=VAR (assignListRule)? {$name = $n; $type = t;}
+		t=LIST n=VAR {h.declareNew(className, functionName, $t, $n);} (assignListRule[$className, $functionName, $n])? 
 		{System.out.println("    - Ho riconosciuto una lista");}
 ; // TODO: cambiare string con formattext
 
@@ -271,43 +268,46 @@ listRule returns [Token name, Token type]
 
 assignRule [Token className, Token functionName]
 	:
-	n=VAR (assignTitleRule[$className, $functionName, $n] | assignTextListRule | assignTableRule | assignImageRule | assignLinkRule | assignListRule) SE
+	n=VAR (assignTitleRule[$className, $functionName, $n] | assignTextListRule[$className, $functionName, $n]  | assignTableRule[$className, $functionName, $n]
+	     | assignImageRule[$className, $functionName, $n] | assignLinkRule[$className, $functionName, $n] | assignListRule[$className, $functionName, $n] ) SE
 ;
 
 assignTitleRule [Token className, Token functionName, Token name]
 	:
-		v=assignString refRule? {h.assignVarValue($className, $functionName, $name, v);}
+		EQ v=STRING refRule? {h.assignVarValue($className, $functionName, $name, $v.getText());}
 ;
 
-assignString returns [Token value]
+assignString [Token className, Token functionName, Token name]
 	:
-		EQ v=STRING {value = $v;}
+		EQ v=STRING {h.assignVarValue($className, $functionName, $name, $v.getText());}
 ;
 
-assignTextListRule 
+assignTextListRule [Token className, Token functionName, Token name]
 	:
-		EQ textListRule
+		EQ v=textListRule {h.assignVarValue($className, $functionName, $name, v);}
 ;
 
-assignTableRule
+assignTableRule [Token className, Token functionName, Token name]
 	:
-		EQ talignmentRule? LP trowRule (CM trowRule)* RP
+		EQ v1=talignmentRule? v2=LP v3=trowRule {String cycle = v3;} (t1=CM t2=trowRule {cycle = cycle + $t1.getText() + t2;})* v4=RP {h.assignVarValue($className, $functionName, $name, v1 + $v2.getText() + cycle + $v4.getText());}
 ;
 
-assignImageRule
+assignImageRule [Token className, Token functionName, Token name]
 	:
-		EQ LP genericString (CM genericString)? RP
+		EQ v1=LP v2=STRING {String opt="";} (o1=CM o2=STRING {opt = $o1.getText() + $o2.getText();})? v3=RP {h.assignVarValue($className, $functionName, $name, $v1.getText() + v2.getText() + opt + $v3.getText());}
 ;
 
-assignLinkRule
+assignLinkRule [Token className, Token functionName, Token name]
 	:
-		EQ LP (STRING | imageRule) CM genericString RP
+		EQ v1=LP {String v2 = "";} (t=STRING {v2=$t.getText();} | ir=imageRule {v2 = ir;}) v3=CM v4=STRING v5=RP {h.assignVarValue($className, $functionName, $name, $v1.getText() + v2 + $v3.getText() 
+																	+ $v4.getText() + $v5.getText());}
 ;
 
 
-assignListRule
+assignListRule [Token className, Token functionName, Token name]
 	:
-		EQ LSB STRING (CM STRING)+ RSB
+		v1=EQ v2=LSB v3=STRING {String cycle = $v3.getText();} (t1=CM t2=STRING {cycle = cycle + $t1.getText() + $t2.getText();})+ v4=RSB {h.assignVarValue($className, $functionName, $name, $v1.getText() + $v2.getText() 
+																					+ cycle + $v4.getText());}
 ; // TODO: cambiare string con formattext
 
 // TODO: VA FATTA LA GESTIONE DEGLI ESCAPE? --> SISTEMARE %g e %i

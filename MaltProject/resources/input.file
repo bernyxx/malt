@@ -1,4 +1,9 @@
-title a = "aaa";
+title a = "aaaa";
+
+title b;
+b = "pippo";
+
+codeblock (Java) cb1 = "Questo testo contiene un link";
 
 fun topFunction(){
 	title pino;
@@ -7,8 +12,6 @@ fun topFunction(){
 fun topFunction(){
 	title pino = "aaa";
 }
-
-
 
 
 class classe1{
