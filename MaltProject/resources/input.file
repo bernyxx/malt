@@ -1,25 +1,16 @@
-title a = "aaaa";
-
-title b;
-b = "pippo";
-
+for(l in r){
+s1title myTitolo = "Ecco una ricerca";
+s2title mySubtitle = "Molto interessante" {#id};
+text someText = "Questo testo contiene un link";
+blockquote bq1 = "Questo testo contiene un link";
+olist olist1 = ("primo", "secondo");
 codeblock (Java) cb1 = "Questo testo contiene un link";
-
-fun topFunction(){
-	title pino;
-}
-
-fun topFunction(){
-	title pino = "aaa";
-}
-
-
-class classe1{
-	title pino;
-
-	fun metodo(text arg){
-		title titoloMetodo;
-		titoloMetodo = "aabb";
-	}
-
+link link1 =l ("ciao","mit");
+img foto1 =i ("/percorso/immagine.jpg","Titolo immagine");
+text someText1 = "Questo testo contiene un link <mondo@gmail.com> oppure <https://www.mondo.com>";
+table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+table tabella2 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+list list1 = ["primo", "secondo"];
+formattext pino = "ecco una passeggiata in %i alle %g";
 }

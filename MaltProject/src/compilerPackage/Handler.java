@@ -30,7 +30,6 @@ public class Handler {
 		if (className != null && name != null) {
 			String cn = className.getText();
 			String n = name.getText();
-			System.out.println("declareFunCl() - className: " + cn + " name: " + n);
 			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
 
 			if (localTable.containsKey("fun_" + n)) {
@@ -50,8 +49,6 @@ public class Handler {
 			// dichiarazione di una funzione top-level
 
 			String n = name.getText();
-
-			System.out.println("declareFunCl() - className: null" + " functionName: " + n);
 
 			VarDescriptor vd = new VarDescriptor(n, "fun");
 
