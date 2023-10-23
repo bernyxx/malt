@@ -1,11 +1,15 @@
 text a = "aaa";
 
-fun pino(){
-	text pino;
+fun topFunction(){
+	title pino;
 	pino = "gino";
 }
 
 
-class pino{
-	text pino = "testo classe";
+class classe1{
+	title pino = "suino";
+
+	fun metodo(text arg){
+		title titoloMetodo = "pippo";
+	}
 }

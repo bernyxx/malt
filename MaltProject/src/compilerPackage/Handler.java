@@ -38,6 +38,8 @@ public class Handler {
 			str = "La classe ";
 		}
 
+		System.out.println("ID declareFunCl: " + i);
+
 		// metodo di una classe
 		if (!i.equals("") && !i.equals("fun") && !i.equals("class")) {
 			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + i);
@@ -114,6 +116,9 @@ public class Handler {
 		String nf = nameFunCl.getText();
 		VarDescriptor vd = new VarDescriptor(n, t);
 
+		System.out.println("ID declareVarInFunCl: " + i);
+		System.out.println("nameFunCl declareVarInFunCl: " + nf);
+
 		// dichiarazione di variabile all'interno di metodi di una classe
 		if (!i.equals("") && !i.equals("fun") && !i.equals("class")) {
 			Hashtable<String, VarDescriptor> localTable = functionTables.get(i + "." + nf);
@@ -133,7 +138,7 @@ public class Handler {
 								+ " --> riga (" + type.getLine() + ")");
 			}
 		} else {
-			// dichiarazione di variabili nelle funzioni e come campi nelle classi
+			// dichiarazione di variabili nelle funzioni o come campi nelle classi
 
 			String str = "";
 			String keyLocalTable = "";
@@ -151,8 +156,9 @@ public class Handler {
 
 			if (localTable.containsKey(n)) {
 
-				System.err.println("La variabile " + n + str + nf + " è già stata dichiarata --> riga ("
-						+ type.getLine() + ")");
+				System.err.println(
+						"La variabile " + n + str + nf + " è già stata dichiarata --> riga ("
+								+ type.getLine() + ")");
 
 			} else {
 				localTable.put(n, vd);
@@ -204,6 +210,7 @@ public class Handler {
 								type.getLine() + ")");
 			}
 
+			// caso dei metodi di una classe
 		} else {
 			String cn = className.getText();
 
@@ -225,13 +232,15 @@ public class Handler {
 	}
 
 	public void assignVarValue(Token id, Token className, Token name, Token value) {
-		String i = id.getText();
+
 		String n = name.getText();
 		String v = value.getText();
 
-		// caso della funzione
+		// caso della variabile in una funzione
 		if (className == null && id != null) {
 
+			String i = id.getText();
+			System.out.println("className: null " + " id: " + i);
 			// localTable della funzione dove viene assegnata la variabile
 			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + i);
 
@@ -239,15 +248,52 @@ public class Handler {
 				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
 				System.out
-						.println("Alla variabile " + n + " nella funzione " + i + " è stato assegnato il valore " + v);
+						.println("Alla variabile " + n + " nella funzione " + i + " è stato assegnato il valore " + v
+								+ "--> riga ("
+								+ name.getLine() + ")");
 			} else {
-				System.out.println("Errore assegnamento! La variabile " + n + " nella funzione " + i + " non esiste!");
+				System.out.println("Errore assegnamento! La variabile " + n + " nella funzione " + i + " non esiste!"
+						+ "--> riga ("
+						+ name.getLine() + ")");
+			}
+		} else if (className != null && id != null) {
+			String i = id.getText();
+			String cn = className.getText();
+
+			// caso campo
+			if (i.equals("class")) {
+				System.out.println("Assegnamento non ancora implementato!" + "--> riga ("
+						+ name.getLine() + ")");
+				return;
 			}
 
-		}
+			// caso metodo
+			System.out.println("className: " + cn + " id: " + i);
+			// localTable del metodo della classe di cui fa parte la variabile
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." +
+					i);
 
-		// TODO: caso metodo
-		// TODO: caso top-level
+			if (localTable.containsKey(n)) {
+				VarDescriptor vd = localTable.get(n);
+				vd.value = v;
+				System.out
+						.println("Alla variabile " + n + " del metodo " + i + " della classe " + cn
+								+ " è stato assegnato il valore " + v
+								+ "--> riga ("
+								+ name.getLine() + ")");
+			} else {
+				System.out.println("Errore assegnamento! La variabile " + n + " del metodo "
+						+ i + " della classe " + cn
+						+ " non esiste!"
+						+ "--> riga ("
+						+ name.getLine() + ")");
+			}
+
+		} else {
+			// caso top-level
+			System.err.println("ERRORE! Non implementato!" + "--> riga ("
+					+ name.getLine() + ")");
+		}
 
 	}
 
