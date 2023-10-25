@@ -10,9 +10,12 @@ options {
 
 @header {
 	package compilerPackage;
+	
+	import java.util.Vector;
 }
 
 @members {
+
 	Handler h;
 	
 	void initHandler () {
@@ -46,7 +49,7 @@ instrRule
 		|  formatText 
 		| quickLinkRule
 		| horizontalRule
-		) SE) | forRule 
+		) SE) | forRule[null, null]
 		
 ;	
 
@@ -181,12 +184,13 @@ functionRule [Token className]
 	:
 		f=FUN n=VAR {h.declareFunCl(className,$n);} LP (argumentsRule[className, $n])? RP LCB ((fieldRule[className,$n]) | (assignRule[className, $n]))+ RCB
 		{System.out.println("    - Ho riconosciuto una funzione");}
-;
+; //TODO: Aggiungere il ritorno dei valori (es. return "pino")
+  //TODO: eseguire le istruzioni nella funzione/metodi alla chiamata e non durante la dichiarazione della funzione
 
 
-argumentsRule [Token className, Token funcName]
+argumentsRule [Token className, Token functionName]
 	: 	
-		t=argumentTypeRule n=VAR {h.declareArg($className, $funcName, t, $n);} (CM t=argumentTypeRule n=VAR {h.declareArg($className, $funcName, t, $n);})*
+		t=argumentTypeRule n=VAR {h.declareArg($className, $functionName, t, $n);} (CM t=argumentTypeRule n=VAR {h.declareArg($className, $functionName, t, $n);})*
 ;
 
 
@@ -195,17 +199,22 @@ argumentTypeRule returns [Token type]
 		(res=titleTypeRule {t = res;} | t=TEXT | t=BLOCKQUOTE | t=OLIST | t=ULIST | t=TLIST | t=CODEBLOCK | t=LINK | t=IMG | t=TABLE | t=FORMATTEXT | t=LIST) {type = $t;}
 ;
 
-
-forRule
+functionCallRule [Token className, Token functionName]
 	:
-		FOR LP VAR IN VAR RP LCB (/*instrRule |*/ fieldRule[null,null])+ RCB
+		(v1=VAR | v1=DOTVAR) LP {Vector<String> vct = new Vector<String>();} (t1=VAR {vct.add($t1.getText());} (CM t2=VAR {vct.add($t2.getText());})*)? RP {h.functionCall(className, functionName, $v1, vct);}
+;
+
+
+forRule [Token className, Token functionName ]
+	:
+		FOR LP VAR IN VAR RP LCB (/*instrRule |*/ fieldRule[className, functionName])+ RCB
 		{System.out.println("    - Ho riconosciuto un for");}
-; // TODO: sistemare instrRule e fieldRule + inserire parametri ereditati
+;
 
 
 classRule
 	:
-		f=CLASS n=VAR {h.declareFunCl($n, null);} LCB fieldRule[$n,null]* (functionRule[$n])* RCB
+		f=CLASS n=VAR {h.declareFunCl($n, null);} LCB (fieldRule[$n,null] | functionRule[$n])* RCB
 		{System.out.println("    - Ho riconosciuto una classe");}
 ;
 
@@ -223,8 +232,9 @@ fieldRule [Token className, Token functionName]
 		| fieldImageRule [className, functionName]
 		| fieldLinkRule [className, functionName] 
 		| listRule [className, functionName] 
-		| fieldFormatText [className, functionName]) SE) | forRule
-; // TODO: sistemare forRule
+		| fieldFormatText [className, functionName]
+		| functionCallRule[className, functionName]) SE) | forRule[className, functionName]
+;
 
 
 fieldTitleRule [Token className, Token functionName]
@@ -297,9 +307,8 @@ listRule [Token className, Token functionName]
 	:
 		t=LIST n=VAR {h.declareNew(className, functionName, $t, $n);} (assignListRule[$className, $functionName, $n])? 
 		{System.out.println("    - Ho riconosciuto una lista");}
-; // TODO: cambiare string con formattext
+;
 
-// TODO: nei controlli capire come controllare l'esistenza di una varibiale oppure il suo tipo nel caso sia se � stata definita
 
 
 assignRule [Token className, Token functionName]
@@ -349,7 +358,7 @@ assignLinkRule [Token className, Token functionName, Token name]
 assignListRule [Token className, Token functionName, Token name]
 	:
 		EQ v1=LSB v2=STRING {String cycle = $v2.getText();} (t1=CM t2=STRING {cycle = cycle + $t1.getText() + $t2.getText();})+ v3=RSB {h.assignVarValue($className, $functionName, $name, $v1.getText() + cycle + $v3.getText());}
-; // TODO: cambiare string con formattext
+;
 
 // TODO: VA FATTA LA GESTIONE DEGLI ESCAPE? --> SISTEMARE %g e %i
 
@@ -451,6 +460,8 @@ fragment
 I : '%i';
 
 VAR	:	(LETTER) (LETTER | DIGIT |'_')*;
+
+DOTVAR	:	VAR ('.' VAR)?;
 
 INTEGER :	DIGIT+;
 
