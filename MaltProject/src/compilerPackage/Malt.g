@@ -1,5 +1,8 @@
 grammar Malt;
 
+// i campi delle classi sono automaticamente private
+// i metodi delle classi sono automaticamente public (accesso con dot notation)
+
 options {
 	language = Java;
 }
@@ -214,7 +217,7 @@ forRule [Token className, Token functionName ]
 
 classRule
 	:
-		f=CLASS n=VAR {h.declareFunCl($n, null);} LCB (fieldRule[$n,null] | functionRule[$n])* RCB
+		f=CLASS n=VAR {h.declareFunCl($n, null);} LCB (fieldRule[$n,null] | functionRule[$n] | assignRule[$n, null])* RCB
 		{System.out.println("    - Ho riconosciuto una classe");}
 ;
 
@@ -232,8 +235,8 @@ fieldRule [Token className, Token functionName]
 		| fieldImageRule [className, functionName]
 		| fieldLinkRule [className, functionName] 
 		| listRule [className, functionName] 
-		| fieldFormatText [className, functionName]
-		| functionCallRule[className, functionName]) SE) | forRule[className, functionName]
+		| functionCallRule[className, functionName] 
+		| formatRule[className, functionName] ) SE) | forRule[className, functionName]
 ;
 
 
@@ -297,11 +300,6 @@ fieldLinkRule [Token className, Token functionName] returns [Token name, Token t
 ;
 
 
-fieldFormatText [Token className, Token functionName]
-	:
-		t=FORMATTEXT n=VAR {h.declareNew(className, functionName, $t, $n);} (assignString[$className, $functionName, $n])?
-;
-
 
 listRule [Token className, Token functionName]
 	:
@@ -310,11 +308,14 @@ listRule [Token className, Token functionName]
 ;
 
 
-
 assignRule [Token className, Token functionName]
 	:
-	n=VAR (assignTitleRule[$className, $functionName, $n] | assignTextListRule[$className, $functionName, $n]  | assignTableRule[$className, $functionName, $n]
-	     | assignImageRule[$className, $functionName, $n] | assignLinkRule[$className, $functionName, $n] | assignListRule[$className, $functionName, $n] ) SE
+		n=VAR (assignVariableRule[$className, $functionName, $n] | assignTitleRule[$className, $functionName, $n] | assignTextListRule[$className, $functionName, $n]  | assignTableRule[$className, $functionName, $n]
+	     	| assignImageRule[$className, $functionName, $n] | assignLinkRule[$className, $functionName, $n] | assignListRule[$className, $functionName, $n] ) SE
+;
+
+assignVariableRule [Token className, Token functionName, Token name]
+	:  	EQ v1=VAR {h.assignVarToVar($className, $functionName, $name, $v1);}
 ;
 
 
@@ -360,7 +361,10 @@ assignListRule [Token className, Token functionName, Token name]
 		EQ v1=LSB v2=STRING {String cycle = $v2.getText();} (t1=CM t2=STRING {cycle = cycle + $t1.getText() + $t2.getText();})+ v3=RSB {h.assignVarValue($className, $functionName, $name, $v1.getText() + cycle + $v3.getText());}
 ;
 
-// TODO: VA FATTA LA GESTIONE DEGLI ESCAPE? --> SISTEMARE %g e %i
+
+formatRule [Token className, Token functionName]
+	:	v1=VAR EQ FORMAT LP v2=VAR {Vector<Token> vct = new Vector<Token>();} ( CM v3=VAR {vct.add($v3);} (CM v4=VAR {vct.add($v4);} )+)? RP {h.handleFormat($className, $functionName, $v1, $v2, vct );}
+;
 
 
 
@@ -372,7 +376,7 @@ HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
 
 fragment
 ESC_SEQ
-    :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\'|'*')
+    :   '\\' ('b'|'t'|'n'|'f'|'r'|'%'|'\"'|'\''|'\\'|'*')
     |   UNICODE_ESC
     |   OCTAL_ESC
     ;
@@ -444,6 +448,7 @@ TABLE : 'table';
 L : '$l';
 C : '$c';
 R : '$r';
+FORMAT 	: 'format';
 FORMATTEXT : 'formattext';
 FUN : 'fun';
 FOR : 'for';
@@ -488,5 +493,3 @@ WS  :   ( ' '
 //STR 	:	LP (~(LP | RP | '"'))* RP;
 
 STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*') )* '"';
-
-//FORMATTEXT	: 	'f' '"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*'|I|G) )* '"'; // TODO: sistemare formattext, in particolare %g %i

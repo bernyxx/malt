@@ -1,27 +1,37 @@
 text pino = "pino esterno";
+text gino = "gino esterno";
 
-fun pino(text t){
-    // sssss
-}
+text ft = "un %ib albero %b verde";
 
-fun metodoAlb(text t){
-    text t1 = "metodo top"; 
-    pino(t)
+text t_out;
+
+class pianta{
+    fun pino(text arg1, text arg2){
+        text t1 = "pino in pianta";
+    }
 }
 
 class albero{
-    //text pino = "pino di albero";
-    text gino = "gino di albero";
+    text t = "t in albero";
+    text t2 = "t2 in albero";
+
+    text gino = "dentro gino";
+
+    pino = gino;
+
+    fun metodo(){
+        t_out = format(ft, pino, gino);
+        //pino = gino;
+    }
+
+    //pian.pino(t, t2);
     
-    fun metodoAlb(text t){
-        text t1 = "metodo classe"; 
-    }
-
-    fun chiamata(text t){
-        //text pino = "pino in chiamata";
-        metodoAlb(pino);
-    }
-
 }
 
+fun gino(){
+    text gino = "dentro gino";
+    pianta.pino(pino, gino);
+    //pino = gino;
+}
 
+pianta.pino(gino, pino);
