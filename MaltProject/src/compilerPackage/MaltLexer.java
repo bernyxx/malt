@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g 2023-10-26 19:14:42
+// $ANTLR 3.5.1 D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g 2023-10-28 18:39:51
 
 	package compilerPackage;
 
@@ -102,8 +102,8 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "EXPONENT"
 	public final void mEXPONENT() throws RecognitionException {
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:373:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:373:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:383:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:383:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
 			{
 			if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
 				input.consume();
@@ -113,7 +113,7 @@ public class MaltLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:373:22: ( '+' | '-' )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:383:22: ( '+' | '-' )?
 			int alt1=2;
 			int LA1_0 = input.LA(1);
 			if ( (LA1_0=='+'||LA1_0=='-') ) {
@@ -136,7 +136,7 @@ public class MaltLexer extends Lexer {
 
 			}
 
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:373:33: ( '0' .. '9' )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:383:33: ( '0' .. '9' )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -181,7 +181,7 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "HEX_DIGIT"
 	public final void mHEX_DIGIT() throws RecognitionException {
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:376:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:386:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
 			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -204,7 +204,7 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "ESC_SEQ"
 	public final void mESC_SEQ() throws RecognitionException {
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:380:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '%' | '\\\"' | '\\'' | '\\\\' | '*' ) | UNICODE_ESC | OCTAL_ESC )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:390:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '%' | '\\\"' | '\\'' | '\\\\' | '*' ) | UNICODE_ESC | OCTAL_ESC )
 			int alt3=3;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0=='\\') ) {
@@ -261,7 +261,7 @@ public class MaltLexer extends Lexer {
 
 			switch (alt3) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:380:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '%' | '\\\"' | '\\'' | '\\\\' | '*' )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:390:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '%' | '\\\"' | '\\'' | '\\\\' | '*' )
 					{
 					match('\\'); 
 					if ( input.LA(1)=='\"'||input.LA(1)=='%'||input.LA(1)=='\''||input.LA(1)=='*'||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -275,14 +275,14 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:381:9: UNICODE_ESC
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:391:9: UNICODE_ESC
 					{
 					mUNICODE_ESC(); 
 
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:382:9: OCTAL_ESC
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:392:9: OCTAL_ESC
 					{
 					mOCTAL_ESC(); 
 
@@ -300,7 +300,7 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "OCTAL_ESC"
 	public final void mOCTAL_ESC() throws RecognitionException {
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:387:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:397:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
 			int alt4=3;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='\\') ) {
@@ -358,7 +358,7 @@ public class MaltLexer extends Lexer {
 
 			switch (alt4) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:387:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:397:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '3') ) {
@@ -388,7 +388,7 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:388:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:398:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -410,7 +410,7 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:389:9: '\\\\' ( '0' .. '7' )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:399:9: '\\\\' ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -435,8 +435,8 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "UNICODE_ESC"
 	public final void mUNICODE_ESC() throws RecognitionException {
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:394:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:394:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:404:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:404:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
 			{
 			match('\\'); 
 			match('u'); 
@@ -460,7 +460,7 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "LETTER"
 	public final void mLETTER() throws RecognitionException {
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:398:8: ( 'a' .. 'z' | 'A' .. 'Z' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:408:8: ( 'a' .. 'z' | 'A' .. 'Z' )
 			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -483,7 +483,7 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:401:7: ( '0' .. '9' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:411:7: ( '0' .. '9' )
 			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -508,8 +508,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = DO;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:403:4: ( '.' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:403:6: '.'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:413:4: ( '.' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:413:6: '.'
 			{
 			match('.'); 
 			}
@@ -528,8 +528,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = CM;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:404:4: ( ',' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:404:5: ','
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:414:4: ( ',' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:414:5: ','
 			{
 			match(','); 
 			}
@@ -548,8 +548,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = SE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:405:4: ( ';' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:405:6: ';'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:415:4: ( ';' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:415:6: ';'
 			{
 			match(';'); 
 			}
@@ -568,8 +568,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = CL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:406:4: ( ':' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:406:5: ':'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:416:4: ( ':' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:416:5: ':'
 			{
 			match(':'); 
 			}
@@ -588,8 +588,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:407:4: ( '(' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:407:6: '('
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:417:4: ( '(' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:417:6: '('
 			{
 			match('('); 
 			}
@@ -608,8 +608,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = RP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:408:4: ( ')' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:408:6: ')'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:418:4: ( ')' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:418:6: ')'
 			{
 			match(')'); 
 			}
@@ -628,8 +628,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LSB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:409:5: ( '[' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:409:7: '['
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:419:5: ( '[' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:419:7: '['
 			{
 			match('['); 
 			}
@@ -648,8 +648,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = RSB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:410:5: ( ']' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:410:7: ']'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:420:5: ( ']' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:420:7: ']'
 			{
 			match(']'); 
 			}
@@ -668,8 +668,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LCB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:411:5: ( '{' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:411:7: '{'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:421:5: ( '{' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:421:7: '{'
 			{
 			match('{'); 
 			}
@@ -688,8 +688,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = RCB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:412:5: ( '}' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:412:7: '}'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:422:5: ( '}' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:422:7: '}'
 			{
 			match('}'); 
 			}
@@ -708,8 +708,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LAB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:413:5: ( '<' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:413:7: '<'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:423:5: ( '<' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:423:7: '<'
 			{
 			match('<'); 
 			}
@@ -728,8 +728,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = RAB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:414:5: ( '>' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:414:7: '>'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:424:5: ( '>' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:424:7: '>'
 			{
 			match('>'); 
 			}
@@ -748,8 +748,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = HA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:415:4: ( '#' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:415:6: '#'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:425:4: ( '#' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:425:6: '#'
 			{
 			match('#'); 
 			}
@@ -768,8 +768,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = IT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:416:5: ( '*' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:416:7: '*'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:426:5: ( '*' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:426:7: '*'
 			{
 			match('*'); 
 			}
@@ -788,8 +788,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = BOLD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:417:7: ( '**' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:417:9: '**'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:427:7: ( '**' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:427:9: '**'
 			{
 			match("**"); 
 
@@ -809,8 +809,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = ITBOLD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:418:9: ( '***' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:418:11: '***'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:428:9: ( '***' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:428:11: '***'
 			{
 			match("***"); 
 
@@ -830,8 +830,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = ST;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:419:5: ( '~~' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:419:7: '~~'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:429:5: ( '~~' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:429:7: '~~'
 			{
 			match("~~"); 
 
@@ -851,8 +851,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = HL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:420:5: ( '==' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:420:7: '=='
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:430:5: ( '==' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:430:7: '=='
 			{
 			match("=="); 
 
@@ -872,8 +872,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = SUBS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:421:7: ( '~' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:421:9: '~'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:431:7: ( '~' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:431:9: '~'
 			{
 			match('~'); 
 			}
@@ -892,8 +892,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = SUPS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:422:7: ( '^' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:422:9: '^'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:432:7: ( '^' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:432:9: '^'
 			{
 			match('^'); 
 			}
@@ -912,8 +912,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = CODE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:423:7: ( '\\'' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:423:9: '\\''
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:433:7: ( '\\'' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:433:9: '\\''
 			{
 			match('\''); 
 			}
@@ -932,8 +932,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = HRULE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:424:8: ( '___' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:424:10: '___'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:434:8: ( '___' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:434:10: '___'
 			{
 			match("___"); 
 
@@ -953,8 +953,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = US;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:425:4: ( '_' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:425:6: '_'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:435:4: ( '_' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:435:6: '_'
 			{
 			match('_'); 
 			}
@@ -973,8 +973,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = SL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:426:4: ( '/' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:426:6: '/'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:436:4: ( '/' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:436:6: '/'
 			{
 			match('/'); 
 			}
@@ -993,8 +993,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = EX;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:427:4: ( '!' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:427:6: '!'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:437:4: ( '!' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:437:6: '!'
 			{
 			match('!'); 
 			}
@@ -1013,8 +1013,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = QU;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:428:4: ( '\"' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:428:6: '\"'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:438:4: ( '\"' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:438:6: '\"'
 			{
 			match('\"'); 
 			}
@@ -1033,8 +1033,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = EQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:429:4: ( '=' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:429:6: '='
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:439:4: ( '=' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:439:6: '='
 			{
 			match('='); 
 			}
@@ -1053,8 +1053,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = GET;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:430:5: ( '>=' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:430:7: '>='
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:440:5: ( '>=' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:440:7: '>='
 			{
 			match(">="); 
 
@@ -1074,8 +1074,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LET;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:431:5: ( '<=' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:431:7: '<='
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:441:5: ( '<=' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:441:7: '<='
 			{
 			match("<="); 
 
@@ -1095,8 +1095,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:433:7: ( 'title' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:433:9: 'title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:443:7: ( 'title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:443:9: 'title'
 			{
 			match("title"); 
 
@@ -1116,8 +1116,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = S1TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:434:9: ( 's1title' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:434:11: 's1title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:444:9: ( 's1title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:444:11: 's1title'
 			{
 			match("s1title"); 
 
@@ -1137,8 +1137,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = S2TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:435:9: ( 's2title' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:435:11: 's2title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:445:9: ( 's2title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:445:11: 's2title'
 			{
 			match("s2title"); 
 
@@ -1158,8 +1158,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = S3TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:436:9: ( 's3title' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:436:11: 's3title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:446:9: ( 's3title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:446:11: 's3title'
 			{
 			match("s3title"); 
 
@@ -1179,8 +1179,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = S4TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:437:9: ( 's4title' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:437:11: 's4title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:447:9: ( 's4title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:447:11: 's4title'
 			{
 			match("s4title"); 
 
@@ -1200,8 +1200,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = S5TITLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:438:9: ( 's5title' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:438:11: 's5title'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:448:9: ( 's5title' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:448:11: 's5title'
 			{
 			match("s5title"); 
 
@@ -1221,8 +1221,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = TEXT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:439:6: ( 'text' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:439:8: 'text'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:449:6: ( 'text' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:449:8: 'text'
 			{
 			match("text"); 
 
@@ -1242,8 +1242,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = BLOCKQUOTE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:440:12: ( 'blockquote' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:440:14: 'blockquote'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:450:12: ( 'blockquote' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:450:14: 'blockquote'
 			{
 			match("blockquote"); 
 
@@ -1263,8 +1263,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = OLIST;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:441:7: ( 'olist' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:441:9: 'olist'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:451:7: ( 'olist' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:451:9: 'olist'
 			{
 			match("olist"); 
 
@@ -1284,8 +1284,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = ULIST;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:442:7: ( 'ulist' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:442:9: 'ulist'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:452:7: ( 'ulist' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:452:9: 'ulist'
 			{
 			match("ulist"); 
 
@@ -1305,8 +1305,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = TLIST;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:443:7: ( 'tlist' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:443:9: 'tlist'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:453:7: ( 'tlist' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:453:9: 'tlist'
 			{
 			match("tlist"); 
 
@@ -1326,8 +1326,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = CODEBLOCK;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:444:11: ( 'codeblock' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:444:13: 'codeblock'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:454:11: ( 'codeblock' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:454:13: 'codeblock'
 			{
 			match("codeblock"); 
 
@@ -1347,8 +1347,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LINK;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:445:6: ( 'link' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:445:8: 'link'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:455:6: ( 'link' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:455:8: 'link'
 			{
 			match("link"); 
 
@@ -1368,8 +1368,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = IMG;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:446:5: ( 'img' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:446:7: 'img'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:456:5: ( 'img' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:456:7: 'img'
 			{
 			match("img"); 
 
@@ -1389,8 +1389,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = TABLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:447:7: ( 'table' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:447:9: 'table'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:457:7: ( 'table' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:457:9: 'table'
 			{
 			match("table"); 
 
@@ -1410,8 +1410,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = L;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:448:3: ( '$l' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:448:5: '$l'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:458:3: ( '$l' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:458:5: '$l'
 			{
 			match("$l"); 
 
@@ -1431,8 +1431,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = C;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:449:3: ( '$c' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:449:5: '$c'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:459:3: ( '$c' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:459:5: '$c'
 			{
 			match("$c"); 
 
@@ -1452,8 +1452,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = R;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:450:3: ( '$r' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:450:5: '$r'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:460:3: ( '$r' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:460:5: '$r'
 			{
 			match("$r"); 
 
@@ -1473,8 +1473,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = FORMAT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:451:9: ( 'format' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:451:11: 'format'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:461:9: ( 'format' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:461:11: 'format'
 			{
 			match("format"); 
 
@@ -1494,8 +1494,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = FORMATTEXT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:452:12: ( 'formattext' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:452:14: 'formattext'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:462:12: ( 'formattext' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:462:14: 'formattext'
 			{
 			match("formattext"); 
 
@@ -1515,8 +1515,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = FUN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:453:5: ( 'fun' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:453:7: 'fun'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:463:5: ( 'fun' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:463:7: 'fun'
 			{
 			match("fun"); 
 
@@ -1536,8 +1536,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = FOR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:454:5: ( 'for' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:454:7: 'for'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:464:5: ( 'for' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:464:7: 'for'
 			{
 			match("for"); 
 
@@ -1557,8 +1557,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = IN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:455:4: ( 'in' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:455:6: 'in'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:465:4: ( 'in' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:465:6: 'in'
 			{
 			match("in"); 
 
@@ -1578,8 +1578,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = CLASS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:456:7: ( 'class' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:456:9: 'class'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:466:7: ( 'class' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:466:9: 'class'
 			{
 			match("class"); 
 
@@ -1599,8 +1599,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = LIST;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:457:6: ( 'list' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:457:8: 'list'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:467:6: ( 'list' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:467:8: 'list'
 			{
 			match("list"); 
 
@@ -1620,8 +1620,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = EQI;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:458:5: ( '=i' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:458:7: '=i'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:468:5: ( '=i' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:468:7: '=i'
 			{
 			match("=i"); 
 
@@ -1641,8 +1641,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = EQL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:459:5: ( '=l' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:459:7: '=l'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:469:5: ( '=l' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:469:7: '=l'
 			{
 			match("=l"); 
 
@@ -1660,8 +1660,8 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "G"
 	public final void mG() throws RecognitionException {
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:464:3: ( '%g' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:464:5: '%g'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:474:3: ( '%g' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:474:5: '%g'
 			{
 			match("%g"); 
 
@@ -1677,8 +1677,8 @@ public class MaltLexer extends Lexer {
 	// $ANTLR start "I"
 	public final void mI() throws RecognitionException {
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:466:3: ( '%i' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:466:5: '%i'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:476:3: ( '%i' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:476:5: '%i'
 			{
 			match("%i"); 
 
@@ -1696,8 +1696,8 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = VAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:467:5: ( ( LETTER ) ( LETTER | DIGIT | '_' )* )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:467:7: ( LETTER ) ( LETTER | DIGIT | '_' )*
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:477:5: ( ( LETTER ) ( LETTER | DIGIT | '_' )* )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:477:7: ( LETTER ) ( LETTER | DIGIT | '_' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -1707,7 +1707,7 @@ public class MaltLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:467:16: ( LETTER | DIGIT | '_' )*
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:477:16: ( LETTER | DIGIT | '_' )*
 			loop5:
 			while (true) {
 				int alt5=2;
@@ -1752,12 +1752,12 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = DOTVAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:469:8: ( VAR ( '.' VAR )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:469:10: VAR ( '.' VAR )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:479:8: ( VAR ( '.' VAR )? )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:479:10: VAR ( '.' VAR )?
 			{
 			mVAR(); 
 
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:469:14: ( '.' VAR )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:479:14: ( '.' VAR )?
 			int alt6=2;
 			int LA6_0 = input.LA(1);
 			if ( (LA6_0=='.') ) {
@@ -1765,7 +1765,7 @@ public class MaltLexer extends Lexer {
 			}
 			switch (alt6) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:469:15: '.' VAR
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:479:15: '.' VAR
 					{
 					match('.'); 
 					mVAR(); 
@@ -1791,10 +1791,10 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = INTEGER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:471:9: ( ( DIGIT )+ )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:471:11: ( DIGIT )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:481:9: ( ( DIGIT )+ )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:481:11: ( DIGIT )+
 			{
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:471:11: ( DIGIT )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:481:11: ( DIGIT )+
 			int cnt7=0;
 			loop7:
 			while (true) {
@@ -1843,14 +1843,14 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = FLOAT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:474:5: ( ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )? | '.' ( DIGIT )+ ( EXPONENT )? | ( DIGIT )+ EXPONENT )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:484:5: ( ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )? | '.' ( DIGIT )+ ( EXPONENT )? | ( DIGIT )+ EXPONENT )
 			int alt14=3;
 			alt14 = dfa14.predict(input);
 			switch (alt14) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:474:9: ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )?
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:484:9: ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )?
 					{
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:474:9: ( DIGIT )+
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:484:9: ( DIGIT )+
 					int cnt8=0;
 					loop8:
 					while (true) {
@@ -1884,7 +1884,7 @@ public class MaltLexer extends Lexer {
 					}
 
 					match('.'); 
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:474:20: ( DIGIT )*
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:484:20: ( DIGIT )*
 					loop9:
 					while (true) {
 						int alt9=2;
@@ -1913,7 +1913,7 @@ public class MaltLexer extends Lexer {
 						}
 					}
 
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:474:27: ( EXPONENT )?
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:484:27: ( EXPONENT )?
 					int alt10=2;
 					int LA10_0 = input.LA(1);
 					if ( (LA10_0=='E'||LA10_0=='e') ) {
@@ -1921,7 +1921,7 @@ public class MaltLexer extends Lexer {
 					}
 					switch (alt10) {
 						case 1 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:474:27: EXPONENT
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:484:27: EXPONENT
 							{
 							mEXPONENT(); 
 
@@ -1933,10 +1933,10 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:475:9: '.' ( DIGIT )+ ( EXPONENT )?
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:485:9: '.' ( DIGIT )+ ( EXPONENT )?
 					{
 					match('.'); 
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:475:13: ( DIGIT )+
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:485:13: ( DIGIT )+
 					int cnt11=0;
 					loop11:
 					while (true) {
@@ -1969,7 +1969,7 @@ public class MaltLexer extends Lexer {
 						cnt11++;
 					}
 
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:475:20: ( EXPONENT )?
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:485:20: ( EXPONENT )?
 					int alt12=2;
 					int LA12_0 = input.LA(1);
 					if ( (LA12_0=='E'||LA12_0=='e') ) {
@@ -1977,7 +1977,7 @@ public class MaltLexer extends Lexer {
 					}
 					switch (alt12) {
 						case 1 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:475:20: EXPONENT
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:485:20: EXPONENT
 							{
 							mEXPONENT(); 
 
@@ -1989,9 +1989,9 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:476:9: ( DIGIT )+ EXPONENT
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:486:9: ( DIGIT )+ EXPONENT
 					{
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:476:9: ( DIGIT )+
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:486:9: ( DIGIT )+
 					int cnt13=0;
 					loop13:
 					while (true) {
@@ -2044,10 +2044,10 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:480:5: ( ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' ) )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:480:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:490:5: ( ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:490:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
 			{
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:480:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:490:9: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
 			int alt18=2;
 			int LA18_0 = input.LA(1);
 			if ( (LA18_0=='/') ) {
@@ -2081,11 +2081,11 @@ public class MaltLexer extends Lexer {
 
 			switch (alt18) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:480:10: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:490:10: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
 					{
 					match("//"); 
 
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:480:15: (~ ( '\\n' | '\\r' ) )*
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:490:15: (~ ( '\\n' | '\\r' ) )*
 					loop15:
 					while (true) {
 						int alt15=2;
@@ -2114,7 +2114,7 @@ public class MaltLexer extends Lexer {
 						}
 					}
 
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:480:29: ( '\\r' )?
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:490:29: ( '\\r' )?
 					int alt16=2;
 					int LA16_0 = input.LA(1);
 					if ( (LA16_0=='\r') ) {
@@ -2122,7 +2122,7 @@ public class MaltLexer extends Lexer {
 					}
 					switch (alt16) {
 						case 1 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:480:29: '\\r'
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:490:29: '\\r'
 							{
 							match('\r'); 
 							}
@@ -2135,11 +2135,11 @@ public class MaltLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:481:9: '/*' ( options {greedy=false; } : . )* '*/'
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:491:9: '/*' ( options {greedy=false; } : . )* '*/'
 					{
 					match("/*"); 
 
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:481:14: ( options {greedy=false; } : . )*
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:491:14: ( options {greedy=false; } : . )*
 					loop17:
 					while (true) {
 						int alt17=2;
@@ -2160,7 +2160,7 @@ public class MaltLexer extends Lexer {
 
 						switch (alt17) {
 						case 1 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:481:42: .
+							// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:491:42: .
 							{
 							matchAny(); 
 							}
@@ -2195,10 +2195,10 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:484:5: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:484:9: ( ' ' | '\\t' | '\\r' | '\\n' )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:494:5: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:494:9: ( ' ' | '\\t' | '\\r' | '\\n' )+
 			{
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:484:9: ( ' ' | '\\t' | '\\r' | '\\n' )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:494:9: ( ' ' | '\\t' | '\\r' | '\\n' )+
 			int cnt19=0;
 			loop19:
 			while (true) {
@@ -2248,11 +2248,11 @@ public class MaltLexer extends Lexer {
 		try {
 			int _type = STRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:495:8: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )* '\"' )
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:495:11: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )* '\"'
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:505:8: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )* '\"' )
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:505:11: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )* '\"'
 			{
 			match('\"'); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:495:15: ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )*
+			// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:505:15: ( ESC_SEQ |~ ( '\\\\' | '\"' | '[' | ']' | '*' ) )*
 			loop20:
 			while (true) {
 				int alt20=3;
@@ -2266,14 +2266,14 @@ public class MaltLexer extends Lexer {
 
 				switch (alt20) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:495:17: ESC_SEQ
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:505:17: ESC_SEQ
 					{
 					mESC_SEQ(); 
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:495:27: ~ ( '\\\\' | '\"' | '[' | ']' | '*' )
+					// D:\\Documenti\\malt\\MaltProject\\src\\compilerPackage\\Malt.g:505:27: ~ ( '\\\\' | '\"' | '[' | ']' | '*' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= ')')||(input.LA(1) >= '+' && input.LA(1) <= 'Z')||(input.LA(1) >= '^' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -2808,7 +2808,7 @@ public class MaltLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "473:1: FLOAT : ( ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )? | '.' ( DIGIT )+ ( EXPONENT )? | ( DIGIT )+ EXPONENT );";
+			return "483:1: FLOAT : ( ( DIGIT )+ '.' ( DIGIT )* ( EXPONENT )? | '.' ( DIGIT )+ ( EXPONENT )? | ( DIGIT )+ EXPONENT );";
 		}
 	}
 

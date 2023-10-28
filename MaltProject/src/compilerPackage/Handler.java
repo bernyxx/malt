@@ -97,6 +97,22 @@ public class Handler {
 	 * @param name Nome della variabile
 	 */
 
+	public void declareInFor(Token type, Token name) {
+		String t = type.getText();
+		String n = name.getText();
+		VarDescriptor vd = new VarDescriptor(n, t);
+
+		Hashtable<String, VarDescriptor> forTable = functionTables.get("for");
+
+		if (forTable.contains(n)) {
+			System.err.println(
+					"La variabile " + n + " è già stata dichiarata nel ciclo for --> riga (" + type.getLine() + ")");
+		} else {
+			forTable.put(n, vd);
+			System.out.println("È stata dichiarata una variabile " + n + " --> riga (" + type.getLine() + ")");
+		}
+	}
+
 	public void declareVar(Token type, Token name) {
 		String t = type.getText();
 		String n = name.getText();
@@ -196,9 +212,11 @@ public class Handler {
 	 * @param type      tipo della variabile
 	 * @param name      nome della variabile
 	 */
-	public void declareNew(Token className, Token functionName, Token type, Token name) {
+	public void declareNew(Token className, Token functionName, boolean inFor, Token type, Token name) {
 
-		if (className == null && functionName == null) {
+		if (inFor) {
+			declareInFor(type, name);
+		} else if (className == null && functionName == null) {
 			// dichiarazione di variabili top-level (fuori da funzioni, metodi o classi)
 			declareVar(type, name);
 		} else {
@@ -253,7 +271,7 @@ public class Handler {
 		}
 	}
 
-	public void assignVarValue(Token className, Token functionName, Token name, String value) {
+	public void assignVarValue(Token className, Token functionName, boolean inFor, Token name, String value) {
 
 		String n = name.getText();
 		String v = value.substring(1, value.length() - 1);
@@ -268,7 +286,21 @@ public class Handler {
 			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
 			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
 
-			if (localTable.containsKey(n)) {
+			Hashtable<String, VarDescriptor> forTable = null;
+
+			if (inFor) {
+				forTable = functionTables.get("for");
+			}
+
+			if (inFor && forTable.containsKey(n)) {
+				VarDescriptor vd = forTable.get(n);
+				vd.value = v;
+				System.out
+						.println("Alla variabile " + n + " del ciclo for del metodo " + fn + " della classe " + cn
+								+ " è stato assegnato il valore " + v
+								+ " --> riga ("
+								+ name.getLine() + ")");
+			} else if (localTable.containsKey(n)) {
 				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
 				System.out
@@ -304,7 +336,21 @@ public class Handler {
 			// localTable della funzione dove viene assegnata la variabile
 			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
 
-			if (localTable.containsKey(n)) {
+			Hashtable<String, VarDescriptor> forTable = null;
+
+			if (inFor) {
+				forTable = functionTables.get("for");
+			}
+
+			if (inFor && forTable.containsKey(n)) {
+				VarDescriptor vd = forTable.get(n);
+				vd.value = v;
+				System.out
+						.println("Alla variabile " + n + " del ciclo for della funzione " + fn
+								+ " è stato assegnato il valore " + v
+								+ " --> riga ("
+								+ name.getLine() + ")");
+			} else if (localTable.containsKey(n)) {
 				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
 				System.out
@@ -333,7 +379,21 @@ public class Handler {
 			// localTable della funzione dove viene assegnata la variabile
 			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
 
-			if (localTable.containsKey(n)) {
+			Hashtable<String, VarDescriptor> forTable = null;
+
+			if (inFor) {
+				forTable = functionTables.get("for");
+			}
+
+			if (inFor && forTable.containsKey(n)) {
+				VarDescriptor vd = forTable.get(n);
+				vd.value = v;
+				System.out
+						.println("Alla variabile " + n + " del ciclo for della classe " + cn
+								+ " è stato assegnato il valore " + v
+								+ " --> riga ("
+								+ name.getLine() + ")");
+			} else if (localTable.containsKey(n)) {
 				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
 				System.out
@@ -355,7 +415,22 @@ public class Handler {
 			}
 
 		} else {
-			if (symbolTable.containsKey(n)) {
+			Hashtable<String, VarDescriptor> forTable = null;
+
+			if (inFor) {
+				forTable = functionTables.get("for");
+			}
+
+			if (inFor && forTable.containsKey(n)) {
+				VarDescriptor vd = forTable.get(n);
+				vd.value = v;
+				System.out
+						.println("Alla variabile del ciclo for " + n
+								+ " è stato assegnato il valore " + v
+								+ " --> riga ("
+								+ name.getLine() + ")");
+
+			} else if (symbolTable.containsKey(n)) {
 				VarDescriptor vd = symbolTable.get(n);
 				vd.value = v;
 				System.out
@@ -371,12 +446,205 @@ public class Handler {
 
 	}
 
-	public void assignVarToVar(Token className, Token functionName, Token var1, Token var2) {
+	public void assignListValue(Token className, Token functionName, boolean inFor, Token name, Vector<Token> value) {
+
+		String n = name.getText();
+
+		String[] listValue = new String[value.size()];
+
+		for (int i = 0; i < value.size(); i++) {
+			listValue[i] = value.get(i).getText();
+		}
+
+		// caso della variabile in un metodo
+		if (className != null && functionName != null) {
+
+			String cn = className.getText();
+			String fn = functionName.getText();
+
+			// localTable della funzione dove viene assegnata la variabile
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
+			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
+
+			Hashtable<String, VarDescriptor> forTable = null;
+
+			if (inFor) {
+				forTable = functionTables.get("for");
+			}
+
+			if (inFor && forTable.containsKey(n)) {
+				VarDescriptor vd = forTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Alla variabile " + n + " del ciclo for del metodo " + fn + " della classe " + cn
+								+ " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+			} else if (localTable.containsKey(n)) {
+				VarDescriptor vd = localTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Alla variabile " + n + " del metodo " + fn + " della classe " + cn
+								+ " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+			} else if (classTable.containsKey(n)) {
+				VarDescriptor vd = classTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Al campo " + n + " della classe " + cn + " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+			} else if (symbolTable.containsKey(n)) {
+				VarDescriptor vd = symbolTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Alla variabile " + n + " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+			} else {
+				System.out.println("Errore assegnamento! La variabile " + n + " del metodo " + fn + " della classe "
+						+ cn + " non esiste!"
+						+ "--> riga ("
+						+ name.getLine() + ")");
+			}
+		} else if (className == null && functionName != null) {
+			// caso delle variabili in funzioni top-level
+
+			String fn = functionName.getText();
+
+			// localTable della funzione dove viene assegnata la variabile
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
+
+			Hashtable<String, VarDescriptor> forTable = null;
+
+			if (inFor) {
+				forTable = functionTables.get("for");
+			}
+
+			if (inFor && forTable.containsKey(n)) {
+				VarDescriptor vd = forTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Alla variabile " + n + " del ciclo for della funzione " + fn
+								+ " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+			} else if (localTable.containsKey(n)) {
+				VarDescriptor vd = localTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Alla variabile " + n + " della funzione " + fn
+								+ " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+			} else if (symbolTable.containsKey(n)) {
+				VarDescriptor vd = symbolTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Alla variabile " + n + " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+			} else {
+				System.out.println("Errore assegnamento! La variabile " + n + " della funzione " + fn + " non esiste!"
+						+ "--> riga ("
+						+ name.getLine() + ")");
+			}
+
+		} else if (className != null && functionName == null) {
+			// caso dei campi di una classe
+
+			String cn = className.getText();
+
+			// localTable della funzione dove viene assegnata la variabile
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
+
+			Hashtable<String, VarDescriptor> forTable = null;
+
+			if (inFor) {
+				forTable = functionTables.get("for");
+			}
+
+			if (inFor && forTable.containsKey(n)) {
+				VarDescriptor vd = forTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Alla variabile " + n + " del ciclo for della classe " + cn
+								+ " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+			} else if (localTable.containsKey(n)) {
+				VarDescriptor vd = localTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Al campo " + n + " della classe " + cn
+								+ " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+			} else if (symbolTable.containsKey(n)) {
+				VarDescriptor vd = symbolTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Alla variabile " + n + " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+			} else {
+				System.out.println("Errore assegnamento! Il campo " + n + " della classe  " + cn + " non esiste!"
+						+ "--> riga ("
+						+ name.getLine() + ")");
+			}
+
+		} else {
+			Hashtable<String, VarDescriptor> forTable = null;
+
+			if (inFor) {
+				forTable = functionTables.get("for");
+			}
+
+			if (inFor && forTable.containsKey(n)) {
+				VarDescriptor vd = forTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Alla variabile del ciclo for " + n
+								+ " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+
+			} else if (symbolTable.containsKey(n)) {
+				VarDescriptor vd = symbolTable.get(n);
+				vd.listValue = listValue;
+				System.out
+						.println("Alla variabile " + n + " è stata assegnata una lista --> riga ("
+								+ name.getLine() + ")");
+			} else {
+				System.out.println("Errore assegnamento! La variabile " + n + " non esiste!"
+						+ "--> riga ("
+						+ name.getLine() + ")");
+			}
+		}
+	}
+
+	public boolean checkType(VarDescriptor vd1, VarDescriptor vd2) {
+		if (vd1.varType.equals(vd2.varType)) {
+			return true;
+		}
+		return false;
+	}
+
+	public void assignVarToVar(Token className, Token functionName, boolean inFor, Token var1, Token var2) {
 
 		String value = "\"";
-		value += getVarValue(className, functionName, var2) + "\"";
 
-		assignVarValue(className, functionName, var1, value);
+		VarDescriptor leftVar = getVarDescriptor(className, functionName, inFor, var1);
+		VarDescriptor rightVar = getVarDescriptor(className, functionName, inFor, var2);
+
+		if (leftVar == null) {
+			System.err.println("La variabile " + var1.getText() + " non è stata trovata!");
+			return;
+		}
+
+		if (rightVar == null) {
+			System.err.println("La variabile " + var2.getText() + " non è stata trovata!");
+			return;
+		}
+
+		if (!checkType(leftVar, rightVar)) {
+			System.out.println("Assegnamento di variabile ad altra variabile non corretto! Incompatibilità tra tipi!");
+			return;
+		}
+
+		value += rightVar.value + "\"";
+
+		assignVarValue(className, functionName, inFor, var1, value);
 	}
 
 	public void functionCall(Token className, Token functionName, Token functionToCall, Vector<String> args) {
@@ -796,8 +1064,14 @@ public class Handler {
 		}
 	}
 
-	public String getVarValue(Token className, Token functionName, Token name) {
+	public VarDescriptor getVarDescriptor(Token className, Token functionName, boolean inFor, Token name) {
 		String n = name.getText();
+
+		Hashtable<String, VarDescriptor> forTable = null;
+
+		if (inFor) {
+			forTable = functionTables.get("for");
+		}
 
 		if (className != null && functionName != null) {
 			String cn = className.getText();
@@ -806,28 +1080,30 @@ public class Handler {
 			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
 			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
 
-			if (localTable.containsKey(n)) {
-				return localTable.get(n).value;
+			if (forTable != null && forTable.containsKey(n)) {
+				return forTable.get(n);
+			} else if (localTable.containsKey(n)) {
+				return localTable.get(n);
 			} else if (classTable.containsKey(n)) {
-				return classTable.get(n).value;
+				return classTable.get(n);
 			} else if (symbolTable.containsKey(n)) {
-				return symbolTable.get(n).value;
+				return symbolTable.get(n);
 			} else {
-				System.out.println("Variabile " + n + " non trovata!");
-				return "";
+				return null;
 			}
 
 		} else if (className == null && functionName != null) {
 			String fn = functionName.getText();
 			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
 
-			if (localTable.containsKey(n)) {
-				return localTable.get(n).value;
+			if (forTable != null && forTable.containsKey(n)) {
+				return forTable.get(n);
+			} else if (localTable.containsKey(n)) {
+				return localTable.get(n);
 			} else if (symbolTable.containsKey(n)) {
-				return symbolTable.get(n).value;
+				return symbolTable.get(n);
 			} else {
-				System.out.println("Variabile " + n + " non trovata!");
-				return "";
+				return null;
 			}
 
 		} else if (className != null && functionName == null) {
@@ -835,30 +1111,33 @@ public class Handler {
 
 			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
 
-			if (localTable.containsKey(n)) {
-				return localTable.get(n).value;
+			if (forTable != null && forTable.containsKey(n)) {
+				return forTable.get(n);
+			} else if (localTable.containsKey(n)) {
+				return localTable.get(n);
 			} else if (symbolTable.containsKey(n)) {
-				return symbolTable.get(n).value;
+				return symbolTable.get(n);
 			} else {
-				System.out.println("Variabile " + n + " non trovata!");
-				return "";
+				return null;
 			}
 
 		} else {
-			if (symbolTable.containsKey(n)) {
-				return symbolTable.get(n).value;
+
+			if (forTable != null && forTable.containsKey(n)) {
+				return forTable.get(n);
+			} else if (symbolTable.containsKey(n)) {
+				return symbolTable.get(n);
 			} else {
-				System.out.println("Variabile " + n + " non trovata!");
-				return "";
+				return null;
 			}
 		}
 
 	}
 
-	public void handleFormat(Token className, Token functionName, Token resultVar, Token formatText,
+	public void handleFormat(Token className, Token functionName, boolean inFor, Token resultVar, Token formatText,
 			Vector<Token> vars) {
 
-		String ft = getVarValue(className, functionName, formatText);
+		String ft = getVarDescriptor(className, functionName, inFor, formatText).value;
 
 		Vector<String> matches = new Vector<String>();
 		Vector<String> values = new Vector<String>();
@@ -882,7 +1161,13 @@ public class Handler {
 		}
 
 		for (Token var : vars) {
-			String value = getVarValue(className, functionName, var);
+			VarDescriptor vd = getVarDescriptor(className, functionName, inFor, var);
+
+			if (vd == null) {
+				System.err.println("La variabile " + var.getText() + " passata alla format non è stata trovata!");
+				return;
+			}
+			String value = vd.value;
 			System.out.println("Var value: " + value);
 			values.add(value);
 		}
@@ -911,8 +1196,51 @@ public class Handler {
 
 		resultStr += splitted[splitted.length - 1] + "\"";
 
-		assignVarValue(className, functionName, resultVar, resultStr);
+		assignVarValue(className, functionName, inFor, resultVar, resultStr);
 
+	}
+
+	public void declareFor(Token className, Token functionName, boolean isIncr, Token name, Token it) {
+
+		Hashtable<String, VarDescriptor> forTable = null;
+		if (functionTables.containsKey("for")) {
+			functionTables.get("for").clear();
+		} else {
+			functionTables.put("for", new Hashtable<String, VarDescriptor>());
+		}
+
+		forTable = functionTables.get("for");
+
+		if (isIncr) {
+			// iterazione tramite counter
+			VarDescriptor vd = new VarDescriptor(name.getText(), "int");
+			vd.value = "0";
+
+			VarDescriptor vdMax = new VarDescriptor("for", "int");
+			vdMax.value = it.getText();
+
+			forTable.put(name.getText(), vd);
+			forTable.put("for", vdMax);
+
+		} else {
+			// iterazione di un for sulle liste
+			VarDescriptor vdIt = getVarDescriptor(className, functionName, true, it);
+			String[] values = vdIt.listValue;
+
+			int length = vdIt.listValue.length;
+
+			if (length <= 0) {
+				System.err.println("Impossibile iterare una lista vuota --> riga ("
+						+ it.getLine() + ")");
+				return;
+			}
+
+			VarDescriptor vd = new VarDescriptor(name.getText(), "text");
+			vd.value = values[0];
+
+			forTable.put(name.getText(), vd);
+
+		}
 	}
 
 	// stampa le symbol tables

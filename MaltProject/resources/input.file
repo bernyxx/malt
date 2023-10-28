@@ -1,37 +1,9 @@
-text pino = "pino esterno";
-text gino = "gino esterno";
+text t = "gino";
 
-text ft = "un %ib albero %b verde";
+list l1 = ["primo", "secondo"];
 
-text t_out;
+list vuoto = [];
 
-class pianta{
-    fun pino(text arg1, text arg2){
-        text t1 = "pino in pianta";
-    }
+for(pino in l1){
+    text t = pino;
 }
-
-class albero{
-    text t = "t in albero";
-    text t2 = "t2 in albero";
-
-    text gino = "dentro gino";
-
-    pino = gino;
-
-    fun metodo(){
-        t_out = format(ft, pino, gino);
-        //pino = gino;
-    }
-
-    //pian.pino(t, t2);
-    
-}
-
-fun gino(){
-    text gino = "dentro gino";
-    pianta.pino(pino, gino);
-    //pino = gino;
-}
-
-pianta.pino(gino, pino);
