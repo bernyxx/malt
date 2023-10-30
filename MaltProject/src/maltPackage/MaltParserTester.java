@@ -1,15 +1,15 @@
-package myPackage;
+package maltPackage;
 
 import java.io.FileReader;
 
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
 
-//import compilerPackage.Handler;
-import compilerPackage.MaltLexer;
-import compilerPackage.MaltParser;
+import maltCompilerPackage.MaltHandler;
+import maltCompilerPackage.MaltLexer;
+import maltCompilerPackage.MaltParser;
 
-public class ParserTester {
+public class MaltParserTester {
 
 	static MaltParser parser;
 
@@ -36,15 +36,13 @@ public class ParserTester {
 			parser.parseJava();
 
 			// 5.controllo i risultati
-			/*
-			 * Handler h = parser.getHandler();
-			 * if (h.getErrorList().size() == 0)
-			 * System.out.println ("Parsing terminato con successo");
-			 * else
-			 * for (int i=0; i<h.getErrorList().size(); i++)
-			 * System.err.println ("Errore " + (i+1) +
-			 * ":\t" + h.getErrorList().get(i)+"");
-			 */
+			MaltHandler h = parser.getMaltHandler();
+			if (h.getErrorList().size() == 0)
+				System.out.println ("Parsing terminato con successo");
+			else
+				for (int i=0; i<h.getErrorList().size(); i++)
+					System.err.println ("Errore " + (i+1) +
+							":\t" + h.getErrorList().get(i)+"");
 		} catch (Exception e) {
 			System.out.println("Parsing con ANTLR abortito\n\n");
 			e.printStackTrace();

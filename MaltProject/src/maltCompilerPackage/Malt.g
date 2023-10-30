@@ -8,28 +8,46 @@ options {
 }
 
 @lexer::header {
-	package compilerPackage;
+	package maltCompilerPackage;
 }
 
 @header {
-	package compilerPackage;
+	package maltCompilerPackage;
 	
 	import java.util.Vector;
 }
 
 @members {
 
-	Handler h;
+	MaltHandler h;
 	
-	void initHandler () {
-	h = new Handler();
+	public MaltHandler getMaltHandler () {
+		return h;
+	}
+
+	// Override e delega nella gestione degli errori sintattici
+	public void displayRecognitionError(String[] tokenNames,
+	RecognitionException e) {
+		// recupero alcune meta informazioni relative all'errore
+		String hdr = " * " + getErrorHeader(e);
+		String msg = " - " + getErrorMessage(e, tokenNames);
+		
+		// recuperoil token corrente  
+		Token tk = input.LT(1);
+		
+		// lascio gestire il messaggio all'handler
+		h.handleError(tk, hdr, msg);
+	}
+	
+	void initMaltHandler () {
+	h = new MaltHandler(input);
 	}
 }
 
 
 
 parseJava
-@init{initHandler();}
+@init{initMaltHandler();}
 	:
 		(/*instrRule |*/ functionRule[null] | fieldRule[null, null, false] | classRule | assignRule[null, null, false] )+ EOF 
 		{h.printTable();
@@ -205,7 +223,7 @@ argumentTypeRule returns [Token type]
 
 functionCallRule [Token className, Token functionName]
 	:
-		(v1=VAR | v1=DOTVAR) LP {Vector<String> vct = new Vector<String>();} (t1=VAR {vct.add($t1.getText());} (CM t2=VAR {vct.add($t2.getText());})*)? RP {h.functionCall(className, functionName, $v1, vct);}
+		(v1=VAR | v1=DOTVAR) LP {Vector<Token> vct = new Vector<Token>();} (t1=VAR {vct.add($t1);} (CM t2=VAR {vct.add($t2);})*)? RP {h.functionCall(className, functionName, $v1, vct);}
 ;
 
 
@@ -504,3 +522,5 @@ WS  :   ( ' '
 //STR 	:	LP (~(LP | RP | '"'))* RP;
 
 STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*') )* '"';
+
+ERROR_TK  :	. ;

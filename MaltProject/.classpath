@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:\Documenti\ANTLR\antlr-3.4-complete.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Martina/Documents/UNIBG/2022-23/PRIMO SEMESTRE/Linguaggi formali e compilatori/tutorati/programma/antlr-3.4-complete.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

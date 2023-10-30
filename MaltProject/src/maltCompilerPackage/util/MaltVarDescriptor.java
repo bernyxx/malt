@@ -1,9 +1,9 @@
-package compilerPackage.util;
+package maltCompilerPackage.util;
 
 import java.util.Arrays;
 import java.util.Vector;
 
-public class VarDescriptor {
+public class MaltVarDescriptor {
 	public String varName;
 	public String varType;
 	public String value;
@@ -11,7 +11,7 @@ public class VarDescriptor {
 
 	private Vector<String> params;
 
-	public VarDescriptor(String n, String t) {
+	public MaltVarDescriptor(String n, String t) {
 		varName = n;
 		varType = t;
 		value = "";

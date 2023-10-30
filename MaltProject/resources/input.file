@@ -2,8 +2,13 @@ text t = "gino";
 
 list l1 = ["primo", "secondo"];
 
-list vuoto = [];
+list vuoto = [t,t,t];
+
+fun pinetto(list r){
+c = a+b;
+}
 
 for(pino in l1){
     text t = pino;
+    funz();
 }

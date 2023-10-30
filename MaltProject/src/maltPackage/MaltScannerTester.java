@@ -1,14 +1,14 @@
-package myPackage;
+package maltPackage;
 
 import java.io.FileReader;
 import java.io.IOException;
 
-import compilerPackage.MaltLexer;
-
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.Token;
 
-public class ScannerTester {
+import maltCompilerPackage.MaltLexer;
+
+public class MaltScannerTester {
 
 	public static void main(String[] args) throws IOException {
 		// inserire il path-name del file di input
@@ -38,18 +38,16 @@ public class ScannerTester {
 
 				// attivo questo controllo se voglio scartare i token nascosti
 				if (tk.getChannel() != MaltLexer.HIDDEN)
-					// if (tk.getType() != MaltLexer.ERROR_TK)
-					// stampo le informazioni del token corrente
-					System.out.println("Token " + i++ + ": "
-							+ "(" + line + "," + col + ")\t\t"
-							+ "TokenType: " + type + "\t" + text);
-				/*
-				 * else
-				 * // stampo le informazioni del token di errore sullo standard error
-				 * System.err.println("Token " + i++ + ": "
-				 * + "(" + line + "," + col + ")\t\t"
-				 * + "TokenType: " + type + "\t" + text + " ERRORE!");
-				 */
+					if (tk.getType() != MaltLexer.ERROR_TK)
+						// stampo le informazioni del token corrente
+						System.out.println("Token " + i++ + ": "
+								+ "(" + line + "," + col + ")\t\t"
+								+ "TokenType: " + type + "\t" + text);
+					else
+						// stampo le informazioni del token di errore sullo standard error
+						System.err.println("Token " + i++ + ": "
+								+ "(" + line + "," + col + ")\t\t"
+								+ "TokenType: " + type + "\t" + text + " ERRORE!");
 			}
 
 		} catch (Exception e) {
