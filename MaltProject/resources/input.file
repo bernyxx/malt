@@ -2,13 +2,12 @@ text t = "gino";
 
 list l1 = ["primo", "secondo"];
 
-list vuoto = [t,t,t];
-
 fun pinetto(list r){
-c = a+b;
+list l2 = [t,t,t];
+
+list l3 = ["primo", t, g, "secondo"];
 }
 
-for(pino in l1){
-    text t = pino;
-    funz();
-}
+text ft = "gino %b gino";
+text p = "pino";
+format(t, ft, p);

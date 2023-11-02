@@ -49,36 +49,85 @@ options {
 parseJava
 @init{initMaltHandler();}
 	:
-		(/*instrRule |*/ functionRule[null] | fieldRule[null, null, false] | classRule | assignRule[null, null, false] )+ EOF 
+		(functionRule[null] | declarationRule[null, null, false] | classRule | assignRule[null, null, false] )+ EOF 
 		{h.printTable();
 		System.out.println("    - Ho riconosciuto un documento Malt");}
-; // TODO: aggiungere instrRule
+;
 
 
-instrRule
-	:	((titleRule 
-		|  textDeclRule 
-		|  blockquoteRule 
-		|  olistRule
-		|  ulistRule 
-		|  tlistRule 
-		|  codeBlockRule 
-		|  tableRule 
-		|  imageRule
-		|  linkRule 
-		|  listRule[null,null, false]
-		|  formatText 
-		| quickLinkRule
-		| horizontalRule
-		) SE) | forRule[null, null]
-		
-;	
-
-
-titleRule 
+functionRule [Token className]
 	:
-		t=titleTypeRule STRING refRule?
-		{System.out.println("    - Ho riconosciuto un titolo");}
+		f=FUN n=VAR {h.declareFunCl(className,$n);} LP (argumentsRule[className, $n])? RP LCB ((declarationRule[className,$n, false]) | (assignRule[className, $n, false]))+ RCB
+		{System.out.println("    - Ho riconosciuto una funzione");}
+; //TODO: Aggiungere il ritorno dei valori (es. return "pino")
+  //TODO: eseguire le istruzioni nella funzione/metodi alla chiamata e non durante la dichiarazione della funzione
+  //	  stessa cosa anche per il ciclo for (per iterare più volte)
+
+
+argumentsRule [Token className, Token functionName]
+	: 	
+		t=argumentTypeRule n=VAR {h.declareArg($className, $functionName, t, $n);} (CM t=argumentTypeRule n=VAR {h.declareArg($className, $functionName, t, $n);})*
+;
+
+
+argumentTypeRule returns [Token type]
+	:
+		(res=titleTypeRule {t = res;} | t=TEXT | t=BLOCKQUOTE | t=OLIST | t=ULIST | t=TLIST | t=CODEBLOCK | t=LINK | t=IMG | t=TABLE | t=FORMATTEXT | t=LIST) {type = $t;}
+;
+
+
+functionCallRule [Token className, Token functionName]
+	:
+		(v1=VAR | v1=DOTVAR) LP {Vector<Token> vct = new Vector<Token>();} (t1=VAR {vct.add($t1);} (CM t2=VAR {vct.add($t2);})*)? RP {h.functionCall(className, functionName, $v1, vct);}
+;
+
+
+forRule [Token className, Token functionName]
+	:	forInRule [className, functionName] | forIncrRule[className, functionName]
+		
+;
+
+
+forInRule [Token className, Token functionName]
+	:	FOR LP n=VAR IN i=VAR RP LCB {h.declareFor($className, $functionName, false, $n, $i);} (/*instrRule |*/ declarationRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
+		{System.out.println("    - Ho riconosciuto un for in");}
+;
+
+
+forIncrRule [Token className, Token functionName]
+	:	FOR LP n=VAR CM i=INTEGER RP LCB {h.declareFor($className, $functionName, true, $n, $i);} (/*instrRule |*/ declarationRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
+		{System.out.println("    - Ho riconosciuto un for incr");}
+;
+
+
+classRule
+	:
+		f=CLASS n=VAR {h.declareFunCl($n, null);} LCB (declarationRule[$n,null, false] | functionRule[$n] | assignRule[$n, null, false])* RCB
+		{System.out.println("    - Ho riconosciuto una classe");}
+;
+
+
+declarationRule [Token className, Token functionName, boolean inFor]
+	:
+		(( declareTitleRule [className, functionName, inFor] 
+		| declareTextRule [className, functionName, inFor] 
+		| declareBlockQuoteRule [className, functionName, inFor] 
+		| declareOlistRule [className, functionName, inFor] 
+		| declareUlistRule [className, functionName, inFor]
+		| declareTlistRule [className, functionName, inFor]
+		| declareCodeBlockRule [className, functionName, inFor]
+		| declareTableRule [className, functionName, inFor] 
+		| declareImageRule [className, functionName, inFor]
+		| declareLinkRule [className, functionName, inFor] 
+		| declareListRule [className, functionName, inFor] 
+		| functionCallRule[className, functionName]
+		| formatRule[className, functionName, inFor] ) SE) | forRule[className, functionName]
+;
+
+
+declareTitleRule [Token className, Token functionName, boolean inFor]
+	:
+		t=titleTypeRule n=VAR {h.declareNew($className, $functionName, inFor, t, $n);} (assignTitleRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
@@ -94,85 +143,45 @@ refRule
 ;
 
 
-textDeclRule
+declareTextRule [Token className, Token functionName, boolean inFor] 
 	:
-		t=TEXT STRING 
-		{System.out.println("    - Ho riconosciuto un testo");}
+		t=TEXT n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-blockquoteRule
+declareBlockQuoteRule [Token className, Token functionName, boolean inFor]
 	:
-		t=BLOCKQUOTE STRING
-		{System.out.println("    - Ho riconosciuto un BLOCKQUOTE");}
+		t=BLOCKQUOTE n=VAR {h.declareNew(className, functionName, inFor, $t, $n);}  (assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-olistRule
+declareOlistRule [Token className, Token functionName, boolean inFor]
 	:
-		t=OLIST textListRule
-		{System.out.println("    - Ho riconosciuto un OLIST");}
+		t=OLIST n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])? 
 ;
 
 
-textListRule returns [String value]
-	:	v1=LP v2=STRING {String cicle = $v2.getText();} (t1=CM t2=STRING {cicle = cicle + $t1.getText() + $t2.getText();})+ v3=RP {value = $v1.getText() + $v2.getText() + cicle + $v3.getText();}
+declareUlistRule [Token className, Token functionName, boolean inFor]
+	:
+		t=ULIST n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])? 
 ;
 
 
-ulistRule
+declareTlistRule [Token className, Token functionName, boolean inFor]
 	:
-		t=ULIST textListRule
-		{System.out.println("    - Ho riconosciuto un ULIST");}
+		t=TLIST n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-tlistRule 
+declareCodeBlockRule [Token className, Token functionName, boolean inFor]
 	:
-		t=TLIST textListRule
-		{System.out.println("    - Ho riconosciuto un TLIST");}
+		t=CODEBLOCK (LP (~(LP | RP | '"'))* RP)? n=VAR  {h.declareNew(className, functionName, inFor, $t, $n);} (assignStringRule[$className, $functionName, $inFor, $n]| assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-codeBlockRule 
+declareTableRule [Token className, Token functionName, boolean inFor]
 	:
-		t=CODEBLOCK STRING? STRING
-		{System.out.println("    - Ho riconosciuto un BLOCKCODE");}
-;
-
-
-horizontalRule
-	:
-		HRULE
-		{System.out.println("    - Ho riconosciuto un HORIZ");}
-;
-
-
-linkRule 
-	:
-		t=LINK LP (STRING | imageRule) CM STRING RP
-		{System.out.println("    - Ho riconosciuto un link");}
-;
-
-
-imageRule returns [String value]
-	:
-		v1=IMG v2=LP v3=STRING {String cycle = $v3.getText();} (t1=CM t2=STRING {cycle = cycle + $t1.getText() + $t2.getText();})? v4=RP {value = $v1.getText() + $v2.getText() + cycle + $v4.getText();}
-		{System.out.println("    - Ho riconosciuto un'immagine");}
-;
-
-
-quickLinkRule
-	:
-		LAB STRING RAB
-		{System.out.println("    - Ho riconosciuto un quicklink");}
-;
-
-
-tableRule
-	:
-		t=TABLE talignmentRule? LP trowRule (CM trowRule)* RP
-		{System.out.println("    - Ho riconosciuto una tabella");}
+		t=TABLE n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignTableRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
@@ -194,143 +203,20 @@ trowRule returns [String value]
 ;
 
 
-formatText
-	:
-		t=FORMATTEXT STRING
-		{System.out.println("    - Ho riconosciuto formattext");}
-;
-
-
-functionRule [Token className]
-	:
-		f=FUN n=VAR {h.declareFunCl(className,$n);} LP (argumentsRule[className, $n])? RP LCB ((fieldRule[className,$n, false]) | (assignRule[className, $n, false]))+ RCB
-		{System.out.println("    - Ho riconosciuto una funzione");}
-; //TODO: Aggiungere il ritorno dei valori (es. return "pino")
-  //TODO: eseguire le istruzioni nella funzione/metodi alla chiamata e non durante la dichiarazione della funzione
-  //	  stessa cosa anche per il ciclo for (per iterare più volte)
-
-
-argumentsRule [Token className, Token functionName]
-	: 	
-		t=argumentTypeRule n=VAR {h.declareArg($className, $functionName, t, $n);} (CM t=argumentTypeRule n=VAR {h.declareArg($className, $functionName, t, $n);})*
-;
-
-
-argumentTypeRule returns [Token type]
-	:
-		(res=titleTypeRule {t = res;} | t=TEXT | t=BLOCKQUOTE | t=OLIST | t=ULIST | t=TLIST | t=CODEBLOCK | t=LINK | t=IMG | t=TABLE | t=FORMATTEXT | t=LIST) {type = $t;}
-;
-
-functionCallRule [Token className, Token functionName]
-	:
-		(v1=VAR | v1=DOTVAR) LP {Vector<Token> vct = new Vector<Token>();} (t1=VAR {vct.add($t1);} (CM t2=VAR {vct.add($t2);})*)? RP {h.functionCall(className, functionName, $v1, vct);}
-;
-
-
-forRule [Token className, Token functionName]
-	:	forInRule [className, functionName] | forIncrRule[className, functionName]
-		
-;
-
-forInRule [Token className, Token functionName]
-	:	FOR LP n=VAR IN i=VAR RP LCB {h.declareFor($className, $functionName, false, $n, $i);} (/*instrRule |*/ fieldRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
-		{System.out.println("    - Ho riconosciuto un for in");}
-;
-
-forIncrRule [Token className, Token functionName]
-	:	FOR LP n=VAR CM i=INTEGER RP LCB {h.declareFor($className, $functionName, true, $n, $i);} (/*instrRule |*/ fieldRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
-		{System.out.println("    - Ho riconosciuto un for incr");}
-;
-
-
-
-classRule
-	:
-		f=CLASS n=VAR {h.declareFunCl($n, null);} LCB (fieldRule[$n,null, false] | functionRule[$n] | assignRule[$n, null, false])* RCB
-		{System.out.println("    - Ho riconosciuto una classe");}
-;
-
-
-fieldRule [Token className, Token functionName, boolean inFor]
-	:
-		(( fieldTitleRule [className, functionName, inFor] 
-		| fieldText [className, functionName, inFor] 
-		| fieldBlockQuoteRule [className, functionName, inFor] 
-		| fieldOlistRule [className, functionName, inFor] 
-		| fieldUlistRule [className, functionName, inFor]
-		| fieldTlistRule [className, functionName, inFor]
-		| fieldCodeBlockRule [className, functionName, inFor]
-		| fieldTableRule [className, functionName, inFor] 
-		| fieldImageRule [className, functionName, inFor]
-		| fieldLinkRule [className, functionName, inFor] 
-		| listRule [className, functionName, inFor] 
-		| functionCallRule[className, functionName]
-		| formatRule[className, functionName, inFor] ) SE) | forRule[className, functionName]
-;
-
-
-fieldTitleRule [Token className, Token functionName, boolean inFor]
-	:
-		t=titleTypeRule n=VAR {h.declareNew($className, $functionName, inFor, t, $n);} (assignTitleRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
-;
-
-
-fieldText [Token className, Token functionName, boolean inFor] 
-	:
-		t=TEXT n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignString[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
-;
-
-
-fieldBlockQuoteRule [Token className, Token functionName, boolean inFor]
-	:
-		t=BLOCKQUOTE n=VAR {h.declareNew(className, functionName, inFor, $t, $n);}  (assignString[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
-;
-
-
-fieldOlistRule [Token className, Token functionName, boolean inFor]
-	:
-		t=OLIST n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])? 
-;
-
-
-fieldUlistRule [Token className, Token functionName, boolean inFor]
-	:
-		t=ULIST n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])? 
-;
-
-
-fieldTlistRule [Token className, Token functionName, boolean inFor]
-	:
-		t=TLIST n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
-;
-
-
-fieldCodeBlockRule [Token className, Token functionName, boolean inFor]
-	:
-		t=CODEBLOCK (LP (~(LP | RP | '"'))* RP)? n=VAR  {h.declareNew(className, functionName, inFor, $t, $n);} (assignString[$className, $functionName, $inFor, $n]| assignVariableRule[$className, $functionName, $inFor, $n])?
-;
-
-
-fieldTableRule [Token className, Token functionName, boolean inFor]
-	:
-		t=TABLE n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignTableRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
-;
-
-
-fieldImageRule [Token className, Token functionName, boolean inFor]
+declareImageRule [Token className, Token functionName, boolean inFor]
 	:
 		t=IMG n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignImageRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-fieldLinkRule [Token className, Token functionName, boolean inFor] returns [Token name, Token type]
+declareLinkRule [Token className, Token functionName, boolean inFor] returns [Token name, Token type]
 	:
 		t=LINK n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignLinkRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
 
-listRule [Token className, Token functionName, boolean inFor]
+declareListRule [Token className, Token functionName, boolean inFor]
 	:
 		t=LIST n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n ])?
 		{System.out.println("    - Ho riconosciuto una lista");}
@@ -339,8 +225,13 @@ listRule [Token className, Token functionName, boolean inFor]
 
 assignRule [Token className, Token functionName, boolean inFor]
 	:
-		n=VAR (assignVariableRule[$className, $functionName, inFor, $n] | assignTitleRule[$className, $functionName, inFor, $n] | assignTextListRule[$className, $functionName, inFor, $n]  | assignTableRule[$className, $functionName, inFor, $n]
-	     	| assignImageRule[$className, $functionName, inFor, $n] | assignLinkRule[$className, $functionName, inFor, $n] | assignListRule[$className, $functionName, inFor, $n] ) SE
+		n=VAR (assignVariableRule[$className, $functionName, inFor, $n]
+		| assignTitleRule[$className, $functionName, inFor, $n]
+		| assignTextListRule[$className, $functionName, inFor, $n] 
+		| assignTableRule[$className, $functionName, inFor, $n]
+	     	| assignImageRule[$className, $functionName, inFor, $n]
+	     	| assignLinkRule[$className, $functionName, inFor, $n]
+	     	| assignListRule[$className, $functionName, inFor, $n] ) SE
 ;
 
 assignVariableRule [Token className, Token functionName, boolean inFor, Token name]
@@ -354,7 +245,7 @@ assignTitleRule [Token className, Token functionName, boolean inFor, Token name]
 ;
 
 
-assignString [Token className, Token functionName, boolean inFor, Token name]
+assignStringRule [Token className, Token functionName, boolean inFor, Token name]
 	:
 		EQ v=STRING {h.assignVarValue($className, $functionName, $inFor, $name, $v.getText());}
 ;
@@ -363,6 +254,11 @@ assignString [Token className, Token functionName, boolean inFor, Token name]
 assignTextListRule [Token className, Token functionName, boolean inFor, Token name]
 	:
 		EQ v=textListRule {h.assignVarValue($className, $functionName, $inFor, $name, v);}
+;
+
+
+textListRule returns [String value]
+	:	v1=LP v2=STRING {String cicle = $v2.getText();} (t1=CM t2=STRING {cicle = cicle + $t1.getText() + $t2.getText();})+ v3=RP {value = $v1.getText() + $v2.getText() + cicle + $v3.getText();}
 ;
 
 
@@ -385,16 +281,23 @@ assignLinkRule [Token className, Token functionName, boolean inFor, Token name]
 ;
 
 
+imageRule returns [String value]
+	:
+		v1=IMG v2=LP v3=STRING {String cycle = $v3.getText();} (t1=CM t2=STRING {cycle = cycle + $t1.getText() + $t2.getText();})? v4=RP {value = $v1.getText() + $v2.getText() + cycle + $v4.getText();}
+		{System.out.println("    - Ho riconosciuto un'immagine");}
+;
+
+
 assignListRule [Token className, Token functionName, boolean inFor, Token name]
 	:
-		{Vector<Token> vct = new Vector<Token>();} EQ LSB  (v=STRING {vct.add($v);}  (CM t=STRING {vct.add($t);})*)? RSB {h.assignListValue($className, $functionName, $inFor, $name, vct);}
+		{Vector<Token> vct = new Vector<Token>();} EQ LSB  ((v=STRING|v=VAR) {vct.add($v);}  (CM (t=STRING|t=VAR) {vct.add($t);})*)? RSB {h.assignListValue($className, $functionName, $inFor, $name, vct);}
 ;
 
 
 formatRule [Token className, Token functionName, boolean inFor]
-	:	v1=VAR EQ FORMAT LP v2=VAR {Vector<Token> vct = new Vector<Token>();} ( CM v3=VAR {vct.add($v3);} (CM v4=VAR {vct.add($v4);} )+)? RP {h.handleFormat($className, $functionName, $inFor, $v1, $v2, vct );}
+	:
+		FORMAT LP v1=VAR CM v2=VAR {Vector<Token> vct = new Vector<Token>();} CM v3=VAR {vct.add($v3);} (CM v4=VAR {vct.add($v4);})* RP {h.handleFormat($className, $functionName, $inFor, $v1, $v2, vct);}
 ;
-
 
 
 fragment

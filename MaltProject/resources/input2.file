@@ -48,3 +48,7 @@ table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["se
 table tabella2 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
 list list1 = ["primo", "secondo"];
 formattext pino = "ecco una passeggiata in %i alle %g";
+
+text ft = "gino %b gino";
+text p = "pino";
+format(t, ft, p);

@@ -39,6 +39,7 @@ public class MaltHandler {
 	public static int FORMAT_VARIABLE_UNDECLARED_ERROR = 21;
 	public static int FUNCTION_CALL_ERROR = 22;
 	public static int EMPTY_LIST_ERROR = 23;
+	public static int VARIABLE_UNDECLARED_ERROR = 24;
 
 	Hashtable<String, MaltVarDescriptor> symbolTable;
 	Hashtable<String, Hashtable<String, MaltVarDescriptor>> functionTables;
@@ -131,6 +132,8 @@ public class MaltHandler {
 			errMsg += "La variabile passata alla format non è stata dichiarata";
 		} else if (code == EMPTY_LIST_ERROR) {
 			errMsg += "La lista è vuota";
+		} else if (code == VARIABLE_UNDECLARED_ERROR){
+			errMsg += "Variabile non dichiarata";
 		}
 
 		errorList.add(errMsg);
@@ -558,7 +561,19 @@ public class MaltHandler {
 		String[] listValue = new String[value.size()];
 
 		for (int i = 0; i < value.size(); i++) {
-			listValue[i] = value.get(i).getText();
+			if(value.get(i).getText().contains("\"")){
+				listValue[i] = value.get(i).getText();
+			} else {
+
+				MaltVarDescriptor resVd = getVarDescriptor(className, functionName, inFor, value.get(i));
+
+				if(resVd == null){
+					maltErrorHandler(VARIABLE_UNDECLARED_ERROR, value.get(i));
+					return;
+				}
+
+				listValue[i] = resVd.value;
+			}			
 		}
 
 		// caso della variabile in un metodo
@@ -1235,8 +1250,14 @@ public class MaltHandler {
 	public void handleFormat(Token className, Token functionName, boolean inFor, Token resultVar, Token formatText,
 			Vector<Token> vars) {
 
-		String ft = getVarDescriptor(className, functionName, inFor, formatText).value;
+		MaltVarDescriptor ftVd = getVarDescriptor(className, functionName, inFor, formatText);
 
+		if (ftVd == null) {
+			maltErrorHandler(VARIABLE_UNDECLARED_ERROR, formatText);
+			return;
+		}
+
+		String ft = ftVd.value;
 		Vector<String> matches = new Vector<String>();
 		Vector<String> values = new Vector<String>();
 
@@ -1262,7 +1283,7 @@ public class MaltHandler {
 			MaltVarDescriptor vd = getVarDescriptor(className, functionName, inFor, var);
 
 			if (vd == null) {
-				System.err.println("La variabile " + var.getText() + " passata alla format non è stata trovata!");
+				maltErrorHandler(VARIABLE_UNDECLARED_ERROR, var);
 				return;
 			}
 			String value = vd.value;
@@ -1323,6 +1344,12 @@ public class MaltHandler {
 		} else {
 			// iterazione di un for sulle liste
 			MaltVarDescriptor vdIt = getVarDescriptor(className, functionName, true, it);
+
+			if(vdIt == null){
+				maltErrorHandler(VARIABLE_UNDECLARED_ERROR, it);
+				return;
+			}
+
 			String[] values = vdIt.listValue;
 
 			int length = vdIt.listValue.length;
