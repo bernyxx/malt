@@ -3,11 +3,15 @@ text t = "gino";
 list l1 = ["primo", "secondo"];
 
 fun pinetto(list r){
+for(t in l1) {
 list l2 = [t,t,t];
-
-list l3 = ["primo", t, g, "secondo"];
+}
 }
 
-text ft = "gino %b gino";
-text p = "pino";
-format(t, ft, p);
+pinetto(l1);
+
+class gino {
+text someText;
+text someText = "Questo testo";
+
+}

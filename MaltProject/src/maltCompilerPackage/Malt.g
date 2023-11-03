@@ -5,6 +5,7 @@ grammar Malt;
 
 options {
 	language = Java;
+	k = 3;
 }
 
 @lexer::header {
@@ -60,8 +61,6 @@ functionRule [Token className]
 		f=FUN n=VAR {h.declareFunCl(className,$n);} LP (argumentsRule[className, $n])? RP LCB ((declarationRule[className,$n, false]) | (assignRule[className, $n, false]))+ RCB
 		{System.out.println("    - Ho riconosciuto una funzione");}
 ; //TODO: Aggiungere il ritorno dei valori (es. return "pino")
-  //TODO: eseguire le istruzioni nella funzione/metodi alla chiamata e non durante la dichiarazione della funzione
-  //	  stessa cosa anche per il ciclo for (per iterare più volte)
 
 
 argumentsRule [Token className, Token functionName]
@@ -83,19 +82,19 @@ functionCallRule [Token className, Token functionName]
 
 
 forRule [Token className, Token functionName]
-	:	forInRule [className, functionName] | forIncrRule[className, functionName]
+	:	FOR LP n=VAR forInRule [className, functionName, $n] | forIncrRule[className, functionName, $n]
 		
 ;
 
 
-forInRule [Token className, Token functionName]
-	:	FOR LP n=VAR IN i=VAR RP LCB {h.declareFor($className, $functionName, false, $n, $i);} (/*instrRule |*/ declarationRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
+forInRule [Token className, Token functionName, Token name]
+	:	IN i=VAR RP LCB {h.declareFor($className, $functionName, false, name, $i);} (declarationRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
 		{System.out.println("    - Ho riconosciuto un for in");}
 ;
 
 
-forIncrRule [Token className, Token functionName]
-	:	FOR LP n=VAR CM i=INTEGER RP LCB {h.declareFor($className, $functionName, true, $n, $i);} (/*instrRule |*/ declarationRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
+forIncrRule [Token className, Token functionName, Token name]
+	:	CM i=INTEGER RP LCB {h.declareFor($className, $functionName, true, name, $i);} (declarationRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
 		{System.out.println("    - Ho riconosciuto un for incr");}
 ;
 
