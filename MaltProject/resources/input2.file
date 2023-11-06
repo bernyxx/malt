@@ -1,7 +1,7 @@
 NUOVA VERSIONE
 
 s1title myTitolo = "Ecco una ricerca";
-s2title mySubtitle = "Molto interessante" {#id};
+s2title mySubtitle {#id} = "Molto interessante";
 text someText = "Questo testo contiene un link";
 blockquote bq1 = "Questo testo contiene un link";
 olist olist1 = ("primo", "secondo");
@@ -52,3 +52,8 @@ formattext pino = "ecco una passeggiata in %i alle %g";
 text ft = "gino %b gino";
 text p = "pino";
 format(t, ft, p);
+
+title t = "gino";
+title someTitle {#a} = (t + t + "pino" + "pino" +t);
+title someTitle1 {#a};
+someTitle1 = (t + t + "pino" + "pino" +t);

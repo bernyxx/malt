@@ -2,10 +2,11 @@ grammar Malt;
 
 // i campi delle classi sono automaticamente private
 // i metodi delle classi sono automaticamente public (accesso con dot notation)
+// si assume che nei return ci siano solo variabili o letterali, ma non concatenazione
 
 options {
 	language = Java;
-	k = 3;
+	k = 4;
 }
 
 @lexer::header {
@@ -58,7 +59,7 @@ parseJava
 
 functionRule [Token className]
 	:
-		f=FUN n=VAR {h.declareFunCl(className,$n);} LP (argumentsRule[className, $n])? RP LCB ((declarationRule[className,$n, false]) | (assignRule[className, $n, false]))+ RCB
+		f=FUN n=VAR {h.declareFunCl(className,$n);} LP (argumentsRule[className, $n])? RP LCB ((declarationRule[className,$n, false]) | (assignRule[className, $n, false]))+ returnRule[className, $n]? RCB
 		{System.out.println("    - Ho riconosciuto una funzione");}
 ; //TODO: Aggiungere il ritorno dei valori (es. return "pino")
 
@@ -78,6 +79,11 @@ argumentTypeRule returns [Token type]
 functionCallRule [Token className, Token functionName]
 	:
 		(v1=VAR | v1=DOTVAR) LP {Vector<Token> vct = new Vector<Token>();} (t1=VAR {vct.add($t1);} (CM t2=VAR {vct.add($t2);})*)? RP {h.functionCall(className, functionName, $v1, vct);}
+;
+
+returnRule [Token className, Token functionName]
+	:
+		RETURN (v=VAR | v=STRING) SE {handleReturn(className,functionName,$v);}
 ;
 
 
@@ -126,7 +132,7 @@ declarationRule [Token className, Token functionName, boolean inFor]
 
 declareTitleRule [Token className, Token functionName, boolean inFor]
 	:
-		t=titleTypeRule n=VAR {h.declareNew($className, $functionName, inFor, t, $n);} (assignTitleRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
+		t=titleTypeRule n=VAR {h.declareNew($className, $functionName, inFor, t, $n);} refRule? (assignStringRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n])?
 ;
 
 
@@ -144,13 +150,13 @@ refRule
 
 declareTextRule [Token className, Token functionName, boolean inFor] 
 	:
-		t=TEXT n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
+		t=TEXT n=VAR {h.declareNew(className, functionName, inFor, $t, $n);} (assignStringRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n])?
 ;
 
 
 declareBlockQuoteRule [Token className, Token functionName, boolean inFor]
 	:
-		t=BLOCKQUOTE n=VAR {h.declareNew(className, functionName, inFor, $t, $n);}  (assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n])?
+		t=BLOCKQUOTE n=VAR {h.declareNew(className, functionName, inFor, $t, $n);}  (assignStringRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n])?
 ;
 
 
@@ -174,7 +180,7 @@ declareTlistRule [Token className, Token functionName, boolean inFor]
 
 declareCodeBlockRule [Token className, Token functionName, boolean inFor]
 	:
-		t=CODEBLOCK (LP (~(LP | RP | '"'))* RP)? n=VAR  {h.declareNew(className, functionName, inFor, $t, $n);} (assignStringRule[$className, $functionName, $inFor, $n]| assignVariableRule[$className, $functionName, $inFor, $n])?
+		t=CODEBLOCK (LP (~(LP | RP | '"'))* RP)? n=VAR  {h.declareNew(className, functionName, inFor, $t, $n);} (assignStringRule[$className, $functionName, $inFor, $n]| assignExprRule[$className, $functionName, $inFor, $n])?
 ;
 
 
@@ -225,7 +231,8 @@ declareListRule [Token className, Token functionName, boolean inFor]
 assignRule [Token className, Token functionName, boolean inFor]
 	:
 		n=VAR (assignVariableRule[$className, $functionName, inFor, $n]
-		| assignTitleRule[$className, $functionName, inFor, $n]
+		| assignExprRule[$className, $functionName, inFor, $n]
+		| assignStringRule[$className, $functionName, inFor, $n]
 		| assignTextListRule[$className, $functionName, inFor, $n] 
 		| assignTableRule[$className, $functionName, inFor, $n]
 	     	| assignImageRule[$className, $functionName, inFor, $n]
@@ -233,14 +240,16 @@ assignRule [Token className, Token functionName, boolean inFor]
 	     	| assignListRule[$className, $functionName, inFor, $n] ) SE
 ;
 
+
 assignVariableRule [Token className, Token functionName, boolean inFor, Token name]
-	:  	EQ v1=VAR {h.assignVarToVar($className, $functionName, $inFor, $name, $v1);}
-;
+	:  
+		EQ v1=VAR {h.assignVarToVar($className, $functionName, $inFor, $name, $v1);}
+	;
 
 
-assignTitleRule [Token className, Token functionName, boolean inFor, Token name]
-	:
-		EQ v=STRING refRule? {h.assignVarValue($className, $functionName, $inFor, $name, $v.getText());}
+assignExprRule [Token className, Token functionName, boolean inFor, Token name]
+	:  
+		{Vector<Token> vct = new Vector<Token>();} EQ LP (v1=STRING|v1=VAR) {vct.add($v1);} (PLUS (v2=STRING|v2=VAR) {vct.add($v2);})* RP {h.assignExprToVar($className, $functionName, $inFor, $name, vct);}
 ;
 
 
@@ -343,6 +352,7 @@ LCB : '{';
 RCB : '}';
 LAB : '<';
 RAB : '>';
+PLUS : '+';
 HA : '#';
 IT		: '*';
 BOLD		: '**';
@@ -356,7 +366,6 @@ HRULE		: '___';
 US : '_';
 SL : '/';
 EX : '!';
-QU : '"';
 EQ : '=';
 GET : '>=';
 LET : '<=';
@@ -388,6 +397,7 @@ CLASS : 'class';
 LIST : 'list';
 EQI : '=i';
 EQL : '=l';
+RETURN : 'return';
 
 
 fragment

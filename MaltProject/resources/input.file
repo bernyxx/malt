@@ -1,17 +1,15 @@
-text t = "gino";
-
-list l1 = ["primo", "secondo"];
+title t = "gino";
+title someTitle {#a} = (t + t + "pino" + "pino" +t);
 
 fun pinetto(list r){
-for(t in l1) {
-list l2 = [t,t,t];
+title t = "gino1";
+title someTitle1 {#a}= (t + t + "pino" + "pino" +t);
 }
-}
-
-pinetto(l1);
 
 class gino {
-text someText;
-text someText = "Questo testo";
+
+title t = "gino2";
+title someTitle2 {#a};
+someTitle2 = (t + t + "pino" + "pino" +t);
 
 }

@@ -40,6 +40,9 @@ public class MaltHandler {
 	public static int FUNCTION_CALL_ERROR = 22;
 	public static int EMPTY_LIST_ERROR = 23;
 	public static int VARIABLE_UNDECLARED_ERROR = 24;
+	public static int NOT_MATCH_TYPE_ARG_ERROR = 25;
+	public static int NOT_MATCH_NUM_ARG_ERROR = 26;
+	public static int NOT_MATCH_TYPE_ASSIGNMENT_ERROR = 27;
 
 	Hashtable<String, MaltVarDescriptor> symbolTable;
 	Hashtable<String, Hashtable<String, MaltVarDescriptor>> functionTables;
@@ -132,8 +135,14 @@ public class MaltHandler {
 			errMsg += "La variabile passata alla format non è stata dichiarata";
 		} else if (code == EMPTY_LIST_ERROR) {
 			errMsg += "La lista è vuota";
-		} else if (code == VARIABLE_UNDECLARED_ERROR){
+		} else if (code == VARIABLE_UNDECLARED_ERROR) {
 			errMsg += "Variabile non dichiarata";
+		} else if (code == NOT_MATCH_TYPE_ARG_ERROR) {
+			errMsg += "Tipo degli argomenti non corrispondente";
+		} else if (code == NOT_MATCH_NUM_ARG_ERROR) {
+			errMsg += "Numero degli argomenti non corrispondente";
+		} else if (code == NOT_MATCH_TYPE_ASSIGNMENT_ERROR) {
+			errMsg += "Tipo della variabile assegnata non corrispondente";
 		}
 
 		errorList.add(errMsg);
@@ -561,19 +570,19 @@ public class MaltHandler {
 		String[] listValue = new String[value.size()];
 
 		for (int i = 0; i < value.size(); i++) {
-			if(value.get(i).getText().contains("\"")){
+			if (value.get(i).getText().contains("\"")) {
 				listValue[i] = value.get(i).getText();
 			} else {
 
 				MaltVarDescriptor resVd = getVarDescriptor(className, functionName, inFor, value.get(i));
 
-				if(resVd == null){
+				if (resVd == null) {
 					maltErrorHandler(VARIABLE_UNDECLARED_ERROR, value.get(i));
 					return;
 				}
 
 				listValue[i] = resVd.value;
-			}			
+			}
 		}
 
 		// caso della variabile in un metodo
@@ -757,9 +766,53 @@ public class MaltHandler {
 		assignVarValue(className, functionName, inFor, var1, value);
 	}
 
-	public void functionCall(Token className, Token functionName, Token functionToCall, Vector<Token> args) {
+	public void assignExprToVar(Token className, Token functionName, boolean inFor, Token name, Vector<Token> exps) {
 
-		System.out.println("Function call");
+		String n = name.getText();
+
+		if (exps.size() == 1) {
+			assignVarToVar(className, functionName, inFor, name, exps.get(0));
+		}
+
+		MaltVarDescriptor nameVd = getVarDescriptor(className, functionName, inFor, name);
+
+		String[] listValue = new String[exps.size()];
+
+		for (int i = 0; i < exps.size(); i++) {
+			String var = exps.get(i).getText();
+			if (var.contains("\"")) {
+				listValue[i] = var.substring(1, var.length() - 1);
+			} else {
+				MaltVarDescriptor resVd = getVarDescriptor(className, functionName, inFor, exps.get(i));
+
+				if (resVd == null) {
+					maltErrorHandler(VARIABLE_UNDECLARED_ERROR, exps.get(i));
+					return;
+				}
+
+				if (checkType(nameVd, resVd)) {
+					listValue[i] = resVd.value;
+				} else {
+					maltErrorHandler(NOT_MATCH_TYPE_ASSIGNMENT_ERROR, exps.get(i));
+					return;
+				}
+
+			}
+		}
+
+		String concString = "\"";
+
+		for (String str : listValue) {
+			concString += str;
+		}
+
+		concString += "\"";
+
+		assignVarValue(className, functionName, inFor, name, concString);
+
+	}
+
+	public void functionCall(Token className, Token functionName, Token functionToCall, Vector<Token> args) {
 
 		if (functionToCall == null) {
 			// System.out.println("ERRORE functionCall(): functionToCall è nullo!");
@@ -770,12 +823,12 @@ public class MaltHandler {
 		String funcToCall = functionToCall.getText();
 
 		String[] splitted = funcToCall.split("\\.");
-		System.out.println(Arrays.toString(splitted));
+		// System.out.println(Arrays.toString(splitted));
 
 		Vector<String> argStrings = new Vector<String>();
 
 		for (Token el : args) {
-			System.out.println(el.getText());
+			// System.out.println(el.getText());
 			argStrings.add(el.getText());
 		}
 
@@ -795,7 +848,7 @@ public class MaltHandler {
 			// tabella della funzione da chiamare
 			// con this cerco la funzione solo dentro la classe
 			if (splitted[0].equals("this") && splitted.length == 2) {
-				System.out.println("LOCAL METHOD");
+				// System.out.println("LOCAL METHOD");
 				String key = cn + "." + splitted[1];
 
 				if (functionTables.containsKey(key)) {
@@ -806,7 +859,7 @@ public class MaltHandler {
 					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
 					return;
 				}
-				System.out.println("key=" + key);
+				// System.out.println("key=" + key);
 			} else if (splitted.length == 2) {
 				String key = splitted[0] + "." + splitted[1];
 				if (functionTables.containsKey(key)) {
@@ -834,7 +887,7 @@ public class MaltHandler {
 			int numParams = functionToCallVarDescriptor.getNumParams();
 			Vector<String> params = functionToCallVarDescriptor.getParams();
 
-			System.out.println("N parametri: " + numParams);
+			// System.out.println("N parametri: " + numParams);
 
 			// controllo se il numero degli argomenti della chiamata è uguale al numero dei
 			// parametri della funzione
@@ -866,9 +919,9 @@ public class MaltHandler {
 				}
 
 				// stampa del valore degli argomenti nella chiamata
-				for (String value : argStrings) {
-					System.out.println(value);
-				}
+				// for (String value : argStrings) {
+				// System.out.println(value);
+				// }
 
 				// per ogni argomento controlla se il tipo corrisponde con quello del parametro
 				// corrispondente e in caso positivo assegna il valore
@@ -879,8 +932,10 @@ public class MaltHandler {
 					MaltVarDescriptor vdParam = funcToCallTable.get(paramName);
 
 					if (!vdInput.varType.equals(vdParam.varType)) {
-						System.out.println(
-								"Il tipo dell'argomento non corrisponde al tipo del parametro della funzione!");
+						// System.out.println(
+						// "Il tipo dell'argomento non corrisponde al tipo del parametro della
+						// funzione!");
+						maltErrorHandler(NOT_MATCH_TYPE_ARG_ERROR, args.get(i));
 						return;
 					} else {
 						vdParam.value = vdInput.value;
@@ -890,7 +945,9 @@ public class MaltHandler {
 				}
 
 			} else {
-				System.out.println("Il numero degli argomenti non corrisponde al numero dei parametri della funzione");
+				// System.out.println("Il numero degli argomenti non corrisponde al numero dei
+				// parametri della funzione");
+				maltErrorHandler(NOT_MATCH_NUM_ARG_ERROR, functionToCall);
 			}
 		} else if (className == null && functionName != null) {
 
@@ -928,7 +985,7 @@ public class MaltHandler {
 			int numParams = functionToCallVarDescriptor.getNumParams();
 			Vector<String> params = functionToCallVarDescriptor.getParams();
 
-			System.out.println("N parametri: " + numParams);
+			// System.out.println("N parametri: " + numParams);
 
 			// controllo se il numero degli argomenti della chiamata è uguale al numero dei
 			// parametri della funzione
@@ -968,8 +1025,10 @@ public class MaltHandler {
 					MaltVarDescriptor vdParam = funcToCallTable.get(paramName);
 
 					if (!vdInput.varType.equals(vdParam.varType)) {
-						System.out.println(
-								"Il tipo dell'argomento non corrisponde al tipo del parametro della funzione!");
+						// System.out.println(
+						// "Il tipo dell'argomento non corrisponde al tipo del parametro della
+						// funzione!");
+						maltErrorHandler(NOT_MATCH_TYPE_ARG_ERROR, args.get(i));
 						return;
 					} else {
 						vdParam.value = vdInput.value;
@@ -979,7 +1038,9 @@ public class MaltHandler {
 				}
 
 			} else {
-				System.out.println("Il numero degli argomenti non corrisponde al numero dei parametri della funzione");
+				// System.out.println("Il numero degli argomenti non corrisponde al numero dei
+				// parametri della funzione");
+				maltErrorHandler(NOT_MATCH_NUM_ARG_ERROR, functionToCall);
 			}
 
 		} else if (className != null && functionName == null) {
@@ -996,7 +1057,7 @@ public class MaltHandler {
 			// tabella della funzione da chiamare
 			// con this cerco la funzione solo dentro la classe
 			if (splitted[0].equals("this") && splitted.length == 2) {
-				System.out.println("LOCAL METHOD");
+				// System.out.println("LOCAL METHOD");
 				String key = cn + "." + splitted[1];
 
 				if (functionTables.containsKey(key)) {
@@ -1008,7 +1069,7 @@ public class MaltHandler {
 					return;
 				}
 
-				System.out.println("key=" + key);
+				// System.out.println("key=" + key);
 
 			} else if (splitted.length == 2) {
 				String key = splitted[0] + "." + splitted[1];
@@ -1037,7 +1098,7 @@ public class MaltHandler {
 			int numParams = functionToCallVarDescriptor.getNumParams();
 			Vector<String> params = functionToCallVarDescriptor.getParams();
 
-			System.out.println("N parametri: " + numParams);
+			// System.out.println("N parametri: " + numParams);
 
 			// controllo se il numero degli argomenti della chiamata è uguale al numero dei
 			// parametri della funzione
@@ -1077,8 +1138,10 @@ public class MaltHandler {
 					MaltVarDescriptor vdParam = funcToCallTable.get(paramName);
 
 					if (!vdInput.varType.equals(vdParam.varType)) {
-						System.out.println(
-								"Il tipo dell'argomento non corrisponde al tipo del parametro della funzione!");
+						// System.out.println(
+						// "Il tipo dell'argomento non corrisponde al tipo del parametro della
+						// funzione!");
+						maltErrorHandler(NOT_MATCH_TYPE_ARG_ERROR, args.get(i));
 						return;
 					} else {
 						vdParam.value = vdInput.value;
@@ -1088,7 +1151,9 @@ public class MaltHandler {
 				}
 
 			} else {
-				System.out.println("Il numero degli argomenti non corrisponde al numero dei parametri della funzione");
+				// System.out.println("Il numero degli argomenti non corrisponde al numero dei
+				// parametri della funzione");
+				maltErrorHandler(NOT_MATCH_NUM_ARG_ERROR, functionToCall);
 			}
 
 		} else {
@@ -1159,8 +1224,10 @@ public class MaltHandler {
 					MaltVarDescriptor vdParam = funcToCallTable.get(paramName);
 
 					if (!vdInput.varType.equals(vdParam.varType)) {
-						System.out.println(
-								"Il tipo dell'argomento non corrisponde al tipo del parametro della funzione!");
+						// System.out.println(
+						// "Il tipo dell'argomento non corrisponde al tipo del parametro della
+						// funzione!");
+						maltErrorHandler(NOT_MATCH_TYPE_ARG_ERROR, args.get(i));
 						return;
 
 					} else {
@@ -1171,7 +1238,9 @@ public class MaltHandler {
 				}
 
 			} else {
-				System.out.println("Il numero degli argomenti non corrisponde al numero dei parametri della funzione");
+				// System.out.println("Il numero degli argomenti non corrisponde al numero dei
+				// parametri della funzione");
+				maltErrorHandler(NOT_MATCH_NUM_ARG_ERROR, functionToCall);
 			}
 
 		}
@@ -1345,7 +1414,7 @@ public class MaltHandler {
 			// iterazione di un for sulle liste
 			MaltVarDescriptor vdIt = getVarDescriptor(className, functionName, true, it);
 
-			if(vdIt == null){
+			if (vdIt == null) {
 				maltErrorHandler(VARIABLE_UNDECLARED_ERROR, it);
 				return;
 			}
