@@ -14,6 +14,9 @@ import org.antlr.runtime.TokenStream;
 
 import maltCompilerPackage.util.MaltVarDescriptor;
 
+// TODO: controllo sui tipi delle variabili per assignExprValue e assignVarToVar nel caso di chiamate di funzioni
+// per evitare che ad una tabella venga assegnata un'espressione o che il risultato di una funzione venga assegnata a un'immagine
+
 public class MaltHandler {
 	public static int LEXICAL_ERROR = 0;
 	public static int SYNTAX_ERROR = 1;
@@ -555,8 +558,9 @@ public class MaltHandler {
 				System.out.println("Alla variabile " + n + " è stato assegnato il valore " + v + " --> riga ("
 						+ name.getLine() + ")");
 			} else {
-//				System.out.println("Errore assegnamento! La variabile " + n + " non esiste!" + "--> riga ("
-//						+ name.getLine() + ")");
+				// System.out.println("Errore assegnamento! La variabile " + n + " non esiste!"
+				// + "--> riga ("
+				// + name.getLine() + ")");
 				maltErrorHandler(TOP_VARIABLE_UNDECLARED_ERROR, name);
 			}
 		}
@@ -733,31 +737,52 @@ public class MaltHandler {
 		return false;
 	}
 
-	public void assignVarToVar(Token className, Token functionName, boolean inFor, Token var1, Token var2) {
+	public void assignVarToVar(Token className, Token functionName, boolean inFor, boolean isValueFromFunction,
+			Token var1, Token var2) {
 
 		String value = "\"";
 
 		MaltVarDescriptor leftVar = getVarDescriptor(className, functionName, inFor, var1);
-		MaltVarDescriptor rightVar = getVarDescriptor(className, functionName, inFor, var2);
+		MaltVarDescriptor rightVar;
+
+		if (isValueFromFunction) {
+			rightVar = getFunctionVarDescriptor(className, var2);
+		} else {
+			rightVar = getVarDescriptor(className, functionName, inFor, var2);
+		}
 
 		if (leftVar == null) {
 			// System.err.println("La variabile " + var1.getText() + " non è stata
 			// trovata!");
-			maltErrorHandler(TOP_VARIABLE_UNDECLARED_ERROR, var1);
+			if (className != null) {
+				maltErrorHandler(FIELD_UNDECLARED_ERROR, var1);
+			} else {
+				maltErrorHandler(TOP_VARIABLE_UNDECLARED_ERROR, var1);
+			}
+
 			return;
 		}
 
-		if (rightVar == null) {
+		if (rightVar == null && isValueFromFunction) {
 			// System.err.println("La variabile " + var2.getText() + " non è stata
 			// trovata!");
-			maltErrorHandler(TOP_VARIABLE_UNDECLARED_ERROR, var2);
+			// maltErrorHandler(FUNCTION_UNDECLARED_ERROR, var2);
 			return;
 		}
 
-		if (!checkType(leftVar, rightVar)) {
+		if (rightVar == null && !isValueFromFunction) {
+			if (className != null) {
+				maltErrorHandler(FIELD_UNDECLARED_ERROR, var2);
+			} else {
+				maltErrorHandler(TOP_VARIABLE_UNDECLARED_ERROR, var2);
+			}
+			return;
+		}
+
+		if (!checkType(leftVar, rightVar) && !isValueFromFunction) {
 			// System.out.println("Assegnamento di variabile ad altra variabile non
 			// corretto! Incompatibilità tra tipi!");
-			maltErrorHandler(FORMAT_VARIABLE_UNDECLARED_ERROR, var2);
+			maltErrorHandler(NOT_MATCH_TYPE_ASSIGNMENT_ERROR, var2);
 			return;
 		}
 
@@ -771,7 +796,7 @@ public class MaltHandler {
 		String n = name.getText();
 
 		if (exps.size() == 1) {
-			assignVarToVar(className, functionName, inFor, name, exps.get(0));
+			assignVarToVar(className, functionName, inFor, false, name, exps.get(0));
 		}
 
 		MaltVarDescriptor nameVd = getVarDescriptor(className, functionName, inFor, name);
@@ -866,7 +891,7 @@ public class MaltHandler {
 					funcToCallTable = functionTables.get(key);
 					functionToCallVarDescriptor = classTable.get("fun_" + splitted[1]);
 				} else {
-//					System.out.println("Il metodo " + splitted[1] + " non esiste!");
+					// System.out.println("Il metodo " + splitted[1] + " non esiste!");
 					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
 					return;
 				}
@@ -876,7 +901,7 @@ public class MaltHandler {
 					funcToCallTable = functionTables.get("fun_" + funcToCall);
 					functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
 				} else {
-//					System.out.println("La funzione " + funcToCall + " da chiamare non esiste!");
+					// System.out.println("La funzione " + funcToCall + " da chiamare non esiste!");
 					maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionToCall);
 					return;
 				}
@@ -912,7 +937,8 @@ public class MaltHandler {
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else {
-//						System.out.println("Il parametro " + argName + " passato nella chiamata di funzione non esiste!");
+						// System.out.println("Il parametro " + argName + " passato nella chiamata di
+						// funzione non esiste!");
 						maltErrorHandler(FUNCTION_PARAMETER_UNDECLARED_ERROR, args.get(j));
 						return;
 					}
@@ -967,7 +993,7 @@ public class MaltHandler {
 					funcToCallTable = functionTables.get(key);
 					functionToCallVarDescriptor = functionTables.get("cl_" + splitted[0]).get("fun_" + splitted[1]);
 				} else {
-//					System.out.println("Il metodo " + splitted[1] + " non esiste!");
+					// System.out.println("Il metodo " + splitted[1] + " non esiste!");
 					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
 					return;
 				}
@@ -976,7 +1002,7 @@ public class MaltHandler {
 					funcToCallTable = functionTables.get("fun_" + funcToCall);
 					functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
 				} else {
-//					System.out.println("La funzione " + funcToCall + " non esiste!");
+					// System.out.println("La funzione " + funcToCall + " non esiste!");
 					maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionToCall);
 					return;
 				}
@@ -1005,7 +1031,8 @@ public class MaltHandler {
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else {
-//						System.out.println("Il parametro " + argName + " passato nella chiamata di funzione non esiste!");
+						// System.out.println("Il parametro " + argName + " passato nella chiamata di
+						// funzione non esiste!");
 						maltErrorHandler(FUNCTION_PARAMETER_UNDECLARED_ERROR, args.get(j));
 						return;
 					}
@@ -1064,7 +1091,7 @@ public class MaltHandler {
 					funcToCallTable = functionTables.get(key);
 					functionToCallVarDescriptor = localTable.get("fun_" + splitted[1]);
 				} else {
-//					System.out.println("Il metodo " + splitted[1] + " non esiste!");
+					// System.out.println("Il metodo " + splitted[1] + " non esiste!");
 					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
 					return;
 				}
@@ -1077,7 +1104,7 @@ public class MaltHandler {
 					funcToCallTable = functionTables.get(key);
 					functionToCallVarDescriptor = functionTables.get("cl_" + splitted[0]).get("fun_" + splitted[1]);
 				} else {
-//					System.out.println("Il metodo " + splitted[1] + " non esiste!");
+					// System.out.println("Il metodo " + splitted[1] + " non esiste!");
 					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
 					return;
 				}
@@ -1087,7 +1114,7 @@ public class MaltHandler {
 					funcToCallTable = functionTables.get("fun_" + funcToCall);
 					functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
 				} else {
-//					System.out.println("La funzione " + funcToCall + " da chiamare non esiste!");
+					// System.out.println("La funzione " + funcToCall + " da chiamare non esiste!");
 					maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionToCall);
 					return;
 				}
@@ -1118,7 +1145,8 @@ public class MaltHandler {
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else {
-//						System.out.println("Il parametro " + argName + " passato nella chiamata di funzione non esiste!");
+						// System.out.println("Il parametro " + argName + " passato nella chiamata di
+						// funzione non esiste!");
 						maltErrorHandler(FUNCTION_PARAMETER_UNDECLARED_ERROR, args.get(j));
 						return;
 					}
@@ -1170,7 +1198,7 @@ public class MaltHandler {
 					funcToCallTable = functionTables.get(key);
 					functionToCallVarDescriptor = functionTables.get("cl_" + splitted[0]).get("fun_" + splitted[1]);
 				} else {
-//					System.out.println("Il metodo " + splitted[1] + " non esiste!");
+					// System.out.println("Il metodo " + splitted[1] + " non esiste!");
 					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
 					return;
 				}
@@ -1179,7 +1207,7 @@ public class MaltHandler {
 					funcToCallTable = functionTables.get("fun_" + funcToCall);
 					functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
 				} else {
-//					System.out.println("La funzione " + funcToCall + " non esiste!");
+					// System.out.println("La funzione " + funcToCall + " non esiste!");
 					maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionToCall);
 					return;
 				}
@@ -1204,7 +1232,8 @@ public class MaltHandler {
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else {
-//						System.out.println("Il parametro " + argName + " passato nella chiamata di funzione non esiste!");
+						// System.out.println("Il parametro " + argName + " passato nella chiamata di
+						// funzione non esiste!");
 						maltErrorHandler(FUNCTION_PARAMETER_UNDECLARED_ERROR, args.get(j));
 						return;
 					}
@@ -1244,6 +1273,49 @@ public class MaltHandler {
 			}
 
 		}
+	}
+
+	public void handleReturn(Token className, Token functionName, Token returnToken) {
+
+		String fn = functionName.getText();
+		String returnStr = returnToken.getText();
+
+		String returnValue = "";
+
+		// recupero il valore che viene ritornato
+		if (returnStr.contains("\"")) {
+			// se ritorno un letterale
+			returnValue = returnStr.substring(1, returnStr.length() - 1);
+		} else {
+			// se ritorno una variabile
+			// recupero il valore della variabile
+			MaltVarDescriptor returnVd = getVarDescriptor(className, functionName, false, returnToken);
+
+			if (returnVd == null) {
+				maltErrorHandler(VARIABLE_UNDECLARED_ERROR, returnToken);
+				return;
+			}
+
+			returnValue = returnVd.value;
+		}
+
+		// cerco la funzione alla quale assegnare il valore di return
+		MaltVarDescriptor functionVd = getFunctionVarDescriptor(className, functionName);
+
+		// non serve perché non può mancare la tabella della funzione dalla quale sto
+		// eseguendo un return
+
+		// if (functionVd == null) {
+
+		// if (className != null) {
+		// maltErrorHandler(METHOD_UNDECLARED_ERROR, functionName);
+		// } else {
+		// maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionName);
+		// }
+		// return;
+		// }
+
+		functionVd.value = returnValue;
 	}
 
 	public MaltVarDescriptor getVarDescriptor(Token className, Token functionName, boolean inFor, Token name) {
@@ -1314,6 +1386,38 @@ public class MaltHandler {
 			}
 		}
 
+	}
+
+	public MaltVarDescriptor getFunctionVarDescriptor(Token className, Token functionName) {
+
+		String fn = functionName.getText();
+
+		MaltVarDescriptor functionVd;
+
+		if (className != null) {
+
+			String cn = className.getText();
+
+			Hashtable<String, MaltVarDescriptor> classTable = functionTables.get("cl_" + cn);
+
+			if (classTable.containsKey("fun_" + fn)) {
+				functionVd = classTable.get("fun_" + fn);
+			} else if (symbolTable.containsKey("fun_" + fn)) {
+				functionVd = symbolTable.get("fun_" + fn);
+			} else {
+				return null;
+			}
+
+		} else {
+
+			if (symbolTable.containsKey("fun_" + fn)) {
+				functionVd = symbolTable.get("fun_" + fn);
+			} else {
+				return null;
+			}
+		}
+
+		return functionVd;
 	}
 
 	public void handleFormat(Token className, Token functionName, boolean inFor, Token resultVar, Token formatText,

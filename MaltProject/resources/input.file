@@ -1,15 +1,6 @@
-title t = "gino";
-title someTitle {#a} = (t + t + "pino" + "pino" +t);
-
-fun pinetto(list r){
-title t = "gino1";
-title someTitle1 {#a}= (t + t + "pino" + "pino" +t);
+fun pino(){
+    text t;
+    return "tino";
 }
 
-class gino {
-
-title t = "gino2";
-title someTitle2 {#a};
-someTitle2 = (t + t + "pino" + "pino" +t);
-
-}
+text res = pino(t);
