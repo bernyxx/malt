@@ -1,4 +1,4 @@
-package maltCompilerPackage.util;
+package com.malt.grammar.compiler.util;
 
 import java.util.Arrays;
 import java.util.Vector;

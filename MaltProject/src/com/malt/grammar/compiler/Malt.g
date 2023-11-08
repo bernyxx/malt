@@ -10,11 +10,11 @@ options {
 }
 
 @lexer::header {
-	package maltCompilerPackage;
+	package com.malt.grammar.compilerpackage;
 }
 
 @header {
-	package maltCompilerPackage;
+	package com.malt.grammar.compilerpackage;
 	
 	import java.util.Vector;
 }
@@ -61,7 +61,7 @@ functionRule [Token className]
 	:
 		f=FUN n=VAR {h.declareFunCl(className,$n);} LP (argumentsRule[className, $n])? RP LCB ((declarationRule[className,$n, false]) | (assignRule[className, $n, false]))+ returnRule[className, $n]? RCB
 		{System.out.println("    - Ho riconosciuto una funzione");}
-; //TODO: Aggiungere il ritorno dei valori (es. return "pino")
+;
 
 
 argumentsRule [Token className, Token functionName]

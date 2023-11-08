@@ -1,28 +1,33 @@
-package maltPackage;
+package com.malt.grammar.launchers;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringReader;
 
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.Token;
 
-import maltCompilerPackage.MaltLexer;
+import com.malt.grammar.compiler.MaltLexer;
 
-public class MaltScannerTester {
+public class MaltStringScannerTester {
 
-	public static void main(String[] args) throws IOException {
+	public String runScanner(String input) throws IOException {
 		// inserire il path-name del file di input
-		String fileIn = ".\\resources\\input.file";
+		// String fileIn = ".\\resources\\input.file";
 
 		Token tk;
 		int i;
 
+		String result = "";
+
 		try {
-			System.out.println("Test ANTLR lexer");
 			// istanzio lo scanner passandogli un stream di ingresso
+			// MaltLexer lexer = new MaltLexer(
+			// new ANTLRReaderStream(
+			// new FileReader(fileIn)));
+
 			MaltLexer lexer = new MaltLexer(
 					new ANTLRReaderStream(
-							new FileReader(fileIn)));
+							new StringReader(input)));
 
 			i = 1;
 			// attivo un ciclo che scandisce lo stream dall'inizio alla fine
@@ -40,20 +45,30 @@ public class MaltScannerTester {
 				if (tk.getChannel() != MaltLexer.HIDDEN)
 					if (tk.getType() != MaltLexer.ERROR_TK)
 						// stampo le informazioni del token corrente
-						System.out.println("Token " + i++ + ": "
+						// System.out.println("Token " + i++ + ": "
+						// + "(" + line + "," + col + ")\t\t"
+						// + "TokenType: " + type + "\t" + text);
+
+						result += "Token " + i++ + ": "
 								+ "(" + line + "," + col + ")\t\t"
-								+ "TokenType: " + type + "\t" + text);
+								+ "TokenType: " + type + "\t" + text + "\n";
 					else
 						// stampo le informazioni del token di errore sullo standard error
-						System.err.println("Token " + i++ + ": "
+						// System.err.println("Token " + i++ + ": "
+						// + "(" + line + "," + col + ")\t\t"
+						// + "TokenType: " + type + "\t" + text + " ERRORE!");
+
+						result += "Token " + i++ + ": "
 								+ "(" + line + "," + col + ")\t\t"
-								+ "TokenType: " + type + "\t" + text + " ERRORE!");
+								+ "TokenType: " + type + "\t" + text + " ERRORE!" + "\n";
 			}
 
 		} catch (Exception e) {
-			System.out.println("Test ANTLR abortito");
+			result += "Test ANTLR abortito\n";
 			e.printStackTrace();
 		}
+
+		return result;
 
 	}
 

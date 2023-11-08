@@ -1,6 +1,2 @@
-fun pino(){
-    text t;
-    return "tino";
-}
-
-text res = pino(t);
+s1title tabella1;
+tabella1 = ("gino" + "pino");

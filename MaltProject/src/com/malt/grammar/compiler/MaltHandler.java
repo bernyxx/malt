@@ -1,4 +1,4 @@
-package maltCompilerPackage;
+package com.malt.grammar.compiler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,10 +12,7 @@ import java.util.regex.Pattern;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
-import maltCompilerPackage.util.MaltVarDescriptor;
-
-// TODO: controllo sui tipi delle variabili per assignExprValue e assignVarToVar nel caso di chiamate di funzioni
-// per evitare che ad una tabella venga assegnata un'espressione o che il risultato di una funzione venga assegnata a un'immagine
+import com.malt.grammar.compiler.util.MaltVarDescriptor;
 
 public class MaltHandler {
 	public static int LEXICAL_ERROR = 0;
@@ -46,6 +43,7 @@ public class MaltHandler {
 	public static int NOT_MATCH_TYPE_ARG_ERROR = 25;
 	public static int NOT_MATCH_NUM_ARG_ERROR = 26;
 	public static int NOT_MATCH_TYPE_ASSIGNMENT_ERROR = 27;
+	public static int ILLEGAL_EXPR_ASSIGNMENT_ERROR = 28;
 
 	Hashtable<String, MaltVarDescriptor> symbolTable;
 	Hashtable<String, Hashtable<String, MaltVarDescriptor>> functionTables;
@@ -146,6 +144,8 @@ public class MaltHandler {
 			errMsg += "Numero degli argomenti non corrispondente";
 		} else if (code == NOT_MATCH_TYPE_ASSIGNMENT_ERROR) {
 			errMsg += "Tipo della variabile assegnata non corrispondente";
+		} else if (code == ILLEGAL_EXPR_ASSIGNMENT_ERROR) {
+			errMsg += "Assegnamento dell'espresione non ammesso";
 		}
 
 		errorList.add(errMsg);
@@ -793,13 +793,21 @@ public class MaltHandler {
 
 	public void assignExprToVar(Token className, Token functionName, boolean inFor, Token name, Vector<Token> exps) {
 
-		String n = name.getText();
+		MaltVarDescriptor nameVd = getVarDescriptor(className, functionName, inFor, name);
+		String nameType = nameVd.varType;
+
+		// posso assegnare un'espressione solo a tipi string
+		String[] allowedTypes = { "title", "s1title", "s2title", "s3title", "s4title", "s5title", "text", "blockquote",
+				"codeblock" };
+
+		if (!Arrays.asList(allowedTypes).contains(nameType)) {
+			maltErrorHandler(ILLEGAL_EXPR_ASSIGNMENT_ERROR, name);
+			return;
+		}
 
 		if (exps.size() == 1) {
 			assignVarToVar(className, functionName, inFor, false, name, exps.get(0));
 		}
-
-		MaltVarDescriptor nameVd = getVarDescriptor(className, functionName, inFor, name);
 
 		String[] listValue = new String[exps.size()];
 
@@ -1277,7 +1285,6 @@ public class MaltHandler {
 
 	public void handleReturn(Token className, Token functionName, Token returnToken) {
 
-		String fn = functionName.getText();
 		String returnStr = returnToken.getText();
 
 		String returnValue = "";

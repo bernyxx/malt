@@ -1,30 +1,29 @@
-package maltPackage;
+package com.malt.grammar.launchers;
 
-import java.io.FileReader;
+import java.io.StringReader;
 
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
 
-import maltCompilerPackage.MaltHandler;
-import maltCompilerPackage.MaltLexer;
-import maltCompilerPackage.MaltParser;
+import com.malt.grammar.compiler.MaltHandler;
+import com.malt.grammar.compiler.MaltLexer;
+import com.malt.grammar.compiler.MaltParser;
 
-public class MaltParserTester {
+public class MaltStringParserTester {
 
 	static MaltParser parser;
 
-	public static void main(String[] args) {
+	public String runParser(String input) {
 		CommonTokenStream tokens;
-		String fileIn = ".\\resources\\input.file";
+
+		String result = "";
 
 		try {
-			System.out.println("Parsing con ANTLR lexer");
-			System.out.println("-----------------------");
 
 			// 1.Istanzio il lexer passandogli il documento da analizzare
 			MaltLexer lexer = new MaltLexer(
 					new ANTLRReaderStream(
-							new FileReader(fileIn)));
+							new StringReader(input)));
 
 			// 2.Creo uno stream (canale) di token per la comunicazione tra lexer e parser
 			tokens = new CommonTokenStream(lexer);
@@ -38,15 +37,19 @@ public class MaltParserTester {
 			// 5.controllo i risultati
 			MaltHandler h = parser.getMaltHandler();
 			if (h.getErrorList().size() == 0)
-				System.out.println ("Parsing terminato con successo");
+				result += "Parsing terminato con successo\n";
 			else
-				for (int i=0; i<h.getErrorList().size(); i++)
-					System.err.println ("Errore " + (i+1) +
-							":\t" + h.getErrorList().get(i)+"");
+				for (int i = 0; i < h.getErrorList().size(); i++)
+					// System.err.println("Errore " + (i + 1) +
+					// ":\t" + h.getErrorList().get(i) + "");
+					result += "Errore " + (i + 1) +
+							":\t" + h.getErrorList().get(i) + "\n";
 		} catch (Exception e) {
-			System.out.println("Parsing con ANTLR abortito\n\n");
+			result += "Parsing con ANTLR abortito\n";
 			e.printStackTrace();
 		}
+
+		return result;
 
 	}
 
