@@ -3,7 +3,7 @@ package com.malt.grammar.compiler.util;
 import java.util.Arrays;
 import java.util.Vector;
 
-public class MaltVarDescriptor {
+public class VarDescriptor {
 	public String varName;
 	public String varType;
 	public String value;
@@ -11,7 +11,7 @@ public class MaltVarDescriptor {
 
 	private Vector<String> params;
 
-	public MaltVarDescriptor(String n, String t) {
+	public VarDescriptor(String n, String t) {
 		varName = n;
 		varType = t;
 		value = "";

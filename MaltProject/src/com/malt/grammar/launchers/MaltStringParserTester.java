@@ -8,16 +8,18 @@ import org.antlr.runtime.CommonTokenStream;
 import com.malt.grammar.compiler.MaltHandler;
 import com.malt.grammar.compiler.MaltLexer;
 import com.malt.grammar.compiler.MaltParser;
+import com.malt.grammar.compiler.util.ParserResult;
 
 public class MaltStringParserTester {
 
 	static MaltParser parser;
 
-	public String runParser(String input) {
+	public ParserResult runParser(String input) {
 		CommonTokenStream tokens;
 
 		String result = "";
 
+		ParserResult pr = new ParserResult();
 		try {
 
 			// 1.Istanzio il lexer passandogli il documento da analizzare
@@ -44,12 +46,19 @@ public class MaltStringParserTester {
 					// ":\t" + h.getErrorList().get(i) + "");
 					result += "Errore " + (i + 1) +
 							":\t" + h.getErrorList().get(i) + "\n";
+
+			pr.parserResult = result;
+			pr.globalTable = h.symbolTable;
+			pr.functionsTable = h.functionTables;
+
+			return pr;
+
 		} catch (Exception e) {
 			result += "Parsing con ANTLR abortito\n";
 			e.printStackTrace();
+			pr.parserResult = result;
+			return pr;
 		}
-
-		return result;
 
 	}
 

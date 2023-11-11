@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
-import com.malt.grammar.compiler.util.MaltVarDescriptor;
+import com.malt.grammar.compiler.util.VarDescriptor;
 
 public class MaltHandler {
 	public static int LEXICAL_ERROR = 0;
@@ -45,16 +45,16 @@ public class MaltHandler {
 	public static int NOT_MATCH_TYPE_ASSIGNMENT_ERROR = 27;
 	public static int ILLEGAL_EXPR_ASSIGNMENT_ERROR = 28;
 
-	Hashtable<String, MaltVarDescriptor> symbolTable;
-	Hashtable<String, Hashtable<String, MaltVarDescriptor>> functionTables;
+	public Hashtable<String, VarDescriptor> symbolTable;
+	public Hashtable<String, Hashtable<String, VarDescriptor>> functionTables;
 
 	List<String> errorList;
 	TokenStream input;
 
 	public MaltHandler(TokenStream input) {
 		this.input = input;
-		this.symbolTable = new Hashtable<String, MaltVarDescriptor>();
-		this.functionTables = new Hashtable<String, Hashtable<String, MaltVarDescriptor>>();
+		this.symbolTable = new Hashtable<String, VarDescriptor>();
+		this.functionTables = new Hashtable<String, Hashtable<String, VarDescriptor>>();
 		this.errorList = new ArrayList<String>();
 	}
 
@@ -164,7 +164,7 @@ public class MaltHandler {
 		if (className != null && name != null) {
 			String cn = className.getText();
 			String n = name.getText();
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
 
 			if (localTable.containsKey("fun_" + n)) {
 
@@ -175,19 +175,19 @@ public class MaltHandler {
 				maltErrorHandler(METHOD_ALREADY_DECLARED_ERROR, name);
 
 			} else {
-				MaltVarDescriptor vd = new MaltVarDescriptor(n, "function");
+				VarDescriptor vd = new VarDescriptor(n, "function");
 				localTable.put("fun_" + n, vd);
 
 				System.out.println("è stato dichiarato un metodo " + n + " della classe " + cn + " --> riga ("
 						+ name.getLine() + ")");
-				functionTables.put(cn + "." + n, new Hashtable<String, MaltVarDescriptor>());
+				functionTables.put(cn + "." + n, new Hashtable<String, VarDescriptor>());
 			}
 		} else if (className == null && name != null) {
 			// dichiarazione di una funzione top-level
 
 			String n = name.getText();
 
-			MaltVarDescriptor vd = new MaltVarDescriptor(n, "fun");
+			VarDescriptor vd = new VarDescriptor(n, "fun");
 
 			if (symbolTable.containsKey("fun_" + n)) {
 				// System.err.println("La funzione " + n + " è già stata dichiarata --> riga ("
@@ -197,7 +197,7 @@ public class MaltHandler {
 			} else {
 
 				symbolTable.put("fun_" + n, vd);
-				functionTables.put("fun_" + n, new Hashtable<String, MaltVarDescriptor>());
+				functionTables.put("fun_" + n, new Hashtable<String, VarDescriptor>());
 
 				System.out.println("è stata dichiarata la funzione " + n + " --> riga (" + name.getLine() + ")");
 
@@ -206,7 +206,7 @@ public class MaltHandler {
 			// dichiarazione di una classe
 			String cn = className.getText();
 
-			MaltVarDescriptor vd = new MaltVarDescriptor(cn, "class");
+			VarDescriptor vd = new VarDescriptor(cn, "class");
 
 			if (symbolTable.containsKey("cl_" + cn)) {
 				// System.err
@@ -217,7 +217,7 @@ public class MaltHandler {
 			} else {
 
 				symbolTable.put("cl_" + cn, vd);
-				functionTables.put("cl_" + cn, new Hashtable<String, MaltVarDescriptor>());
+				functionTables.put("cl_" + cn, new Hashtable<String, VarDescriptor>());
 
 				System.out.println("È stata dichiarata la classe " + cn + " --> riga (" + className.getLine() + ")");
 
@@ -238,9 +238,9 @@ public class MaltHandler {
 	public void declareInFor(Token type, Token name) {
 		String t = type.getText();
 		String n = name.getText();
-		MaltVarDescriptor vd = new MaltVarDescriptor(n, t);
+		VarDescriptor vd = new VarDescriptor(n, t);
 
-		Hashtable<String, MaltVarDescriptor> forTable = functionTables.get("for");
+		Hashtable<String, VarDescriptor> forTable = functionTables.get("for");
 
 		if (forTable.contains(n)) {
 			// System.err.println(
@@ -256,7 +256,7 @@ public class MaltHandler {
 	public void declareVar(Token type, Token name) {
 		String t = type.getText();
 		String n = name.getText();
-		MaltVarDescriptor vd = new MaltVarDescriptor(n, t);
+		VarDescriptor vd = new VarDescriptor(n, t);
 
 		if (symbolTable.containsKey(n)) {
 			// System.err.println("La variabile " + n + " è già stata dichiarata --> riga ("
@@ -280,7 +280,7 @@ public class MaltHandler {
 		String t = type.getText();
 		String n = name.getText();
 
-		MaltVarDescriptor vd = new MaltVarDescriptor(n, t);
+		VarDescriptor vd = new VarDescriptor(n, t);
 
 		// dichiarazione di variabile all'interno di metodi di una classe
 		if (className != null && functionName != null) {
@@ -288,7 +288,7 @@ public class MaltHandler {
 			String cn = className.getText();
 			String fn = functionName.getText();
 
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get(cn + "." + fn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
 
 			if (localTable.containsKey(n)) {
 
@@ -309,7 +309,7 @@ public class MaltHandler {
 			// dichiarazione di variabili nelle funzioni top level
 			String fn = functionName.getText();
 
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("fun_" + fn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
 
 			if (localTable.containsKey(n)) {
 
@@ -329,7 +329,7 @@ public class MaltHandler {
 			// dichiarazione di campi di una classe
 			String cn = className.getText();
 
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
 
 			if (localTable.containsKey(n)) {
 
@@ -382,7 +382,7 @@ public class MaltHandler {
 		// caso delle funzioni
 		if (className == null) {
 
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("fun_" + fn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
 
 			if (localTable.containsKey(n)) {
 				// System.err.println("L'argomento " + n + " nella funzione " + fn + " è già
@@ -392,7 +392,7 @@ public class MaltHandler {
 				maltErrorHandler(FUNCTION_ARG_ALREADY_DECLARED_ERROR, name);
 
 			} else {
-				localTable.put(n, new MaltVarDescriptor(n, t));
+				localTable.put(n, new VarDescriptor(n, t));
 				symbolTable.get("fun_" + fn).addParam(n);
 				System.out.println("è stato dichiarato un argomento " + n + " nella funzione " + fn + " --> riga ("
 						+ type.getLine() + ")");
@@ -402,8 +402,8 @@ public class MaltHandler {
 		} else {
 			String cn = className.getText();
 
-			Hashtable<String, MaltVarDescriptor> classTable = functionTables.get("cl_" + cn);
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get(cn + "." + fn);
+			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
 
 			if (localTable.containsKey(n)) {
 				// System.err.println("L'argomento " + n + " nel metodo " + fn + " della classe
@@ -411,7 +411,7 @@ public class MaltHandler {
 				// + " è già stato dichiarato --> riga (" + type.getLine() + ")");
 				maltErrorHandler(METHOD_ARG_ALREADY_DECLARED_ERROR, name);
 			} else {
-				localTable.put(n, new MaltVarDescriptor(n, t));
+				localTable.put(n, new VarDescriptor(n, t));
 				classTable.get("fun_" + fn).addParam(n);
 				System.out.println("è stato dichiarato un argomento " + n + " nel metodo " + fn + " della classe " + cn
 						+ " --> riga (" + type.getLine() + ")");
@@ -432,32 +432,32 @@ public class MaltHandler {
 			String fn = functionName.getText();
 
 			// localTable della funzione dove viene assegnata la variabile
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get(cn + "." + fn);
-			Hashtable<String, MaltVarDescriptor> classTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
+			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
 
-			Hashtable<String, MaltVarDescriptor> forTable = null;
+			Hashtable<String, VarDescriptor> forTable = null;
 
 			if (inFor) {
 				forTable = functionTables.get("for");
 			}
 
 			if (inFor && forTable.containsKey(n)) {
-				MaltVarDescriptor vd = forTable.get(n);
+				VarDescriptor vd = forTable.get(n);
 				vd.value = v;
 				System.out.println("Alla variabile " + n + " del ciclo for del metodo " + fn + " della classe " + cn
 						+ " è stato assegnato il valore " + v + " --> riga (" + name.getLine() + ")");
 			} else if (localTable.containsKey(n)) {
-				MaltVarDescriptor vd = localTable.get(n);
+				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
 				System.out.println("Alla variabile " + n + " del metodo " + fn + " della classe " + cn
 						+ " è stato assegnato il valore " + v + " --> riga (" + name.getLine() + ")");
 			} else if (classTable.containsKey(n)) {
-				MaltVarDescriptor vd = classTable.get(n);
+				VarDescriptor vd = classTable.get(n);
 				vd.value = v;
 				System.out.println("Al campo " + n + " della classe " + cn + " è stato assegnato il valore " + v
 						+ " --> riga (" + name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
-				MaltVarDescriptor vd = symbolTable.get(n);
+				VarDescriptor vd = symbolTable.get(n);
 				vd.value = v;
 				System.out.println("Alla variabile " + n + " è stato assegnato il valore " + v + " --> riga ("
 						+ name.getLine() + ")");
@@ -473,26 +473,26 @@ public class MaltHandler {
 			String fn = functionName.getText();
 
 			// localTable della funzione dove viene assegnata la variabile
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("fun_" + fn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
 
-			Hashtable<String, MaltVarDescriptor> forTable = null;
+			Hashtable<String, VarDescriptor> forTable = null;
 
 			if (inFor) {
 				forTable = functionTables.get("for");
 			}
 
 			if (inFor && forTable.containsKey(n)) {
-				MaltVarDescriptor vd = forTable.get(n);
+				VarDescriptor vd = forTable.get(n);
 				vd.value = v;
 				System.out.println("Alla variabile " + n + " del ciclo for della funzione " + fn
 						+ " è stato assegnato il valore " + v + " --> riga (" + name.getLine() + ")");
 			} else if (localTable.containsKey(n)) {
-				MaltVarDescriptor vd = localTable.get(n);
+				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
 				System.out.println("Alla variabile " + n + " della funzione " + fn + " è stato assegnato il valore " + v
 						+ " --> riga (" + name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
-				MaltVarDescriptor vd = symbolTable.get(n);
+				VarDescriptor vd = symbolTable.get(n);
 				vd.value = v;
 				System.out.println("Alla variabile " + n + " è stato assegnato il valore " + v + " --> riga ("
 						+ name.getLine() + ")");
@@ -509,26 +509,26 @@ public class MaltHandler {
 			String cn = className.getText();
 
 			// localTable della funzione dove viene assegnata la variabile
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
 
-			Hashtable<String, MaltVarDescriptor> forTable = null;
+			Hashtable<String, VarDescriptor> forTable = null;
 
 			if (inFor) {
 				forTable = functionTables.get("for");
 			}
 
 			if (inFor && forTable.containsKey(n)) {
-				MaltVarDescriptor vd = forTable.get(n);
+				VarDescriptor vd = forTable.get(n);
 				vd.value = v;
 				System.out.println("Alla variabile " + n + " del ciclo for della classe " + cn
 						+ " è stato assegnato il valore " + v + " --> riga (" + name.getLine() + ")");
 			} else if (localTable.containsKey(n)) {
-				MaltVarDescriptor vd = localTable.get(n);
+				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
 				System.out.println("Al campo " + n + " della classe " + cn + " è stato assegnato il valore " + v
 						+ " --> riga (" + name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
-				MaltVarDescriptor vd = symbolTable.get(n);
+				VarDescriptor vd = symbolTable.get(n);
 				vd.value = v;
 				System.out.println("Alla variabile " + n + " è stato assegnato il valore " + v + " --> riga ("
 						+ name.getLine() + ")");
@@ -540,20 +540,20 @@ public class MaltHandler {
 			}
 
 		} else {
-			Hashtable<String, MaltVarDescriptor> forTable = null;
+			Hashtable<String, VarDescriptor> forTable = null;
 
 			if (inFor) {
 				forTable = functionTables.get("for");
 			}
 
 			if (inFor && forTable.containsKey(n)) {
-				MaltVarDescriptor vd = forTable.get(n);
+				VarDescriptor vd = forTable.get(n);
 				vd.value = v;
 				System.out.println("Alla variabile del ciclo for " + n + " è stato assegnato il valore " + v
 						+ " --> riga (" + name.getLine() + ")");
 
 			} else if (symbolTable.containsKey(n)) {
-				MaltVarDescriptor vd = symbolTable.get(n);
+				VarDescriptor vd = symbolTable.get(n);
 				vd.value = v;
 				System.out.println("Alla variabile " + n + " è stato assegnato il valore " + v + " --> riga ("
 						+ name.getLine() + ")");
@@ -578,7 +578,7 @@ public class MaltHandler {
 				listValue[i] = value.get(i).getText();
 			} else {
 
-				MaltVarDescriptor resVd = getVarDescriptor(className, functionName, inFor, value.get(i));
+				VarDescriptor resVd = getVarDescriptor(className, functionName, inFor, value.get(i));
 
 				if (resVd == null) {
 					maltErrorHandler(VARIABLE_UNDECLARED_ERROR, value.get(i));
@@ -596,32 +596,32 @@ public class MaltHandler {
 			String fn = functionName.getText();
 
 			// localTable della funzione dove viene assegnata la variabile
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get(cn + "." + fn);
-			Hashtable<String, MaltVarDescriptor> classTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
+			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
 
-			Hashtable<String, MaltVarDescriptor> forTable = null;
+			Hashtable<String, VarDescriptor> forTable = null;
 
 			if (inFor) {
 				forTable = functionTables.get("for");
 			}
 
 			if (inFor && forTable.containsKey(n)) {
-				MaltVarDescriptor vd = forTable.get(n);
+				VarDescriptor vd = forTable.get(n);
 				vd.listValue = listValue;
 				System.out.println("Alla variabile " + n + " del ciclo for del metodo " + fn + " della classe " + cn
 						+ " è stata assegnata una lista --> riga (" + name.getLine() + ")");
 			} else if (localTable.containsKey(n)) {
-				MaltVarDescriptor vd = localTable.get(n);
+				VarDescriptor vd = localTable.get(n);
 				vd.listValue = listValue;
 				System.out.println("Alla variabile " + n + " del metodo " + fn + " della classe " + cn
 						+ " è stata assegnata una lista --> riga (" + name.getLine() + ")");
 			} else if (classTable.containsKey(n)) {
-				MaltVarDescriptor vd = classTable.get(n);
+				VarDescriptor vd = classTable.get(n);
 				vd.listValue = listValue;
 				System.out.println("Al campo " + n + " della classe " + cn + " è stata assegnata una lista --> riga ("
 						+ name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
-				MaltVarDescriptor vd = symbolTable.get(n);
+				VarDescriptor vd = symbolTable.get(n);
 				vd.listValue = listValue;
 				System.out.println(
 						"Alla variabile " + n + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
@@ -637,26 +637,26 @@ public class MaltHandler {
 			String fn = functionName.getText();
 
 			// localTable della funzione dove viene assegnata la variabile
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("fun_" + fn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
 
-			Hashtable<String, MaltVarDescriptor> forTable = null;
+			Hashtable<String, VarDescriptor> forTable = null;
 
 			if (inFor) {
 				forTable = functionTables.get("for");
 			}
 
 			if (inFor && forTable.containsKey(n)) {
-				MaltVarDescriptor vd = forTable.get(n);
+				VarDescriptor vd = forTable.get(n);
 				vd.listValue = listValue;
 				System.out.println("Alla variabile " + n + " del ciclo for della funzione " + fn
 						+ " è stata assegnata una lista --> riga (" + name.getLine() + ")");
 			} else if (localTable.containsKey(n)) {
-				MaltVarDescriptor vd = localTable.get(n);
+				VarDescriptor vd = localTable.get(n);
 				vd.listValue = listValue;
 				System.out.println("Alla variabile " + n + " della funzione " + fn
 						+ " è stata assegnata una lista --> riga (" + name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
-				MaltVarDescriptor vd = symbolTable.get(n);
+				VarDescriptor vd = symbolTable.get(n);
 				vd.listValue = listValue;
 				System.out.println(
 						"Alla variabile " + n + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
@@ -673,26 +673,26 @@ public class MaltHandler {
 			String cn = className.getText();
 
 			// localTable della funzione dove viene assegnata la variabile
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
 
-			Hashtable<String, MaltVarDescriptor> forTable = null;
+			Hashtable<String, VarDescriptor> forTable = null;
 
 			if (inFor) {
 				forTable = functionTables.get("for");
 			}
 
 			if (inFor && forTable.containsKey(n)) {
-				MaltVarDescriptor vd = forTable.get(n);
+				VarDescriptor vd = forTable.get(n);
 				vd.listValue = listValue;
 				System.out.println("Alla variabile " + n + " del ciclo for della classe " + cn
 						+ " è stata assegnata una lista --> riga (" + name.getLine() + ")");
 			} else if (localTable.containsKey(n)) {
-				MaltVarDescriptor vd = localTable.get(n);
+				VarDescriptor vd = localTable.get(n);
 				vd.listValue = listValue;
 				System.out.println("Al campo " + n + " della classe " + cn + " è stata assegnata una lista --> riga ("
 						+ name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
-				MaltVarDescriptor vd = symbolTable.get(n);
+				VarDescriptor vd = symbolTable.get(n);
 				vd.listValue = listValue;
 				System.out.println(
 						"Alla variabile " + n + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
@@ -704,20 +704,20 @@ public class MaltHandler {
 			}
 
 		} else {
-			Hashtable<String, MaltVarDescriptor> forTable = null;
+			Hashtable<String, VarDescriptor> forTable = null;
 
 			if (inFor) {
 				forTable = functionTables.get("for");
 			}
 
 			if (inFor && forTable.containsKey(n)) {
-				MaltVarDescriptor vd = forTable.get(n);
+				VarDescriptor vd = forTable.get(n);
 				vd.listValue = listValue;
 				System.out.println("Alla variabile del ciclo for " + n + " è stata assegnata una lista --> riga ("
 						+ name.getLine() + ")");
 
 			} else if (symbolTable.containsKey(n)) {
-				MaltVarDescriptor vd = symbolTable.get(n);
+				VarDescriptor vd = symbolTable.get(n);
 				vd.listValue = listValue;
 				System.out.println(
 						"Alla variabile " + n + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
@@ -730,7 +730,7 @@ public class MaltHandler {
 		}
 	}
 
-	public boolean checkType(MaltVarDescriptor vd1, MaltVarDescriptor vd2) {
+	public boolean checkType(VarDescriptor vd1, VarDescriptor vd2) {
 		if (vd1.varType.equals(vd2.varType)) {
 			return true;
 		}
@@ -742,8 +742,8 @@ public class MaltHandler {
 
 		String value = "\"";
 
-		MaltVarDescriptor leftVar = getVarDescriptor(className, functionName, inFor, var1);
-		MaltVarDescriptor rightVar;
+		VarDescriptor leftVar = getVarDescriptor(className, functionName, inFor, var1);
+		VarDescriptor rightVar;
 
 		if (isValueFromFunction) {
 			rightVar = getFunctionVarDescriptor(className, var2);
@@ -793,7 +793,7 @@ public class MaltHandler {
 
 	public void assignExprToVar(Token className, Token functionName, boolean inFor, Token name, Vector<Token> exps) {
 
-		MaltVarDescriptor nameVd = getVarDescriptor(className, functionName, inFor, name);
+		VarDescriptor nameVd = getVarDescriptor(className, functionName, inFor, name);
 		String nameType = nameVd.varType;
 
 		// posso assegnare un'espressione solo a tipi string
@@ -816,7 +816,7 @@ public class MaltHandler {
 			if (var.contains("\"")) {
 				listValue[i] = var.substring(1, var.length() - 1);
 			} else {
-				MaltVarDescriptor resVd = getVarDescriptor(className, functionName, inFor, exps.get(i));
+				VarDescriptor resVd = getVarDescriptor(className, functionName, inFor, exps.get(i));
 
 				if (resVd == null) {
 					maltErrorHandler(VARIABLE_UNDECLARED_ERROR, exps.get(i));
@@ -866,17 +866,17 @@ public class MaltHandler {
 		}
 
 		// vettore di VarDescriptor degli argomenti della chiamata
-		Vector<MaltVarDescriptor> argsVd = new Vector<MaltVarDescriptor>();
+		Vector<VarDescriptor> argsVd = new Vector<VarDescriptor>();
 
 		if (className != null && functionName != null) {
 			String cn = className.getText();
 			String fn = functionName.getText();
 
-			Hashtable<String, MaltVarDescriptor> classTable = functionTables.get("cl_" + cn);
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get(cn + "." + fn);
+			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
 
-			Hashtable<String, MaltVarDescriptor> funcToCallTable = new Hashtable<String, MaltVarDescriptor>();
-			MaltVarDescriptor functionToCallVarDescriptor = new MaltVarDescriptor("", "");
+			Hashtable<String, VarDescriptor> funcToCallTable = new Hashtable<String, VarDescriptor>();
+			VarDescriptor functionToCallVarDescriptor = new VarDescriptor("", "");
 
 			// tabella della funzione da chiamare
 			// con this cerco la funzione solo dentro la classe
@@ -932,16 +932,16 @@ public class MaltHandler {
 					String argName = args.get(j).getText();
 
 					if (localTable.containsKey(argName)) {
-						MaltVarDescriptor vd = localTable.get(argName);
+						VarDescriptor vd = localTable.get(argName);
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else if (!localTable.containsKey(argName) && classTable.containsKey(argName)) {
-						MaltVarDescriptor vd = classTable.get(argName);
+						VarDescriptor vd = classTable.get(argName);
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else if (symbolTable.containsKey(argName) && !localTable.containsKey(argName)
 							&& !classTable.containsKey(argName)) {
-						MaltVarDescriptor vd = symbolTable.get(argName);
+						VarDescriptor vd = symbolTable.get(argName);
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else {
@@ -959,11 +959,11 @@ public class MaltHandler {
 
 				// per ogni argomento controlla se il tipo corrisponde con quello del parametro
 				// corrispondente e in caso positivo assegna il valore
-				for (MaltVarDescriptor vdInput : argsVd) {
+				for (VarDescriptor vdInput : argsVd) {
 					String paramName = params.get(i);
 
 					// VarDescriptor del parametro della funzione
-					MaltVarDescriptor vdParam = funcToCallTable.get(paramName);
+					VarDescriptor vdParam = funcToCallTable.get(paramName);
 
 					if (!vdInput.varType.equals(vdParam.varType)) {
 						// System.out.println(
@@ -988,12 +988,12 @@ public class MaltHandler {
 			String fn = functionName.getText();
 
 			// tabella della funzione da chiamare
-			Hashtable<String, MaltVarDescriptor> funcToCallTable = new Hashtable<String, MaltVarDescriptor>();
+			Hashtable<String, VarDescriptor> funcToCallTable = new Hashtable<String, VarDescriptor>();
 
 			// VarDescriptor della funzione da chiamare
-			MaltVarDescriptor functionToCallVarDescriptor = new MaltVarDescriptor("", "");
+			VarDescriptor functionToCallVarDescriptor = new VarDescriptor("", "");
 
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("fun_" + fn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
 
 			if (splitted.length == 2) {
 				String key = splitted[0] + "." + splitted[1];
@@ -1031,11 +1031,11 @@ public class MaltHandler {
 					String argName = argStrings.get(j);
 
 					if (localTable.containsKey(argName)) {
-						MaltVarDescriptor vd = localTable.get(argName);
+						VarDescriptor vd = localTable.get(argName);
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else if (symbolTable.containsKey(argName) && !localTable.containsKey(argName)) {
-						MaltVarDescriptor vd = symbolTable.get(argName);
+						VarDescriptor vd = symbolTable.get(argName);
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else {
@@ -1053,11 +1053,11 @@ public class MaltHandler {
 
 				// per ogni argomento controlla se il tipo corrisponde con quello del parametro
 				// corrispondente e in caso positivo assegna il valore
-				for (MaltVarDescriptor vdInput : argsVd) {
+				for (VarDescriptor vdInput : argsVd) {
 					String paramName = params.get(i);
 
 					// VarDescriptor del parametro della funzione
-					MaltVarDescriptor vdParam = funcToCallTable.get(paramName);
+					VarDescriptor vdParam = funcToCallTable.get(paramName);
 
 					if (!vdInput.varType.equals(vdParam.varType)) {
 						// System.out.println(
@@ -1082,12 +1082,12 @@ public class MaltHandler {
 
 			String cn = className.getText();
 
-			Hashtable<String, MaltVarDescriptor> funcToCallTable = new Hashtable<String, MaltVarDescriptor>();
+			Hashtable<String, VarDescriptor> funcToCallTable = new Hashtable<String, VarDescriptor>();
 
 			// VarDescriptor della funzione da chiamare
-			MaltVarDescriptor functionToCallVarDescriptor = new MaltVarDescriptor("", "");
+			VarDescriptor functionToCallVarDescriptor = new VarDescriptor("", "");
 
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
 
 			// tabella della funzione da chiamare
 			// con this cerco la funzione solo dentro la classe
@@ -1145,11 +1145,11 @@ public class MaltHandler {
 					String argName = argStrings.get(j);
 
 					if (localTable.containsKey(argName)) {
-						MaltVarDescriptor vd = localTable.get(argName);
+						VarDescriptor vd = localTable.get(argName);
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else if (symbolTable.containsKey(argName) && !localTable.containsKey(argName)) {
-						MaltVarDescriptor vd = symbolTable.get(argName);
+						VarDescriptor vd = symbolTable.get(argName);
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else {
@@ -1167,11 +1167,11 @@ public class MaltHandler {
 
 				// per ogni argomento controlla se il tipo corrisponde con quello del parametro
 				// corrispondente e in caso positivo assegna il valore
-				for (MaltVarDescriptor vdInput : argsVd) {
+				for (VarDescriptor vdInput : argsVd) {
 					String paramName = params.get(i);
 
 					// VarDescriptor del parametro della funzione
-					MaltVarDescriptor vdParam = funcToCallTable.get(paramName);
+					VarDescriptor vdParam = funcToCallTable.get(paramName);
 
 					if (!vdInput.varType.equals(vdParam.varType)) {
 						// System.out.println(
@@ -1195,10 +1195,10 @@ public class MaltHandler {
 		} else {
 
 			// tabella della funzione
-			Hashtable<String, MaltVarDescriptor> funcToCallTable = functionTables.get("fun_" + funcToCall);
+			Hashtable<String, VarDescriptor> funcToCallTable = functionTables.get("fun_" + funcToCall);
 
 			// VarDescriptor della funzione
-			MaltVarDescriptor functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
+			VarDescriptor functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
 
 			if (splitted.length == 2) {
 				String key = splitted[0] + "." + splitted[1];
@@ -1236,7 +1236,7 @@ public class MaltHandler {
 					String argName = argStrings.get(j);
 
 					if (symbolTable.containsKey(argName)) {
-						MaltVarDescriptor vd = symbolTable.get(argName);
+						VarDescriptor vd = symbolTable.get(argName);
 						argStrings.set(j, vd.value);
 						argsVd.add(vd);
 					} else {
@@ -1254,11 +1254,11 @@ public class MaltHandler {
 
 				// per ogni argomento controlla se il tipo corrisponde con quello del parametro
 				// corrispondente e in caso positivo assegna il valore
-				for (MaltVarDescriptor vdInput : argsVd) {
+				for (VarDescriptor vdInput : argsVd) {
 					String paramName = params.get(i);
 
 					// VarDescriptor del parametro della funzione
-					MaltVarDescriptor vdParam = funcToCallTable.get(paramName);
+					VarDescriptor vdParam = funcToCallTable.get(paramName);
 
 					if (!vdInput.varType.equals(vdParam.varType)) {
 						// System.out.println(
@@ -1296,7 +1296,7 @@ public class MaltHandler {
 		} else {
 			// se ritorno una variabile
 			// recupero il valore della variabile
-			MaltVarDescriptor returnVd = getVarDescriptor(className, functionName, false, returnToken);
+			VarDescriptor returnVd = getVarDescriptor(className, functionName, false, returnToken);
 
 			if (returnVd == null) {
 				maltErrorHandler(VARIABLE_UNDECLARED_ERROR, returnToken);
@@ -1307,7 +1307,7 @@ public class MaltHandler {
 		}
 
 		// cerco la funzione alla quale assegnare il valore di return
-		MaltVarDescriptor functionVd = getFunctionVarDescriptor(className, functionName);
+		VarDescriptor functionVd = getFunctionVarDescriptor(className, functionName);
 
 		// non serve perché non può mancare la tabella della funzione dalla quale sto
 		// eseguendo un return
@@ -1325,10 +1325,10 @@ public class MaltHandler {
 		functionVd.value = returnValue;
 	}
 
-	public MaltVarDescriptor getVarDescriptor(Token className, Token functionName, boolean inFor, Token name) {
+	public VarDescriptor getVarDescriptor(Token className, Token functionName, boolean inFor, Token name) {
 		String n = name.getText();
 
-		Hashtable<String, MaltVarDescriptor> forTable = null;
+		Hashtable<String, VarDescriptor> forTable = null;
 
 		if (inFor) {
 			forTable = functionTables.get("for");
@@ -1338,8 +1338,8 @@ public class MaltHandler {
 			String cn = className.getText();
 			String fn = functionName.getText();
 
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get(cn + "." + fn);
-			Hashtable<String, MaltVarDescriptor> classTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
+			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
 
 			if (forTable != null && forTable.containsKey(n)) {
 				return forTable.get(n);
@@ -1355,7 +1355,7 @@ public class MaltHandler {
 
 		} else if (className == null && functionName != null) {
 			String fn = functionName.getText();
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("fun_" + fn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
 
 			if (forTable != null && forTable.containsKey(n)) {
 				return forTable.get(n);
@@ -1370,7 +1370,7 @@ public class MaltHandler {
 		} else if (className != null && functionName == null) {
 			String cn = className.getText();
 
-			Hashtable<String, MaltVarDescriptor> localTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
 
 			if (forTable != null && forTable.containsKey(n)) {
 				return forTable.get(n);
@@ -1395,17 +1395,17 @@ public class MaltHandler {
 
 	}
 
-	public MaltVarDescriptor getFunctionVarDescriptor(Token className, Token functionName) {
+	public VarDescriptor getFunctionVarDescriptor(Token className, Token functionName) {
 
 		String fn = functionName.getText();
 
-		MaltVarDescriptor functionVd;
+		VarDescriptor functionVd;
 
 		if (className != null) {
 
 			String cn = className.getText();
 
-			Hashtable<String, MaltVarDescriptor> classTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
 
 			if (classTable.containsKey("fun_" + fn)) {
 				functionVd = classTable.get("fun_" + fn);
@@ -1430,7 +1430,7 @@ public class MaltHandler {
 	public void handleFormat(Token className, Token functionName, boolean inFor, Token resultVar, Token formatText,
 			Vector<Token> vars) {
 
-		MaltVarDescriptor ftVd = getVarDescriptor(className, functionName, inFor, formatText);
+		VarDescriptor ftVd = getVarDescriptor(className, functionName, inFor, formatText);
 
 		if (ftVd == null) {
 			maltErrorHandler(VARIABLE_UNDECLARED_ERROR, formatText);
@@ -1460,7 +1460,7 @@ public class MaltHandler {
 		}
 
 		for (Token var : vars) {
-			MaltVarDescriptor vd = getVarDescriptor(className, functionName, inFor, var);
+			VarDescriptor vd = getVarDescriptor(className, functionName, inFor, var);
 
 			if (vd == null) {
 				maltErrorHandler(VARIABLE_UNDECLARED_ERROR, var);
@@ -1501,21 +1501,21 @@ public class MaltHandler {
 
 	public void declareFor(Token className, Token functionName, boolean isIncr, Token name, Token it) {
 
-		Hashtable<String, MaltVarDescriptor> forTable = null;
+		Hashtable<String, VarDescriptor> forTable = null;
 		if (functionTables.containsKey("for")) {
 			functionTables.get("for").clear();
 		} else {
-			functionTables.put("for", new Hashtable<String, MaltVarDescriptor>());
+			functionTables.put("for", new Hashtable<String, VarDescriptor>());
 		}
 
 		forTable = functionTables.get("for");
 
 		if (isIncr) {
 			// iterazione tramite counter
-			MaltVarDescriptor vd = new MaltVarDescriptor(name.getText(), "int");
+			VarDescriptor vd = new VarDescriptor(name.getText(), "int");
 			vd.value = "0";
 
-			MaltVarDescriptor vdMax = new MaltVarDescriptor("for", "int");
+			VarDescriptor vdMax = new VarDescriptor("for", "int");
 			vdMax.value = it.getText();
 
 			forTable.put(name.getText(), vd);
@@ -1523,7 +1523,7 @@ public class MaltHandler {
 
 		} else {
 			// iterazione di un for sulle liste
-			MaltVarDescriptor vdIt = getVarDescriptor(className, functionName, true, it);
+			VarDescriptor vdIt = getVarDescriptor(className, functionName, true, it);
 
 			if (vdIt == null) {
 				maltErrorHandler(VARIABLE_UNDECLARED_ERROR, it);
@@ -1539,7 +1539,7 @@ public class MaltHandler {
 				return;
 			}
 
-			MaltVarDescriptor vd = new MaltVarDescriptor(name.getText(), "text");
+			VarDescriptor vd = new VarDescriptor(name.getText(), "text");
 			vd.value = values[0];
 
 			forTable.put(name.getText(), vd);
