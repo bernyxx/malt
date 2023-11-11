@@ -1,2 +1,14 @@
 s1title tabella1;
 tabella1 = ("gino" + "pino");
+
+list l1 = ["albero", "pino"];
+
+fun gino(text p1, text p2){
+text t1;
+text t2 = "in fun gino";
+}
+
+fun pino(text p1, text p2){
+text t1;
+text t2 = "in fun gino";
+}
