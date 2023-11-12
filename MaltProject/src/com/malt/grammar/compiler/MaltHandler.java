@@ -39,11 +39,12 @@ public class MaltHandler {
 	public static int FORMAT_VARIABLE_UNDECLARED_ERROR = 21;
 	public static int FUNCTION_CALL_ERROR = 22;
 	public static int EMPTY_LIST_ERROR = 23;
-	public static int VARIABLE_UNDECLARED_ERROR = 24;
-	public static int NOT_MATCH_TYPE_ARG_ERROR = 25;
-	public static int NOT_MATCH_NUM_ARG_ERROR = 26;
-	public static int NOT_MATCH_TYPE_ASSIGNMENT_ERROR = 27;
-	public static int ILLEGAL_EXPR_ASSIGNMENT_ERROR = 28;
+	public static int ITERATE_EMPTY_LIST_ERROR = 24;
+	public static int VARIABLE_UNDECLARED_ERROR = 25;
+	public static int NOT_MATCH_TYPE_ARG_ERROR = 26;
+	public static int NOT_MATCH_NUM_ARG_ERROR = 27;
+	public static int NOT_MATCH_TYPE_ASSIGNMENT_ERROR = 28;
+	public static int ILLEGAL_EXPR_ASSIGNMENT_ERROR = 29;
 
 	public Hashtable<String, VarDescriptor> symbolTable;
 	public Hashtable<String, Hashtable<String, VarDescriptor>> functionTables;
@@ -136,6 +137,8 @@ public class MaltHandler {
 			errMsg += "La variabile passata alla format non è stata dichiarata";
 		} else if (code == EMPTY_LIST_ERROR) {
 			errMsg += "La lista è vuota";
+		} else if (code == ITERATE_EMPTY_LIST_ERROR) {
+			errMsg += "Impossibile iterare una lista vuota";
 		} else if (code == VARIABLE_UNDECLARED_ERROR) {
 			errMsg += "Variabile non dichiarata";
 		} else if (code == NOT_MATCH_TYPE_ARG_ERROR) {
@@ -178,8 +181,9 @@ public class MaltHandler {
 				VarDescriptor vd = new VarDescriptor(n, "function");
 				localTable.put("fun_" + n, vd);
 
-				System.out.println("è stato dichiarato un metodo " + n + " della classe " + cn + " --> riga ("
-						+ name.getLine() + ")");
+				// System.out.println("è stato dichiarato un metodo " + n + " della classe " +
+				// cn + " --> riga ("
+				// + name.getLine() + ")");
 				functionTables.put(cn + "." + n, new Hashtable<String, VarDescriptor>());
 			}
 		} else if (className == null && name != null) {
@@ -199,7 +203,8 @@ public class MaltHandler {
 				symbolTable.put("fun_" + n, vd);
 				functionTables.put("fun_" + n, new Hashtable<String, VarDescriptor>());
 
-				System.out.println("è stata dichiarata la funzione " + n + " --> riga (" + name.getLine() + ")");
+				// System.out.println("è stata dichiarata la funzione " + n + " --> riga (" +
+				// name.getLine() + ")");
 
 			}
 		} else if (className != null && name == null) {
@@ -219,7 +224,8 @@ public class MaltHandler {
 				symbolTable.put("cl_" + cn, vd);
 				functionTables.put("cl_" + cn, new Hashtable<String, VarDescriptor>());
 
-				System.out.println("È stata dichiarata la classe " + cn + " --> riga (" + className.getLine() + ")");
+				// System.out.println("È stata dichiarata la classe " + cn + " --> riga (" +
+				// className.getLine() + ")");
 
 			}
 		} else {
@@ -249,7 +255,8 @@ public class MaltHandler {
 			maltErrorHandler(VARIABLE_ALREADY_DECLARED_FOR_ERROR, name);
 		} else {
 			forTable.put(n, vd);
-			System.out.println("È stata dichiarata una variabile " + n + " --> riga (" + type.getLine() + ")");
+			// System.out.println("È stata dichiarata una variabile " + n + " --> riga (" +
+			// type.getLine() + ")");
 		}
 	}
 
@@ -264,7 +271,8 @@ public class MaltHandler {
 			maltErrorHandler(VARIABLE_ALREADY_DECLARED_TOP_ERROR, name);
 		} else {
 			symbolTable.put(n, vd);
-			System.out.println("è stata dichiarata una variabile " + n + " --> riga (" + type.getLine() + ")");
+			// System.out.println("è stata dichiarata una variabile " + n + " --> riga (" +
+			// type.getLine() + ")");
 		}
 	}
 
@@ -302,8 +310,9 @@ public class MaltHandler {
 
 				localTable.put(n, vd);
 
-				System.out.println("è stata dichiarata una variabile " + n + " nel metodo " + fn + " della classe " + cn
-						+ " --> riga (" + type.getLine() + ")");
+				// System.out.println("è stata dichiarata una variabile " + n + " nel metodo " +
+				// fn + " della classe " + cn
+				// + " --> riga (" + type.getLine() + ")");
 			}
 		} else if (className == null && functionName != null) {
 			// dichiarazione di variabili nelle funzioni top level
@@ -322,8 +331,9 @@ public class MaltHandler {
 			} else {
 				localTable.put(n, vd);
 
-				System.out.println("è stata dichiarata una variabile " + n + " nella funzione " + fn + " --> riga ("
-						+ type.getLine() + ")");
+				// System.out.println("è stata dichiarata una variabile " + n + " nella funzione
+				// " + fn + " --> riga ("
+				// + type.getLine() + ")");
 			}
 		} else if (className != null && functionName == null) {
 			// dichiarazione di campi di una classe
@@ -342,8 +352,9 @@ public class MaltHandler {
 			} else {
 				localTable.put(n, vd);
 
-				System.out.println("È stato dichiarato un campo " + n + " nella classe " + cn + " --> riga ("
-						+ type.getLine() + ")");
+				// System.out.println("È stato dichiarato un campo " + n + " nella classe " + cn
+				// + " --> riga ("
+				// + type.getLine() + ")");
 			}
 		} else {
 			// System.err.println("ERRORE declareVarInFunCl(): className e functionName sono
@@ -394,8 +405,9 @@ public class MaltHandler {
 			} else {
 				localTable.put(n, new VarDescriptor(n, t));
 				symbolTable.get("fun_" + fn).addParam(n);
-				System.out.println("è stato dichiarato un argomento " + n + " nella funzione " + fn + " --> riga ("
-						+ type.getLine() + ")");
+				// System.out.println("è stato dichiarato un argomento " + n + " nella funzione
+				// " + fn + " --> riga ("
+				// + type.getLine() + ")");
 			}
 
 			// caso dei metodi di una classe
@@ -413,8 +425,9 @@ public class MaltHandler {
 			} else {
 				localTable.put(n, new VarDescriptor(n, t));
 				classTable.get("fun_" + fn).addParam(n);
-				System.out.println("è stato dichiarato un argomento " + n + " nel metodo " + fn + " della classe " + cn
-						+ " --> riga (" + type.getLine() + ")");
+				// System.out.println("è stato dichiarato un argomento " + n + " nel metodo " +
+				// fn + " della classe " + cn
+				// + " --> riga (" + type.getLine() + ")");
 			}
 
 		}
@@ -444,23 +457,29 @@ public class MaltHandler {
 			if (inFor && forTable.containsKey(n)) {
 				VarDescriptor vd = forTable.get(n);
 				vd.value = v;
-				System.out.println("Alla variabile " + n + " del ciclo for del metodo " + fn + " della classe " + cn
-						+ " è stato assegnato il valore " + v + " --> riga (" + name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " del ciclo for del metodo " + fn
+				// + " della classe " + cn
+				// + " è stato assegnato il valore " + v + " --> riga (" + name.getLine() +
+				// ")");
 			} else if (localTable.containsKey(n)) {
 				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
-				System.out.println("Alla variabile " + n + " del metodo " + fn + " della classe " + cn
-						+ " è stato assegnato il valore " + v + " --> riga (" + name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " del metodo " + fn + " della
+				// classe " + cn
+				// + " è stato assegnato il valore " + v + " --> riga (" + name.getLine() +
+				// ")");
 			} else if (classTable.containsKey(n)) {
 				VarDescriptor vd = classTable.get(n);
 				vd.value = v;
-				System.out.println("Al campo " + n + " della classe " + cn + " è stato assegnato il valore " + v
-						+ " --> riga (" + name.getLine() + ")");
+				// System.out.println("Al campo " + n + " della classe " + cn + " è stato
+				// assegnato il valore " + v
+				// + " --> riga (" + name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
 				VarDescriptor vd = symbolTable.get(n);
 				vd.value = v;
-				System.out.println("Alla variabile " + n + " è stato assegnato il valore " + v + " --> riga ("
-						+ name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " è stato assegnato il valore " +
+				// v + " --> riga ("
+				// + name.getLine() + ")");
 			} else {
 				// System.out.println("Errore assegnamento! La variabile " + n + " del metodo "
 				// + fn + " della classe "
@@ -484,18 +503,22 @@ public class MaltHandler {
 			if (inFor && forTable.containsKey(n)) {
 				VarDescriptor vd = forTable.get(n);
 				vd.value = v;
-				System.out.println("Alla variabile " + n + " del ciclo for della funzione " + fn
-						+ " è stato assegnato il valore " + v + " --> riga (" + name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " del ciclo for della funzione " +
+				// fn
+				// + " è stato assegnato il valore " + v + " --> riga (" + name.getLine() +
+				// ")");
 			} else if (localTable.containsKey(n)) {
 				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
-				System.out.println("Alla variabile " + n + " della funzione " + fn + " è stato assegnato il valore " + v
-						+ " --> riga (" + name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " della funzione " + fn + " è
+				// stato assegnato il valore " + v
+				// + " --> riga (" + name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
 				VarDescriptor vd = symbolTable.get(n);
 				vd.value = v;
-				System.out.println("Alla variabile " + n + " è stato assegnato il valore " + v + " --> riga ("
-						+ name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " è stato assegnato il valore " +
+				// v + " --> riga ("
+				// + name.getLine() + ")");
 			} else {
 				// System.out.println("Errore assegnamento! La variabile " + n + " della
 				// funzione " + fn + " non esiste!"
@@ -520,18 +543,22 @@ public class MaltHandler {
 			if (inFor && forTable.containsKey(n)) {
 				VarDescriptor vd = forTable.get(n);
 				vd.value = v;
-				System.out.println("Alla variabile " + n + " del ciclo for della classe " + cn
-						+ " è stato assegnato il valore " + v + " --> riga (" + name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " del ciclo for della classe " +
+				// cn
+				// + " è stato assegnato il valore " + v + " --> riga (" + name.getLine() +
+				// ")");
 			} else if (localTable.containsKey(n)) {
 				VarDescriptor vd = localTable.get(n);
 				vd.value = v;
-				System.out.println("Al campo " + n + " della classe " + cn + " è stato assegnato il valore " + v
-						+ " --> riga (" + name.getLine() + ")");
+				// System.out.println("Al campo " + n + " della classe " + cn + " è stato
+				// assegnato il valore " + v
+				// + " --> riga (" + name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
 				VarDescriptor vd = symbolTable.get(n);
 				vd.value = v;
-				System.out.println("Alla variabile " + n + " è stato assegnato il valore " + v + " --> riga ("
-						+ name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " è stato assegnato il valore " +
+				// v + " --> riga ("
+				// + name.getLine() + ")");
 			} else {
 				// System.out.println("Errore assegnamento! Il campo " + n + " della classe " +
 				// cn + " non esiste!"+ "--> riga ("
@@ -549,14 +576,16 @@ public class MaltHandler {
 			if (inFor && forTable.containsKey(n)) {
 				VarDescriptor vd = forTable.get(n);
 				vd.value = v;
-				System.out.println("Alla variabile del ciclo for " + n + " è stato assegnato il valore " + v
-						+ " --> riga (" + name.getLine() + ")");
+				// System.out.println("Alla variabile del ciclo for " + n + " è stato assegnato
+				// il valore " + v
+				// + " --> riga (" + name.getLine() + ")");
 
 			} else if (symbolTable.containsKey(n)) {
 				VarDescriptor vd = symbolTable.get(n);
 				vd.value = v;
-				System.out.println("Alla variabile " + n + " è stato assegnato il valore " + v + " --> riga ("
-						+ name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " è stato assegnato il valore " +
+				// v + " --> riga ("
+				// + name.getLine() + ")");
 			} else {
 				// System.out.println("Errore assegnamento! La variabile " + n + " non esiste!"
 				// + "--> riga ("
@@ -608,23 +637,27 @@ public class MaltHandler {
 			if (inFor && forTable.containsKey(n)) {
 				VarDescriptor vd = forTable.get(n);
 				vd.listValue = listValue;
-				System.out.println("Alla variabile " + n + " del ciclo for del metodo " + fn + " della classe " + cn
-						+ " è stata assegnata una lista --> riga (" + name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " del ciclo for del metodo " + fn
+				// + " della classe " + cn
+				// + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
 			} else if (localTable.containsKey(n)) {
 				VarDescriptor vd = localTable.get(n);
 				vd.listValue = listValue;
-				System.out.println("Alla variabile " + n + " del metodo " + fn + " della classe " + cn
-						+ " è stata assegnata una lista --> riga (" + name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " del metodo " + fn + " della
+				// classe " + cn
+				// + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
 			} else if (classTable.containsKey(n)) {
 				VarDescriptor vd = classTable.get(n);
 				vd.listValue = listValue;
-				System.out.println("Al campo " + n + " della classe " + cn + " è stata assegnata una lista --> riga ("
-						+ name.getLine() + ")");
+				// System.out.println("Al campo " + n + " della classe " + cn + " è stata
+				// assegnata una lista --> riga ("
+				// + name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
 				VarDescriptor vd = symbolTable.get(n);
 				vd.listValue = listValue;
-				System.out.println(
-						"Alla variabile " + n + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
+				// System.out.println(
+				// "Alla variabile " + n + " è stata assegnata una lista --> riga (" +
+				// name.getLine() + ")");
 			} else {
 				// System.out.println("Errore assegnamento! La variabile " + n + " del metodo "
 				// + fn + " della classe "
@@ -648,18 +681,20 @@ public class MaltHandler {
 			if (inFor && forTable.containsKey(n)) {
 				VarDescriptor vd = forTable.get(n);
 				vd.listValue = listValue;
-				System.out.println("Alla variabile " + n + " del ciclo for della funzione " + fn
-						+ " è stata assegnata una lista --> riga (" + name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " del ciclo for della funzione " +
+				// fn
+				// + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
 			} else if (localTable.containsKey(n)) {
 				VarDescriptor vd = localTable.get(n);
 				vd.listValue = listValue;
-				System.out.println("Alla variabile " + n + " della funzione " + fn
-						+ " è stata assegnata una lista --> riga (" + name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " della funzione " + fn
+				// + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
 				VarDescriptor vd = symbolTable.get(n);
 				vd.listValue = listValue;
-				System.out.println(
-						"Alla variabile " + n + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
+				// System.out.println(
+				// "Alla variabile " + n + " è stata assegnata una lista --> riga (" +
+				// name.getLine() + ")");
 			} else {
 				// System.out.println("Errore assegnamento! La variabile " + n + " della
 				// funzione " + fn + " non esiste!"
@@ -684,18 +719,21 @@ public class MaltHandler {
 			if (inFor && forTable.containsKey(n)) {
 				VarDescriptor vd = forTable.get(n);
 				vd.listValue = listValue;
-				System.out.println("Alla variabile " + n + " del ciclo for della classe " + cn
-						+ " è stata assegnata una lista --> riga (" + name.getLine() + ")");
+				// System.out.println("Alla variabile " + n + " del ciclo for della classe " +
+				// cn
+				// + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
 			} else if (localTable.containsKey(n)) {
 				VarDescriptor vd = localTable.get(n);
 				vd.listValue = listValue;
-				System.out.println("Al campo " + n + " della classe " + cn + " è stata assegnata una lista --> riga ("
-						+ name.getLine() + ")");
+				// System.out.println("Al campo " + n + " della classe " + cn + " è stata
+				// assegnata una lista --> riga ("
+				// + name.getLine() + ")");
 			} else if (symbolTable.containsKey(n)) {
 				VarDescriptor vd = symbolTable.get(n);
 				vd.listValue = listValue;
-				System.out.println(
-						"Alla variabile " + n + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
+				// System.out.println(
+				// "Alla variabile " + n + " è stata assegnata una lista --> riga (" +
+				// name.getLine() + ")");
 			} else {
 				// System.out.println("Errore assegnamento! Il campo " + n + " della classe " +
 				// cn + " non esiste!"
@@ -713,14 +751,16 @@ public class MaltHandler {
 			if (inFor && forTable.containsKey(n)) {
 				VarDescriptor vd = forTable.get(n);
 				vd.listValue = listValue;
-				System.out.println("Alla variabile del ciclo for " + n + " è stata assegnata una lista --> riga ("
-						+ name.getLine() + ")");
+				// System.out.println("Alla variabile del ciclo for " + n + " è stata assegnata
+				// una lista --> riga ("
+				// + name.getLine() + ")");
 
 			} else if (symbolTable.containsKey(n)) {
 				VarDescriptor vd = symbolTable.get(n);
 				vd.listValue = listValue;
-				System.out.println(
-						"Alla variabile " + n + " è stata assegnata una lista --> riga (" + name.getLine() + ")");
+				// System.out.println(
+				// "Alla variabile " + n + " è stata assegnata una lista --> riga (" +
+				// name.getLine() + ")");
 			} else {
 				// System.out.println("Errore assegnamento! La variabile " + n + " non esiste!"
 				// + "--> riga ("
@@ -1160,11 +1200,6 @@ public class MaltHandler {
 					}
 				}
 
-				// stampa del valore degli argomenti nella chiamata
-				for (String value : argStrings) {
-					System.out.println(value);
-				}
-
 				// per ogni argomento controlla se il tipo corrisponde con quello del parametro
 				// corrispondente e in caso positivo assegna il valore
 				for (VarDescriptor vdInput : argsVd) {
@@ -1224,8 +1259,6 @@ public class MaltHandler {
 			int numParams = functionToCallVarDescriptor.getNumParams();
 			Vector<String> params = functionToCallVarDescriptor.getParams();
 
-			System.out.println("N parametri: " + numParams);
-
 			// controllo se il numero degli argomenti della chiamata è uguale al numero dei
 			// parametri della funzione
 			if (args.size() == numParams) {
@@ -1245,11 +1278,6 @@ public class MaltHandler {
 						maltErrorHandler(FUNCTION_PARAMETER_UNDECLARED_ERROR, args.get(j));
 						return;
 					}
-				}
-
-				// stampa del valore degli argomenti nella chiamata
-				for (String value : argStrings) {
-					System.out.println(value);
 				}
 
 				// per ogni argomento controlla se il tipo corrisponde con quello del parametro
@@ -1453,12 +1481,6 @@ public class MaltHandler {
 
 		String[] splitted = ft.split(regex);
 
-		System.out.println(Arrays.toString(splitted));
-
-		for (String el : matches) {
-			System.out.println(el);
-		}
-
 		for (Token var : vars) {
 			VarDescriptor vd = getVarDescriptor(className, functionName, inFor, var);
 
@@ -1467,7 +1489,6 @@ public class MaltHandler {
 				return;
 			}
 			String value = vd.value;
-			System.out.println("Var value: " + value);
 			values.add(value);
 		}
 
@@ -1535,7 +1556,10 @@ public class MaltHandler {
 			int length = vdIt.listValue.length;
 
 			if (length <= 0) {
-				System.err.println("Impossibile iterare una lista vuota --> riga (" + it.getLine() + ")");
+				// System.err.println("Impossibile iterare una lista vuota --> riga (" +
+				// it.getLine() + ")");
+
+				maltErrorHandler(ITERATE_EMPTY_LIST_ERROR, it);
 				return;
 			}
 
@@ -1563,14 +1587,5 @@ public class MaltHandler {
 			System.out.println(varL + "-> " + functionTables.get(varL));
 		}
 		System.out.println("--------END FUNCTION TABLE--------");
-	}
-
-	public void prova(Token name, Token type) {
-		if (name != null && type != null)
-			System.out.println("PROVA: " + name.getText() + " " + type.getText());
-	}
-
-	void hello() {
-		System.out.println("Hello world");
 	}
 }

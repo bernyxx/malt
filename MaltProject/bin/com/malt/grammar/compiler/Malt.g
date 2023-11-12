@@ -80,6 +80,7 @@ functionCallRule [Token className, Token functionName] returns [Token calledFunc
 		(v1=VAR | v1=DOTVAR) {calledFunction = $v1;} LP {Vector<Token> vct = new Vector<Token>();} (t1=VAR {vct.add($t1);} (CM t2=VAR {vct.add($t2);})*)? RP {h.functionCall(className, functionName, $v1, vct);}
 ;
 
+
 returnRule [Token className, Token functionName]
 	:
 		RETURN (v=VAR | v=STRING) SE {h.handleReturn(className,functionName,$v);}

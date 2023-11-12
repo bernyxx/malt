@@ -12,3 +12,9 @@ fun pino(text p1, text p2){
 text t1;
 text t2 = "in fun gino";
 }
+
+list l2 = [];
+
+for(t in l2){
+    text t2 = "";
+}
