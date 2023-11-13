@@ -1,17 +1,19 @@
-list t1 = ["out", "out2"];
+text p = "gino";
 
-fun pino(){
-    list t1 = ["pino", "pino2"];
+fun gino(){
+    text t1 = ("suino" + " maiale");
+    return t1;
 }
 
-class c1{
-    list t1 = ["cl1", "cl2"];
+class albero{
 
-    fun met(){
-        list t1 = ["met", "met2"];
-        for(c, 5){
-            list t1 = ["infor", "infor2"];
-            list t3 = t1;
-        }  
+    fun pino(){
+        text t = "in albero";
+        return t;
     }
+
+    this.pino();
 }
+
+text res = gino();
+text res2 = albero.pino();

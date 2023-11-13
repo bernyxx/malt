@@ -500,12 +500,40 @@ public class MaltHandler {
 
 		if (isValueFromFunction) {
 			// a destra c'è una chiamata di funzione
-			rightVar = getFunctionVarDescriptor(className, var2);
+			System.out.println(var2.getText());
 
-			if (rightVar == null) {
-				maltErrorHandler(FUNCTION_UNDECLARED_ERROR, var2);
-				return;
+			String var2Str = var2.getText();
+
+			String[] splitted = var2Str.split("\\.");
+			System.out.println(Arrays.toString(splitted));
+
+			if (splitted.length == 2) {
+				String classKey = "cl_" + splitted[0];
+				String functionKey = "fun_" + splitted[1];
+
+				if (functionTables.containsKey(classKey)) {
+					Hashtable<String, VarDescriptor> classTable = functionTables.get(classKey);
+
+					if (classTable.containsKey(functionKey)) {
+						rightVar = classTable.get(functionKey);
+					} else {
+						maltErrorHandler(METHOD_UNDECLARED_ERROR, var2);
+						return;
+					}
+				} else {
+					maltErrorHandler(METHOD_UNDECLARED_ERROR, var2);
+					return;
+				}
+
+			} else {
+				rightVar = getFunctionVarDescriptor(className, var2);
+
+				if (rightVar == null) {
+					maltErrorHandler(FUNCTION_UNDECLARED_ERROR, var2);
+					return;
+				}
 			}
+
 		} else {
 			// a destra c'è una variabile
 			rightVar = getVarDescriptor(className, functionName, inFor, var2);
@@ -603,10 +631,16 @@ public class MaltHandler {
 
 	}
 
+	/**
+	 * 
+	 * @param className      Nome della classe
+	 * @param functionName   Nome della funzione
+	 * @param functionToCall Funzione chiamata
+	 * @param args           Argomenti passati alla funzione chiamata
+	 */
 	public void functionCall(Token className, Token functionName, Token functionToCall, Vector<Token> args) {
 
 		if (functionToCall == null) {
-			// System.out.println("ERRORE functionCall(): functionToCall è nullo!");
 			maltErrorHandler(FUNCTION_CALL_ERROR, functionToCall);
 			return;
 		}
@@ -614,421 +648,112 @@ public class MaltHandler {
 		String funcToCall = functionToCall.getText();
 
 		String[] splitted = funcToCall.split("\\.");
-		// System.out.println(Arrays.toString(splitted));
 
 		Vector<String> argStrings = new Vector<String>();
 
 		for (Token el : args) {
-			// System.out.println(el.getText());
 			argStrings.add(el.getText());
 		}
 
 		// vettore di VarDescriptor degli argomenti della chiamata
 		Vector<VarDescriptor> argsVd = new Vector<VarDescriptor>();
 
-		if (className != null && functionName != null) {
-			String cn = className.getText();
-			String fn = functionName.getText();
+		Hashtable<String, VarDescriptor> classTable = null;
 
-			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
-			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
+		Hashtable<String, VarDescriptor> funcToCallTable = new Hashtable<String, VarDescriptor>();
+		VarDescriptor functionToCallVarDescriptor = new VarDescriptor("", "");
 
-			Hashtable<String, VarDescriptor> funcToCallTable = new Hashtable<String, VarDescriptor>();
-			VarDescriptor functionToCallVarDescriptor = new VarDescriptor("", "");
+		// edit
 
-			// tabella della funzione da chiamare
-			// con this cerco la funzione solo dentro la classe
-			if (splitted[0].equals("this") && splitted.length == 2) {
-				// System.out.println("LOCAL METHOD");
-				String key = cn + "." + splitted[1];
+		if (className != null && splitted[0].equals("this") && splitted.length == 2) {
+			String key = className.getText() + "." + splitted[1];
 
-				if (functionTables.containsKey(key)) {
-					funcToCallTable = functionTables.get(key);
-					functionToCallVarDescriptor = classTable.get("fun_" + splitted[1]);
-				} else {
-					// System.out.println("Il metodo " + splitted[1] + " non esiste!");
-					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
-					return;
-				}
-				// System.out.println("key=" + key);
-			} else if (splitted.length == 2) {
-				String key = splitted[0] + "." + splitted[1];
-				if (functionTables.containsKey(key)) {
-					funcToCallTable = functionTables.get(key);
-					functionToCallVarDescriptor = classTable.get("fun_" + splitted[1]);
-				} else {
-					// System.out.println("Il metodo " + splitted[1] + " non esiste!");
-					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
-					return;
-				}
+			classTable = functionTables.get("cl_" + className.getText());
+
+			if (functionTables.containsKey(key)) {
+				funcToCallTable = functionTables.get(key);
+				functionToCallVarDescriptor = classTable.get("fun_" + splitted[1]);
 			} else {
+				maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
+				return;
+			}
+		} else if (splitted.length == 2) {
+			String key = splitted[0] + "." + splitted[1];
+			if (functionTables.containsKey(key)) {
+				funcToCallTable = functionTables.get(key);
 
-				if (functionTables.containsKey("fun_" + funcToCall)) {
-					funcToCallTable = functionTables.get("fun_" + funcToCall);
-					functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
-				} else {
-					// System.out.println("La funzione " + funcToCall + " da chiamare non esiste!");
-					maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionToCall);
+				classTable = functionTables.get("cl_" + splitted[0]);
+				functionToCallVarDescriptor = classTable.get("fun_" + splitted[1]);
+
+			} else {
+				maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
+				return;
+			}
+		} else {
+			if (functionTables.containsKey("fun_" + funcToCall)) {
+				funcToCallTable = functionTables.get("fun_" + funcToCall);
+				functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
+			} else {
+				maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionToCall);
+				return;
+			}
+		}
+
+		int numParams = functionToCallVarDescriptor.getNumParams();
+		Vector<String> params = functionToCallVarDescriptor.getParams();
+
+		// controllo se il numero degli argomenti della chiamata è uguale al numero dei
+		// parametri della funzione
+		if (args.size() == numParams) {
+			int i = 0;
+
+			// recupero i valori delle variabili nella chiamata
+			for (int j = 0; j < args.size(); j++) {
+				String argName = argStrings.get(j);
+
+				VarDescriptor vd = getVarDescriptor(className, functionName, false, args.get(j));
+
+				if (vd == null) {
+					maltErrorHandler(FUNCTION_PARAMETER_UNDECLARED_ERROR, args.get(j));
 					return;
 				}
-				// senza this cerco la funzione a livello globale
 
+				argStrings.set(j, argName);
+				argsVd.add(vd);
 			}
 
-			int numParams = functionToCallVarDescriptor.getNumParams();
-			Vector<String> params = functionToCallVarDescriptor.getParams();
+			// per ogni argomento controlla se il tipo corrisponde con quello del parametro
+			// corrispondente e in caso positivo assegna il valore
+			for (VarDescriptor vdInput : argsVd) {
+				String paramName = params.get(i);
 
-			// System.out.println("N parametri: " + numParams);
+				// VarDescriptor del parametro della funzione
+				VarDescriptor vdParam = funcToCallTable.get(paramName);
 
-			// controllo se il numero degli argomenti della chiamata è uguale al numero dei
-			// parametri della funzione
-			if (args.size() == numParams) {
-				int i = 0;
-
-				// recupero i valori delle variabili nella chiamata
-				for (int j = 0; j < args.size(); j++) {
-					String argName = args.get(j).getText();
-
-					if (localTable.containsKey(argName)) {
-						VarDescriptor vd = localTable.get(argName);
-						argStrings.set(j, vd.value);
-						argsVd.add(vd);
-					} else if (!localTable.containsKey(argName) && classTable.containsKey(argName)) {
-						VarDescriptor vd = classTable.get(argName);
-						argStrings.set(j, vd.value);
-						argsVd.add(vd);
-					} else if (symbolTable.containsKey(argName) && !localTable.containsKey(argName)
-							&& !classTable.containsKey(argName)) {
-						VarDescriptor vd = symbolTable.get(argName);
-						argStrings.set(j, vd.value);
-						argsVd.add(vd);
-					} else {
-						// System.out.println("Il parametro " + argName + " passato nella chiamata di
-						// funzione non esiste!");
-						maltErrorHandler(FUNCTION_PARAMETER_UNDECLARED_ERROR, args.get(j));
-						return;
-					}
-				}
-
-				// stampa del valore degli argomenti nella chiamata
-				// for (String value : argStrings) {
-				// System.out.println(value);
-				// }
-
-				// per ogni argomento controlla se il tipo corrisponde con quello del parametro
-				// corrispondente e in caso positivo assegna il valore
-				for (VarDescriptor vdInput : argsVd) {
-					String paramName = params.get(i);
-
-					// VarDescriptor del parametro della funzione
-					VarDescriptor vdParam = funcToCallTable.get(paramName);
-
-					if (!vdInput.varType.equals(vdParam.varType)) {
-						// System.out.println(
-						// "Il tipo dell'argomento non corrisponde al tipo del parametro della
-						// funzione!");
-						maltErrorHandler(NOT_MATCH_TYPE_ARG_ERROR, args.get(i));
-						return;
-					} else {
-						vdParam.value = vdInput.value;
-						funcToCallTable.put(vdParam.varName, vdParam);
-					}
-					i++;
-				}
-
-			} else {
-				// System.out.println("Il numero degli argomenti non corrisponde al numero dei
-				// parametri della funzione");
-				maltErrorHandler(NOT_MATCH_NUM_ARG_ERROR, functionToCall);
-			}
-		} else if (className == null && functionName != null) {
-
-			String fn = functionName.getText();
-
-			// tabella della funzione da chiamare
-			Hashtable<String, VarDescriptor> funcToCallTable = new Hashtable<String, VarDescriptor>();
-
-			// VarDescriptor della funzione da chiamare
-			VarDescriptor functionToCallVarDescriptor = new VarDescriptor("", "");
-
-			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
-
-			if (splitted.length == 2) {
-				String key = splitted[0] + "." + splitted[1];
-				if (functionTables.containsKey(key)) {
-					funcToCallTable = functionTables.get(key);
-					functionToCallVarDescriptor = functionTables.get("cl_" + splitted[0]).get("fun_" + splitted[1]);
-				} else {
-					// System.out.println("Il metodo " + splitted[1] + " non esiste!");
-					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
+				if (!checkType(vdInput, vdParam)) {
+					maltErrorHandler(NOT_MATCH_TYPE_ARG_ERROR, args.get(i));
 					return;
-				}
-			} else {
-				if (functionTables.containsKey("fun_" + funcToCall)) {
-					funcToCallTable = functionTables.get("fun_" + funcToCall);
-					functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
+
 				} else {
-					// System.out.println("La funzione " + funcToCall + " non esiste!");
-					maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionToCall);
-					return;
+					vdParam.value = vdInput.value;
+					funcToCallTable.put(vdParam.varName, vdParam);
 				}
-			}
-
-			int numParams = functionToCallVarDescriptor.getNumParams();
-			Vector<String> params = functionToCallVarDescriptor.getParams();
-
-			// System.out.println("N parametri: " + numParams);
-
-			// controllo se il numero degli argomenti della chiamata è uguale al numero dei
-			// parametri della funzione
-			if (args.size() == numParams) {
-				int i = 0;
-
-				// recupero i valori delle variabili nella chiamata
-				for (int j = 0; j < args.size(); j++) {
-					String argName = argStrings.get(j);
-
-					if (localTable.containsKey(argName)) {
-						VarDescriptor vd = localTable.get(argName);
-						argStrings.set(j, vd.value);
-						argsVd.add(vd);
-					} else if (symbolTable.containsKey(argName) && !localTable.containsKey(argName)) {
-						VarDescriptor vd = symbolTable.get(argName);
-						argStrings.set(j, vd.value);
-						argsVd.add(vd);
-					} else {
-						// System.out.println("Il parametro " + argName + " passato nella chiamata di
-						// funzione non esiste!");
-						maltErrorHandler(FUNCTION_PARAMETER_UNDECLARED_ERROR, args.get(j));
-						return;
-					}
-				}
-
-				// stampa del valore degli argomenti nella chiamata
-				for (String value : argStrings) {
-					System.out.println(value);
-				}
-
-				// per ogni argomento controlla se il tipo corrisponde con quello del parametro
-				// corrispondente e in caso positivo assegna il valore
-				for (VarDescriptor vdInput : argsVd) {
-					String paramName = params.get(i);
-
-					// VarDescriptor del parametro della funzione
-					VarDescriptor vdParam = funcToCallTable.get(paramName);
-
-					if (!vdInput.varType.equals(vdParam.varType)) {
-						// System.out.println(
-						// "Il tipo dell'argomento non corrisponde al tipo del parametro della
-						// funzione!");
-						maltErrorHandler(NOT_MATCH_TYPE_ARG_ERROR, args.get(i));
-						return;
-					} else {
-						vdParam.value = vdInput.value;
-						funcToCallTable.put(vdParam.varName, vdParam);
-					}
-					i++;
-				}
-
-			} else {
-				// System.out.println("Il numero degli argomenti non corrisponde al numero dei
-				// parametri della funzione");
-				maltErrorHandler(NOT_MATCH_NUM_ARG_ERROR, functionToCall);
-			}
-
-		} else if (className != null && functionName == null) {
-
-			String cn = className.getText();
-
-			Hashtable<String, VarDescriptor> funcToCallTable = new Hashtable<String, VarDescriptor>();
-
-			// VarDescriptor della funzione da chiamare
-			VarDescriptor functionToCallVarDescriptor = new VarDescriptor("", "");
-
-			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
-
-			// tabella della funzione da chiamare
-			// con this cerco la funzione solo dentro la classe
-			if (splitted[0].equals("this") && splitted.length == 2) {
-				// System.out.println("LOCAL METHOD");
-				String key = cn + "." + splitted[1];
-
-				if (functionTables.containsKey(key)) {
-					funcToCallTable = functionTables.get(key);
-					functionToCallVarDescriptor = localTable.get("fun_" + splitted[1]);
-				} else {
-					// System.out.println("Il metodo " + splitted[1] + " non esiste!");
-					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
-					return;
-				}
-
-				// System.out.println("key=" + key);
-
-			} else if (splitted.length == 2) {
-				String key = splitted[0] + "." + splitted[1];
-				if (functionTables.containsKey(key)) {
-					funcToCallTable = functionTables.get(key);
-					functionToCallVarDescriptor = functionTables.get("cl_" + splitted[0]).get("fun_" + splitted[1]);
-				} else {
-					// System.out.println("Il metodo " + splitted[1] + " non esiste!");
-					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
-					return;
-				}
-			} else {
-
-				if (functionTables.containsKey("fun_" + funcToCall)) {
-					funcToCallTable = functionTables.get("fun_" + funcToCall);
-					functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
-				} else {
-					// System.out.println("La funzione " + funcToCall + " da chiamare non esiste!");
-					maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionToCall);
-					return;
-				}
-				// senza this cerco la funzione a livello globale
-
-			}
-
-			int numParams = functionToCallVarDescriptor.getNumParams();
-			Vector<String> params = functionToCallVarDescriptor.getParams();
-
-			// System.out.println("N parametri: " + numParams);
-
-			// controllo se il numero degli argomenti della chiamata è uguale al numero dei
-			// parametri della funzione
-			if (args.size() == numParams) {
-				int i = 0;
-
-				// recupero i valori delle variabili nella chiamata
-				for (int j = 0; j < args.size(); j++) {
-					String argName = argStrings.get(j);
-
-					if (localTable.containsKey(argName)) {
-						VarDescriptor vd = localTable.get(argName);
-						argStrings.set(j, vd.value);
-						argsVd.add(vd);
-					} else if (symbolTable.containsKey(argName) && !localTable.containsKey(argName)) {
-						VarDescriptor vd = symbolTable.get(argName);
-						argStrings.set(j, vd.value);
-						argsVd.add(vd);
-					} else {
-						// System.out.println("Il parametro " + argName + " passato nella chiamata di
-						// funzione non esiste!");
-						maltErrorHandler(FUNCTION_PARAMETER_UNDECLARED_ERROR, args.get(j));
-						return;
-					}
-				}
-
-				// per ogni argomento controlla se il tipo corrisponde con quello del parametro
-				// corrispondente e in caso positivo assegna il valore
-				for (VarDescriptor vdInput : argsVd) {
-					String paramName = params.get(i);
-
-					// VarDescriptor del parametro della funzione
-					VarDescriptor vdParam = funcToCallTable.get(paramName);
-
-					if (!vdInput.varType.equals(vdParam.varType)) {
-						// System.out.println(
-						// "Il tipo dell'argomento non corrisponde al tipo del parametro della
-						// funzione!");
-						maltErrorHandler(NOT_MATCH_TYPE_ARG_ERROR, args.get(i));
-						return;
-					} else {
-						vdParam.value = vdInput.value;
-						funcToCallTable.put(vdParam.varName, vdParam);
-					}
-					i++;
-				}
-
-			} else {
-				// System.out.println("Il numero degli argomenti non corrisponde al numero dei
-				// parametri della funzione");
-				maltErrorHandler(NOT_MATCH_NUM_ARG_ERROR, functionToCall);
+				i++;
 			}
 
 		} else {
-
-			// tabella della funzione
-			Hashtable<String, VarDescriptor> funcToCallTable = functionTables.get("fun_" + funcToCall);
-
-			// VarDescriptor della funzione
-			VarDescriptor functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
-
-			if (splitted.length == 2) {
-				String key = splitted[0] + "." + splitted[1];
-				if (functionTables.containsKey(key)) {
-					funcToCallTable = functionTables.get(key);
-					functionToCallVarDescriptor = functionTables.get("cl_" + splitted[0]).get("fun_" + splitted[1]);
-				} else {
-					// System.out.println("Il metodo " + splitted[1] + " non esiste!");
-					maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
-					return;
-				}
-			} else {
-				if (functionTables.containsKey("fun_" + funcToCall)) {
-					funcToCallTable = functionTables.get("fun_" + funcToCall);
-					functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
-				} else {
-					// System.out.println("La funzione " + funcToCall + " non esiste!");
-					maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionToCall);
-					return;
-				}
-			}
-
-			int numParams = functionToCallVarDescriptor.getNumParams();
-			Vector<String> params = functionToCallVarDescriptor.getParams();
-
-			// controllo se il numero degli argomenti della chiamata è uguale al numero dei
-			// parametri della funzione
-			if (args.size() == numParams) {
-				int i = 0;
-
-				// recupero i valori delle variabili nella chiamata
-				for (int j = 0; j < args.size(); j++) {
-					String argName = argStrings.get(j);
-
-					if (symbolTable.containsKey(argName)) {
-						VarDescriptor vd = symbolTable.get(argName);
-						argStrings.set(j, vd.value);
-						argsVd.add(vd);
-					} else {
-						// System.out.println("Il parametro " + argName + " passato nella chiamata di
-						// funzione non esiste!");
-						maltErrorHandler(FUNCTION_PARAMETER_UNDECLARED_ERROR, args.get(j));
-						return;
-					}
-				}
-
-				// per ogni argomento controlla se il tipo corrisponde con quello del parametro
-				// corrispondente e in caso positivo assegna il valore
-				for (VarDescriptor vdInput : argsVd) {
-					String paramName = params.get(i);
-
-					// VarDescriptor del parametro della funzione
-					VarDescriptor vdParam = funcToCallTable.get(paramName);
-
-					if (!vdInput.varType.equals(vdParam.varType)) {
-						// System.out.println(
-						// "Il tipo dell'argomento non corrisponde al tipo del parametro della
-						// funzione!");
-						maltErrorHandler(NOT_MATCH_TYPE_ARG_ERROR, args.get(i));
-						return;
-
-					} else {
-						vdParam.value = vdInput.value;
-						funcToCallTable.put(vdParam.varName, vdParam);
-					}
-					i++;
-				}
-
-			} else {
-				// System.out.println("Il numero degli argomenti non corrisponde al numero dei
-				// parametri della funzione");
-				maltErrorHandler(NOT_MATCH_NUM_ARG_ERROR, functionToCall);
-			}
-
+			maltErrorHandler(NOT_MATCH_NUM_ARG_ERROR, functionToCall);
 		}
+
 	}
 
+	/**
+	 * Gestisce il valore di ritorno delle funzioni
+	 * 
+	 * @param className    Nome della classe
+	 * @param functionName Nome della funzione
+	 * @param returnToken  Variabile ritornata dalla funzione
+	 */
 	public void handleReturn(Token className, Token functionName, Token returnToken) {
 
 		String returnStr = returnToken.getText();
@@ -1055,22 +780,19 @@ public class MaltHandler {
 		// cerco la funzione alla quale assegnare il valore di return
 		VarDescriptor functionVd = getFunctionVarDescriptor(className, functionName);
 
-		// non serve perché non può mancare la tabella della funzione dalla quale sto
-		// eseguendo un return
-
-		// if (functionVd == null) {
-
-		// if (className != null) {
-		// maltErrorHandler(METHOD_UNDECLARED_ERROR, functionName);
-		// } else {
-		// maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionName);
-		// }
-		// return;
-		// }
-
 		functionVd.value = returnValue;
 	}
 
+	/**
+	 * Ricerca il VarDescriptor della variabile seguendo la cascata for -> dentro
+	 * metodo -> dentro classe -> top-level
+	 * 
+	 * @param className    Nome della classe
+	 * @param functionName Nome della funzione
+	 * @param inFor        Dentro il ciclo for?
+	 * @param name         Nome della variabile
+	 * @return VarDescriptor della variabile
+	 */
 	public VarDescriptor getVarDescriptor(Token className, Token functionName, boolean inFor, Token name) {
 		String n = name.getText();
 
@@ -1110,10 +832,18 @@ public class MaltHandler {
 
 	}
 
+	/**
+	 * Ricerca il VarDecsriptor della funzione / metodo allocata nella tabella
+	 * locale di una
+	 * classe o della tabella globale
+	 * 
+	 * @param className    Nome della classe
+	 * @param functionName Nome della funzione
+	 * @return VarDescriptor della funzione / metodo
+	 */
 	public VarDescriptor getFunctionVarDescriptor(Token className, Token functionName) {
 
 		String fn = functionName.getText();
-
 		VarDescriptor functionVd;
 
 		if (className != null) {
@@ -1141,9 +871,20 @@ public class MaltHandler {
 		return functionVd;
 	}
 
+	/**
+	 * Gestisce la funzione format()
+	 * 
+	 * @param className    Nome della classe
+	 * @param functionName Nome della funzione
+	 * @param inFor        Dentro il ciclo for?
+	 * @param resultVar    Variabile dove inserire il risultato di format()
+	 * @param formatText   Stringa da formattare
+	 * @param vars         Variabili da inserire nei % nella formatText
+	 */
 	public void handleFormat(Token className, Token functionName, boolean inFor, Token resultVar, Token formatText,
 			Vector<Token> vars) {
 
+		// VarDescriptor della variabile formattext
 		VarDescriptor ftVd = getVarDescriptor(className, functionName, inFor, formatText);
 
 		if (ftVd == null) {
@@ -1151,11 +892,10 @@ public class MaltHandler {
 			return;
 		}
 
+		// trovare i %.. all'interno della formattext con regex
 		String ft = ftVd.value;
 		Vector<String> matches = new Vector<String>();
 		Vector<String> values = new Vector<String>();
-
-		// ft = "un \\%ib albero %b verde";
 
 		String regex = "(?<!\\\\)%(ib|i|b|t)";
 		Pattern pt = Pattern.compile(regex);
@@ -1165,9 +905,12 @@ public class MaltHandler {
 			matches.add(matcher.group());
 		}
 
+		// suddivido la stringa dove trovo i %..
 		String[] splitted = ft.split(regex);
 
+		// itera la lista di variabili (da inserire nella formattext)
 		for (Token var : vars) {
+			// VarDescriptor di una variabile da inserire
 			VarDescriptor vd = getVarDescriptor(className, functionName, inFor, var);
 
 			if (vd == null) {
@@ -1175,6 +918,9 @@ public class MaltHandler {
 				return;
 			}
 			String value = vd.value;
+
+			// aggiungi il valore della variabile alla lista di valori da inserire nella
+			// formattext
 			values.add(value);
 		}
 
@@ -1193,19 +939,39 @@ public class MaltHandler {
 				markdownFormat = "***";
 			}
 
+			// aggiungi prima il pezzo di testo
 			resultStr += splitted[i];
 
+			// aggiungi la formattazione markdown
 			resultStr += markdownFormat;
+
+			// aggiungi il valore della variabile da inserire
 			resultStr += values.get(i);
+
+			// chiudi la formattazione markdown
 			resultStr += markdownFormat;
 		}
 
+		// aggiungi l'ultimo pezzo di testo
+
 		resultStr += splitted[splitted.length - 1] + "\"";
 
+		// assegna la stringa alla variabile resultVar
 		assignVarValue(className, functionName, inFor, resultVar, resultStr);
 
 	}
 
+	/**
+	 * Gestisce i cicli for
+	 * 
+	 * @param className    Nome della classe
+	 * @param functionName Nome della funzione
+	 * @param isIncr       È un for con incremento?
+	 * @param name         Nome della variabile dove viene salvata l'iterazione
+	 *                     attuale
+	 * @param it           Lista da iterare o valore che contiene il numero di
+	 *                     iterazioni
+	 */
 	public void declareFor(Token className, Token functionName, boolean isIncr, Token name, Token it) {
 
 		Hashtable<String, VarDescriptor> forTable = null;
@@ -1230,6 +996,7 @@ public class MaltHandler {
 
 		} else {
 			// iterazione di un for sulle liste
+			// VarDescriptor della lista da iterare
 			VarDescriptor vdIt = getVarDescriptor(className, functionName, true, it);
 
 			if (vdIt == null) {
@@ -1241,14 +1008,13 @@ public class MaltHandler {
 
 			int length = vdIt.listValue.length;
 
+			// controllo la lunghezza della lista da iterare
 			if (length <= 0) {
-				// System.err.println("Impossibile iterare una lista vuota --> riga (" +
-				// it.getLine() + ")");
-
 				maltErrorHandler(ITERATE_EMPTY_LIST_ERROR, it);
 				return;
 			}
 
+			// inizializzo l'iteratore con il primo valore della lista da iterare
 			VarDescriptor vd = new VarDescriptor(name.getText(), "text");
 			vd.value = values[0];
 
@@ -1257,7 +1023,9 @@ public class MaltHandler {
 		}
 	}
 
-	// stampa le symbol tables
+	/**
+	 * Stampa la tabella globale e le tabelle locali
+	 */
 	public void printTable() {
 		System.out.println("\n\n--------BEGIN GLOBAL TABLE--------");
 		Set<String> keysG = symbolTable.keySet();
