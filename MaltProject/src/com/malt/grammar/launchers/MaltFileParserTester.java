@@ -43,6 +43,7 @@ public class MaltFileParserTester {
 				for (int i = 0; i < h.getErrorList().size(); i++)
 					System.err.println("Errore " + (i + 1) +
 							":\t" + h.getErrorList().get(i) + "");
+			h.printTable();
 		} catch (Exception e) {
 			System.out.println("Parsing con ANTLR abortito\n\n");
 			e.printStackTrace();

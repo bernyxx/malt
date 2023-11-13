@@ -88,19 +88,19 @@ returnRule [Token className, Token functionName]
 
 
 forRule [Token className, Token functionName]
-	:	FOR LP n=VAR forInRule [className, functionName, $n] | forIncrRule[className, functionName, $n]
+	:	FOR LP n=VAR (forInRule [className, functionName, $n] | forIncrRule[className, functionName, $n])
 		
 ;
 
 
 forInRule [Token className, Token functionName, Token name]
-	:	IN i=VAR RP LCB {h.declareFor($className, $functionName, false, name, $i);} (declarationRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
+	:	IN i=VAR RP LCB {h.declareFor($className, $functionName, false, $name, $i);} (declarationRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
 		//{System.out.println("    - Ho riconosciuto un for in");}
 ;
 
 
 forIncrRule [Token className, Token functionName, Token name]
-	:	CM i=INTEGER RP LCB {h.declareFor($className, $functionName, true, name, $i);} (declarationRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
+	:	CM i=INTEGER RP LCB {h.declareFor($className, $functionName, true, $name, $i);} (declarationRule[className, functionName, true] | assignRule[className, functionName, true])+ RCB
 		//{System.out.println("    - Ho riconosciuto un for incr");}
 ;
 

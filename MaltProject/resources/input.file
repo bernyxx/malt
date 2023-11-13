@@ -1,20 +1,17 @@
-s1title tabella1;
-tabella1 = ("gino" + "pino");
+list t1 = ["out", "out2"];
 
-list l1 = ["albero", "pino"];
-
-fun gino(text p1, text p2){
-text t1;
-text t2 = "in fun gino";
+fun pino(){
+    list t1 = ["pino", "pino2"];
 }
 
-fun pino(text p1, text p2){
-text t1;
-text t2 = "in fun gino";
-}
+class c1{
+    list t1 = ["cl1", "cl2"];
 
-list l2 = [];
-
-for(t in l2){
-    text t2 = "";
+    fun met(){
+        list t1 = ["met", "met2"];
+        for(c, 5){
+            list t1 = ["infor", "infor2"];
+            list t3 = t1;
+        }  
+    }
 }
