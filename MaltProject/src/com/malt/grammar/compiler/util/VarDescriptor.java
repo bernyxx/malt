@@ -31,6 +31,10 @@ public class VarDescriptor {
 		return this.params;
 	}
 
+	public int getListLength() {
+		return this.listValue.length;
+	}
+
 	@Override
 	public String toString() {
 		String str;

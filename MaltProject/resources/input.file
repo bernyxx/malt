@@ -1,9 +1,33 @@
-text p = "gino";
+s3title p = "gino";
+table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+
+list l2 = ["pino", "suino" , p];
+
 
 fun gino(){
-    text t1 = ("suino" + " maiale");
+    title t1 = ("suino" + " maiale");
     return t1;
 }
+
+fun tab(){
+    table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+    return tabella1;
+}
+
+s3title fromfun = gino();
+
+text t = l2[1];
+
+text t1; 
+t1 = "gino";
+
+title formatgino;
+
+title fstring = "suino %t suino";
+
+format(wrongformat, fstring, p);
+
+
 
 class albero{
 

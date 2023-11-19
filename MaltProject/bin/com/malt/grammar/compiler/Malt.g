@@ -180,7 +180,7 @@ declareTlistRule [Token className, Token functionName, boolean inFor]
 
 declareCodeBlockRule [Token className, Token functionName, boolean inFor]
 	:
-		t=CODEBLOCK (LP (~(LP | RP | '"'))* RP)? n=VAR  {h.declareNew(className, functionName, inFor, $t, $n);} (assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n]| assignExprRule[$className, $functionName, $inFor, $n])?
+		t=CODEBLOCK VAR? n=VAR  {h.declareNew(className, functionName, inFor, $t, $n);} (assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n]| assignExprRule[$className, $functionName, $inFor, $n])?
 ;
 
 
@@ -243,9 +243,13 @@ assignRule [Token className, Token functionName, boolean inFor]
 
 assignVariableRule [Token className, Token functionName, boolean inFor, Token name]
 	:  
-		EQ (v1=VAR {h.assignVarToVar($className, $functionName, $inFor, false, $name, $v1);} | v2=functionCallRule[$className, $functionName] {h.assignVarToVar($className, $functionName, $inFor, true, $name, v2);})
+		EQ (v1=VAR {h.assignVarToVar($className, $functionName, $inFor, false, $name, $v1);} 
+		   | v2=VAR LSB n=INTEGER RSB {h.assignListItemToVar($className, $functionName, $inFor, $name, $v2, n);}
+		   | v3=functionCallRule[$className, $functionName] {h.assignVarToVar($className, $functionName, $inFor, true, $name, v3);})
 		
 	;
+
+	
 
 
 assignExprRule [Token className, Token functionName, boolean inFor, Token name]
@@ -256,13 +260,13 @@ assignExprRule [Token className, Token functionName, boolean inFor, Token name]
 
 assignStringRule [Token className, Token functionName, boolean inFor, Token name]
 	:
-		EQ v=STRING {h.assignVarValue($className, $functionName, $inFor, $name, $v.getText());}
+		EQ v=STRING {h.assignTextPrimitiveVarValue($className, $functionName, $inFor, $name, $v.getText());}
 ;
 
 
 assignTextListRule [Token className, Token functionName, boolean inFor, Token name]
 	:
-		EQ v=textListRule {h.assignVarValue($className, $functionName, $inFor, $name, v);}
+		EQ v=textListRule {h.assignComplexVarValue($className, $functionName, $inFor, "list", $name, v);}
 ;
 
 
@@ -273,19 +277,19 @@ textListRule returns [String value]
 
 assignTableRule [Token className, Token functionName, boolean inFor, Token name]
 	:
-		EQ v1=talignmentRule? v2=LP v3=trowRule {String cycle = v3;} (t1=CM t2=trowRule {cycle = cycle + $t1.getText() + t2;})* v4=RP {h.assignVarValue($className, $functionName, $inFor, $name, v1 + $v2.getText() + cycle + $v4.getText());}
+		EQ v1=talignmentRule? v2=LP v3=trowRule {String cycle = v3;} (t1=CM t2=trowRule {cycle = cycle + $t1.getText() + t2;})* v4=RP {h.assignComplexVarValue($className, $functionName, $inFor, "table", $name, v1 + $v2.getText() + cycle + $v4.getText());}
 ;
 
 
 assignImageRule [Token className, Token functionName, boolean inFor, Token name]
 	:
-		EQI v1=LP v2=STRING {String opt="";} (o1=CM o2=STRING {opt = $o1.getText() + $o2.getText();})? v3=RP {h.assignVarValue($className, $functionName, $inFor, $name, $v1.getText() + v2.getText() + opt + $v3.getText());}
+		EQI v1=LP v2=STRING {String opt="";} (o1=CM o2=STRING {opt = $o1.getText() + $o2.getText();})? v3=RP {h.assignComplexVarValue($className, $functionName, $inFor, "img", $name, $v1.getText() + v2.getText() + opt + $v3.getText());}
 ;
 
 
 assignLinkRule [Token className, Token functionName, boolean inFor, Token name]
 	:
-		EQL v1=LP {String v2 = "";} (t=STRING {v2=$t.getText();} | ir=imageRule {v2 = ir;}) v3=CM v4=STRING v5=RP {h.assignVarValue($className, $functionName, $inFor, $name, $v1.getText() + v2 + $v3.getText() 
+		EQL v1=LP {String v2 = "";} (t=STRING {v2=$t.getText();} | ir=imageRule {v2 = ir;}) v3=CM v4=STRING v5=RP {h.assignComplexVarValue($className, $functionName, $inFor, "link", $name, $v1.getText() + v2 + $v3.getText() 
 																	+ $v4.getText() + $v5.getText());}
 ;
 

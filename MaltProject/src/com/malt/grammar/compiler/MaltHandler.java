@@ -45,6 +45,12 @@ public class MaltHandler {
 	public static int NOT_MATCH_NUM_ARG_ERROR = 27;
 	public static int NOT_MATCH_TYPE_ASSIGNMENT_ERROR = 28;
 	public static int ILLEGAL_EXPR_ASSIGNMENT_ERROR = 29;
+	public static int NOT_LIST_INDEXING_ERROR = 30;
+	public static int OUT_OF_BOUND_ERROR = 31;
+	public static int NOT_PRIMITIVE_TEXT_VARIABLE_IN_LIST_ERROR = 32;
+	public static int NOT_PRIMITIVE_VARIABLE_ASSIGNMENT_ERROR = 33;
+	public static int NOT_PRIMITIVE_VARIABLE_IN_FORMAT_ERROR = 34;
+	public static int NOT_MATCH_NUM_VARS_FORMAT_ERROR = 35;
 
 	public Hashtable<String, VarDescriptor> symbolTable;
 	public Hashtable<String, Hashtable<String, VarDescriptor>> functionTables;
@@ -149,9 +155,35 @@ public class MaltHandler {
 			errMsg += "Tipo della variabile assegnata non corrispondente";
 		} else if (code == ILLEGAL_EXPR_ASSIGNMENT_ERROR) {
 			errMsg += "Assegnamento dell'espresione non ammesso";
+		} else if (code == NOT_LIST_INDEXING_ERROR) {
+			errMsg += "Impossibile usare la notazione [], la variabile non è di tipo list";
+		} else if (code == OUT_OF_BOUND_ERROR) {
+			errMsg += "Impossibile accedere ad un elemento di una lista che non le appartiene. idx >= length";
+		} else if (code == NOT_PRIMITIVE_TEXT_VARIABLE_IN_LIST_ERROR) {
+			errMsg += "Impossibile assegnare una variabile non primitiva testuale come elemento di una lista";
+		} else if (code == NOT_PRIMITIVE_VARIABLE_ASSIGNMENT_ERROR) {
+			errMsg += "Impossibile assegnare un elemento di una lista ad una variabile non primitiva testuale";
+		} else if (code == NOT_PRIMITIVE_VARIABLE_IN_FORMAT_ERROR) {
+			errMsg += "Impossibile sostituire il valore di una variabile non testuale primitiva nella funzione format";
+		} else if (code == NOT_MATCH_NUM_VARS_FORMAT_ERROR) {
+			errMsg += "Il numero degli specificatori non corrisponde al numero di variabili passate alla funzione format";
 		}
 
 		errorList.add(errMsg);
+	}
+
+	public boolean isPrimitiveTextVariable(VarDescriptor variableVd) {
+		// posso assegnare un'espressione solo a tipi string
+		String[] primitiveTextTypes = { "title", "s1title", "s2title", "s3title", "s4title", "s5title", "text",
+				"blockquote",
+				"codeblock" };
+
+		String varType = variableVd.varType;
+
+		if (Arrays.asList(primitiveTextTypes).contains(varType)) {
+			return true;
+		}
+		return false;
 	}
 
 	/***
@@ -397,17 +429,19 @@ public class MaltHandler {
 	}
 
 	/**
-	 * Assegna ad una variabile un valorew
+	 * Assegna ad una variabile una stringa
+	 * (solo per assegnare stringhe a variabili primitive testuali)
 	 * 
 	 * @param className    Nome della classe
 	 * @param functionName Nome della funzione
 	 * @param inFor        All'interno di un ciclo for?
+	 * @param type         Tipo della variabile, definito da un caller
 	 * @param name         Nome della variabile
 	 * @param value        Valore da assegnare alla variabile
 	 */
-	public void assignVarValue(Token className, Token functionName, boolean inFor, Token name, String value) {
 
-		String v = value.substring(1, value.length() - 1);
+	public void assignTextPrimitiveVarValue(Token className, Token functionName, boolean inFor, Token name,
+			String value) {
 
 		VarDescriptor vd = getVarDescriptor(className, functionName, inFor, name);
 
@@ -416,7 +450,44 @@ public class MaltHandler {
 			return;
 		}
 
+		if (!isPrimitiveTextVariable(vd)) {
+			maltErrorHandler(NOT_MATCH_TYPE_ASSIGNMENT_ERROR, name);
+			return;
+		}
+
+		String v = value.substring(1, value.length() - 1);
+
 		vd.value = v;
+
+	}
+
+	/**
+	 * Assegna ad una variabile non primitiva testuale un valore
+	 * 
+	 * @param className    Nome della classe
+	 * @param functionName Nome della funzione
+	 * @param inFor        All'interno di un ciclo for?
+	 * @param type         Tipo della variabile, definito da un caller
+	 * @param name         Nome della variabile
+	 * @param value        Valore da assegnare alla variabile
+	 */
+
+	public void assignComplexVarValue(Token className, Token functionName, boolean inFor, String type, Token name,
+			String value) {
+
+		VarDescriptor vd = getVarDescriptor(className, functionName, inFor, name);
+
+		if (vd == null) {
+			maltErrorHandler(VARIABLE_UNDECLARED_ERROR, name);
+			return;
+		}
+
+		if (!type.equals(vd.varType)) {
+			maltErrorHandler(NOT_MATCH_TYPE_ASSIGNMENT_ERROR, name);
+			return;
+		}
+
+		vd.value = value;
 
 	}
 
@@ -427,7 +498,7 @@ public class MaltHandler {
 	 * @param functionName Nome della funzione
 	 * @param inFor        All'interno di un ciclo for?
 	 * @param name         Nome della variabile
-	 * @param value        Lista di token (variabili o letterali)
+	 * @param value        Lista di token (variabili o stringhe)
 	 */
 	public void assignListValue(Token className, Token functionName, boolean inFor, Token name, Vector<Token> value) {
 
@@ -442,13 +513,19 @@ public class MaltHandler {
 
 		for (int i = 0; i < value.size(); i++) {
 			if (value.get(i).getText().contains("\"")) {
-				listValue[i] = value.get(i).getText();
+				String itemStr = value.get(i).getText();
+				listValue[i] = itemStr.substring(1, itemStr.length() - 1);
 			} else {
 
 				VarDescriptor resVd = getVarDescriptor(className, functionName, inFor, value.get(i));
 
 				if (resVd == null) {
 					maltErrorHandler(VARIABLE_UNDECLARED_ERROR, value.get(i));
+					return;
+				}
+
+				if (!isPrimitiveTextVariable(resVd)) {
+					maltErrorHandler(NOT_PRIMITIVE_TEXT_VARIABLE_IN_LIST_ERROR, value.get(i));
 					return;
 				}
 
@@ -488,8 +565,6 @@ public class MaltHandler {
 	public void assignVarToVar(Token className, Token functionName, boolean inFor, boolean isValueFromFunction,
 			Token var1, Token var2) {
 
-		String value = "\"";
-
 		VarDescriptor leftVar = getVarDescriptor(className, functionName, inFor, var1);
 		VarDescriptor rightVar;
 
@@ -500,12 +575,12 @@ public class MaltHandler {
 
 		if (isValueFromFunction) {
 			// a destra c'è una chiamata di funzione
-			System.out.println(var2.getText());
 
 			String var2Str = var2.getText();
 
 			String[] splitted = var2Str.split("\\.");
-			System.out.println(Arrays.toString(splitted));
+
+			// TODO: aggiungere chiamata con this.
 
 			if (splitted.length == 2) {
 				String classKey = "cl_" + splitted[0];
@@ -544,22 +619,62 @@ public class MaltHandler {
 			}
 		}
 
-		// controllo del tipo
-		// entrambe le variabili devono avere lo stesso tipo
-		if (!checkType(leftVar, rightVar) && !isValueFromFunction) {
-			maltErrorHandler(NOT_MATCH_TYPE_ASSIGNMENT_ERROR, var2);
-			return;
-		}
-
 		// se la variabile a destra è una lista devo assegnare il valore nel campo
 		// listValue (e non value) del VarDescriptor della var di sinistra
 		if (rightVar.varType.equals("list")) {
 			leftVar.listValue = rightVar.listValue;
 		} else {
 			// se la variabile di destra non è una lista
-			value += rightVar.value + "\"";
-			assignVarValue(className, functionName, inFor, var1, value);
+			if (isPrimitiveTextVariable(leftVar) && isPrimitiveTextVariable(rightVar)) {
+				String value = "\"" + rightVar.value + "\"";
+				assignTextPrimitiveVarValue(className, functionName, inFor, var1, value);
+			} else if (checkType(leftVar, rightVar)) {
+				assignComplexVarValue(className, functionName, inFor, rightVar.varType, var1, rightVar.value);
+			} else {
+				maltErrorHandler(NOT_MATCH_TYPE_ASSIGNMENT_ERROR, var2);
+				return;
+			}
+
 		}
+
+	}
+
+	public void assignListItemToVar(Token className, Token functionName, boolean inFor, Token leftVar, Token rightVar,
+			Token idxTk) {
+		VarDescriptor leftVarVd = getVarDescriptor(className, functionName, inFor, leftVar);
+
+		if (leftVarVd == null) {
+			maltErrorHandler(VARIABLE_UNDECLARED_ERROR, leftVar);
+			return;
+		}
+
+		if (!isPrimitiveTextVariable(leftVarVd)) {
+			maltErrorHandler(NOT_PRIMITIVE_VARIABLE_ASSIGNMENT_ERROR, idxTk);
+			return;
+		}
+
+		VarDescriptor rightVarVd = getVarDescriptor(className, functionName, inFor, rightVar);
+
+		if (rightVarVd == null) {
+			maltErrorHandler(VARIABLE_UNDECLARED_ERROR, rightVar);
+			return;
+		}
+
+		if (!rightVarVd.varType.equals("list")) {
+			maltErrorHandler(NOT_LIST_INDEXING_ERROR, rightVar);
+			return;
+		}
+
+		int idx = Integer.valueOf(idxTk.getText());
+
+		if (idx >= rightVarVd.getListLength()) {
+			maltErrorHandler(OUT_OF_BOUND_ERROR, idxTk);
+			return;
+		}
+
+		String item = rightVarVd.listValue[idx];
+
+		leftVarVd.value = item;
 
 	}
 
@@ -580,13 +695,8 @@ public class MaltHandler {
 			maltErrorHandler(VARIABLE_UNDECLARED_ERROR, name);
 			return;
 		}
-		String nameType = nameVd.varType;
 
-		// posso assegnare un'espressione solo a tipi string
-		String[] allowedTypes = { "title", "s1title", "s2title", "s3title", "s4title", "s5title", "text", "blockquote",
-				"codeblock" };
-
-		if (!Arrays.asList(allowedTypes).contains(nameType)) {
+		if (!isPrimitiveTextVariable(nameVd)) {
 			maltErrorHandler(ILLEGAL_EXPR_ASSIGNMENT_ERROR, name);
 			return;
 		}
@@ -627,7 +737,7 @@ public class MaltHandler {
 
 		concString += "\"";
 
-		assignVarValue(className, functionName, inFor, name, concString);
+		assignTextPrimitiveVarValue(className, functionName, inFor, name, concString);
 
 	}
 
@@ -759,10 +869,12 @@ public class MaltHandler {
 		String returnStr = returnToken.getText();
 
 		String returnValue = "";
+		String returnType = "";
 
 		// recupero il valore che viene ritornato
 		if (returnStr.contains("\"")) {
 			// se ritorno un letterale
+			returnType = "text";
 			returnValue = returnStr.substring(1, returnStr.length() - 1);
 		} else {
 			// se ritorno una variabile
@@ -775,11 +887,13 @@ public class MaltHandler {
 			}
 
 			returnValue = returnVd.value;
+			returnType = returnVd.varType;
 		}
 
 		// cerco la funzione alla quale assegnare il valore di return
 		VarDescriptor functionVd = getFunctionVarDescriptor(className, functionName);
 
+		functionVd.varType = returnType;
 		functionVd.value = returnValue;
 	}
 
@@ -834,8 +948,7 @@ public class MaltHandler {
 
 	/**
 	 * Ricerca il VarDecsriptor della funzione / metodo allocata nella tabella
-	 * locale di una
-	 * classe o della tabella globale
+	 * locale di una classe o della tabella globale
 	 * 
 	 * @param className    Nome della classe
 	 * @param functionName Nome della funzione
@@ -881,6 +994,7 @@ public class MaltHandler {
 	 * @param formatText   Stringa da formattare
 	 * @param vars         Variabili da inserire nei % nella formatText
 	 */
+
 	public void handleFormat(Token className, Token functionName, boolean inFor, Token resultVar, Token formatText,
 			Vector<Token> vars) {
 
@@ -889,6 +1003,11 @@ public class MaltHandler {
 
 		if (ftVd == null) {
 			maltErrorHandler(VARIABLE_UNDECLARED_ERROR, formatText);
+			return;
+		}
+
+		if (!isPrimitiveTextVariable(ftVd)) {
+			maltErrorHandler(NOT_MATCH_TYPE_ASSIGNMENT_ERROR, formatText);
 			return;
 		}
 
@@ -905,6 +1024,11 @@ public class MaltHandler {
 			matches.add(matcher.group());
 		}
 
+		if (matches.size() != vars.size()) {
+			maltErrorHandler(NOT_MATCH_NUM_VARS_FORMAT_ERROR, formatText);
+			return;
+		}
+
 		// suddivido la stringa dove trovo i %..
 		String[] splitted = ft.split(regex);
 
@@ -917,6 +1041,11 @@ public class MaltHandler {
 				maltErrorHandler(VARIABLE_UNDECLARED_ERROR, var);
 				return;
 			}
+
+			if (!isPrimitiveTextVariable(vd)) {
+				maltErrorHandler(NOT_PRIMITIVE_VARIABLE_IN_FORMAT_ERROR, var);
+			}
+
 			String value = vd.value;
 
 			// aggiungi il valore della variabile alla lista di valori da inserire nella
@@ -924,10 +1053,9 @@ public class MaltHandler {
 			values.add(value);
 		}
 
-		String resultStr = "\"";
+		System.out.println("lungehzza splitted: " + splitted.length);
 
-		for (int i = 0; i < splitted.length - 1; i++) {
-
+		for (int i = 0; i < matches.size(); i++) {
 			String symbol = matches.get(i);
 			String markdownFormat = "";
 
@@ -939,25 +1067,35 @@ public class MaltHandler {
 				markdownFormat = "***";
 			}
 
+			String formattedValues = markdownFormat + values.get(i) + markdownFormat;
+
+			values.set(i, formattedValues);
+		}
+
+		String resultStr = "\"";
+
+		for (int i = 0; i < splitted.length - 1; i++) {
+
 			// aggiungi prima il pezzo di testo
 			resultStr += splitted[i];
-
-			// aggiungi la formattazione markdown
-			resultStr += markdownFormat;
 
 			// aggiungi il valore della variabile da inserire
 			resultStr += values.get(i);
 
-			// chiudi la formattazione markdown
-			resultStr += markdownFormat;
 		}
 
 		// aggiungi l'ultimo pezzo di testo
 
-		resultStr += splitted[splitted.length - 1] + "\"";
+		resultStr += splitted[splitted.length - 1];
+
+		if (values.size() > splitted.length - 1) {
+			resultStr += values.get(values.size() - 1);
+		}
+
+		resultStr += "\"";
 
 		// assegna la stringa alla variabile resultVar
-		assignVarValue(className, functionName, inFor, resultVar, resultStr);
+		assignTextPrimitiveVarValue(className, functionName, inFor, resultVar, resultStr);
 
 	}
 
