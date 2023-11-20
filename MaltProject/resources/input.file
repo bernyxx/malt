@@ -1,14 +1,13 @@
-fun met(){
+list l1 = ["uno", "due", "tre"];
+olist l2 = ["uno", "due", "tre"];
+ulist l3 = ["uno", "due", "tre"];
+tlist l4 = ["uno", "due", "tre"];
+
+fun pino(text a1, s2title a2, img a3){
     text t;
 }
 
-class gino{
-    fun met(){
-        text t = "testo";
-        return t;
-    }
+olist gino = l2;
 
-    text rtdata = this.met();
-}
+s4title p = l3[3];
 
-text rtdata = met();

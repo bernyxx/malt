@@ -661,7 +661,7 @@ public class MaltHandler {
 
 		// se la variabile a destra è una lista devo assegnare il valore nel campo
 		// listValue (e non value) del VarDescriptor della var di sinistra
-		if (rightVar.varType.equals("list")) {
+		if (rightVar.varType.contains("list")) {
 			leftVar.listValue = rightVar.listValue;
 		} else {
 			// se la variabile di destra non è una lista
@@ -705,7 +705,7 @@ public class MaltHandler {
 			return;
 		}
 
-		if (!rightVarVd.varType.equals("list")) {
+		if (!rightVarVd.varType.contains("list")) {
 			maltErrorHandler(NOT_LIST_INDEXING_ERROR, rightVar);
 			return;
 		}

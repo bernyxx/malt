@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g 2023-11-19 18:04:21
+// $ANTLR 3.5.1 D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g 2023-11-20 16:07:29
 
 	package com.malt.grammar.compiler;
 	
@@ -189,11 +189,11 @@ public class MaltParser extends Parser {
 					break;
 				case VAR:
 					{
-					int LA1_19 = input.LA(2);
-					if ( (LA1_19==LP) ) {
+					int LA1_11 = input.LA(2);
+					if ( (LA1_11==LP) ) {
 						alt1=2;
 					}
-					else if ( ((LA1_19 >= EQ && LA1_19 <= EQL)) ) {
+					else if ( ((LA1_11 >= EQ && LA1_11 <= EQL)) ) {
 						alt1=4;
 					}
 
@@ -216,27 +216,27 @@ public class MaltParser extends Parser {
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:54:25: declarationRule[null, null, false]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:55:5: declarationRule[null, null, false]
 					{
-					pushFollow(FOLLOW_declarationRule_in_parseJava71);
+					pushFollow(FOLLOW_declarationRule_in_parseJava74);
 					declarationRule(null, null, false);
 					state._fsp--;
 
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:54:62: classRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:56:5: classRule
 					{
-					pushFollow(FOLLOW_classRule_in_parseJava76);
+					pushFollow(FOLLOW_classRule_in_parseJava82);
 					classRule();
 					state._fsp--;
 
 					}
 					break;
 				case 4 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:54:74: assignRule[null, null, false]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:57:5: assignRule[null, null, false]
 					{
-					pushFollow(FOLLOW_assignRule_in_parseJava80);
+					pushFollow(FOLLOW_assignRule_in_parseJava89);
 					assignRule(null, null, false);
 					state._fsp--;
 
@@ -251,7 +251,7 @@ public class MaltParser extends Parser {
 				cnt1++;
 			}
 
-			match(input,EOF,FOLLOW_EOF_in_parseJava86); 
+			match(input,EOF,FOLLOW_EOF_in_parseJava98); 
 			}
 
 		}
@@ -268,20 +268,20 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "functionRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:59:1: functionRule[Token className] : f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( ( declarationRule[className,$n, false] ) | ( assignRule[className, $n, false] ) )+ ( returnRule[className, $n] )? RCB ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:63:1: functionRule[Token className] : f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( declarationRule[className,$n, false] | assignRule[className, $n, false] )+ ( returnRule[className, $n] )? RCB ;
 	public final void functionRule(Token className) throws RecognitionException {
 		Token f=null;
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:60:2: (f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( ( declarationRule[className,$n, false] ) | ( assignRule[className, $n, false] ) )+ ( returnRule[className, $n] )? RCB )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:3: f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( ( declarationRule[className,$n, false] ) | ( assignRule[className, $n, false] ) )+ ( returnRule[className, $n] )? RCB
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:64:2: (f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( declarationRule[className,$n, false] | assignRule[className, $n, false] )+ ( returnRule[className, $n] )? RCB )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:65:3: f= FUN n= VAR LP ( argumentsRule[className, $n] )? RP LCB ( declarationRule[className,$n, false] | assignRule[className, $n, false] )+ ( returnRule[className, $n] )? RCB
 			{
-			f=(Token)match(input,FUN,FOLLOW_FUN_in_functionRule107); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_functionRule111); 
+			f=(Token)match(input,FUN,FOLLOW_FUN_in_functionRule119); 
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_functionRule126); 
 			h.declareFunCl(className,n);
-			match(input,LP,FOLLOW_LP_in_functionRule115); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:50: ( argumentsRule[className, $n] )?
+			match(input,LP,FOLLOW_LP_in_functionRule133); 
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:67:6: ( argumentsRule[className, $n] )?
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0==BLOCKQUOTE||LA2_0==CODEBLOCK||LA2_0==FORMATTEXT||LA2_0==IMG||(LA2_0 >= LINK && LA2_0 <= LIST)||LA2_0==OLIST||(LA2_0 >= S1TITLE && LA2_0 <= S5TITLE)||(LA2_0 >= TABLE && LA2_0 <= ULIST)) ) {
@@ -289,9 +289,9 @@ public class MaltParser extends Parser {
 			}
 			switch (alt2) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:51: argumentsRule[className, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:67:7: argumentsRule[className, $n]
 					{
-					pushFollow(FOLLOW_argumentsRule_in_functionRule118);
+					pushFollow(FOLLOW_argumentsRule_in_functionRule136);
 					argumentsRule(className, n);
 					state._fsp--;
 
@@ -300,9 +300,9 @@ public class MaltParser extends Parser {
 
 			}
 
-			match(input,RP,FOLLOW_RP_in_functionRule123); 
-			match(input,LCB,FOLLOW_LCB_in_functionRule125); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:89: ( ( declarationRule[className,$n, false] ) | ( assignRule[className, $n, false] ) )+
+			match(input,RP,FOLLOW_RP_in_functionRule144); 
+			match(input,LCB,FOLLOW_LCB_in_functionRule149); 
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:70:3: ( declarationRule[className,$n, false] | assignRule[className, $n, false] )+
 			int cnt3=0;
 			loop3:
 			while (true) {
@@ -312,11 +312,11 @@ public class MaltParser extends Parser {
 					alt3=1;
 				}
 				else if ( (LA3_0==VAR) ) {
-					int LA3_19 = input.LA(2);
-					if ( (LA3_19==LP) ) {
+					int LA3_11 = input.LA(2);
+					if ( (LA3_11==LP) ) {
 						alt3=1;
 					}
-					else if ( ((LA3_19 >= EQ && LA3_19 <= EQL)) ) {
+					else if ( ((LA3_11 >= EQ && LA3_11 <= EQL)) ) {
 						alt3=2;
 					}
 
@@ -324,30 +324,20 @@ public class MaltParser extends Parser {
 
 				switch (alt3) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:90: ( declarationRule[className,$n, false] )
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:70:5: declarationRule[className,$n, false]
 					{
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:90: ( declarationRule[className,$n, false] )
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:91: declarationRule[className,$n, false]
-					{
-					pushFollow(FOLLOW_declarationRule_in_functionRule129);
+					pushFollow(FOLLOW_declarationRule_in_functionRule156);
 					declarationRule(className, n, false);
 					state._fsp--;
 
 					}
-
-					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:131: ( assignRule[className, $n, false] )
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:71:5: assignRule[className, $n, false]
 					{
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:131: ( assignRule[className, $n, false] )
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:132: assignRule[className, $n, false]
-					{
-					pushFollow(FOLLOW_assignRule_in_functionRule136);
+					pushFollow(FOLLOW_assignRule_in_functionRule164);
 					assignRule(className, n, false);
 					state._fsp--;
-
-					}
 
 					}
 					break;
@@ -360,7 +350,7 @@ public class MaltParser extends Parser {
 				cnt3++;
 			}
 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:168: ( returnRule[className, $n] )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:72:3: ( returnRule[className, $n] )?
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0==RETURN) ) {
@@ -368,9 +358,9 @@ public class MaltParser extends Parser {
 			}
 			switch (alt4) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:61:168: returnRule[className, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:72:3: returnRule[className, $n]
 					{
-					pushFollow(FOLLOW_returnRule_in_functionRule142);
+					pushFollow(FOLLOW_returnRule_in_functionRule172);
 					returnRule(className, n);
 					state._fsp--;
 
@@ -379,7 +369,7 @@ public class MaltParser extends Parser {
 
 			}
 
-			match(input,RCB,FOLLOW_RCB_in_functionRule146); 
+			match(input,RCB,FOLLOW_RCB_in_functionRule179); 
 			}
 
 		}
@@ -396,22 +386,22 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "argumentsRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:66:1: argumentsRule[Token className, Token functionName] : t= argumentTypeRule n= VAR ( CM t= argumentTypeRule n= VAR )* ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:78:1: argumentsRule[Token className, Token functionName] : t= argumentTypeRule n= VAR ( CM t= argumentTypeRule n= VAR )* ;
 	public final void argumentsRule(Token className, Token functionName) throws RecognitionException {
 		Token n=null;
 		Token t =null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:67:2: (t= argumentTypeRule n= VAR ( CM t= argumentTypeRule n= VAR )* )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:68:3: t= argumentTypeRule n= VAR ( CM t= argumentTypeRule n= VAR )*
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:79:2: (t= argumentTypeRule n= VAR ( CM t= argumentTypeRule n= VAR )* )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:80:3: t= argumentTypeRule n= VAR ( CM t= argumentTypeRule n= VAR )*
 			{
-			pushFollow(FOLLOW_argumentTypeRule_in_argumentsRule168);
+			pushFollow(FOLLOW_argumentTypeRule_in_argumentsRule201);
 			t=argumentTypeRule();
 			state._fsp--;
 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_argumentsRule172); 
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_argumentsRule208); 
 			h.declareArg(className, functionName, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:68:78: ( CM t= argumentTypeRule n= VAR )*
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:82:3: ( CM t= argumentTypeRule n= VAR )*
 			loop5:
 			while (true) {
 				int alt5=2;
@@ -422,14 +412,14 @@ public class MaltParser extends Parser {
 
 				switch (alt5) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:68:79: CM t= argumentTypeRule n= VAR
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:82:5: CM t= argumentTypeRule n= VAR
 					{
-					match(input,CM,FOLLOW_CM_in_argumentsRule177); 
-					pushFollow(FOLLOW_argumentTypeRule_in_argumentsRule181);
+					match(input,CM,FOLLOW_CM_in_argumentsRule217); 
+					pushFollow(FOLLOW_argumentTypeRule_in_argumentsRule226);
 					t=argumentTypeRule();
 					state._fsp--;
 
-					n=(Token)match(input,VAR,FOLLOW_VAR_in_argumentsRule185); 
+					n=(Token)match(input,VAR,FOLLOW_VAR_in_argumentsRule235); 
 					h.declareArg(className, functionName, t, n);
 					}
 					break;
@@ -455,7 +445,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "argumentTypeRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:72:1: argumentTypeRule returns [Token type] : (res= titleTypeRule |t= TEXT |t= BLOCKQUOTE |t= OLIST |t= ULIST |t= TLIST |t= CODEBLOCK |t= LINK |t= IMG |t= TABLE |t= FORMATTEXT |t= LIST ) ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:88:1: argumentTypeRule returns [Token type] : (res= titleTypeRule |t= ( TEXT | BLOCKQUOTE | OLIST | ULIST | TLIST | CODEBLOCK | LINK | IMG | TABLE | FORMATTEXT | LIST ) ) ;
 	public final Token argumentTypeRule() throws RecognitionException {
 		Token type = null;
 
@@ -464,87 +454,30 @@ public class MaltParser extends Parser {
 		Token res =null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:73:2: ( (res= titleTypeRule |t= TEXT |t= BLOCKQUOTE |t= OLIST |t= ULIST |t= TLIST |t= CODEBLOCK |t= LINK |t= IMG |t= TABLE |t= FORMATTEXT |t= LIST ) )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:3: (res= titleTypeRule |t= TEXT |t= BLOCKQUOTE |t= OLIST |t= ULIST |t= TLIST |t= CODEBLOCK |t= LINK |t= IMG |t= TABLE |t= FORMATTEXT |t= LIST )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:89:2: ( (res= titleTypeRule |t= ( TEXT | BLOCKQUOTE | OLIST | ULIST | TLIST | CODEBLOCK | LINK | IMG | TABLE | FORMATTEXT | LIST ) ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:90:3: (res= titleTypeRule |t= ( TEXT | BLOCKQUOTE | OLIST | ULIST | TLIST | CODEBLOCK | LINK | IMG | TABLE | FORMATTEXT | LIST ) )
 			{
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:3: (res= titleTypeRule |t= TEXT |t= BLOCKQUOTE |t= OLIST |t= ULIST |t= TLIST |t= CODEBLOCK |t= LINK |t= IMG |t= TABLE |t= FORMATTEXT |t= LIST )
-			int alt6=12;
-			switch ( input.LA(1) ) {
-			case S1TITLE:
-			case S2TITLE:
-			case S3TITLE:
-			case S4TITLE:
-			case S5TITLE:
-			case TITLE:
-				{
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:90:3: (res= titleTypeRule |t= ( TEXT | BLOCKQUOTE | OLIST | ULIST | TLIST | CODEBLOCK | LINK | IMG | TABLE | FORMATTEXT | LIST ) )
+			int alt6=2;
+			int LA6_0 = input.LA(1);
+			if ( ((LA6_0 >= S1TITLE && LA6_0 <= S5TITLE)||LA6_0==TITLE) ) {
 				alt6=1;
-				}
-				break;
-			case TEXT:
-				{
+			}
+			else if ( (LA6_0==BLOCKQUOTE||LA6_0==CODEBLOCK||LA6_0==FORMATTEXT||LA6_0==IMG||(LA6_0 >= LINK && LA6_0 <= LIST)||LA6_0==OLIST||(LA6_0 >= TABLE && LA6_0 <= TEXT)||(LA6_0 >= TLIST && LA6_0 <= ULIST)) ) {
 				alt6=2;
-				}
-				break;
-			case BLOCKQUOTE:
-				{
-				alt6=3;
-				}
-				break;
-			case OLIST:
-				{
-				alt6=4;
-				}
-				break;
-			case ULIST:
-				{
-				alt6=5;
-				}
-				break;
-			case TLIST:
-				{
-				alt6=6;
-				}
-				break;
-			case CODEBLOCK:
-				{
-				alt6=7;
-				}
-				break;
-			case LINK:
-				{
-				alt6=8;
-				}
-				break;
-			case IMG:
-				{
-				alt6=9;
-				}
-				break;
-			case TABLE:
-				{
-				alt6=10;
-				}
-				break;
-			case FORMATTEXT:
-				{
-				alt6=11;
-				}
-				break;
-			case LIST:
-				{
-				alt6=12;
-				}
-				break;
-			default:
+			}
+
+			else {
 				NoViableAltException nvae =
 					new NoViableAltException("", 6, 0, input);
 				throw nvae;
 			}
+
 			switch (alt6) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:4: res= titleTypeRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:90:4: res= titleTypeRule
 					{
-					pushFollow(FOLLOW_titleTypeRule_in_argumentTypeRule209);
+					pushFollow(FOLLOW_titleTypeRule_in_argumentTypeRule259);
 					res=titleTypeRule();
 					state._fsp--;
 
@@ -552,69 +485,17 @@ public class MaltParser extends Parser {
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:35: t= TEXT
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:91:5: t= ( TEXT | BLOCKQUOTE | OLIST | ULIST | TLIST | CODEBLOCK | LINK | IMG | TABLE | FORMATTEXT | LIST )
 					{
-					t=(Token)match(input,TEXT,FOLLOW_TEXT_in_argumentTypeRule217); 
+					t=input.LT(1);
+					if ( input.LA(1)==BLOCKQUOTE||input.LA(1)==CODEBLOCK||input.LA(1)==FORMATTEXT||input.LA(1)==IMG||(input.LA(1) >= LINK && input.LA(1) <= LIST)||input.LA(1)==OLIST||(input.LA(1) >= TABLE && input.LA(1) <= TEXT)||(input.LA(1) >= TLIST && input.LA(1) <= ULIST) ) {
+						input.consume();
+						state.errorRecovery=false;
 					}
-					break;
-				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:44: t= BLOCKQUOTE
-					{
-					t=(Token)match(input,BLOCKQUOTE,FOLLOW_BLOCKQUOTE_in_argumentTypeRule223); 
+					else {
+						MismatchedSetException mse = new MismatchedSetException(null,input);
+						throw mse;
 					}
-					break;
-				case 4 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:59: t= OLIST
-					{
-					t=(Token)match(input,OLIST,FOLLOW_OLIST_in_argumentTypeRule229); 
-					}
-					break;
-				case 5 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:69: t= ULIST
-					{
-					t=(Token)match(input,ULIST,FOLLOW_ULIST_in_argumentTypeRule235); 
-					}
-					break;
-				case 6 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:79: t= TLIST
-					{
-					t=(Token)match(input,TLIST,FOLLOW_TLIST_in_argumentTypeRule241); 
-					}
-					break;
-				case 7 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:89: t= CODEBLOCK
-					{
-					t=(Token)match(input,CODEBLOCK,FOLLOW_CODEBLOCK_in_argumentTypeRule247); 
-					}
-					break;
-				case 8 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:103: t= LINK
-					{
-					t=(Token)match(input,LINK,FOLLOW_LINK_in_argumentTypeRule253); 
-					}
-					break;
-				case 9 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:112: t= IMG
-					{
-					t=(Token)match(input,IMG,FOLLOW_IMG_in_argumentTypeRule259); 
-					}
-					break;
-				case 10 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:120: t= TABLE
-					{
-					t=(Token)match(input,TABLE,FOLLOW_TABLE_in_argumentTypeRule265); 
-					}
-					break;
-				case 11 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:130: t= FORMATTEXT
-					{
-					t=(Token)match(input,FORMATTEXT,FOLLOW_FORMATTEXT_in_argumentTypeRule271); 
-					}
-					break;
-				case 12 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:74:145: t= LIST
-					{
-					t=(Token)match(input,LIST,FOLLOW_LIST_in_argumentTypeRule277); 
 					}
 					break;
 
@@ -638,7 +519,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "functionCallRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:78:1: functionCallRule[Token className, Token functionName] returns [Token calledFunction] : (v1= VAR |v1= DOTVAR ) LP (t1= VAR ( CM t2= VAR )* )? RP ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:106:1: functionCallRule[Token className, Token functionName] returns [Token calledFunction] : (v1= VAR |v1= DOTVAR ) LP (t1= VAR ( CM t2= VAR )* )? RP ;
 	public final Token functionCallRule(Token className, Token functionName) throws RecognitionException {
 		Token calledFunction = null;
 
@@ -648,10 +529,10 @@ public class MaltParser extends Parser {
 		Token t2=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:79:2: ( (v1= VAR |v1= DOTVAR ) LP (t1= VAR ( CM t2= VAR )* )? RP )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:80:3: (v1= VAR |v1= DOTVAR ) LP (t1= VAR ( CM t2= VAR )* )? RP
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:107:2: ( (v1= VAR |v1= DOTVAR ) LP (t1= VAR ( CM t2= VAR )* )? RP )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:108:3: (v1= VAR |v1= DOTVAR ) LP (t1= VAR ( CM t2= VAR )* )? RP
 			{
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:80:3: (v1= VAR |v1= DOTVAR )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:108:3: (v1= VAR |v1= DOTVAR )
 			int alt7=2;
 			int LA7_0 = input.LA(1);
 			if ( (LA7_0==VAR) ) {
@@ -669,24 +550,24 @@ public class MaltParser extends Parser {
 
 			switch (alt7) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:80:4: v1= VAR
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:108:4: v1= VAR
 					{
-					v1=(Token)match(input,VAR,FOLLOW_VAR_in_functionCallRule302); 
+					v1=(Token)match(input,VAR,FOLLOW_VAR_in_functionCallRule370); 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:80:13: v1= DOTVAR
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:108:13: v1= DOTVAR
 					{
-					v1=(Token)match(input,DOTVAR,FOLLOW_DOTVAR_in_functionCallRule308); 
+					v1=(Token)match(input,DOTVAR,FOLLOW_DOTVAR_in_functionCallRule376); 
 					}
 					break;
 
 			}
 
 			calledFunction = v1;
-			match(input,LP,FOLLOW_LP_in_functionCallRule313); 
+			match(input,LP,FOLLOW_LP_in_functionCallRule384); 
 			Vector<Token> vct = new Vector<Token>();
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:80:94: (t1= VAR ( CM t2= VAR )* )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:110:3: (t1= VAR ( CM t2= VAR )* )?
 			int alt9=2;
 			int LA9_0 = input.LA(1);
 			if ( (LA9_0==VAR) ) {
@@ -694,11 +575,11 @@ public class MaltParser extends Parser {
 			}
 			switch (alt9) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:80:95: t1= VAR ( CM t2= VAR )*
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:110:4: t1= VAR ( CM t2= VAR )*
 					{
-					t1=(Token)match(input,VAR,FOLLOW_VAR_in_functionCallRule320); 
+					t1=(Token)match(input,VAR,FOLLOW_VAR_in_functionCallRule394); 
 					vct.add(t1);
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:80:118: ( CM t2= VAR )*
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:110:27: ( CM t2= VAR )*
 					loop8:
 					while (true) {
 						int alt8=2;
@@ -709,10 +590,10 @@ public class MaltParser extends Parser {
 
 						switch (alt8) {
 						case 1 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:80:119: CM t2= VAR
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:110:28: CM t2= VAR
 							{
-							match(input,CM,FOLLOW_CM_in_functionCallRule325); 
-							t2=(Token)match(input,VAR,FOLLOW_VAR_in_functionCallRule329); 
+							match(input,CM,FOLLOW_CM_in_functionCallRule399); 
+							t2=(Token)match(input,VAR,FOLLOW_VAR_in_functionCallRule403); 
 							vct.add(t2);
 							}
 							break;
@@ -727,7 +608,7 @@ public class MaltParser extends Parser {
 
 			}
 
-			match(input,RP,FOLLOW_RP_in_functionCallRule337); 
+			match(input,RP,FOLLOW_RP_in_functionCallRule414); 
 			h.functionCall(className, functionName, v1, vct);
 			}
 
@@ -746,16 +627,16 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "returnRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:84:1: returnRule[Token className, Token functionName] : RETURN (v= VAR |v= STRING ) SE ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:115:1: returnRule[Token className, Token functionName] : RETURN (v= VAR |v= STRING ) SE ;
 	public final void returnRule(Token className, Token functionName) throws RecognitionException {
 		Token v=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:85:2: ( RETURN (v= VAR |v= STRING ) SE )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:86:3: RETURN (v= VAR |v= STRING ) SE
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:116:2: ( RETURN (v= VAR |v= STRING ) SE )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:117:3: RETURN (v= VAR |v= STRING ) SE
 			{
-			match(input,RETURN,FOLLOW_RETURN_in_returnRule354); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:86:10: (v= VAR |v= STRING )
+			match(input,RETURN,FOLLOW_RETURN_in_returnRule431); 
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:117:10: (v= VAR |v= STRING )
 			int alt10=2;
 			int LA10_0 = input.LA(1);
 			if ( (LA10_0==VAR) ) {
@@ -773,21 +654,21 @@ public class MaltParser extends Parser {
 
 			switch (alt10) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:86:11: v= VAR
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:117:11: v= VAR
 					{
-					v=(Token)match(input,VAR,FOLLOW_VAR_in_returnRule359); 
+					v=(Token)match(input,VAR,FOLLOW_VAR_in_returnRule436); 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:86:19: v= STRING
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:117:19: v= STRING
 					{
-					v=(Token)match(input,STRING,FOLLOW_STRING_in_returnRule365); 
+					v=(Token)match(input,STRING,FOLLOW_STRING_in_returnRule442); 
 					}
 					break;
 
 			}
 
-			match(input,SE,FOLLOW_SE_in_returnRule368); 
+			match(input,SE,FOLLOW_SE_in_returnRule445); 
 			h.handleReturn(className,functionName,v);
 			}
 
@@ -805,18 +686,18 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "forRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:90:1: forRule[Token className, Token functionName] : FOR LP n= VAR ( forInRule[className, functionName, $n] | forIncrRule[className, functionName, $n] ) ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:121:1: forRule[Token className, Token functionName] : FOR LP n= VAR ( forInRule[className, functionName, $n] | forIncrRule[className, functionName, $n] ) ;
 	public final void forRule(Token className, Token functionName) throws RecognitionException {
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:91:2: ( FOR LP n= VAR ( forInRule[className, functionName, $n] | forIncrRule[className, functionName, $n] ) )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:91:4: FOR LP n= VAR ( forInRule[className, functionName, $n] | forIncrRule[className, functionName, $n] )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:122:2: ( FOR LP n= VAR ( forInRule[className, functionName, $n] | forIncrRule[className, functionName, $n] ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:122:4: FOR LP n= VAR ( forInRule[className, functionName, $n] | forIncrRule[className, functionName, $n] )
 			{
-			match(input,FOR,FOLLOW_FOR_in_forRule383); 
-			match(input,LP,FOLLOW_LP_in_forRule385); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_forRule389); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:91:17: ( forInRule[className, functionName, $n] | forIncrRule[className, functionName, $n] )
+			match(input,FOR,FOLLOW_FOR_in_forRule460); 
+			match(input,LP,FOLLOW_LP_in_forRule462); 
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_forRule466); 
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:122:17: ( forInRule[className, functionName, $n] | forIncrRule[className, functionName, $n] )
 			int alt11=2;
 			int LA11_0 = input.LA(1);
 			if ( (LA11_0==IN) ) {
@@ -834,18 +715,18 @@ public class MaltParser extends Parser {
 
 			switch (alt11) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:91:18: forInRule[className, functionName, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:122:18: forInRule[className, functionName, $n]
 					{
-					pushFollow(FOLLOW_forInRule_in_forRule392);
+					pushFollow(FOLLOW_forInRule_in_forRule469);
 					forInRule(className, functionName, n);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:91:60: forIncrRule[className, functionName, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:122:60: forIncrRule[className, functionName, $n]
 					{
-					pushFollow(FOLLOW_forIncrRule_in_forRule398);
+					pushFollow(FOLLOW_forIncrRule_in_forRule475);
 					forIncrRule(className, functionName, n);
 					state._fsp--;
 
@@ -870,20 +751,20 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "forInRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:96:1: forInRule[Token className, Token functionName, Token name] : IN i= VAR RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:127:1: forInRule[Token className, Token functionName, Token name] : IN i= VAR RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB ;
 	public final void forInRule(Token className, Token functionName, Token name) throws RecognitionException {
 		Token i=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:97:2: ( IN i= VAR RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:97:4: IN i= VAR RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:128:2: ( IN i= VAR RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:128:4: IN i= VAR RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB
 			{
-			match(input,IN,FOLLOW_IN_in_forInRule416); 
-			i=(Token)match(input,VAR,FOLLOW_VAR_in_forInRule420); 
-			match(input,RP,FOLLOW_RP_in_forInRule422); 
-			match(input,LCB,FOLLOW_LCB_in_forInRule424); 
+			match(input,IN,FOLLOW_IN_in_forInRule493); 
+			i=(Token)match(input,VAR,FOLLOW_VAR_in_forInRule497); 
+			match(input,RP,FOLLOW_RP_in_forInRule499); 
+			match(input,LCB,FOLLOW_LCB_in_forInRule501); 
 			h.declareFor(className, functionName, false, name, i);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:97:81: ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:128:81: ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+
 			int cnt12=0;
 			loop12:
 			while (true) {
@@ -893,11 +774,11 @@ public class MaltParser extends Parser {
 					alt12=1;
 				}
 				else if ( (LA12_0==VAR) ) {
-					int LA12_18 = input.LA(2);
-					if ( (LA12_18==LP) ) {
+					int LA12_10 = input.LA(2);
+					if ( (LA12_10==LP) ) {
 						alt12=1;
 					}
-					else if ( ((LA12_18 >= EQ && LA12_18 <= EQL)) ) {
+					else if ( ((LA12_10 >= EQ && LA12_10 <= EQL)) ) {
 						alt12=2;
 					}
 
@@ -905,18 +786,18 @@ public class MaltParser extends Parser {
 
 				switch (alt12) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:97:82: declarationRule[className, functionName, true]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:128:82: declarationRule[className, functionName, true]
 					{
-					pushFollow(FOLLOW_declarationRule_in_forInRule429);
+					pushFollow(FOLLOW_declarationRule_in_forInRule506);
 					declarationRule(className, functionName, true);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:97:131: assignRule[className, functionName, true]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:128:131: assignRule[className, functionName, true]
 					{
-					pushFollow(FOLLOW_assignRule_in_forInRule434);
+					pushFollow(FOLLOW_assignRule_in_forInRule511);
 					assignRule(className, functionName, true);
 					state._fsp--;
 
@@ -931,7 +812,7 @@ public class MaltParser extends Parser {
 				cnt12++;
 			}
 
-			match(input,RCB,FOLLOW_RCB_in_forInRule439); 
+			match(input,RCB,FOLLOW_RCB_in_forInRule516); 
 			}
 
 		}
@@ -948,20 +829,20 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "forIncrRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:102:1: forIncrRule[Token className, Token functionName, Token name] : CM i= INTEGER RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:133:1: forIncrRule[Token className, Token functionName, Token name] : CM i= INTEGER RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB ;
 	public final void forIncrRule(Token className, Token functionName, Token name) throws RecognitionException {
 		Token i=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:103:2: ( CM i= INTEGER RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:103:4: CM i= INTEGER RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:134:2: ( CM i= INTEGER RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:134:4: CM i= INTEGER RP LCB ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+ RCB
 			{
-			match(input,CM,FOLLOW_CM_in_forIncrRule455); 
-			i=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_forIncrRule459); 
-			match(input,RP,FOLLOW_RP_in_forIncrRule461); 
-			match(input,LCB,FOLLOW_LCB_in_forIncrRule463); 
+			match(input,CM,FOLLOW_CM_in_forIncrRule532); 
+			i=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_forIncrRule536); 
+			match(input,RP,FOLLOW_RP_in_forIncrRule538); 
+			match(input,LCB,FOLLOW_LCB_in_forIncrRule540); 
 			h.declareFor(className, functionName, true, name, i);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:103:84: ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:134:84: ( declarationRule[className, functionName, true] | assignRule[className, functionName, true] )+
 			int cnt13=0;
 			loop13:
 			while (true) {
@@ -971,11 +852,11 @@ public class MaltParser extends Parser {
 					alt13=1;
 				}
 				else if ( (LA13_0==VAR) ) {
-					int LA13_18 = input.LA(2);
-					if ( (LA13_18==LP) ) {
+					int LA13_10 = input.LA(2);
+					if ( (LA13_10==LP) ) {
 						alt13=1;
 					}
-					else if ( ((LA13_18 >= EQ && LA13_18 <= EQL)) ) {
+					else if ( ((LA13_10 >= EQ && LA13_10 <= EQL)) ) {
 						alt13=2;
 					}
 
@@ -983,18 +864,18 @@ public class MaltParser extends Parser {
 
 				switch (alt13) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:103:85: declarationRule[className, functionName, true]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:134:85: declarationRule[className, functionName, true]
 					{
-					pushFollow(FOLLOW_declarationRule_in_forIncrRule468);
+					pushFollow(FOLLOW_declarationRule_in_forIncrRule545);
 					declarationRule(className, functionName, true);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:103:134: assignRule[className, functionName, true]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:134:134: assignRule[className, functionName, true]
 					{
-					pushFollow(FOLLOW_assignRule_in_forIncrRule473);
+					pushFollow(FOLLOW_assignRule_in_forIncrRule550);
 					assignRule(className, functionName, true);
 					state._fsp--;
 
@@ -1009,7 +890,7 @@ public class MaltParser extends Parser {
 				cnt13++;
 			}
 
-			match(input,RCB,FOLLOW_RCB_in_forIncrRule478); 
+			match(input,RCB,FOLLOW_RCB_in_forIncrRule555); 
 			}
 
 		}
@@ -1026,20 +907,20 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "classRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:108:1: classRule : f= CLASS n= VAR LCB ( declarationRule[$n,null, false] | functionRule[$n] | assignRule[$n, null, false] )* RCB ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:139:1: classRule : f= CLASS n= VAR LCB ( declarationRule[$n,null, false] | functionRule[$n] | assignRule[$n, null, false] )* RCB ;
 	public final void classRule() throws RecognitionException {
 		Token f=null;
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:109:2: (f= CLASS n= VAR LCB ( declarationRule[$n,null, false] | functionRule[$n] | assignRule[$n, null, false] )* RCB )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:110:3: f= CLASS n= VAR LCB ( declarationRule[$n,null, false] | functionRule[$n] | assignRule[$n, null, false] )* RCB
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:140:2: (f= CLASS n= VAR LCB ( declarationRule[$n,null, false] | functionRule[$n] | assignRule[$n, null, false] )* RCB )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:3: f= CLASS n= VAR LCB ( declarationRule[$n,null, false] | functionRule[$n] | assignRule[$n, null, false] )* RCB
 			{
-			f=(Token)match(input,CLASS,FOLLOW_CLASS_in_classRule496); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_classRule500); 
+			f=(Token)match(input,CLASS,FOLLOW_CLASS_in_classRule573); 
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_classRule577); 
 			h.declareFunCl(n, null);
-			match(input,LCB,FOLLOW_LCB_in_classRule504); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:110:49: ( declarationRule[$n,null, false] | functionRule[$n] | assignRule[$n, null, false] )*
+			match(input,LCB,FOLLOW_LCB_in_classRule581); 
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:49: ( declarationRule[$n,null, false] | functionRule[$n] | assignRule[$n, null, false] )*
 			loop14:
 			while (true) {
 				int alt14=4;
@@ -1069,11 +950,11 @@ public class MaltParser extends Parser {
 					break;
 				case VAR:
 					{
-					int LA14_18 = input.LA(2);
-					if ( (LA14_18==LP) ) {
+					int LA14_10 = input.LA(2);
+					if ( (LA14_10==LP) ) {
 						alt14=1;
 					}
-					else if ( ((LA14_18 >= EQ && LA14_18 <= EQL)) ) {
+					else if ( ((LA14_10 >= EQ && LA14_10 <= EQL)) ) {
 						alt14=3;
 					}
 
@@ -1087,27 +968,27 @@ public class MaltParser extends Parser {
 				}
 				switch (alt14) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:110:50: declarationRule[$n,null, false]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:50: declarationRule[$n,null, false]
 					{
-					pushFollow(FOLLOW_declarationRule_in_classRule507);
+					pushFollow(FOLLOW_declarationRule_in_classRule584);
 					declarationRule(n, null, false);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:110:84: functionRule[$n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:84: functionRule[$n]
 					{
-					pushFollow(FOLLOW_functionRule_in_classRule512);
+					pushFollow(FOLLOW_functionRule_in_classRule589);
 					functionRule(n);
 					state._fsp--;
 
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:110:103: assignRule[$n, null, false]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:103: assignRule[$n, null, false]
 					{
-					pushFollow(FOLLOW_assignRule_in_classRule517);
+					pushFollow(FOLLOW_assignRule_in_classRule594);
 					assignRule(n, null, false);
 					state._fsp--;
 
@@ -1119,7 +1000,7 @@ public class MaltParser extends Parser {
 				}
 			}
 
-			match(input,RCB,FOLLOW_RCB_in_classRule522); 
+			match(input,RCB,FOLLOW_RCB_in_classRule599); 
 			}
 
 		}
@@ -1136,10 +1017,10 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "declarationRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:115:1: declarationRule[Token className, Token functionName, boolean inFor] : ( ( ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareOlistRule[className, functionName, inFor] | declareUlistRule[className, functionName, inFor] | declareTlistRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] ) SE ) | forRule[className, functionName] );
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:146:1: declarationRule[Token className, Token functionName, boolean inFor] : ( ( ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] ) SE ) | forRule[className, functionName] );
 	public final void declarationRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:116:2: ( ( ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareOlistRule[className, functionName, inFor] | declareUlistRule[className, functionName, inFor] | declareTlistRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] ) SE ) | forRule[className, functionName] )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:147:2: ( ( ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] ) SE ) | forRule[className, functionName] )
 			int alt16=2;
 			int LA16_0 = input.LA(1);
 			if ( (LA16_0==BLOCKQUOTE||LA16_0==CODEBLOCK||LA16_0==DOTVAR||LA16_0==FORMAT||LA16_0==IMG||(LA16_0 >= LINK && LA16_0 <= LIST)||LA16_0==OLIST||(LA16_0 >= S1TITLE && LA16_0 <= S5TITLE)||(LA16_0 >= TABLE && LA16_0 <= ULIST)||LA16_0==VAR) ) {
@@ -1157,13 +1038,13 @@ public class MaltParser extends Parser {
 
 			switch (alt16) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:117:3: ( ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareOlistRule[className, functionName, inFor] | declareUlistRule[className, functionName, inFor] | declareTlistRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] ) SE )
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:148:3: ( ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] ) SE )
 					{
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:117:3: ( ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareOlistRule[className, functionName, inFor] | declareUlistRule[className, functionName, inFor] | declareTlistRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] ) SE )
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:117:4: ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareOlistRule[className, functionName, inFor] | declareUlistRule[className, functionName, inFor] | declareTlistRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] ) SE
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:148:3: ( ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] ) SE )
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:148:4: ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] ) SE
 					{
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:117:4: ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareOlistRule[className, functionName, inFor] | declareUlistRule[className, functionName, inFor] | declareTlistRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] )
-					int alt15=13;
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:148:4: ( declareTitleRule[className, functionName, inFor] | declareTextRule[className, functionName, inFor] | declareBlockQuoteRule[className, functionName, inFor] | declareCodeBlockRule[className, functionName, inFor] | declareListRule[className, functionName, inFor] | declareTableRule[className, functionName, inFor] | declareImageRule[className, functionName, inFor] | declareLinkRule[className, functionName, inFor] | functionCallRule[className, functionName] | formatRule[className, functionName, inFor] )
+					int alt15=10;
 					switch ( input.LA(1) ) {
 					case S1TITLE:
 					case S2TITLE:
@@ -1185,55 +1066,43 @@ public class MaltParser extends Parser {
 						alt15=3;
 						}
 						break;
-					case OLIST:
+					case CODEBLOCK:
 						{
 						alt15=4;
 						}
 						break;
+					case LIST:
+					case OLIST:
+					case TLIST:
 					case ULIST:
 						{
 						alt15=5;
 						}
 						break;
-					case TLIST:
+					case TABLE:
 						{
 						alt15=6;
 						}
 						break;
-					case CODEBLOCK:
+					case IMG:
 						{
 						alt15=7;
 						}
 						break;
-					case TABLE:
-						{
-						alt15=8;
-						}
-						break;
-					case IMG:
-						{
-						alt15=9;
-						}
-						break;
 					case LINK:
 						{
-						alt15=10;
-						}
-						break;
-					case LIST:
-						{
-						alt15=11;
+						alt15=8;
 						}
 						break;
 					case DOTVAR:
 					case VAR:
 						{
-						alt15=12;
+						alt15=9;
 						}
 						break;
 					case FORMAT:
 						{
-						alt15=13;
+						alt15=10;
 						}
 						break;
 					default:
@@ -1243,117 +1112,90 @@ public class MaltParser extends Parser {
 					}
 					switch (alt15) {
 						case 1 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:117:6: declareTitleRule[className, functionName, inFor]
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:148:6: declareTitleRule[className, functionName, inFor]
 							{
-							pushFollow(FOLLOW_declareTitleRule_in_declarationRule543);
+							pushFollow(FOLLOW_declareTitleRule_in_declarationRule620);
 							declareTitleRule(className, functionName, inFor);
 							state._fsp--;
 
 							}
 							break;
 						case 2 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:118:5: declareTextRule[className, functionName, inFor]
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:149:5: declareTextRule[className, functionName, inFor]
 							{
-							pushFollow(FOLLOW_declareTextRule_in_declarationRule552);
+							pushFollow(FOLLOW_declareTextRule_in_declarationRule629);
 							declareTextRule(className, functionName, inFor);
 							state._fsp--;
 
 							}
 							break;
 						case 3 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:119:5: declareBlockQuoteRule[className, functionName, inFor]
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:150:5: declareBlockQuoteRule[className, functionName, inFor]
 							{
-							pushFollow(FOLLOW_declareBlockQuoteRule_in_declarationRule561);
+							pushFollow(FOLLOW_declareBlockQuoteRule_in_declarationRule638);
 							declareBlockQuoteRule(className, functionName, inFor);
 							state._fsp--;
 
 							}
 							break;
 						case 4 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:120:5: declareOlistRule[className, functionName, inFor]
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:151:5: declareCodeBlockRule[className, functionName, inFor]
 							{
-							pushFollow(FOLLOW_declareOlistRule_in_declarationRule570);
-							declareOlistRule(className, functionName, inFor);
-							state._fsp--;
-
-							}
-							break;
-						case 5 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:121:5: declareUlistRule[className, functionName, inFor]
-							{
-							pushFollow(FOLLOW_declareUlistRule_in_declarationRule579);
-							declareUlistRule(className, functionName, inFor);
-							state._fsp--;
-
-							}
-							break;
-						case 6 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:122:5: declareTlistRule[className, functionName, inFor]
-							{
-							pushFollow(FOLLOW_declareTlistRule_in_declarationRule587);
-							declareTlistRule(className, functionName, inFor);
-							state._fsp--;
-
-							}
-							break;
-						case 7 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:123:5: declareCodeBlockRule[className, functionName, inFor]
-							{
-							pushFollow(FOLLOW_declareCodeBlockRule_in_declarationRule595);
+							pushFollow(FOLLOW_declareCodeBlockRule_in_declarationRule647);
 							declareCodeBlockRule(className, functionName, inFor);
 							state._fsp--;
 
 							}
 							break;
-						case 8 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:124:5: declareTableRule[className, functionName, inFor]
+						case 5 :
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:152:5: declareListRule[className, functionName, inFor]
 							{
-							pushFollow(FOLLOW_declareTableRule_in_declarationRule603);
-							declareTableRule(className, functionName, inFor);
-							state._fsp--;
-
-							}
-							break;
-						case 9 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:125:5: declareImageRule[className, functionName, inFor]
-							{
-							pushFollow(FOLLOW_declareImageRule_in_declarationRule612);
-							declareImageRule(className, functionName, inFor);
-							state._fsp--;
-
-							}
-							break;
-						case 10 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:126:5: declareLinkRule[className, functionName, inFor]
-							{
-							pushFollow(FOLLOW_declareLinkRule_in_declarationRule620);
-							declareLinkRule(className, functionName, inFor);
-							state._fsp--;
-
-							}
-							break;
-						case 11 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:127:5: declareListRule[className, functionName, inFor]
-							{
-							pushFollow(FOLLOW_declareListRule_in_declarationRule629);
+							pushFollow(FOLLOW_declareListRule_in_declarationRule655);
 							declareListRule(className, functionName, inFor);
 							state._fsp--;
 
 							}
 							break;
-						case 12 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:128:5: functionCallRule[className, functionName]
+						case 6 :
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:153:5: declareTableRule[className, functionName, inFor]
 							{
-							pushFollow(FOLLOW_functionCallRule_in_declarationRule638);
+							pushFollow(FOLLOW_declareTableRule_in_declarationRule664);
+							declareTableRule(className, functionName, inFor);
+							state._fsp--;
+
+							}
+							break;
+						case 7 :
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:154:5: declareImageRule[className, functionName, inFor]
+							{
+							pushFollow(FOLLOW_declareImageRule_in_declarationRule673);
+							declareImageRule(className, functionName, inFor);
+							state._fsp--;
+
+							}
+							break;
+						case 8 :
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:155:5: declareLinkRule[className, functionName, inFor]
+							{
+							pushFollow(FOLLOW_declareLinkRule_in_declarationRule681);
+							declareLinkRule(className, functionName, inFor);
+							state._fsp--;
+
+							}
+							break;
+						case 9 :
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:156:5: functionCallRule[className, functionName]
+							{
+							pushFollow(FOLLOW_functionCallRule_in_declarationRule690);
 							functionCallRule(className, functionName);
 							state._fsp--;
 
 							}
 							break;
-						case 13 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:129:5: formatRule[className, functionName, inFor]
+						case 10 :
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:157:5: formatRule[className, functionName, inFor]
 							{
-							pushFollow(FOLLOW_formatRule_in_declarationRule645);
+							pushFollow(FOLLOW_formatRule_in_declarationRule697);
 							formatRule(className, functionName, inFor);
 							state._fsp--;
 
@@ -1362,15 +1204,15 @@ public class MaltParser extends Parser {
 
 					}
 
-					match(input,SE,FOLLOW_SE_in_declarationRule650); 
+					match(input,SE,FOLLOW_SE_in_declarationRule702); 
 					}
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:129:56: forRule[className, functionName]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:157:56: forRule[className, functionName]
 					{
-					pushFollow(FOLLOW_forRule_in_declarationRule655);
+					pushFollow(FOLLOW_forRule_in_declarationRule707);
 					forRule(className, functionName);
 					state._fsp--;
 
@@ -1392,22 +1234,22 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "declareTitleRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:133:1: declareTitleRule[Token className, Token functionName, boolean inFor] : t= titleTypeRule n= VAR ( refRule )? ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:161:1: declareTitleRule[Token className, Token functionName, boolean inFor] : t= titleTypeRule n= VAR ( refRule )? ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? ;
 	public final void declareTitleRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
 		Token n=null;
 		Token t =null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:134:2: (t= titleTypeRule n= VAR ( refRule )? ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:135:3: t= titleTypeRule n= VAR ( refRule )? ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:162:2: (t= titleTypeRule n= VAR ( refRule )? ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:163:3: t= titleTypeRule n= VAR ( refRule )? ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
 			{
-			pushFollow(FOLLOW_titleTypeRule_in_declareTitleRule673);
+			pushFollow(FOLLOW_titleTypeRule_in_declareTitleRule725);
 			t=titleTypeRule();
 			state._fsp--;
 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareTitleRule677); 
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareTitleRule729); 
 			h.declareNew(className, functionName, inFor, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:135:82: ( refRule )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:163:82: ( refRule )?
 			int alt17=2;
 			int LA17_0 = input.LA(1);
 			if ( (LA17_0==LCB) ) {
@@ -1415,9 +1257,9 @@ public class MaltParser extends Parser {
 			}
 			switch (alt17) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:135:82: refRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:163:82: refRule
 					{
-					pushFollow(FOLLOW_refRule_in_declareTitleRule681);
+					pushFollow(FOLLOW_refRule_in_declareTitleRule733);
 					refRule();
 					state._fsp--;
 
@@ -1426,7 +1268,7 @@ public class MaltParser extends Parser {
 
 			}
 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:135:91: ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:163:91: ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
 			int alt18=4;
 			int LA18_0 = input.LA(1);
 			if ( (LA18_0==EQ) ) {
@@ -1451,27 +1293,27 @@ public class MaltParser extends Parser {
 			}
 			switch (alt18) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:135:92: assignStringRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:163:92: assignStringRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignStringRule_in_declareTitleRule685);
+					pushFollow(FOLLOW_assignStringRule_in_declareTitleRule737);
 					assignStringRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:135:150: assignVariableRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:163:150: assignVariableRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignVariableRule_in_declareTitleRule690);
+					pushFollow(FOLLOW_assignVariableRule_in_declareTitleRule742);
 					assignVariableRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:135:210: assignExprRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:163:210: assignExprRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignExprRule_in_declareTitleRule695);
+					pushFollow(FOLLOW_assignExprRule_in_declareTitleRule747);
 					assignExprRule(className, functionName, inFor, n);
 					state._fsp--;
 
@@ -1496,7 +1338,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "titleTypeRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:139:1: titleTypeRule returns [Token type] : (t= TITLE |t= S1TITLE |t= S2TITLE |t= S3TITLE |t= S4TITLE |t= S5TITLE ) ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:167:1: titleTypeRule returns [Token type] : t= ( TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE ) ;
 	public final Token titleTypeRule() throws RecognitionException {
 		Token type = null;
 
@@ -1504,87 +1346,18 @@ public class MaltParser extends Parser {
 		Token t=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:140:2: ( (t= TITLE |t= S1TITLE |t= S2TITLE |t= S3TITLE |t= S4TITLE |t= S5TITLE ) )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:3: (t= TITLE |t= S1TITLE |t= S2TITLE |t= S3TITLE |t= S4TITLE |t= S5TITLE )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:168:2: (t= ( TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:169:3: t= ( TITLE | S1TITLE | S2TITLE | S3TITLE | S4TITLE | S5TITLE )
 			{
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:3: (t= TITLE |t= S1TITLE |t= S2TITLE |t= S3TITLE |t= S4TITLE |t= S5TITLE )
-			int alt19=6;
-			switch ( input.LA(1) ) {
-			case TITLE:
-				{
-				alt19=1;
-				}
-				break;
-			case S1TITLE:
-				{
-				alt19=2;
-				}
-				break;
-			case S2TITLE:
-				{
-				alt19=3;
-				}
-				break;
-			case S3TITLE:
-				{
-				alt19=4;
-				}
-				break;
-			case S4TITLE:
-				{
-				alt19=5;
-				}
-				break;
-			case S5TITLE:
-				{
-				alt19=6;
-				}
-				break;
-			default:
-				NoViableAltException nvae =
-					new NoViableAltException("", 19, 0, input);
-				throw nvae;
+			t=input.LT(1);
+			if ( (input.LA(1) >= S1TITLE && input.LA(1) <= S5TITLE)||input.LA(1)==TITLE ) {
+				input.consume();
+				state.errorRecovery=false;
 			}
-			switch (alt19) {
-				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:4: t= TITLE
-					{
-					t=(Token)match(input,TITLE,FOLLOW_TITLE_in_titleTypeRule718); 
-					}
-					break;
-				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:14: t= S1TITLE
-					{
-					t=(Token)match(input,S1TITLE,FOLLOW_S1TITLE_in_titleTypeRule724); 
-					}
-					break;
-				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:26: t= S2TITLE
-					{
-					t=(Token)match(input,S2TITLE,FOLLOW_S2TITLE_in_titleTypeRule730); 
-					}
-					break;
-				case 4 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:38: t= S3TITLE
-					{
-					t=(Token)match(input,S3TITLE,FOLLOW_S3TITLE_in_titleTypeRule736); 
-					}
-					break;
-				case 5 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:50: t= S4TITLE
-					{
-					t=(Token)match(input,S4TITLE,FOLLOW_S4TITLE_in_titleTypeRule742); 
-					}
-					break;
-				case 6 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:141:62: t= S5TITLE
-					{
-					t=(Token)match(input,S5TITLE,FOLLOW_S5TITLE_in_titleTypeRule748); 
-					}
-					break;
-
+			else {
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				throw mse;
 			}
-
 			type = t;
 			}
 
@@ -1603,16 +1376,16 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "refRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:145:1: refRule : LCB HA VAR RCB ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:173:1: refRule : LCB HA VAR RCB ;
 	public final void refRule() throws RecognitionException {
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:146:2: ( LCB HA VAR RCB )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:147:3: LCB HA VAR RCB
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:174:2: ( LCB HA VAR RCB )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:175:3: LCB HA VAR RCB
 			{
-			match(input,LCB,FOLLOW_LCB_in_refRule764); 
-			match(input,HA,FOLLOW_HA_in_refRule766); 
-			match(input,VAR,FOLLOW_VAR_in_refRule768); 
-			match(input,RCB,FOLLOW_RCB_in_refRule770); 
+			match(input,LCB,FOLLOW_LCB_in_refRule806); 
+			match(input,HA,FOLLOW_HA_in_refRule808); 
+			match(input,VAR,FOLLOW_VAR_in_refRule810); 
+			match(input,RCB,FOLLOW_RCB_in_refRule812); 
 			}
 
 		}
@@ -1629,64 +1402,64 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "declareTextRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:151:1: declareTextRule[Token className, Token functionName, boolean inFor] : t= TEXT n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:179:1: declareTextRule[Token className, Token functionName, boolean inFor] : t= TEXT n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? ;
 	public final void declareTextRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
 		Token t=null;
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:152:2: (t= TEXT n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:153:3: t= TEXT n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:180:2: (t= TEXT n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:181:3: t= TEXT n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
 			{
-			t=(Token)match(input,TEXT,FOLLOW_TEXT_in_declareTextRule788); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareTextRule792); 
+			t=(Token)match(input,TEXT,FOLLOW_TEXT_in_declareTextRule830); 
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareTextRule834); 
 			h.declareNew(className, functionName, inFor, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:153:72: ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
-			int alt20=4;
-			int LA20_0 = input.LA(1);
-			if ( (LA20_0==EQ) ) {
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:181:72: ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
+			int alt19=4;
+			int LA19_0 = input.LA(1);
+			if ( (LA19_0==EQ) ) {
 				switch ( input.LA(2) ) {
 					case STRING:
 						{
-						alt20=1;
+						alt19=1;
 						}
 						break;
 					case LP:
 						{
-						alt20=3;
+						alt19=3;
 						}
 						break;
 					case DOTVAR:
 					case VAR:
 						{
-						alt20=2;
+						alt19=2;
 						}
 						break;
 				}
 			}
-			switch (alt20) {
+			switch (alt19) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:153:73: assignStringRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:181:73: assignStringRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignStringRule_in_declareTextRule797);
+					pushFollow(FOLLOW_assignStringRule_in_declareTextRule839);
 					assignStringRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:153:131: assignVariableRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:181:131: assignVariableRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignVariableRule_in_declareTextRule802);
+					pushFollow(FOLLOW_assignVariableRule_in_declareTextRule844);
 					assignVariableRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:153:191: assignExprRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:181:191: assignExprRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignExprRule_in_declareTextRule807);
+					pushFollow(FOLLOW_assignExprRule_in_declareTextRule849);
 					assignExprRule(className, functionName, inFor, n);
 					state._fsp--;
 
@@ -1711,64 +1484,64 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "declareBlockQuoteRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:157:1: declareBlockQuoteRule[Token className, Token functionName, boolean inFor] : t= BLOCKQUOTE n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:185:1: declareBlockQuoteRule[Token className, Token functionName, boolean inFor] : t= BLOCKQUOTE n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? ;
 	public final void declareBlockQuoteRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
 		Token t=null;
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:158:2: (t= BLOCKQUOTE n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:159:3: t= BLOCKQUOTE n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:186:2: (t= BLOCKQUOTE n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:187:3: t= BLOCKQUOTE n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
 			{
-			t=(Token)match(input,BLOCKQUOTE,FOLLOW_BLOCKQUOTE_in_declareBlockQuoteRule827); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareBlockQuoteRule831); 
+			t=(Token)match(input,BLOCKQUOTE,FOLLOW_BLOCKQUOTE_in_declareBlockQuoteRule869); 
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareBlockQuoteRule873); 
 			h.declareNew(className, functionName, inFor, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:159:79: ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
-			int alt21=4;
-			int LA21_0 = input.LA(1);
-			if ( (LA21_0==EQ) ) {
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:187:79: ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
+			int alt20=4;
+			int LA20_0 = input.LA(1);
+			if ( (LA20_0==EQ) ) {
 				switch ( input.LA(2) ) {
 					case STRING:
 						{
-						alt21=1;
+						alt20=1;
 						}
 						break;
 					case LP:
 						{
-						alt21=3;
+						alt20=3;
 						}
 						break;
 					case DOTVAR:
 					case VAR:
 						{
-						alt21=2;
+						alt20=2;
 						}
 						break;
 				}
 			}
-			switch (alt21) {
+			switch (alt20) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:159:80: assignStringRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:187:80: assignStringRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignStringRule_in_declareBlockQuoteRule837);
+					pushFollow(FOLLOW_assignStringRule_in_declareBlockQuoteRule879);
 					assignStringRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:159:138: assignVariableRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:187:138: assignVariableRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignVariableRule_in_declareBlockQuoteRule842);
+					pushFollow(FOLLOW_assignVariableRule_in_declareBlockQuoteRule884);
 					assignVariableRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:159:198: assignExprRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:187:198: assignExprRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignExprRule_in_declareBlockQuoteRule847);
+					pushFollow(FOLLOW_assignExprRule_in_declareBlockQuoteRule889);
 					assignExprRule(className, functionName, inFor, n);
 					state._fsp--;
 
@@ -1792,270 +1565,84 @@ public class MaltParser extends Parser {
 
 
 
-	// $ANTLR start "declareOlistRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:163:1: declareOlistRule[Token className, Token functionName, boolean inFor] : t= OLIST n= VAR ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? ;
-	public final void declareOlistRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
-		Token t=null;
-		Token n=null;
-
-		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:164:2: (t= OLIST n= VAR ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:165:3: t= OLIST n= VAR ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
-			{
-			t=(Token)match(input,OLIST,FOLLOW_OLIST_in_declareOlistRule867); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareOlistRule871); 
-			h.declareNew(className, functionName, inFor, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:165:73: ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
-			int alt22=3;
-			int LA22_0 = input.LA(1);
-			if ( (LA22_0==EQ) ) {
-				int LA22_1 = input.LA(2);
-				if ( (LA22_1==LP) ) {
-					alt22=1;
-				}
-				else if ( (LA22_1==DOTVAR||LA22_1==VAR) ) {
-					alt22=2;
-				}
-			}
-			switch (alt22) {
-				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:165:74: assignTextListRule[$className, $functionName, $inFor, $n]
-					{
-					pushFollow(FOLLOW_assignTextListRule_in_declareOlistRule876);
-					assignTextListRule(className, functionName, inFor, n);
-					state._fsp--;
-
-					}
-					break;
-				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:165:134: assignVariableRule[$className, $functionName, $inFor, $n]
-					{
-					pushFollow(FOLLOW_assignVariableRule_in_declareOlistRule881);
-					assignVariableRule(className, functionName, inFor, n);
-					state._fsp--;
-
-					}
-					break;
-
-			}
-
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "declareOlistRule"
-
-
-
-	// $ANTLR start "declareUlistRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:169:1: declareUlistRule[Token className, Token functionName, boolean inFor] : t= ULIST n= VAR ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? ;
-	public final void declareUlistRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
-		Token t=null;
-		Token n=null;
-
-		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:170:2: (t= ULIST n= VAR ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:171:3: t= ULIST n= VAR ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
-			{
-			t=(Token)match(input,ULIST,FOLLOW_ULIST_in_declareUlistRule902); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareUlistRule906); 
-			h.declareNew(className, functionName, inFor, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:171:73: ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
-			int alt23=3;
-			int LA23_0 = input.LA(1);
-			if ( (LA23_0==EQ) ) {
-				int LA23_1 = input.LA(2);
-				if ( (LA23_1==LP) ) {
-					alt23=1;
-				}
-				else if ( (LA23_1==DOTVAR||LA23_1==VAR) ) {
-					alt23=2;
-				}
-			}
-			switch (alt23) {
-				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:171:74: assignTextListRule[$className, $functionName, $inFor, $n]
-					{
-					pushFollow(FOLLOW_assignTextListRule_in_declareUlistRule911);
-					assignTextListRule(className, functionName, inFor, n);
-					state._fsp--;
-
-					}
-					break;
-				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:171:134: assignVariableRule[$className, $functionName, $inFor, $n]
-					{
-					pushFollow(FOLLOW_assignVariableRule_in_declareUlistRule916);
-					assignVariableRule(className, functionName, inFor, n);
-					state._fsp--;
-
-					}
-					break;
-
-			}
-
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "declareUlistRule"
-
-
-
-	// $ANTLR start "declareTlistRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:175:1: declareTlistRule[Token className, Token functionName, boolean inFor] : t= TLIST n= VAR ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? ;
-	public final void declareTlistRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
-		Token t=null;
-		Token n=null;
-
-		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:176:2: (t= TLIST n= VAR ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:177:3: t= TLIST n= VAR ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
-			{
-			t=(Token)match(input,TLIST,FOLLOW_TLIST_in_declareTlistRule937); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareTlistRule941); 
-			h.declareNew(className, functionName, inFor, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:177:73: ( assignTextListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
-			int alt24=3;
-			int LA24_0 = input.LA(1);
-			if ( (LA24_0==EQ) ) {
-				int LA24_1 = input.LA(2);
-				if ( (LA24_1==LP) ) {
-					alt24=1;
-				}
-				else if ( (LA24_1==DOTVAR||LA24_1==VAR) ) {
-					alt24=2;
-				}
-			}
-			switch (alt24) {
-				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:177:74: assignTextListRule[$className, $functionName, $inFor, $n]
-					{
-					pushFollow(FOLLOW_assignTextListRule_in_declareTlistRule946);
-					assignTextListRule(className, functionName, inFor, n);
-					state._fsp--;
-
-					}
-					break;
-				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:177:134: assignVariableRule[$className, $functionName, $inFor, $n]
-					{
-					pushFollow(FOLLOW_assignVariableRule_in_declareTlistRule951);
-					assignVariableRule(className, functionName, inFor, n);
-					state._fsp--;
-
-					}
-					break;
-
-			}
-
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "declareTlistRule"
-
-
-
 	// $ANTLR start "declareCodeBlockRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:181:1: declareCodeBlockRule[Token className, Token functionName, boolean inFor] : t= CODEBLOCK ( VAR )? n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:191:1: declareCodeBlockRule[Token className, Token functionName, boolean inFor] : t= CODEBLOCK ( VAR )? n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? ;
 	public final void declareCodeBlockRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
 		Token t=null;
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:182:2: (t= CODEBLOCK ( VAR )? n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:183:3: t= CODEBLOCK ( VAR )? n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:192:2: (t= CODEBLOCK ( VAR )? n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )? )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:193:3: t= CODEBLOCK ( VAR )? n= VAR ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
 			{
-			t=(Token)match(input,CODEBLOCK,FOLLOW_CODEBLOCK_in_declareCodeBlockRule971); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:183:15: ( VAR )?
-			int alt25=2;
-			int LA25_0 = input.LA(1);
-			if ( (LA25_0==VAR) ) {
-				int LA25_1 = input.LA(2);
-				if ( (LA25_1==VAR) ) {
-					alt25=1;
+			t=(Token)match(input,CODEBLOCK,FOLLOW_CODEBLOCK_in_declareCodeBlockRule909); 
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:193:15: ( VAR )?
+			int alt21=2;
+			int LA21_0 = input.LA(1);
+			if ( (LA21_0==VAR) ) {
+				int LA21_1 = input.LA(2);
+				if ( (LA21_1==VAR) ) {
+					alt21=1;
 				}
 			}
-			switch (alt25) {
+			switch (alt21) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:183:15: VAR
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:193:15: VAR
 					{
-					match(input,VAR,FOLLOW_VAR_in_declareCodeBlockRule973); 
+					match(input,VAR,FOLLOW_VAR_in_declareCodeBlockRule911); 
 					}
 					break;
 
 			}
 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareCodeBlockRule978); 
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareCodeBlockRule916); 
 			h.declareNew(className, functionName, inFor, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:183:83: ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
-			int alt26=4;
-			int LA26_0 = input.LA(1);
-			if ( (LA26_0==EQ) ) {
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:193:83: ( assignStringRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] | assignExprRule[$className, $functionName, $inFor, $n] )?
+			int alt22=4;
+			int LA22_0 = input.LA(1);
+			if ( (LA22_0==EQ) ) {
 				switch ( input.LA(2) ) {
 					case STRING:
 						{
-						alt26=1;
+						alt22=1;
 						}
 						break;
 					case LP:
 						{
-						alt26=3;
+						alt22=3;
 						}
 						break;
 					case DOTVAR:
 					case VAR:
 						{
-						alt26=2;
+						alt22=2;
 						}
 						break;
 				}
 			}
-			switch (alt26) {
+			switch (alt22) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:183:84: assignStringRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:193:84: assignStringRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignStringRule_in_declareCodeBlockRule984);
+					pushFollow(FOLLOW_assignStringRule_in_declareCodeBlockRule922);
 					assignStringRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:183:142: assignVariableRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:193:142: assignVariableRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignVariableRule_in_declareCodeBlockRule989);
+					pushFollow(FOLLOW_assignVariableRule_in_declareCodeBlockRule927);
 					assignVariableRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:183:201: assignExprRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:193:201: assignExprRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignExprRule_in_declareCodeBlockRule993);
+					pushFollow(FOLLOW_assignExprRule_in_declareCodeBlockRule931);
 					assignExprRule(className, functionName, inFor, n);
 					state._fsp--;
 
@@ -2079,45 +1666,148 @@ public class MaltParser extends Parser {
 
 
 
+	// $ANTLR start "declareListRule"
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:196:1: declareListRule[Token className, Token functionName, boolean inFor] : t= typeListRule n= VAR ( assignListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n ] )? ;
+	public final void declareListRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
+		Token n=null;
+		Token t =null;
+
+		try {
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:197:2: (t= typeListRule n= VAR ( assignListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n ] )? )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:198:3: t= typeListRule n= VAR ( assignListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n ] )?
+			{
+			pushFollow(FOLLOW_typeListRule_in_declareListRule950);
+			t=typeListRule();
+			state._fsp--;
+
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareListRule957); 
+			h.declareNew(className, functionName, inFor, t, n);
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:200:3: ( assignListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n ] )?
+			int alt23=3;
+			int LA23_0 = input.LA(1);
+			if ( (LA23_0==EQ) ) {
+				int LA23_1 = input.LA(2);
+				if ( (LA23_1==LSB) ) {
+					alt23=1;
+				}
+				else if ( (LA23_1==DOTVAR||LA23_1==VAR) ) {
+					alt23=2;
+				}
+			}
+			switch (alt23) {
+				case 1 :
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:200:5: assignListRule[$className, $functionName, $inFor, $n]
+					{
+					pushFollow(FOLLOW_assignListRule_in_declareListRule966);
+					assignListRule(className, functionName, inFor, n);
+					state._fsp--;
+
+					}
+					break;
+				case 2 :
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:201:5: assignVariableRule[$className, $functionName, $inFor, $n ]
+					{
+					pushFollow(FOLLOW_assignVariableRule_in_declareListRule974);
+					assignVariableRule(className, functionName, inFor, n);
+					state._fsp--;
+
+					}
+					break;
+
+			}
+
+			}
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "declareListRule"
+
+
+
+	// $ANTLR start "typeListRule"
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:205:1: typeListRule returns [Token type] : t= ( LIST | OLIST | ULIST | TLIST ) ;
+	public final Token typeListRule() throws RecognitionException {
+		Token type = null;
+
+
+		Token t=null;
+
+		try {
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:206:2: (t= ( LIST | OLIST | ULIST | TLIST ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:207:3: t= ( LIST | OLIST | ULIST | TLIST )
+			{
+			t=input.LT(1);
+			if ( input.LA(1)==LIST||input.LA(1)==OLIST||(input.LA(1) >= TLIST && input.LA(1) <= ULIST) ) {
+				input.consume();
+				state.errorRecovery=false;
+			}
+			else {
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				throw mse;
+			}
+			type = t;
+			}
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return type;
+	}
+	// $ANTLR end "typeListRule"
+
+
+
 	// $ANTLR start "declareTableRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:187:1: declareTableRule[Token className, Token functionName, boolean inFor] : t= TABLE n= VAR ( assignTableRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:211:1: declareTableRule[Token className, Token functionName, boolean inFor] : t= TABLE n= VAR ( assignTableRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? ;
 	public final void declareTableRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
 		Token t=null;
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:188:2: (t= TABLE n= VAR ( assignTableRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:189:3: t= TABLE n= VAR ( assignTableRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:212:2: (t= TABLE n= VAR ( assignTableRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:213:3: t= TABLE n= VAR ( assignTableRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
 			{
-			t=(Token)match(input,TABLE,FOLLOW_TABLE_in_declareTableRule1013); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareTableRule1017); 
+			t=(Token)match(input,TABLE,FOLLOW_TABLE_in_declareTableRule1031); 
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareTableRule1035); 
 			h.declareNew(className, functionName, inFor, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:189:73: ( assignTableRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
-			int alt27=3;
-			int LA27_0 = input.LA(1);
-			if ( (LA27_0==EQ) ) {
-				int LA27_1 = input.LA(2);
-				if ( ((LA27_1 >= LP && LA27_1 <= LSB)) ) {
-					alt27=1;
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:213:73: ( assignTableRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
+			int alt24=3;
+			int LA24_0 = input.LA(1);
+			if ( (LA24_0==EQ) ) {
+				int LA24_1 = input.LA(2);
+				if ( ((LA24_1 >= LP && LA24_1 <= LSB)) ) {
+					alt24=1;
 				}
-				else if ( (LA27_1==DOTVAR||LA27_1==VAR) ) {
-					alt27=2;
+				else if ( (LA24_1==DOTVAR||LA24_1==VAR) ) {
+					alt24=2;
 				}
 			}
-			switch (alt27) {
+			switch (alt24) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:189:74: assignTableRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:213:74: assignTableRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignTableRule_in_declareTableRule1022);
+					pushFollow(FOLLOW_assignTableRule_in_declareTableRule1040);
 					assignTableRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:189:131: assignVariableRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:213:131: assignVariableRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignVariableRule_in_declareTableRule1027);
+					pushFollow(FOLLOW_assignVariableRule_in_declareTableRule1045);
 					assignVariableRule(className, functionName, inFor, n);
 					state._fsp--;
 
@@ -2142,7 +1832,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "talignmentRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:193:1: talignmentRule returns [String value] : v1= LSB v2= alignRule (t1= CM t2= alignRule )* v3= RSB ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:217:1: talignmentRule returns [String value] : v1= LSB v2= alignRule (t1= CM t2= alignRule )* v3= RSB ;
 	public final String talignmentRule() throws RecognitionException {
 		String value = null;
 
@@ -2154,30 +1844,30 @@ public class MaltParser extends Parser {
 		String t2 =null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:194:2: (v1= LSB v2= alignRule (t1= CM t2= alignRule )* v3= RSB )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:195:3: v1= LSB v2= alignRule (t1= CM t2= alignRule )* v3= RSB
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:218:2: (v1= LSB v2= alignRule (t1= CM t2= alignRule )* v3= RSB )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:219:3: v1= LSB v2= alignRule (t1= CM t2= alignRule )* v3= RSB
 			{
-			v1=(Token)match(input,LSB,FOLLOW_LSB_in_talignmentRule1049); 
-			pushFollow(FOLLOW_alignRule_in_talignmentRule1053);
+			v1=(Token)match(input,LSB,FOLLOW_LSB_in_talignmentRule1067); 
+			pushFollow(FOLLOW_alignRule_in_talignmentRule1071);
 			v2=alignRule();
 			state._fsp--;
 
 			String cycle = v2;
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:195:44: (t1= CM t2= alignRule )*
-			loop28:
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:219:44: (t1= CM t2= alignRule )*
+			loop25:
 			while (true) {
-				int alt28=2;
-				int LA28_0 = input.LA(1);
-				if ( (LA28_0==CM) ) {
-					alt28=1;
+				int alt25=2;
+				int LA25_0 = input.LA(1);
+				if ( (LA25_0==CM) ) {
+					alt25=1;
 				}
 
-				switch (alt28) {
+				switch (alt25) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:195:45: t1= CM t2= alignRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:219:45: t1= CM t2= alignRule
 					{
-					t1=(Token)match(input,CM,FOLLOW_CM_in_talignmentRule1060); 
-					pushFollow(FOLLOW_alignRule_in_talignmentRule1064);
+					t1=(Token)match(input,CM,FOLLOW_CM_in_talignmentRule1078); 
+					pushFollow(FOLLOW_alignRule_in_talignmentRule1082);
 					t2=alignRule();
 					state._fsp--;
 
@@ -2186,11 +1876,11 @@ public class MaltParser extends Parser {
 					break;
 
 				default :
-					break loop28;
+					break loop25;
 				}
 			}
 
-			v3=(Token)match(input,RSB,FOLLOW_RSB_in_talignmentRule1072); 
+			v3=(Token)match(input,RSB,FOLLOW_RSB_in_talignmentRule1090); 
 			value = v1.getText() + cycle + v3.getText();
 			}
 
@@ -2209,7 +1899,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "alignRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:199:1: alignRule returns [String value] : (v= L |v= C |v= R ) ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:223:1: alignRule returns [String value] : (v= L |v= C |v= R ) ;
 	public final String alignRule() throws RecognitionException {
 		String value = null;
 
@@ -2217,49 +1907,49 @@ public class MaltParser extends Parser {
 		Token v=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:200:2: ( (v= L |v= C |v= R ) )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:201:3: (v= L |v= C |v= R )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:224:2: ( (v= L |v= C |v= R ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:225:3: (v= L |v= C |v= R )
 			{
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:201:3: (v= L |v= C |v= R )
-			int alt29=3;
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:225:3: (v= L |v= C |v= R )
+			int alt26=3;
 			switch ( input.LA(1) ) {
 			case L:
 				{
-				alt29=1;
+				alt26=1;
 				}
 				break;
 			case C:
 				{
-				alt29=2;
+				alt26=2;
 				}
 				break;
 			case R:
 				{
-				alt29=3;
+				alt26=3;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 29, 0, input);
+					new NoViableAltException("", 26, 0, input);
 				throw nvae;
 			}
-			switch (alt29) {
+			switch (alt26) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:201:4: v= L
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:225:4: v= L
 					{
-					v=(Token)match(input,L,FOLLOW_L_in_alignRule1094); 
+					v=(Token)match(input,L,FOLLOW_L_in_alignRule1112); 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:201:10: v= C
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:225:10: v= C
 					{
-					v=(Token)match(input,C,FOLLOW_C_in_alignRule1100); 
+					v=(Token)match(input,C,FOLLOW_C_in_alignRule1118); 
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:201:16: v= R
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:225:16: v= R
 					{
-					v=(Token)match(input,R,FOLLOW_R_in_alignRule1106); 
+					v=(Token)match(input,R,FOLLOW_R_in_alignRule1124); 
 					}
 					break;
 
@@ -2283,7 +1973,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "trowRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:205:1: trowRule returns [String value] : v1= LSB v2= STRING (v3= CM v4= STRING )* v5= RSB ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:229:1: trowRule returns [String value] : v1= LSB v2= STRING (v3= CM v4= STRING )* v5= RSB ;
 	public final String trowRule() throws RecognitionException {
 		String value = null;
 
@@ -2295,37 +1985,37 @@ public class MaltParser extends Parser {
 		Token v5=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:206:2: (v1= LSB v2= STRING (v3= CM v4= STRING )* v5= RSB )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:207:3: v1= LSB v2= STRING (v3= CM v4= STRING )* v5= RSB
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:230:2: (v1= LSB v2= STRING (v3= CM v4= STRING )* v5= RSB )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:231:3: v1= LSB v2= STRING (v3= CM v4= STRING )* v5= RSB
 			{
-			v1=(Token)match(input,LSB,FOLLOW_LSB_in_trowRule1128); 
-			v2=(Token)match(input,STRING,FOLLOW_STRING_in_trowRule1132); 
+			v1=(Token)match(input,LSB,FOLLOW_LSB_in_trowRule1146); 
+			v2=(Token)match(input,STRING,FOLLOW_STRING_in_trowRule1150); 
 			String cycle = v2.getText();
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:207:52: (v3= CM v4= STRING )*
-			loop30:
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:231:52: (v3= CM v4= STRING )*
+			loop27:
 			while (true) {
-				int alt30=2;
-				int LA30_0 = input.LA(1);
-				if ( (LA30_0==CM) ) {
-					alt30=1;
+				int alt27=2;
+				int LA27_0 = input.LA(1);
+				if ( (LA27_0==CM) ) {
+					alt27=1;
 				}
 
-				switch (alt30) {
+				switch (alt27) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:207:53: v3= CM v4= STRING
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:231:53: v3= CM v4= STRING
 					{
-					v3=(Token)match(input,CM,FOLLOW_CM_in_trowRule1139); 
-					v4=(Token)match(input,STRING,FOLLOW_STRING_in_trowRule1143); 
+					v3=(Token)match(input,CM,FOLLOW_CM_in_trowRule1157); 
+					v4=(Token)match(input,STRING,FOLLOW_STRING_in_trowRule1161); 
 					cycle = cycle + v3.getText() + v4.getText();
 					}
 					break;
 
 				default :
-					break loop30;
+					break loop27;
 				}
 			}
 
-			v5=(Token)match(input,RSB,FOLLOW_RSB_in_trowRule1151); 
+			v5=(Token)match(input,RSB,FOLLOW_RSB_in_trowRule1169); 
 			value = v1.getText() + cycle + v5.getText();
 			}
 
@@ -2344,41 +2034,41 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "declareImageRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:211:1: declareImageRule[Token className, Token functionName, boolean inFor] : t= IMG n= VAR ( assignImageRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:235:1: declareImageRule[Token className, Token functionName, boolean inFor] : t= IMG n= VAR ( assignImageRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? ;
 	public final void declareImageRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
 		Token t=null;
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:212:2: (t= IMG n= VAR ( assignImageRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:213:3: t= IMG n= VAR ( assignImageRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:236:2: (t= IMG n= VAR ( assignImageRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:237:3: t= IMG n= VAR ( assignImageRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
 			{
-			t=(Token)match(input,IMG,FOLLOW_IMG_in_declareImageRule1170); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareImageRule1174); 
+			t=(Token)match(input,IMG,FOLLOW_IMG_in_declareImageRule1188); 
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareImageRule1192); 
 			h.declareNew(className, functionName, inFor, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:213:71: ( assignImageRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
-			int alt31=3;
-			int LA31_0 = input.LA(1);
-			if ( (LA31_0==EQI) ) {
-				alt31=1;
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:237:71: ( assignImageRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
+			int alt28=3;
+			int LA28_0 = input.LA(1);
+			if ( (LA28_0==EQI) ) {
+				alt28=1;
 			}
-			else if ( (LA31_0==EQ) ) {
-				alt31=2;
+			else if ( (LA28_0==EQ) ) {
+				alt28=2;
 			}
-			switch (alt31) {
+			switch (alt28) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:213:72: assignImageRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:237:72: assignImageRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignImageRule_in_declareImageRule1179);
+					pushFollow(FOLLOW_assignImageRule_in_declareImageRule1197);
 					assignImageRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:213:129: assignVariableRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:237:129: assignVariableRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignVariableRule_in_declareImageRule1184);
+					pushFollow(FOLLOW_assignVariableRule_in_declareImageRule1202);
 					assignVariableRule(className, functionName, inFor, n);
 					state._fsp--;
 
@@ -2408,7 +2098,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "declareLinkRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:217:1: declareLinkRule[Token className, Token functionName, boolean inFor] returns [Token name, Token type] : t= LINK n= VAR ( assignLinkRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:241:1: declareLinkRule[Token className, Token functionName, boolean inFor] returns [Token name, Token type] : t= LINK n= VAR ( assignLinkRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? ;
 	public final MaltParser.declareLinkRule_return declareLinkRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
 		MaltParser.declareLinkRule_return retval = new MaltParser.declareLinkRule_return();
 		retval.start = input.LT(1);
@@ -2417,35 +2107,35 @@ public class MaltParser extends Parser {
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:218:2: (t= LINK n= VAR ( assignLinkRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:219:3: t= LINK n= VAR ( assignLinkRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:242:2: (t= LINK n= VAR ( assignLinkRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )? )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:243:3: t= LINK n= VAR ( assignLinkRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
 			{
-			t=(Token)match(input,LINK,FOLLOW_LINK_in_declareLinkRule1208); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareLinkRule1212); 
+			t=(Token)match(input,LINK,FOLLOW_LINK_in_declareLinkRule1226); 
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareLinkRule1230); 
 			h.declareNew(className, functionName, inFor, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:219:72: ( assignLinkRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
-			int alt32=3;
-			int LA32_0 = input.LA(1);
-			if ( (LA32_0==EQL) ) {
-				alt32=1;
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:243:72: ( assignLinkRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n] )?
+			int alt29=3;
+			int LA29_0 = input.LA(1);
+			if ( (LA29_0==EQL) ) {
+				alt29=1;
 			}
-			else if ( (LA32_0==EQ) ) {
-				alt32=2;
+			else if ( (LA29_0==EQ) ) {
+				alt29=2;
 			}
-			switch (alt32) {
+			switch (alt29) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:219:73: assignLinkRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:243:73: assignLinkRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignLinkRule_in_declareLinkRule1217);
+					pushFollow(FOLLOW_assignLinkRule_in_declareLinkRule1235);
 					assignLinkRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:219:129: assignVariableRule[$className, $functionName, $inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:243:129: assignVariableRule[$className, $functionName, $inFor, $n]
 					{
-					pushFollow(FOLLOW_assignVariableRule_in_declareLinkRule1222);
+					pushFollow(FOLLOW_assignVariableRule_in_declareLinkRule1240);
 					assignVariableRule(className, functionName, inFor, n);
 					state._fsp--;
 
@@ -2472,80 +2162,18 @@ public class MaltParser extends Parser {
 
 
 
-	// $ANTLR start "declareListRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:224:1: declareListRule[Token className, Token functionName, boolean inFor] : t= LIST n= VAR ( assignListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n ] )? ;
-	public final void declareListRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
-		Token t=null;
-		Token n=null;
-
-		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:225:2: (t= LIST n= VAR ( assignListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n ] )? )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:226:3: t= LIST n= VAR ( assignListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n ] )?
-			{
-			t=(Token)match(input,LIST,FOLLOW_LIST_in_declareListRule1243); 
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_declareListRule1247); 
-			h.declareNew(className, functionName, inFor, t, n);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:226:72: ( assignListRule[$className, $functionName, $inFor, $n] | assignVariableRule[$className, $functionName, $inFor, $n ] )?
-			int alt33=3;
-			int LA33_0 = input.LA(1);
-			if ( (LA33_0==EQ) ) {
-				int LA33_1 = input.LA(2);
-				if ( (LA33_1==LSB) ) {
-					alt33=1;
-				}
-				else if ( (LA33_1==DOTVAR||LA33_1==VAR) ) {
-					alt33=2;
-				}
-			}
-			switch (alt33) {
-				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:226:73: assignListRule[$className, $functionName, $inFor, $n]
-					{
-					pushFollow(FOLLOW_assignListRule_in_declareListRule1252);
-					assignListRule(className, functionName, inFor, n);
-					state._fsp--;
-
-					}
-					break;
-				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:226:129: assignVariableRule[$className, $functionName, $inFor, $n ]
-					{
-					pushFollow(FOLLOW_assignVariableRule_in_declareListRule1257);
-					assignVariableRule(className, functionName, inFor, n);
-					state._fsp--;
-
-					}
-					break;
-
-			}
-
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "declareListRule"
-
-
-
 	// $ANTLR start "assignRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:231:1: assignRule[Token className, Token functionName, boolean inFor] : n= VAR ( assignVariableRule[$className, $functionName, inFor, $n] | assignExprRule[$className, $functionName, inFor, $n] | assignStringRule[$className, $functionName, inFor, $n] | assignTextListRule[$className, $functionName, inFor, $n] | assignTableRule[$className, $functionName, inFor, $n] | assignImageRule[$className, $functionName, inFor, $n] | assignLinkRule[$className, $functionName, inFor, $n] | assignListRule[$className, $functionName, inFor, $n] ) SE ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:247:1: assignRule[Token className, Token functionName, boolean inFor] : n= VAR ( assignVariableRule[$className, $functionName, inFor, $n] | assignExprRule[$className, $functionName, inFor, $n] | assignStringRule[$className, $functionName, inFor, $n] | assignTextListRule[$className, $functionName, inFor, $n] | assignTableRule[$className, $functionName, inFor, $n] | assignImageRule[$className, $functionName, inFor, $n] | assignLinkRule[$className, $functionName, inFor, $n] | assignListRule[$className, $functionName, inFor, $n] ) SE ;
 	public final void assignRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
 		Token n=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:232:2: (n= VAR ( assignVariableRule[$className, $functionName, inFor, $n] | assignExprRule[$className, $functionName, inFor, $n] | assignStringRule[$className, $functionName, inFor, $n] | assignTextListRule[$className, $functionName, inFor, $n] | assignTableRule[$className, $functionName, inFor, $n] | assignImageRule[$className, $functionName, inFor, $n] | assignLinkRule[$className, $functionName, inFor, $n] | assignListRule[$className, $functionName, inFor, $n] ) SE )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:233:3: n= VAR ( assignVariableRule[$className, $functionName, inFor, $n] | assignExprRule[$className, $functionName, inFor, $n] | assignStringRule[$className, $functionName, inFor, $n] | assignTextListRule[$className, $functionName, inFor, $n] | assignTableRule[$className, $functionName, inFor, $n] | assignImageRule[$className, $functionName, inFor, $n] | assignLinkRule[$className, $functionName, inFor, $n] | assignListRule[$className, $functionName, inFor, $n] ) SE
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:248:2: (n= VAR ( assignVariableRule[$className, $functionName, inFor, $n] | assignExprRule[$className, $functionName, inFor, $n] | assignStringRule[$className, $functionName, inFor, $n] | assignTextListRule[$className, $functionName, inFor, $n] | assignTableRule[$className, $functionName, inFor, $n] | assignImageRule[$className, $functionName, inFor, $n] | assignLinkRule[$className, $functionName, inFor, $n] | assignListRule[$className, $functionName, inFor, $n] ) SE )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:249:3: n= VAR ( assignVariableRule[$className, $functionName, inFor, $n] | assignExprRule[$className, $functionName, inFor, $n] | assignStringRule[$className, $functionName, inFor, $n] | assignTextListRule[$className, $functionName, inFor, $n] | assignTableRule[$className, $functionName, inFor, $n] | assignImageRule[$className, $functionName, inFor, $n] | assignLinkRule[$className, $functionName, inFor, $n] | assignListRule[$className, $functionName, inFor, $n] ) SE
 			{
-			n=(Token)match(input,VAR,FOLLOW_VAR_in_assignRule1280); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:233:9: ( assignVariableRule[$className, $functionName, inFor, $n] | assignExprRule[$className, $functionName, inFor, $n] | assignStringRule[$className, $functionName, inFor, $n] | assignTextListRule[$className, $functionName, inFor, $n] | assignTableRule[$className, $functionName, inFor, $n] | assignImageRule[$className, $functionName, inFor, $n] | assignLinkRule[$className, $functionName, inFor, $n] | assignListRule[$className, $functionName, inFor, $n] )
-			int alt34=8;
+			n=(Token)match(input,VAR,FOLLOW_VAR_in_assignRule1260); 
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:249:9: ( assignVariableRule[$className, $functionName, inFor, $n] | assignExprRule[$className, $functionName, inFor, $n] | assignStringRule[$className, $functionName, inFor, $n] | assignTextListRule[$className, $functionName, inFor, $n] | assignTableRule[$className, $functionName, inFor, $n] | assignImageRule[$className, $functionName, inFor, $n] | assignLinkRule[$className, $functionName, inFor, $n] | assignListRule[$className, $functionName, inFor, $n] )
+			int alt30=8;
 			switch ( input.LA(1) ) {
 			case EQ:
 				{
@@ -2555,12 +2183,12 @@ public class MaltParser extends Parser {
 					switch ( input.LA(3) ) {
 					case STRING:
 						{
-						int LA34_9 = input.LA(4);
-						if ( (LA34_9==CM) ) {
-							alt34=4;
+						int LA30_9 = input.LA(4);
+						if ( (LA30_9==CM) ) {
+							alt30=4;
 						}
-						else if ( (LA34_9==PLUS||LA34_9==RP) ) {
-							alt34=2;
+						else if ( (LA30_9==PLUS||LA30_9==RP) ) {
+							alt30=2;
 						}
 
 						else {
@@ -2570,7 +2198,7 @@ public class MaltParser extends Parser {
 									input.consume();
 								}
 								NoViableAltException nvae =
-									new NoViableAltException("", 34, 9, input);
+									new NoViableAltException("", 30, 9, input);
 								throw nvae;
 							} finally {
 								input.rewind(nvaeMark);
@@ -2581,12 +2209,12 @@ public class MaltParser extends Parser {
 						break;
 					case VAR:
 						{
-						alt34=2;
+						alt30=2;
 						}
 						break;
 					case LSB:
 						{
-						alt34=5;
+						alt30=5;
 						}
 						break;
 					default:
@@ -2596,7 +2224,7 @@ public class MaltParser extends Parser {
 								input.consume();
 							}
 							NoViableAltException nvae =
-								new NoViableAltException("", 34, 4, input);
+								new NoViableAltException("", 30, 4, input);
 							throw nvae;
 						} finally {
 							input.rewind(nvaeMark);
@@ -2606,17 +2234,17 @@ public class MaltParser extends Parser {
 					break;
 				case STRING:
 					{
-					alt34=3;
+					alt30=3;
 					}
 					break;
 				case LSB:
 					{
-					int LA34_6 = input.LA(3);
-					if ( (LA34_6==RSB||LA34_6==STRING||LA34_6==VAR) ) {
-						alt34=8;
+					int LA30_6 = input.LA(3);
+					if ( (LA30_6==RSB||LA30_6==STRING||LA30_6==VAR) ) {
+						alt30=8;
 					}
-					else if ( (LA34_6==C||LA34_6==L||LA34_6==R) ) {
-						alt34=5;
+					else if ( (LA30_6==C||LA30_6==L||LA30_6==R) ) {
+						alt30=5;
 					}
 
 					else {
@@ -2626,7 +2254,7 @@ public class MaltParser extends Parser {
 								input.consume();
 							}
 							NoViableAltException nvae =
-								new NoViableAltException("", 34, 6, input);
+								new NoViableAltException("", 30, 6, input);
 							throw nvae;
 						} finally {
 							input.rewind(nvaeMark);
@@ -2638,7 +2266,7 @@ public class MaltParser extends Parser {
 				case DOTVAR:
 				case VAR:
 					{
-					alt34=1;
+					alt30=1;
 					}
 					break;
 				default:
@@ -2646,7 +2274,7 @@ public class MaltParser extends Parser {
 					try {
 						input.consume();
 						NoViableAltException nvae =
-							new NoViableAltException("", 34, 1, input);
+							new NoViableAltException("", 30, 1, input);
 						throw nvae;
 					} finally {
 						input.rewind(nvaeMark);
@@ -2656,87 +2284,87 @@ public class MaltParser extends Parser {
 				break;
 			case EQI:
 				{
-				alt34=6;
+				alt30=6;
 				}
 				break;
 			case EQL:
 				{
-				alt34=7;
+				alt30=7;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 34, 0, input);
+					new NoViableAltException("", 30, 0, input);
 				throw nvae;
 			}
-			switch (alt34) {
+			switch (alt30) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:233:10: assignVariableRule[$className, $functionName, inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:249:10: assignVariableRule[$className, $functionName, inFor, $n]
 					{
-					pushFollow(FOLLOW_assignVariableRule_in_assignRule1283);
+					pushFollow(FOLLOW_assignVariableRule_in_assignRule1263);
 					assignVariableRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:234:5: assignExprRule[$className, $functionName, inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:250:5: assignExprRule[$className, $functionName, inFor, $n]
 					{
-					pushFollow(FOLLOW_assignExprRule_in_assignRule1290);
+					pushFollow(FOLLOW_assignExprRule_in_assignRule1270);
 					assignExprRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:235:5: assignStringRule[$className, $functionName, inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:251:5: assignStringRule[$className, $functionName, inFor, $n]
 					{
-					pushFollow(FOLLOW_assignStringRule_in_assignRule1297);
+					pushFollow(FOLLOW_assignStringRule_in_assignRule1277);
 					assignStringRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 4 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:236:5: assignTextListRule[$className, $functionName, inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:252:5: assignTextListRule[$className, $functionName, inFor, $n]
 					{
-					pushFollow(FOLLOW_assignTextListRule_in_assignRule1304);
+					pushFollow(FOLLOW_assignTextListRule_in_assignRule1284);
 					assignTextListRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 5 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:237:5: assignTableRule[$className, $functionName, inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:253:5: assignTableRule[$className, $functionName, inFor, $n]
 					{
-					pushFollow(FOLLOW_assignTableRule_in_assignRule1312);
+					pushFollow(FOLLOW_assignTableRule_in_assignRule1292);
 					assignTableRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 6 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:238:10: assignImageRule[$className, $functionName, inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:254:10: assignImageRule[$className, $functionName, inFor, $n]
 					{
-					pushFollow(FOLLOW_assignImageRule_in_assignRule1324);
+					pushFollow(FOLLOW_assignImageRule_in_assignRule1304);
 					assignImageRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 7 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:239:10: assignLinkRule[$className, $functionName, inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:255:10: assignLinkRule[$className, $functionName, inFor, $n]
 					{
-					pushFollow(FOLLOW_assignLinkRule_in_assignRule1336);
+					pushFollow(FOLLOW_assignLinkRule_in_assignRule1316);
 					assignLinkRule(className, functionName, inFor, n);
 					state._fsp--;
 
 					}
 					break;
 				case 8 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:240:10: assignListRule[$className, $functionName, inFor, $n]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:256:10: assignListRule[$className, $functionName, inFor, $n]
 					{
-					pushFollow(FOLLOW_assignListRule_in_assignRule1348);
+					pushFollow(FOLLOW_assignListRule_in_assignRule1328);
 					assignListRule(className, functionName, inFor, n);
 					state._fsp--;
 
@@ -2745,7 +2373,7 @@ public class MaltParser extends Parser {
 
 			}
 
-			match(input,SE,FOLLOW_SE_in_assignRule1353); 
+			match(input,SE,FOLLOW_SE_in_assignRule1333); 
 			}
 
 		}
@@ -2762,7 +2390,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "assignVariableRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:244:1: assignVariableRule[Token className, Token functionName, boolean inFor, Token name] : EQ (v1= VAR |v2= VAR LSB n= INTEGER RSB |v3= functionCallRule[$className, $functionName] ) ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:260:1: assignVariableRule[Token className, Token functionName, boolean inFor, Token name] : EQ (v1= VAR |v2= VAR LSB n= INTEGER RSB |v3= functionCallRule[$className, $functionName] ) ;
 	public final void assignVariableRule(Token className, Token functionName, boolean inFor, Token name) throws RecognitionException {
 		Token v1=null;
 		Token v2=null;
@@ -2770,28 +2398,28 @@ public class MaltParser extends Parser {
 		Token v3 =null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:245:2: ( EQ (v1= VAR |v2= VAR LSB n= INTEGER RSB |v3= functionCallRule[$className, $functionName] ) )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:246:3: EQ (v1= VAR |v2= VAR LSB n= INTEGER RSB |v3= functionCallRule[$className, $functionName] )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:261:2: ( EQ (v1= VAR |v2= VAR LSB n= INTEGER RSB |v3= functionCallRule[$className, $functionName] ) )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:262:3: EQ (v1= VAR |v2= VAR LSB n= INTEGER RSB |v3= functionCallRule[$className, $functionName] )
 			{
-			match(input,EQ,FOLLOW_EQ_in_assignVariableRule1370); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:246:6: (v1= VAR |v2= VAR LSB n= INTEGER RSB |v3= functionCallRule[$className, $functionName] )
-			int alt35=3;
-			int LA35_0 = input.LA(1);
-			if ( (LA35_0==VAR) ) {
+			match(input,EQ,FOLLOW_EQ_in_assignVariableRule1350); 
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:262:6: (v1= VAR |v2= VAR LSB n= INTEGER RSB |v3= functionCallRule[$className, $functionName] )
+			int alt31=3;
+			int LA31_0 = input.LA(1);
+			if ( (LA31_0==VAR) ) {
 				switch ( input.LA(2) ) {
 				case LSB:
 					{
-					alt35=2;
+					alt31=2;
 					}
 					break;
 				case SE:
 					{
-					alt35=1;
+					alt31=1;
 					}
 					break;
 				case LP:
 					{
-					alt35=3;
+					alt31=3;
 					}
 					break;
 				default:
@@ -2799,45 +2427,45 @@ public class MaltParser extends Parser {
 					try {
 						input.consume();
 						NoViableAltException nvae =
-							new NoViableAltException("", 35, 1, input);
+							new NoViableAltException("", 31, 1, input);
 						throw nvae;
 					} finally {
 						input.rewind(nvaeMark);
 					}
 				}
 			}
-			else if ( (LA35_0==DOTVAR) ) {
-				alt35=3;
+			else if ( (LA31_0==DOTVAR) ) {
+				alt31=3;
 			}
 
 			else {
 				NoViableAltException nvae =
-					new NoViableAltException("", 35, 0, input);
+					new NoViableAltException("", 31, 0, input);
 				throw nvae;
 			}
 
-			switch (alt35) {
+			switch (alt31) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:246:7: v1= VAR
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:262:7: v1= VAR
 					{
-					v1=(Token)match(input,VAR,FOLLOW_VAR_in_assignVariableRule1375); 
+					v1=(Token)match(input,VAR,FOLLOW_VAR_in_assignVariableRule1355); 
 					h.assignVarToVar(className, functionName, inFor, false, name, v1);
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:247:8: v2= VAR LSB n= INTEGER RSB
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:263:8: v2= VAR LSB n= INTEGER RSB
 					{
-					v2=(Token)match(input,VAR,FOLLOW_VAR_in_assignVariableRule1389); 
-					match(input,LSB,FOLLOW_LSB_in_assignVariableRule1391); 
-					n=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_assignVariableRule1395); 
-					match(input,RSB,FOLLOW_RSB_in_assignVariableRule1397); 
+					v2=(Token)match(input,VAR,FOLLOW_VAR_in_assignVariableRule1369); 
+					match(input,LSB,FOLLOW_LSB_in_assignVariableRule1371); 
+					n=(Token)match(input,INTEGER,FOLLOW_INTEGER_in_assignVariableRule1375); 
+					match(input,RSB,FOLLOW_RSB_in_assignVariableRule1377); 
 					h.assignListItemToVar(className, functionName, inFor, name, v2, n);
 					}
 					break;
 				case 3 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:248:8: v3= functionCallRule[$className, $functionName]
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:264:8: v3= functionCallRule[$className, $functionName]
 					{
-					pushFollow(FOLLOW_functionCallRule_in_assignVariableRule1410);
+					pushFollow(FOLLOW_functionCallRule_in_assignVariableRule1390);
 					v3=functionCallRule(className, functionName);
 					state._fsp--;
 
@@ -2863,92 +2491,92 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "assignExprRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:255:1: assignExprRule[Token className, Token functionName, boolean inFor, Token name] : EQ LP (v1= STRING |v1= VAR ) ( PLUS (v2= STRING |v2= VAR ) )* RP ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:269:1: assignExprRule[Token className, Token functionName, boolean inFor, Token name] : EQ LP (v1= STRING |v1= VAR ) ( PLUS (v2= STRING |v2= VAR ) )* RP ;
 	public final void assignExprRule(Token className, Token functionName, boolean inFor, Token name) throws RecognitionException {
 		Token v1=null;
 		Token v2=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:256:2: ( EQ LP (v1= STRING |v1= VAR ) ( PLUS (v2= STRING |v2= VAR ) )* RP )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:257:3: EQ LP (v1= STRING |v1= VAR ) ( PLUS (v2= STRING |v2= VAR ) )* RP
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:270:2: ( EQ LP (v1= STRING |v1= VAR ) ( PLUS (v2= STRING |v2= VAR ) )* RP )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:271:3: EQ LP (v1= STRING |v1= VAR ) ( PLUS (v2= STRING |v2= VAR ) )* RP
 			{
 			Vector<Token> vct = new Vector<Token>();
-			match(input,EQ,FOLLOW_EQ_in_assignExprRule1440); 
-			match(input,LP,FOLLOW_LP_in_assignExprRule1442); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:257:52: (v1= STRING |v1= VAR )
-			int alt36=2;
-			int LA36_0 = input.LA(1);
-			if ( (LA36_0==STRING) ) {
-				alt36=1;
+			match(input,EQ,FOLLOW_EQ_in_assignExprRule1416); 
+			match(input,LP,FOLLOW_LP_in_assignExprRule1418); 
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:271:52: (v1= STRING |v1= VAR )
+			int alt32=2;
+			int LA32_0 = input.LA(1);
+			if ( (LA32_0==STRING) ) {
+				alt32=1;
 			}
-			else if ( (LA36_0==VAR) ) {
-				alt36=2;
+			else if ( (LA32_0==VAR) ) {
+				alt32=2;
 			}
 
 			else {
 				NoViableAltException nvae =
-					new NoViableAltException("", 36, 0, input);
+					new NoViableAltException("", 32, 0, input);
 				throw nvae;
 			}
 
-			switch (alt36) {
+			switch (alt32) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:257:53: v1= STRING
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:271:53: v1= STRING
 					{
-					v1=(Token)match(input,STRING,FOLLOW_STRING_in_assignExprRule1447); 
+					v1=(Token)match(input,STRING,FOLLOW_STRING_in_assignExprRule1423); 
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:257:63: v1= VAR
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:271:63: v1= VAR
 					{
-					v1=(Token)match(input,VAR,FOLLOW_VAR_in_assignExprRule1451); 
+					v1=(Token)match(input,VAR,FOLLOW_VAR_in_assignExprRule1427); 
 					}
 					break;
 
 			}
 
 			vct.add(v1);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:257:87: ( PLUS (v2= STRING |v2= VAR ) )*
-			loop38:
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:271:87: ( PLUS (v2= STRING |v2= VAR ) )*
+			loop34:
 			while (true) {
-				int alt38=2;
-				int LA38_0 = input.LA(1);
-				if ( (LA38_0==PLUS) ) {
-					alt38=1;
+				int alt34=2;
+				int LA34_0 = input.LA(1);
+				if ( (LA34_0==PLUS) ) {
+					alt34=1;
 				}
 
-				switch (alt38) {
+				switch (alt34) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:257:88: PLUS (v2= STRING |v2= VAR )
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:271:88: PLUS (v2= STRING |v2= VAR )
 					{
-					match(input,PLUS,FOLLOW_PLUS_in_assignExprRule1457); 
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:257:93: (v2= STRING |v2= VAR )
-					int alt37=2;
-					int LA37_0 = input.LA(1);
-					if ( (LA37_0==STRING) ) {
-						alt37=1;
+					match(input,PLUS,FOLLOW_PLUS_in_assignExprRule1433); 
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:271:93: (v2= STRING |v2= VAR )
+					int alt33=2;
+					int LA33_0 = input.LA(1);
+					if ( (LA33_0==STRING) ) {
+						alt33=1;
 					}
-					else if ( (LA37_0==VAR) ) {
-						alt37=2;
+					else if ( (LA33_0==VAR) ) {
+						alt33=2;
 					}
 
 					else {
 						NoViableAltException nvae =
-							new NoViableAltException("", 37, 0, input);
+							new NoViableAltException("", 33, 0, input);
 						throw nvae;
 					}
 
-					switch (alt37) {
+					switch (alt33) {
 						case 1 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:257:94: v2= STRING
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:271:94: v2= STRING
 							{
-							v2=(Token)match(input,STRING,FOLLOW_STRING_in_assignExprRule1462); 
+							v2=(Token)match(input,STRING,FOLLOW_STRING_in_assignExprRule1438); 
 							}
 							break;
 						case 2 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:257:104: v2= VAR
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:271:104: v2= VAR
 							{
-							v2=(Token)match(input,VAR,FOLLOW_VAR_in_assignExprRule1466); 
+							v2=(Token)match(input,VAR,FOLLOW_VAR_in_assignExprRule1442); 
 							}
 							break;
 
@@ -2959,11 +2587,11 @@ public class MaltParser extends Parser {
 					break;
 
 				default :
-					break loop38;
+					break loop34;
 				}
 			}
 
-			match(input,RP,FOLLOW_RP_in_assignExprRule1473); 
+			match(input,RP,FOLLOW_RP_in_assignExprRule1449); 
 			h.assignExprToVar(className, functionName, inFor, name, vct);
 			}
 
@@ -2981,16 +2609,16 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "assignStringRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:261:1: assignStringRule[Token className, Token functionName, boolean inFor, Token name] : EQ v= STRING ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:275:1: assignStringRule[Token className, Token functionName, boolean inFor, Token name] : EQ v= STRING ;
 	public final void assignStringRule(Token className, Token functionName, boolean inFor, Token name) throws RecognitionException {
 		Token v=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:262:2: ( EQ v= STRING )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:263:3: EQ v= STRING
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:276:2: ( EQ v= STRING )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:277:3: EQ v= STRING
 			{
-			match(input,EQ,FOLLOW_EQ_in_assignStringRule1490); 
-			v=(Token)match(input,STRING,FOLLOW_STRING_in_assignStringRule1494); 
+			match(input,EQ,FOLLOW_EQ_in_assignStringRule1466); 
+			v=(Token)match(input,STRING,FOLLOW_STRING_in_assignStringRule1470); 
 			h.assignTextPrimitiveVarValue(className, functionName, inFor, name, v.getText());
 			}
 
@@ -3008,16 +2636,16 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "assignTextListRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:267:1: assignTextListRule[Token className, Token functionName, boolean inFor, Token name] : EQ v= textListRule ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:281:1: assignTextListRule[Token className, Token functionName, boolean inFor, Token name] : EQ v= textListRule ;
 	public final void assignTextListRule(Token className, Token functionName, boolean inFor, Token name) throws RecognitionException {
 		String v =null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:268:2: ( EQ v= textListRule )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:269:3: EQ v= textListRule
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:282:2: ( EQ v= textListRule )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:283:3: EQ v= textListRule
 			{
-			match(input,EQ,FOLLOW_EQ_in_assignTextListRule1511); 
-			pushFollow(FOLLOW_textListRule_in_assignTextListRule1515);
+			match(input,EQ,FOLLOW_EQ_in_assignTextListRule1487); 
+			pushFollow(FOLLOW_textListRule_in_assignTextListRule1491);
 			v=textListRule();
 			state._fsp--;
 
@@ -3038,7 +2666,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "textListRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:273:1: textListRule returns [String value] : v1= LP v2= STRING (t1= CM t2= STRING )+ v3= RP ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:287:1: textListRule returns [String value] : v1= LP v2= STRING (t1= CM t2= STRING )+ v3= RP ;
 	public final String textListRule() throws RecognitionException {
 		String value = null;
 
@@ -3050,41 +2678,41 @@ public class MaltParser extends Parser {
 		Token v3=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:274:2: (v1= LP v2= STRING (t1= CM t2= STRING )+ v3= RP )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:274:4: v1= LP v2= STRING (t1= CM t2= STRING )+ v3= RP
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:288:2: (v1= LP v2= STRING (t1= CM t2= STRING )+ v3= RP )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:288:4: v1= LP v2= STRING (t1= CM t2= STRING )+ v3= RP
 			{
-			v1=(Token)match(input,LP,FOLLOW_LP_in_textListRule1534); 
-			v2=(Token)match(input,STRING,FOLLOW_STRING_in_textListRule1538); 
+			v1=(Token)match(input,LP,FOLLOW_LP_in_textListRule1510); 
+			v2=(Token)match(input,STRING,FOLLOW_STRING_in_textListRule1514); 
 			String cicle = v2.getText();
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:274:52: (t1= CM t2= STRING )+
-			int cnt39=0;
-			loop39:
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:288:52: (t1= CM t2= STRING )+
+			int cnt35=0;
+			loop35:
 			while (true) {
-				int alt39=2;
-				int LA39_0 = input.LA(1);
-				if ( (LA39_0==CM) ) {
-					alt39=1;
+				int alt35=2;
+				int LA35_0 = input.LA(1);
+				if ( (LA35_0==CM) ) {
+					alt35=1;
 				}
 
-				switch (alt39) {
+				switch (alt35) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:274:53: t1= CM t2= STRING
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:288:53: t1= CM t2= STRING
 					{
-					t1=(Token)match(input,CM,FOLLOW_CM_in_textListRule1545); 
-					t2=(Token)match(input,STRING,FOLLOW_STRING_in_textListRule1549); 
+					t1=(Token)match(input,CM,FOLLOW_CM_in_textListRule1521); 
+					t2=(Token)match(input,STRING,FOLLOW_STRING_in_textListRule1525); 
 					cicle = cicle + t1.getText() + t2.getText();
 					}
 					break;
 
 				default :
-					if ( cnt39 >= 1 ) break loop39;
-					EarlyExitException eee = new EarlyExitException(39, input);
+					if ( cnt35 >= 1 ) break loop35;
+					EarlyExitException eee = new EarlyExitException(35, input);
 					throw eee;
 				}
-				cnt39++;
+				cnt35++;
 			}
 
-			v3=(Token)match(input,RP,FOLLOW_RP_in_textListRule1557); 
+			v3=(Token)match(input,RP,FOLLOW_RP_in_textListRule1533); 
 			value = v1.getText() + v2.getText() + cicle + v3.getText();
 			}
 
@@ -3103,7 +2731,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "assignTableRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:278:1: assignTableRule[Token className, Token functionName, boolean inFor, Token name] : EQ (v1= talignmentRule )? v2= LP v3= trowRule (t1= CM t2= trowRule )* v4= RP ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:292:1: assignTableRule[Token className, Token functionName, boolean inFor, Token name] : EQ (v1= talignmentRule )? v2= LP v3= trowRule (t1= CM t2= trowRule )* v4= RP ;
 	public final void assignTableRule(Token className, Token functionName, boolean inFor, Token name) throws RecognitionException {
 		Token v2=null;
 		Token t1=null;
@@ -3113,21 +2741,21 @@ public class MaltParser extends Parser {
 		String t2 =null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:279:2: ( EQ (v1= talignmentRule )? v2= LP v3= trowRule (t1= CM t2= trowRule )* v4= RP )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:280:3: EQ (v1= talignmentRule )? v2= LP v3= trowRule (t1= CM t2= trowRule )* v4= RP
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:293:2: ( EQ (v1= talignmentRule )? v2= LP v3= trowRule (t1= CM t2= trowRule )* v4= RP )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:294:3: EQ (v1= talignmentRule )? v2= LP v3= trowRule (t1= CM t2= trowRule )* v4= RP
 			{
-			match(input,EQ,FOLLOW_EQ_in_assignTableRule1574); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:280:8: (v1= talignmentRule )?
-			int alt40=2;
-			int LA40_0 = input.LA(1);
-			if ( (LA40_0==LSB) ) {
-				alt40=1;
+			match(input,EQ,FOLLOW_EQ_in_assignTableRule1550); 
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:294:8: (v1= talignmentRule )?
+			int alt36=2;
+			int LA36_0 = input.LA(1);
+			if ( (LA36_0==LSB) ) {
+				alt36=1;
 			}
-			switch (alt40) {
+			switch (alt36) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:280:8: v1= talignmentRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:294:8: v1= talignmentRule
 					{
-					pushFollow(FOLLOW_talignmentRule_in_assignTableRule1578);
+					pushFollow(FOLLOW_talignmentRule_in_assignTableRule1554);
 					v1=talignmentRule();
 					state._fsp--;
 
@@ -3136,27 +2764,27 @@ public class MaltParser extends Parser {
 
 			}
 
-			v2=(Token)match(input,LP,FOLLOW_LP_in_assignTableRule1583); 
-			pushFollow(FOLLOW_trowRule_in_assignTableRule1587);
+			v2=(Token)match(input,LP,FOLLOW_LP_in_assignTableRule1559); 
+			pushFollow(FOLLOW_trowRule_in_assignTableRule1563);
 			v3=trowRule();
 			state._fsp--;
 
 			String cycle = v3;
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:280:64: (t1= CM t2= trowRule )*
-			loop41:
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:294:64: (t1= CM t2= trowRule )*
+			loop37:
 			while (true) {
-				int alt41=2;
-				int LA41_0 = input.LA(1);
-				if ( (LA41_0==CM) ) {
-					alt41=1;
+				int alt37=2;
+				int LA37_0 = input.LA(1);
+				if ( (LA37_0==CM) ) {
+					alt37=1;
 				}
 
-				switch (alt41) {
+				switch (alt37) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:280:65: t1= CM t2= trowRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:294:65: t1= CM t2= trowRule
 					{
-					t1=(Token)match(input,CM,FOLLOW_CM_in_assignTableRule1594); 
-					pushFollow(FOLLOW_trowRule_in_assignTableRule1598);
+					t1=(Token)match(input,CM,FOLLOW_CM_in_assignTableRule1570); 
+					pushFollow(FOLLOW_trowRule_in_assignTableRule1574);
 					t2=trowRule();
 					state._fsp--;
 
@@ -3165,11 +2793,11 @@ public class MaltParser extends Parser {
 					break;
 
 				default :
-					break loop41;
+					break loop37;
 				}
 			}
 
-			v4=(Token)match(input,RP,FOLLOW_RP_in_assignTableRule1606); 
+			v4=(Token)match(input,RP,FOLLOW_RP_in_assignTableRule1582); 
 			h.assignComplexVarValue(className, functionName, inFor, "table", name, v1 + v2.getText() + cycle + v4.getText());
 			}
 
@@ -3187,7 +2815,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "assignImageRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:284:1: assignImageRule[Token className, Token functionName, boolean inFor, Token name] : EQI v1= LP v2= STRING (o1= CM o2= STRING )? v3= RP ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:298:1: assignImageRule[Token className, Token functionName, boolean inFor, Token name] : EQI v1= LP v2= STRING (o1= CM o2= STRING )? v3= RP ;
 	public final void assignImageRule(Token className, Token functionName, boolean inFor, Token name) throws RecognitionException {
 		Token v1=null;
 		Token v2=null;
@@ -3196,32 +2824,32 @@ public class MaltParser extends Parser {
 		Token v3=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:285:2: ( EQI v1= LP v2= STRING (o1= CM o2= STRING )? v3= RP )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:286:3: EQI v1= LP v2= STRING (o1= CM o2= STRING )? v3= RP
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:299:2: ( EQI v1= LP v2= STRING (o1= CM o2= STRING )? v3= RP )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:300:3: EQI v1= LP v2= STRING (o1= CM o2= STRING )? v3= RP
 			{
-			match(input,EQI,FOLLOW_EQI_in_assignImageRule1623); 
-			v1=(Token)match(input,LP,FOLLOW_LP_in_assignImageRule1627); 
-			v2=(Token)match(input,STRING,FOLLOW_STRING_in_assignImageRule1631); 
+			match(input,EQI,FOLLOW_EQI_in_assignImageRule1599); 
+			v1=(Token)match(input,LP,FOLLOW_LP_in_assignImageRule1603); 
+			v2=(Token)match(input,STRING,FOLLOW_STRING_in_assignImageRule1607); 
 			String opt="";
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:286:40: (o1= CM o2= STRING )?
-			int alt42=2;
-			int LA42_0 = input.LA(1);
-			if ( (LA42_0==CM) ) {
-				alt42=1;
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:300:40: (o1= CM o2= STRING )?
+			int alt38=2;
+			int LA38_0 = input.LA(1);
+			if ( (LA38_0==CM) ) {
+				alt38=1;
 			}
-			switch (alt42) {
+			switch (alt38) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:286:41: o1= CM o2= STRING
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:300:41: o1= CM o2= STRING
 					{
-					o1=(Token)match(input,CM,FOLLOW_CM_in_assignImageRule1638); 
-					o2=(Token)match(input,STRING,FOLLOW_STRING_in_assignImageRule1642); 
+					o1=(Token)match(input,CM,FOLLOW_CM_in_assignImageRule1614); 
+					o2=(Token)match(input,STRING,FOLLOW_STRING_in_assignImageRule1618); 
 					opt = o1.getText() + o2.getText();
 					}
 					break;
 
 			}
 
-			v3=(Token)match(input,RP,FOLLOW_RP_in_assignImageRule1650); 
+			v3=(Token)match(input,RP,FOLLOW_RP_in_assignImageRule1626); 
 			h.assignComplexVarValue(className, functionName, inFor, "img", name, v1.getText() + v2.getText() + opt + v3.getText());
 			}
 
@@ -3239,7 +2867,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "assignLinkRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:290:1: assignLinkRule[Token className, Token functionName, boolean inFor, Token name] : EQL v1= LP (t= STRING |ir= imageRule ) v3= CM v4= STRING v5= RP ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:304:1: assignLinkRule[Token className, Token functionName, boolean inFor, Token name] : EQL v1= LP (t= STRING |ir= imageRule ) v3= CM v4= STRING v5= RP ;
 	public final void assignLinkRule(Token className, Token functionName, boolean inFor, Token name) throws RecognitionException {
 		Token v1=null;
 		Token t=null;
@@ -3249,40 +2877,40 @@ public class MaltParser extends Parser {
 		String ir =null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:291:2: ( EQL v1= LP (t= STRING |ir= imageRule ) v3= CM v4= STRING v5= RP )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:292:3: EQL v1= LP (t= STRING |ir= imageRule ) v3= CM v4= STRING v5= RP
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:305:2: ( EQL v1= LP (t= STRING |ir= imageRule ) v3= CM v4= STRING v5= RP )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:3: EQL v1= LP (t= STRING |ir= imageRule ) v3= CM v4= STRING v5= RP
 			{
-			match(input,EQL,FOLLOW_EQL_in_assignLinkRule1667); 
-			v1=(Token)match(input,LP,FOLLOW_LP_in_assignLinkRule1671); 
+			match(input,EQL,FOLLOW_EQL_in_assignLinkRule1643); 
+			v1=(Token)match(input,LP,FOLLOW_LP_in_assignLinkRule1647); 
 			String v2 = "";
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:292:31: (t= STRING |ir= imageRule )
-			int alt43=2;
-			int LA43_0 = input.LA(1);
-			if ( (LA43_0==STRING) ) {
-				alt43=1;
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:31: (t= STRING |ir= imageRule )
+			int alt39=2;
+			int LA39_0 = input.LA(1);
+			if ( (LA39_0==STRING) ) {
+				alt39=1;
 			}
-			else if ( (LA43_0==IMG) ) {
-				alt43=2;
+			else if ( (LA39_0==IMG) ) {
+				alt39=2;
 			}
 
 			else {
 				NoViableAltException nvae =
-					new NoViableAltException("", 43, 0, input);
+					new NoViableAltException("", 39, 0, input);
 				throw nvae;
 			}
 
-			switch (alt43) {
+			switch (alt39) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:292:32: t= STRING
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:32: t= STRING
 					{
-					t=(Token)match(input,STRING,FOLLOW_STRING_in_assignLinkRule1678); 
+					t=(Token)match(input,STRING,FOLLOW_STRING_in_assignLinkRule1654); 
 					v2=t.getText();
 					}
 					break;
 				case 2 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:292:62: ir= imageRule
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:62: ir= imageRule
 					{
-					pushFollow(FOLLOW_imageRule_in_assignLinkRule1686);
+					pushFollow(FOLLOW_imageRule_in_assignLinkRule1662);
 					ir=imageRule();
 					state._fsp--;
 
@@ -3292,9 +2920,9 @@ public class MaltParser extends Parser {
 
 			}
 
-			v3=(Token)match(input,CM,FOLLOW_CM_in_assignLinkRule1693); 
-			v4=(Token)match(input,STRING,FOLLOW_STRING_in_assignLinkRule1697); 
-			v5=(Token)match(input,RP,FOLLOW_RP_in_assignLinkRule1701); 
+			v3=(Token)match(input,CM,FOLLOW_CM_in_assignLinkRule1669); 
+			v4=(Token)match(input,STRING,FOLLOW_STRING_in_assignLinkRule1673); 
+			v5=(Token)match(input,RP,FOLLOW_RP_in_assignLinkRule1677); 
 			h.assignComplexVarValue(className, functionName, inFor, "link", name, v1.getText() + v2 + v3.getText() 
 																				+ v4.getText() + v5.getText());
 			}
@@ -3313,7 +2941,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "imageRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:297:1: imageRule returns [String value] : v1= IMG v2= LP v3= STRING (t1= CM t2= STRING )? v4= RP ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:311:1: imageRule returns [String value] : v1= IMG v2= LP v3= STRING (t1= CM t2= STRING )? v4= RP ;
 	public final String imageRule() throws RecognitionException {
 		String value = null;
 
@@ -3326,32 +2954,32 @@ public class MaltParser extends Parser {
 		Token v4=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:298:2: (v1= IMG v2= LP v3= STRING (t1= CM t2= STRING )? v4= RP )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:299:3: v1= IMG v2= LP v3= STRING (t1= CM t2= STRING )? v4= RP
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:312:2: (v1= IMG v2= LP v3= STRING (t1= CM t2= STRING )? v4= RP )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:313:3: v1= IMG v2= LP v3= STRING (t1= CM t2= STRING )? v4= RP
 			{
-			v1=(Token)match(input,IMG,FOLLOW_IMG_in_imageRule1722); 
-			v2=(Token)match(input,LP,FOLLOW_LP_in_imageRule1726); 
-			v3=(Token)match(input,STRING,FOLLOW_STRING_in_imageRule1730); 
+			v1=(Token)match(input,IMG,FOLLOW_IMG_in_imageRule1698); 
+			v2=(Token)match(input,LP,FOLLOW_LP_in_imageRule1702); 
+			v3=(Token)match(input,STRING,FOLLOW_STRING_in_imageRule1706); 
 			String cycle = v3.getText();
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:299:58: (t1= CM t2= STRING )?
-			int alt44=2;
-			int LA44_0 = input.LA(1);
-			if ( (LA44_0==CM) ) {
-				alt44=1;
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:313:58: (t1= CM t2= STRING )?
+			int alt40=2;
+			int LA40_0 = input.LA(1);
+			if ( (LA40_0==CM) ) {
+				alt40=1;
 			}
-			switch (alt44) {
+			switch (alt40) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:299:59: t1= CM t2= STRING
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:313:59: t1= CM t2= STRING
 					{
-					t1=(Token)match(input,CM,FOLLOW_CM_in_imageRule1737); 
-					t2=(Token)match(input,STRING,FOLLOW_STRING_in_imageRule1741); 
+					t1=(Token)match(input,CM,FOLLOW_CM_in_imageRule1713); 
+					t2=(Token)match(input,STRING,FOLLOW_STRING_in_imageRule1717); 
 					cycle = cycle + t1.getText() + t2.getText();
 					}
 					break;
 
 			}
 
-			v4=(Token)match(input,RP,FOLLOW_RP_in_imageRule1749); 
+			v4=(Token)match(input,RP,FOLLOW_RP_in_imageRule1725); 
 			value = v1.getText() + v2.getText() + cycle + v4.getText();
 			}
 
@@ -3370,102 +2998,102 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "assignListRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:304:1: assignListRule[Token className, Token functionName, boolean inFor, Token name] : EQ LSB ( (v= STRING |v= VAR ) ( CM (t= STRING |t= VAR ) )* )? RSB ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:318:1: assignListRule[Token className, Token functionName, boolean inFor, Token name] : EQ LSB ( (v= STRING |v= VAR ) ( CM (t= STRING |t= VAR ) )* )? RSB ;
 	public final void assignListRule(Token className, Token functionName, boolean inFor, Token name) throws RecognitionException {
 		Token v=null;
 		Token t=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:305:2: ( EQ LSB ( (v= STRING |v= VAR ) ( CM (t= STRING |t= VAR ) )* )? RSB )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:3: EQ LSB ( (v= STRING |v= VAR ) ( CM (t= STRING |t= VAR ) )* )? RSB
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:319:2: ( EQ LSB ( (v= STRING |v= VAR ) ( CM (t= STRING |t= VAR ) )* )? RSB )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:320:3: EQ LSB ( (v= STRING |v= VAR ) ( CM (t= STRING |t= VAR ) )* )? RSB
 			{
 			Vector<Token> vct = new Vector<Token>();
-			match(input,EQ,FOLLOW_EQ_in_assignListRule1771); 
-			match(input,LSB,FOLLOW_LSB_in_assignListRule1773); 
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:54: ( (v= STRING |v= VAR ) ( CM (t= STRING |t= VAR ) )* )?
-			int alt48=2;
-			int LA48_0 = input.LA(1);
-			if ( (LA48_0==STRING||LA48_0==VAR) ) {
-				alt48=1;
+			match(input,EQ,FOLLOW_EQ_in_assignListRule1747); 
+			match(input,LSB,FOLLOW_LSB_in_assignListRule1749); 
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:320:54: ( (v= STRING |v= VAR ) ( CM (t= STRING |t= VAR ) )* )?
+			int alt44=2;
+			int LA44_0 = input.LA(1);
+			if ( (LA44_0==STRING||LA44_0==VAR) ) {
+				alt44=1;
 			}
-			switch (alt48) {
+			switch (alt44) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:55: (v= STRING |v= VAR ) ( CM (t= STRING |t= VAR ) )*
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:320:55: (v= STRING |v= VAR ) ( CM (t= STRING |t= VAR ) )*
 					{
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:55: (v= STRING |v= VAR )
-					int alt45=2;
-					int LA45_0 = input.LA(1);
-					if ( (LA45_0==STRING) ) {
-						alt45=1;
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:320:55: (v= STRING |v= VAR )
+					int alt41=2;
+					int LA41_0 = input.LA(1);
+					if ( (LA41_0==STRING) ) {
+						alt41=1;
 					}
-					else if ( (LA45_0==VAR) ) {
-						alt45=2;
+					else if ( (LA41_0==VAR) ) {
+						alt41=2;
 					}
 
 					else {
 						NoViableAltException nvae =
-							new NoViableAltException("", 45, 0, input);
+							new NoViableAltException("", 41, 0, input);
 						throw nvae;
 					}
 
-					switch (alt45) {
+					switch (alt41) {
 						case 1 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:56: v= STRING
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:320:56: v= STRING
 							{
-							v=(Token)match(input,STRING,FOLLOW_STRING_in_assignListRule1780); 
+							v=(Token)match(input,STRING,FOLLOW_STRING_in_assignListRule1756); 
 							}
 							break;
 						case 2 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:65: v= VAR
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:320:65: v= VAR
 							{
-							v=(Token)match(input,VAR,FOLLOW_VAR_in_assignListRule1784); 
+							v=(Token)match(input,VAR,FOLLOW_VAR_in_assignListRule1760); 
 							}
 							break;
 
 					}
 
 					vct.add(v);
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:88: ( CM (t= STRING |t= VAR ) )*
-					loop47:
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:320:88: ( CM (t= STRING |t= VAR ) )*
+					loop43:
 					while (true) {
-						int alt47=2;
-						int LA47_0 = input.LA(1);
-						if ( (LA47_0==CM) ) {
-							alt47=1;
+						int alt43=2;
+						int LA43_0 = input.LA(1);
+						if ( (LA43_0==CM) ) {
+							alt43=1;
 						}
 
-						switch (alt47) {
+						switch (alt43) {
 						case 1 :
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:89: CM (t= STRING |t= VAR )
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:320:89: CM (t= STRING |t= VAR )
 							{
-							match(input,CM,FOLLOW_CM_in_assignListRule1791); 
-							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:92: (t= STRING |t= VAR )
-							int alt46=2;
-							int LA46_0 = input.LA(1);
-							if ( (LA46_0==STRING) ) {
-								alt46=1;
+							match(input,CM,FOLLOW_CM_in_assignListRule1767); 
+							// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:320:92: (t= STRING |t= VAR )
+							int alt42=2;
+							int LA42_0 = input.LA(1);
+							if ( (LA42_0==STRING) ) {
+								alt42=1;
 							}
-							else if ( (LA46_0==VAR) ) {
-								alt46=2;
+							else if ( (LA42_0==VAR) ) {
+								alt42=2;
 							}
 
 							else {
 								NoViableAltException nvae =
-									new NoViableAltException("", 46, 0, input);
+									new NoViableAltException("", 42, 0, input);
 								throw nvae;
 							}
 
-							switch (alt46) {
+							switch (alt42) {
 								case 1 :
-									// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:93: t= STRING
+									// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:320:93: t= STRING
 									{
-									t=(Token)match(input,STRING,FOLLOW_STRING_in_assignListRule1796); 
+									t=(Token)match(input,STRING,FOLLOW_STRING_in_assignListRule1772); 
 									}
 									break;
 								case 2 :
-									// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:306:102: t= VAR
+									// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:320:102: t= VAR
 									{
-									t=(Token)match(input,VAR,FOLLOW_VAR_in_assignListRule1800); 
+									t=(Token)match(input,VAR,FOLLOW_VAR_in_assignListRule1776); 
 									}
 									break;
 
@@ -3476,7 +3104,7 @@ public class MaltParser extends Parser {
 							break;
 
 						default :
-							break loop47;
+							break loop43;
 						}
 					}
 
@@ -3485,7 +3113,7 @@ public class MaltParser extends Parser {
 
 			}
 
-			match(input,RSB,FOLLOW_RSB_in_assignListRule1809); 
+			match(input,RSB,FOLLOW_RSB_in_assignListRule1785); 
 			h.assignListValue(className, functionName, inFor, name, vct);
 			}
 
@@ -3503,7 +3131,7 @@ public class MaltParser extends Parser {
 
 
 	// $ANTLR start "formatRule"
-	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:310:1: formatRule[Token className, Token functionName, boolean inFor] : FORMAT LP v1= VAR CM v2= VAR CM v3= VAR ( CM v4= VAR )* RP ;
+	// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:324:1: formatRule[Token className, Token functionName, boolean inFor] : FORMAT LP v1= VAR CM v2= VAR CM v3= VAR ( CM v4= VAR )* RP ;
 	public final void formatRule(Token className, Token functionName, boolean inFor) throws RecognitionException {
 		Token v1=null;
 		Token v2=null;
@@ -3511,43 +3139,43 @@ public class MaltParser extends Parser {
 		Token v4=null;
 
 		try {
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:311:2: ( FORMAT LP v1= VAR CM v2= VAR CM v3= VAR ( CM v4= VAR )* RP )
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:312:3: FORMAT LP v1= VAR CM v2= VAR CM v3= VAR ( CM v4= VAR )* RP
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:325:2: ( FORMAT LP v1= VAR CM v2= VAR CM v3= VAR ( CM v4= VAR )* RP )
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:326:3: FORMAT LP v1= VAR CM v2= VAR CM v3= VAR ( CM v4= VAR )* RP
 			{
-			match(input,FORMAT,FOLLOW_FORMAT_in_formatRule1826); 
-			match(input,LP,FOLLOW_LP_in_formatRule1828); 
-			v1=(Token)match(input,VAR,FOLLOW_VAR_in_formatRule1832); 
-			match(input,CM,FOLLOW_CM_in_formatRule1834); 
-			v2=(Token)match(input,VAR,FOLLOW_VAR_in_formatRule1838); 
+			match(input,FORMAT,FOLLOW_FORMAT_in_formatRule1802); 
+			match(input,LP,FOLLOW_LP_in_formatRule1804); 
+			v1=(Token)match(input,VAR,FOLLOW_VAR_in_formatRule1808); 
+			match(input,CM,FOLLOW_CM_in_formatRule1810); 
+			v2=(Token)match(input,VAR,FOLLOW_VAR_in_formatRule1814); 
 			Vector<Token> vct = new Vector<Token>();
-			match(input,CM,FOLLOW_CM_in_formatRule1842); 
-			v3=(Token)match(input,VAR,FOLLOW_VAR_in_formatRule1846); 
+			match(input,CM,FOLLOW_CM_in_formatRule1818); 
+			v3=(Token)match(input,VAR,FOLLOW_VAR_in_formatRule1822); 
 			vct.add(v3);
-			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:312:99: ( CM v4= VAR )*
-			loop49:
+			// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:326:99: ( CM v4= VAR )*
+			loop45:
 			while (true) {
-				int alt49=2;
-				int LA49_0 = input.LA(1);
-				if ( (LA49_0==CM) ) {
-					alt49=1;
+				int alt45=2;
+				int LA45_0 = input.LA(1);
+				if ( (LA45_0==CM) ) {
+					alt45=1;
 				}
 
-				switch (alt49) {
+				switch (alt45) {
 				case 1 :
-					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:312:100: CM v4= VAR
+					// D:\\Documenti\\malt\\MaltProject\\src\\com\\malt\\grammar\\compiler\\Malt.g:326:100: CM v4= VAR
 					{
-					match(input,CM,FOLLOW_CM_in_formatRule1851); 
-					v4=(Token)match(input,VAR,FOLLOW_VAR_in_formatRule1855); 
+					match(input,CM,FOLLOW_CM_in_formatRule1827); 
+					v4=(Token)match(input,VAR,FOLLOW_VAR_in_formatRule1831); 
 					vct.add(v4);
 					}
 					break;
 
 				default :
-					break loop49;
+					break loop45;
 				}
 			}
 
-			match(input,RP,FOLLOW_RP_in_formatRule1861); 
+			match(input,RP,FOLLOW_RP_in_formatRule1837); 
 			h.handleFormat(className, functionName, inFor, v1, v2, vct);
 			}
 
@@ -3567,238 +3195,209 @@ public class MaltParser extends Parser {
 
 
 	public static final BitSet FOLLOW_functionRule_in_parseJava66 = new BitSet(new long[]{0x7C0460080B008910L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_declarationRule_in_parseJava71 = new BitSet(new long[]{0x7C0460080B008910L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_classRule_in_parseJava76 = new BitSet(new long[]{0x7C0460080B008910L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_assignRule_in_parseJava80 = new BitSet(new long[]{0x7C0460080B008910L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_EOF_in_parseJava86 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FUN_in_functionRule107 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_functionRule111 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_LP_in_functionRule115 = new BitSet(new long[]{0x7D04600804000810L,0x00000000000003E0L});
-	public static final BitSet FOLLOW_argumentsRule_in_functionRule118 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_RP_in_functionRule123 = new BitSet(new long[]{0x0000040000000000L});
-	public static final BitSet FOLLOW_LCB_in_functionRule125 = new BitSet(new long[]{0x7C04600803008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_declarationRule_in_functionRule129 = new BitSet(new long[]{0x7CC4600803008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_assignRule_in_functionRule136 = new BitSet(new long[]{0x7CC4600803008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_returnRule_in_functionRule142 = new BitSet(new long[]{0x0040000000000000L});
-	public static final BitSet FOLLOW_RCB_in_functionRule146 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_argumentTypeRule_in_argumentsRule168 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_argumentsRule172 = new BitSet(new long[]{0x0000000000000202L});
-	public static final BitSet FOLLOW_CM_in_argumentsRule177 = new BitSet(new long[]{0x7C04600804000810L,0x00000000000003E0L});
-	public static final BitSet FOLLOW_argumentTypeRule_in_argumentsRule181 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_argumentsRule185 = new BitSet(new long[]{0x0000000000000202L});
-	public static final BitSet FOLLOW_titleTypeRule_in_argumentTypeRule209 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TEXT_in_argumentTypeRule217 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BLOCKQUOTE_in_argumentTypeRule223 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_OLIST_in_argumentTypeRule229 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ULIST_in_argumentTypeRule235 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TLIST_in_argumentTypeRule241 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CODEBLOCK_in_argumentTypeRule247 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LINK_in_argumentTypeRule253 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IMG_in_argumentTypeRule259 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TABLE_in_argumentTypeRule265 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FORMATTEXT_in_argumentTypeRule271 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LIST_in_argumentTypeRule277 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_VAR_in_functionCallRule302 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_DOTVAR_in_functionCallRule308 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_LP_in_functionCallRule313 = new BitSet(new long[]{0x0100000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_functionCallRule320 = new BitSet(new long[]{0x0100000000000200L});
-	public static final BitSet FOLLOW_CM_in_functionCallRule325 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_functionCallRule329 = new BitSet(new long[]{0x0100000000000200L});
-	public static final BitSet FOLLOW_RP_in_functionCallRule337 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_RETURN_in_returnRule354 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001004L});
-	public static final BitSet FOLLOW_VAR_in_returnRule359 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_STRING_in_returnRule365 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_SE_in_returnRule368 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FOR_in_forRule383 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_LP_in_forRule385 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_forRule389 = new BitSet(new long[]{0x0000001000000200L});
-	public static final BitSet FOLLOW_forInRule_in_forRule392 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_forIncrRule_in_forRule398 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IN_in_forInRule416 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_forInRule420 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_RP_in_forInRule422 = new BitSet(new long[]{0x0000040000000000L});
-	public static final BitSet FOLLOW_LCB_in_forInRule424 = new BitSet(new long[]{0x7C04600803008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_declarationRule_in_forInRule429 = new BitSet(new long[]{0x7C44600803008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_assignRule_in_forInRule434 = new BitSet(new long[]{0x7C44600803008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_RCB_in_forInRule439 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CM_in_forIncrRule455 = new BitSet(new long[]{0x0000002000000000L});
-	public static final BitSet FOLLOW_INTEGER_in_forIncrRule459 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_RP_in_forIncrRule461 = new BitSet(new long[]{0x0000040000000000L});
-	public static final BitSet FOLLOW_LCB_in_forIncrRule463 = new BitSet(new long[]{0x7C04600803008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_declarationRule_in_forIncrRule468 = new BitSet(new long[]{0x7C44600803008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_assignRule_in_forIncrRule473 = new BitSet(new long[]{0x7C44600803008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_RCB_in_forIncrRule478 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CLASS_in_classRule496 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_classRule500 = new BitSet(new long[]{0x0000040000000000L});
-	public static final BitSet FOLLOW_LCB_in_classRule504 = new BitSet(new long[]{0x7C4460080B008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_declarationRule_in_classRule507 = new BitSet(new long[]{0x7C4460080B008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_functionRule_in_classRule512 = new BitSet(new long[]{0x7C4460080B008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_assignRule_in_classRule517 = new BitSet(new long[]{0x7C4460080B008810L,0x00000000000013E0L});
-	public static final BitSet FOLLOW_RCB_in_classRule522 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_declareTitleRule_in_declarationRule543 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_declareTextRule_in_declarationRule552 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_declareBlockQuoteRule_in_declarationRule561 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_declareOlistRule_in_declarationRule570 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_declareUlistRule_in_declarationRule579 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_declareTlistRule_in_declarationRule587 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_declareCodeBlockRule_in_declarationRule595 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_declareTableRule_in_declarationRule603 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_declareImageRule_in_declarationRule612 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_declareLinkRule_in_declarationRule620 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_declareListRule_in_declarationRule629 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_functionCallRule_in_declarationRule638 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_formatRule_in_declarationRule645 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_SE_in_declarationRule650 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_forRule_in_declarationRule655 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_titleTypeRule_in_declareTitleRule673 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareTitleRule677 = new BitSet(new long[]{0x0000040000010002L});
-	public static final BitSet FOLLOW_refRule_in_declareTitleRule681 = new BitSet(new long[]{0x0000000000010002L});
-	public static final BitSet FOLLOW_assignStringRule_in_declareTitleRule685 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignVariableRule_in_declareTitleRule690 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignExprRule_in_declareTitleRule695 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TITLE_in_titleTypeRule718 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_S1TITLE_in_titleTypeRule724 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_S2TITLE_in_titleTypeRule730 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_S3TITLE_in_titleTypeRule736 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_S4TITLE_in_titleTypeRule742 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_S5TITLE_in_titleTypeRule748 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LCB_in_refRule764 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_HA_in_refRule766 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_refRule768 = new BitSet(new long[]{0x0040000000000000L});
-	public static final BitSet FOLLOW_RCB_in_refRule770 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TEXT_in_declareTextRule788 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareTextRule792 = new BitSet(new long[]{0x0000000000010002L});
-	public static final BitSet FOLLOW_assignStringRule_in_declareTextRule797 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignVariableRule_in_declareTextRule802 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignExprRule_in_declareTextRule807 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BLOCKQUOTE_in_declareBlockQuoteRule827 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareBlockQuoteRule831 = new BitSet(new long[]{0x0000000000010002L});
-	public static final BitSet FOLLOW_assignStringRule_in_declareBlockQuoteRule837 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignVariableRule_in_declareBlockQuoteRule842 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignExprRule_in_declareBlockQuoteRule847 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_OLIST_in_declareOlistRule867 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareOlistRule871 = new BitSet(new long[]{0x0000000000010002L});
-	public static final BitSet FOLLOW_assignTextListRule_in_declareOlistRule876 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignVariableRule_in_declareOlistRule881 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ULIST_in_declareUlistRule902 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareUlistRule906 = new BitSet(new long[]{0x0000000000010002L});
-	public static final BitSet FOLLOW_assignTextListRule_in_declareUlistRule911 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignVariableRule_in_declareUlistRule916 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TLIST_in_declareTlistRule937 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareTlistRule941 = new BitSet(new long[]{0x0000000000010002L});
-	public static final BitSet FOLLOW_assignTextListRule_in_declareTlistRule946 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignVariableRule_in_declareTlistRule951 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CODEBLOCK_in_declareCodeBlockRule971 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareCodeBlockRule973 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareCodeBlockRule978 = new BitSet(new long[]{0x0000000000010002L});
-	public static final BitSet FOLLOW_assignStringRule_in_declareCodeBlockRule984 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignVariableRule_in_declareCodeBlockRule989 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignExprRule_in_declareCodeBlockRule993 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TABLE_in_declareTableRule1013 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareTableRule1017 = new BitSet(new long[]{0x0000000000010002L});
-	public static final BitSet FOLLOW_assignTableRule_in_declareTableRule1022 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignVariableRule_in_declareTableRule1027 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LSB_in_talignmentRule1049 = new BitSet(new long[]{0x0010010000000040L});
-	public static final BitSet FOLLOW_alignRule_in_talignmentRule1053 = new BitSet(new long[]{0x0200000000000200L});
-	public static final BitSet FOLLOW_CM_in_talignmentRule1060 = new BitSet(new long[]{0x0010010000000040L});
-	public static final BitSet FOLLOW_alignRule_in_talignmentRule1064 = new BitSet(new long[]{0x0200000000000200L});
-	public static final BitSet FOLLOW_RSB_in_talignmentRule1072 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_L_in_alignRule1094 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_C_in_alignRule1100 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_R_in_alignRule1106 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LSB_in_trowRule1128 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_STRING_in_trowRule1132 = new BitSet(new long[]{0x0200000000000200L});
-	public static final BitSet FOLLOW_CM_in_trowRule1139 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_STRING_in_trowRule1143 = new BitSet(new long[]{0x0200000000000200L});
-	public static final BitSet FOLLOW_RSB_in_trowRule1151 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IMG_in_declareImageRule1170 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareImageRule1174 = new BitSet(new long[]{0x0000000000030002L});
-	public static final BitSet FOLLOW_assignImageRule_in_declareImageRule1179 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignVariableRule_in_declareImageRule1184 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LINK_in_declareLinkRule1208 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareLinkRule1212 = new BitSet(new long[]{0x0000000000050002L});
-	public static final BitSet FOLLOW_assignLinkRule_in_declareLinkRule1217 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignVariableRule_in_declareLinkRule1222 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LIST_in_declareListRule1243 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_declareListRule1247 = new BitSet(new long[]{0x0000000000010002L});
-	public static final BitSet FOLLOW_assignListRule_in_declareListRule1252 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_assignVariableRule_in_declareListRule1257 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_VAR_in_assignRule1280 = new BitSet(new long[]{0x0000000000070000L});
-	public static final BitSet FOLLOW_assignVariableRule_in_assignRule1283 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_assignExprRule_in_assignRule1290 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_assignStringRule_in_assignRule1297 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_assignTextListRule_in_assignRule1304 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_assignTableRule_in_assignRule1312 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_assignImageRule_in_assignRule1324 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_assignLinkRule_in_assignRule1336 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_assignListRule_in_assignRule1348 = new BitSet(new long[]{0x8000000000000000L});
-	public static final BitSet FOLLOW_SE_in_assignRule1353 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_EQ_in_assignVariableRule1370 = new BitSet(new long[]{0x0000000000008000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_assignVariableRule1375 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_VAR_in_assignVariableRule1389 = new BitSet(new long[]{0x0001000000000000L});
-	public static final BitSet FOLLOW_LSB_in_assignVariableRule1391 = new BitSet(new long[]{0x0000002000000000L});
-	public static final BitSet FOLLOW_INTEGER_in_assignVariableRule1395 = new BitSet(new long[]{0x0200000000000000L});
-	public static final BitSet FOLLOW_RSB_in_assignVariableRule1397 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_functionCallRule_in_assignVariableRule1410 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_EQ_in_assignExprRule1440 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_LP_in_assignExprRule1442 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001004L});
-	public static final BitSet FOLLOW_STRING_in_assignExprRule1447 = new BitSet(new long[]{0x0108000000000000L});
-	public static final BitSet FOLLOW_VAR_in_assignExprRule1451 = new BitSet(new long[]{0x0108000000000000L});
-	public static final BitSet FOLLOW_PLUS_in_assignExprRule1457 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001004L});
-	public static final BitSet FOLLOW_STRING_in_assignExprRule1462 = new BitSet(new long[]{0x0108000000000000L});
-	public static final BitSet FOLLOW_VAR_in_assignExprRule1466 = new BitSet(new long[]{0x0108000000000000L});
-	public static final BitSet FOLLOW_RP_in_assignExprRule1473 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_EQ_in_assignStringRule1490 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_STRING_in_assignStringRule1494 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_EQ_in_assignTextListRule1511 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_textListRule_in_assignTextListRule1515 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LP_in_textListRule1534 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_STRING_in_textListRule1538 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_CM_in_textListRule1545 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_STRING_in_textListRule1549 = new BitSet(new long[]{0x0100000000000200L});
-	public static final BitSet FOLLOW_RP_in_textListRule1557 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_EQ_in_assignTableRule1574 = new BitSet(new long[]{0x0001800000000000L});
-	public static final BitSet FOLLOW_talignmentRule_in_assignTableRule1578 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_LP_in_assignTableRule1583 = new BitSet(new long[]{0x0001000000000000L});
-	public static final BitSet FOLLOW_trowRule_in_assignTableRule1587 = new BitSet(new long[]{0x0100000000000200L});
-	public static final BitSet FOLLOW_CM_in_assignTableRule1594 = new BitSet(new long[]{0x0001000000000000L});
-	public static final BitSet FOLLOW_trowRule_in_assignTableRule1598 = new BitSet(new long[]{0x0100000000000200L});
-	public static final BitSet FOLLOW_RP_in_assignTableRule1606 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_EQI_in_assignImageRule1623 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_LP_in_assignImageRule1627 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_STRING_in_assignImageRule1631 = new BitSet(new long[]{0x0100000000000200L});
-	public static final BitSet FOLLOW_CM_in_assignImageRule1638 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_STRING_in_assignImageRule1642 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_RP_in_assignImageRule1650 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_EQL_in_assignLinkRule1667 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_LP_in_assignLinkRule1671 = new BitSet(new long[]{0x0000000800000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_STRING_in_assignLinkRule1678 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_imageRule_in_assignLinkRule1686 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_CM_in_assignLinkRule1693 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_STRING_in_assignLinkRule1697 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_RP_in_assignLinkRule1701 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IMG_in_imageRule1722 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_LP_in_imageRule1726 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_STRING_in_imageRule1730 = new BitSet(new long[]{0x0100000000000200L});
-	public static final BitSet FOLLOW_CM_in_imageRule1737 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_STRING_in_imageRule1741 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_RP_in_imageRule1749 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_EQ_in_assignListRule1771 = new BitSet(new long[]{0x0001000000000000L});
-	public static final BitSet FOLLOW_LSB_in_assignListRule1773 = new BitSet(new long[]{0x0200000000000000L,0x0000000000001004L});
-	public static final BitSet FOLLOW_STRING_in_assignListRule1780 = new BitSet(new long[]{0x0200000000000200L});
-	public static final BitSet FOLLOW_VAR_in_assignListRule1784 = new BitSet(new long[]{0x0200000000000200L});
-	public static final BitSet FOLLOW_CM_in_assignListRule1791 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001004L});
-	public static final BitSet FOLLOW_STRING_in_assignListRule1796 = new BitSet(new long[]{0x0200000000000200L});
-	public static final BitSet FOLLOW_VAR_in_assignListRule1800 = new BitSet(new long[]{0x0200000000000200L});
-	public static final BitSet FOLLOW_RSB_in_assignListRule1809 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FORMAT_in_formatRule1826 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_LP_in_formatRule1828 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_formatRule1832 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_CM_in_formatRule1834 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_formatRule1838 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_CM_in_formatRule1842 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_formatRule1846 = new BitSet(new long[]{0x0100000000000200L});
-	public static final BitSet FOLLOW_CM_in_formatRule1851 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-	public static final BitSet FOLLOW_VAR_in_formatRule1855 = new BitSet(new long[]{0x0100000000000200L});
-	public static final BitSet FOLLOW_RP_in_formatRule1861 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_declarationRule_in_parseJava74 = new BitSet(new long[]{0x7C0460080B008910L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_classRule_in_parseJava82 = new BitSet(new long[]{0x7C0460080B008910L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_assignRule_in_parseJava89 = new BitSet(new long[]{0x7C0460080B008910L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_EOF_in_parseJava98 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FUN_in_functionRule119 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_functionRule126 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_LP_in_functionRule133 = new BitSet(new long[]{0x7D04600804000810L,0x00000000000003E0L});
+	public static final BitSet FOLLOW_argumentsRule_in_functionRule136 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_RP_in_functionRule144 = new BitSet(new long[]{0x0000040000000000L});
+	public static final BitSet FOLLOW_LCB_in_functionRule149 = new BitSet(new long[]{0x7C04600803008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_declarationRule_in_functionRule156 = new BitSet(new long[]{0x7CC4600803008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_assignRule_in_functionRule164 = new BitSet(new long[]{0x7CC4600803008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_returnRule_in_functionRule172 = new BitSet(new long[]{0x0040000000000000L});
+	public static final BitSet FOLLOW_RCB_in_functionRule179 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_argumentTypeRule_in_argumentsRule201 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_argumentsRule208 = new BitSet(new long[]{0x0000000000000202L});
+	public static final BitSet FOLLOW_CM_in_argumentsRule217 = new BitSet(new long[]{0x7C04600804000810L,0x00000000000003E0L});
+	public static final BitSet FOLLOW_argumentTypeRule_in_argumentsRule226 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_argumentsRule235 = new BitSet(new long[]{0x0000000000000202L});
+	public static final BitSet FOLLOW_titleTypeRule_in_argumentTypeRule259 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_set_in_argumentTypeRule270 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_VAR_in_functionCallRule370 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_DOTVAR_in_functionCallRule376 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_LP_in_functionCallRule384 = new BitSet(new long[]{0x0100000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_functionCallRule394 = new BitSet(new long[]{0x0100000000000200L});
+	public static final BitSet FOLLOW_CM_in_functionCallRule399 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_functionCallRule403 = new BitSet(new long[]{0x0100000000000200L});
+	public static final BitSet FOLLOW_RP_in_functionCallRule414 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_RETURN_in_returnRule431 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001004L});
+	public static final BitSet FOLLOW_VAR_in_returnRule436 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_STRING_in_returnRule442 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_SE_in_returnRule445 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FOR_in_forRule460 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_LP_in_forRule462 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_forRule466 = new BitSet(new long[]{0x0000001000000200L});
+	public static final BitSet FOLLOW_forInRule_in_forRule469 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_forIncrRule_in_forRule475 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IN_in_forInRule493 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_forInRule497 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_RP_in_forInRule499 = new BitSet(new long[]{0x0000040000000000L});
+	public static final BitSet FOLLOW_LCB_in_forInRule501 = new BitSet(new long[]{0x7C04600803008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_declarationRule_in_forInRule506 = new BitSet(new long[]{0x7C44600803008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_assignRule_in_forInRule511 = new BitSet(new long[]{0x7C44600803008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_RCB_in_forInRule516 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CM_in_forIncrRule532 = new BitSet(new long[]{0x0000002000000000L});
+	public static final BitSet FOLLOW_INTEGER_in_forIncrRule536 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_RP_in_forIncrRule538 = new BitSet(new long[]{0x0000040000000000L});
+	public static final BitSet FOLLOW_LCB_in_forIncrRule540 = new BitSet(new long[]{0x7C04600803008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_declarationRule_in_forIncrRule545 = new BitSet(new long[]{0x7C44600803008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_assignRule_in_forIncrRule550 = new BitSet(new long[]{0x7C44600803008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_RCB_in_forIncrRule555 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CLASS_in_classRule573 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_classRule577 = new BitSet(new long[]{0x0000040000000000L});
+	public static final BitSet FOLLOW_LCB_in_classRule581 = new BitSet(new long[]{0x7C4460080B008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_declarationRule_in_classRule584 = new BitSet(new long[]{0x7C4460080B008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_functionRule_in_classRule589 = new BitSet(new long[]{0x7C4460080B008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_assignRule_in_classRule594 = new BitSet(new long[]{0x7C4460080B008810L,0x00000000000013E0L});
+	public static final BitSet FOLLOW_RCB_in_classRule599 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_declareTitleRule_in_declarationRule620 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_declareTextRule_in_declarationRule629 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_declareBlockQuoteRule_in_declarationRule638 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_declareCodeBlockRule_in_declarationRule647 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_declareListRule_in_declarationRule655 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_declareTableRule_in_declarationRule664 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_declareImageRule_in_declarationRule673 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_declareLinkRule_in_declarationRule681 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_functionCallRule_in_declarationRule690 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_formatRule_in_declarationRule697 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_SE_in_declarationRule702 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_forRule_in_declarationRule707 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_titleTypeRule_in_declareTitleRule725 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_declareTitleRule729 = new BitSet(new long[]{0x0000040000010002L});
+	public static final BitSet FOLLOW_refRule_in_declareTitleRule733 = new BitSet(new long[]{0x0000000000010002L});
+	public static final BitSet FOLLOW_assignStringRule_in_declareTitleRule737 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignVariableRule_in_declareTitleRule742 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignExprRule_in_declareTitleRule747 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_set_in_titleTypeRule769 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LCB_in_refRule806 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_HA_in_refRule808 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_refRule810 = new BitSet(new long[]{0x0040000000000000L});
+	public static final BitSet FOLLOW_RCB_in_refRule812 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_TEXT_in_declareTextRule830 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_declareTextRule834 = new BitSet(new long[]{0x0000000000010002L});
+	public static final BitSet FOLLOW_assignStringRule_in_declareTextRule839 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignVariableRule_in_declareTextRule844 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignExprRule_in_declareTextRule849 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BLOCKQUOTE_in_declareBlockQuoteRule869 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_declareBlockQuoteRule873 = new BitSet(new long[]{0x0000000000010002L});
+	public static final BitSet FOLLOW_assignStringRule_in_declareBlockQuoteRule879 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignVariableRule_in_declareBlockQuoteRule884 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignExprRule_in_declareBlockQuoteRule889 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CODEBLOCK_in_declareCodeBlockRule909 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_declareCodeBlockRule911 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_declareCodeBlockRule916 = new BitSet(new long[]{0x0000000000010002L});
+	public static final BitSet FOLLOW_assignStringRule_in_declareCodeBlockRule922 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignVariableRule_in_declareCodeBlockRule927 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignExprRule_in_declareCodeBlockRule931 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_typeListRule_in_declareListRule950 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_declareListRule957 = new BitSet(new long[]{0x0000000000010002L});
+	public static final BitSet FOLLOW_assignListRule_in_declareListRule966 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignVariableRule_in_declareListRule974 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_set_in_typeListRule996 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_TABLE_in_declareTableRule1031 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_declareTableRule1035 = new BitSet(new long[]{0x0000000000010002L});
+	public static final BitSet FOLLOW_assignTableRule_in_declareTableRule1040 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignVariableRule_in_declareTableRule1045 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LSB_in_talignmentRule1067 = new BitSet(new long[]{0x0010010000000040L});
+	public static final BitSet FOLLOW_alignRule_in_talignmentRule1071 = new BitSet(new long[]{0x0200000000000200L});
+	public static final BitSet FOLLOW_CM_in_talignmentRule1078 = new BitSet(new long[]{0x0010010000000040L});
+	public static final BitSet FOLLOW_alignRule_in_talignmentRule1082 = new BitSet(new long[]{0x0200000000000200L});
+	public static final BitSet FOLLOW_RSB_in_talignmentRule1090 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_L_in_alignRule1112 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_C_in_alignRule1118 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_R_in_alignRule1124 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LSB_in_trowRule1146 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_STRING_in_trowRule1150 = new BitSet(new long[]{0x0200000000000200L});
+	public static final BitSet FOLLOW_CM_in_trowRule1157 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_STRING_in_trowRule1161 = new BitSet(new long[]{0x0200000000000200L});
+	public static final BitSet FOLLOW_RSB_in_trowRule1169 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IMG_in_declareImageRule1188 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_declareImageRule1192 = new BitSet(new long[]{0x0000000000030002L});
+	public static final BitSet FOLLOW_assignImageRule_in_declareImageRule1197 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignVariableRule_in_declareImageRule1202 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LINK_in_declareLinkRule1226 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_declareLinkRule1230 = new BitSet(new long[]{0x0000000000050002L});
+	public static final BitSet FOLLOW_assignLinkRule_in_declareLinkRule1235 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_assignVariableRule_in_declareLinkRule1240 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_VAR_in_assignRule1260 = new BitSet(new long[]{0x0000000000070000L});
+	public static final BitSet FOLLOW_assignVariableRule_in_assignRule1263 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_assignExprRule_in_assignRule1270 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_assignStringRule_in_assignRule1277 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_assignTextListRule_in_assignRule1284 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_assignTableRule_in_assignRule1292 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_assignImageRule_in_assignRule1304 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_assignLinkRule_in_assignRule1316 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_assignListRule_in_assignRule1328 = new BitSet(new long[]{0x8000000000000000L});
+	public static final BitSet FOLLOW_SE_in_assignRule1333 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_EQ_in_assignVariableRule1350 = new BitSet(new long[]{0x0000000000008000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_assignVariableRule1355 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_VAR_in_assignVariableRule1369 = new BitSet(new long[]{0x0001000000000000L});
+	public static final BitSet FOLLOW_LSB_in_assignVariableRule1371 = new BitSet(new long[]{0x0000002000000000L});
+	public static final BitSet FOLLOW_INTEGER_in_assignVariableRule1375 = new BitSet(new long[]{0x0200000000000000L});
+	public static final BitSet FOLLOW_RSB_in_assignVariableRule1377 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_functionCallRule_in_assignVariableRule1390 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_EQ_in_assignExprRule1416 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_LP_in_assignExprRule1418 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001004L});
+	public static final BitSet FOLLOW_STRING_in_assignExprRule1423 = new BitSet(new long[]{0x0108000000000000L});
+	public static final BitSet FOLLOW_VAR_in_assignExprRule1427 = new BitSet(new long[]{0x0108000000000000L});
+	public static final BitSet FOLLOW_PLUS_in_assignExprRule1433 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001004L});
+	public static final BitSet FOLLOW_STRING_in_assignExprRule1438 = new BitSet(new long[]{0x0108000000000000L});
+	public static final BitSet FOLLOW_VAR_in_assignExprRule1442 = new BitSet(new long[]{0x0108000000000000L});
+	public static final BitSet FOLLOW_RP_in_assignExprRule1449 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_EQ_in_assignStringRule1466 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_STRING_in_assignStringRule1470 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_EQ_in_assignTextListRule1487 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_textListRule_in_assignTextListRule1491 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LP_in_textListRule1510 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_STRING_in_textListRule1514 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_CM_in_textListRule1521 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_STRING_in_textListRule1525 = new BitSet(new long[]{0x0100000000000200L});
+	public static final BitSet FOLLOW_RP_in_textListRule1533 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_EQ_in_assignTableRule1550 = new BitSet(new long[]{0x0001800000000000L});
+	public static final BitSet FOLLOW_talignmentRule_in_assignTableRule1554 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_LP_in_assignTableRule1559 = new BitSet(new long[]{0x0001000000000000L});
+	public static final BitSet FOLLOW_trowRule_in_assignTableRule1563 = new BitSet(new long[]{0x0100000000000200L});
+	public static final BitSet FOLLOW_CM_in_assignTableRule1570 = new BitSet(new long[]{0x0001000000000000L});
+	public static final BitSet FOLLOW_trowRule_in_assignTableRule1574 = new BitSet(new long[]{0x0100000000000200L});
+	public static final BitSet FOLLOW_RP_in_assignTableRule1582 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_EQI_in_assignImageRule1599 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_LP_in_assignImageRule1603 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_STRING_in_assignImageRule1607 = new BitSet(new long[]{0x0100000000000200L});
+	public static final BitSet FOLLOW_CM_in_assignImageRule1614 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_STRING_in_assignImageRule1618 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_RP_in_assignImageRule1626 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_EQL_in_assignLinkRule1643 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_LP_in_assignLinkRule1647 = new BitSet(new long[]{0x0000000800000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_STRING_in_assignLinkRule1654 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_imageRule_in_assignLinkRule1662 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_CM_in_assignLinkRule1669 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_STRING_in_assignLinkRule1673 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_RP_in_assignLinkRule1677 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IMG_in_imageRule1698 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_LP_in_imageRule1702 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_STRING_in_imageRule1706 = new BitSet(new long[]{0x0100000000000200L});
+	public static final BitSet FOLLOW_CM_in_imageRule1713 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_STRING_in_imageRule1717 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_RP_in_imageRule1725 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_EQ_in_assignListRule1747 = new BitSet(new long[]{0x0001000000000000L});
+	public static final BitSet FOLLOW_LSB_in_assignListRule1749 = new BitSet(new long[]{0x0200000000000000L,0x0000000000001004L});
+	public static final BitSet FOLLOW_STRING_in_assignListRule1756 = new BitSet(new long[]{0x0200000000000200L});
+	public static final BitSet FOLLOW_VAR_in_assignListRule1760 = new BitSet(new long[]{0x0200000000000200L});
+	public static final BitSet FOLLOW_CM_in_assignListRule1767 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001004L});
+	public static final BitSet FOLLOW_STRING_in_assignListRule1772 = new BitSet(new long[]{0x0200000000000200L});
+	public static final BitSet FOLLOW_VAR_in_assignListRule1776 = new BitSet(new long[]{0x0200000000000200L});
+	public static final BitSet FOLLOW_RSB_in_assignListRule1785 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FORMAT_in_formatRule1802 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_LP_in_formatRule1804 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_formatRule1808 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_CM_in_formatRule1810 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_formatRule1814 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_CM_in_formatRule1818 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_formatRule1822 = new BitSet(new long[]{0x0100000000000200L});
+	public static final BitSet FOLLOW_CM_in_formatRule1827 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+	public static final BitSet FOLLOW_VAR_in_formatRule1831 = new BitSet(new long[]{0x0100000000000200L});
+	public static final BitSet FOLLOW_RP_in_formatRule1837 = new BitSet(new long[]{0x0000000000000002L});
 }

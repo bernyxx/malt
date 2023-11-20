@@ -40,7 +40,7 @@ public class VarDescriptor {
 	@Override
 	public String toString() {
 		String str;
-		if (this.varType.equals("list")) {
+		if (this.varType.contains("list")) {
 			str = this.varType + " | " + this.varName + " | " + Arrays.toString(this.listValue);
 		} else {
 			str = this.varType + " | " + this.varName + " | " + this.value;
