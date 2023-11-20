@@ -8,6 +8,7 @@ public class VarDescriptor {
 	public String varType;
 	public String value;
 	public String[] listValue;
+	public String returnType;
 
 	private Vector<String> params;
 
@@ -17,6 +18,7 @@ public class VarDescriptor {
 		value = "";
 		listValue = new String[0];
 		params = new Vector<String>();
+		returnType = "";
 	}
 
 	public void addParam(String argName) {

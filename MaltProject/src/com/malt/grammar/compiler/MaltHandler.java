@@ -51,6 +51,7 @@ public class MaltHandler {
 	public static int NOT_PRIMITIVE_VARIABLE_ASSIGNMENT_ERROR = 33;
 	public static int NOT_PRIMITIVE_VARIABLE_IN_FORMAT_ERROR = 34;
 	public static int NOT_MATCH_NUM_VARS_FORMAT_ERROR = 35;
+	public static int VOID_FUNCTION_ASSIGNMENT_ERROR = 36;
 
 	public Hashtable<String, VarDescriptor> symbolTable;
 	public Hashtable<String, Hashtable<String, VarDescriptor>> functionTables;
@@ -167,18 +168,26 @@ public class MaltHandler {
 			errMsg += "Impossibile sostituire il valore di una variabile non testuale primitiva nella funzione format";
 		} else if (code == NOT_MATCH_NUM_VARS_FORMAT_ERROR) {
 			errMsg += "Il numero degli specificatori non corrisponde al numero di variabili passate alla funzione format";
+		} else if (code == VOID_FUNCTION_ASSIGNMENT_ERROR) {
+			errMsg += "Impossibile ottenere un valore di ritorno da una funzione senza return";
 		}
 
 		errorList.add(errMsg);
 	}
 
-	public boolean isPrimitiveTextVariable(VarDescriptor variableVd) {
+	public boolean isPrimitiveTextVariable(VarDescriptor vd) {
 		// posso assegnare un'espressione solo a tipi string
 		String[] primitiveTextTypes = { "title", "s1title", "s2title", "s3title", "s4title", "s5title", "text",
 				"blockquote",
 				"codeblock" };
 
-		String varType = variableVd.varType;
+		String varType;
+
+		if (vd.varType.equals("fun")) {
+			varType = vd.returnType;
+		} else {
+			varType = vd.varType;
+		}
 
 		if (Arrays.asList(primitiveTextTypes).contains(varType)) {
 			return true;
@@ -206,7 +215,7 @@ public class MaltHandler {
 				maltErrorHandler(METHOD_ALREADY_DECLARED_ERROR, name);
 
 			} else {
-				VarDescriptor vd = new VarDescriptor(n, "function");
+				VarDescriptor vd = new VarDescriptor(n, "fun");
 				localTable.put("fun_" + n, vd);
 				functionTables.put(cn + "." + n, new Hashtable<String, VarDescriptor>());
 			}
@@ -545,7 +554,19 @@ public class MaltHandler {
 	 * @return true: stesso tipo, false: tipo diverso
 	 */
 	public boolean checkType(VarDescriptor vd1, VarDescriptor vd2) {
-		if (vd1.varType.equals(vd2.varType)) {
+
+		String type1 = vd1.varType;
+		String type2 = vd2.varType;
+
+		if (vd1.varType.equals("fun")) {
+			type1 = vd1.returnType;
+		}
+
+		if (vd2.varType.equals("fun")) {
+			type2 = vd2.returnType;
+		}
+
+		if (type1.equals(type2)) {
 			return true;
 		}
 		return false;
@@ -573,6 +594,9 @@ public class MaltHandler {
 			return;
 		}
 
+		// se è un assegnamento di una chiamata di funzione cerco il VarDescriptor della
+		// funzione
+		// che contiene il return value
 		if (isValueFromFunction) {
 			// a destra c'è una chiamata di funzione
 
@@ -580,11 +604,20 @@ public class MaltHandler {
 
 			String[] splitted = var2Str.split("\\.");
 
-			// TODO: aggiungere chiamata con this.
-
 			if (splitted.length == 2) {
-				String classKey = "cl_" + splitted[0];
-				String functionKey = "fun_" + splitted[1];
+				// se usa la dot notation in chiamata
+				String classKey;
+				String functionKey;
+
+				// se il valore prima del punto è this
+				if (className != null && splitted[0].equals("this")) {
+					String cn = className.getText();
+					classKey = "cl_" + cn;
+					functionKey = "fun_" + splitted[1];
+				} else {
+					classKey = "cl_" + splitted[0];
+					functionKey = "fun_" + splitted[1];
+				}
 
 				if (functionTables.containsKey(classKey)) {
 					Hashtable<String, VarDescriptor> classTable = functionTables.get(classKey);
@@ -601,6 +634,7 @@ public class MaltHandler {
 				}
 
 			} else {
+				// nessuna dot notazione, semplice chiamata es: funzione(params...)
 				rightVar = getFunctionVarDescriptor(className, var2);
 
 				if (rightVar == null) {
@@ -619,6 +653,12 @@ public class MaltHandler {
 			}
 		}
 
+		// nel caso isValueFromFunction = true, controllo se la funzione è void
+		if (rightVar.varType.equals("fun") && rightVar.returnType.isEmpty()) {
+			maltErrorHandler(VOID_FUNCTION_ASSIGNMENT_ERROR, var2);
+			return;
+		}
+
 		// se la variabile a destra è una lista devo assegnare il valore nel campo
 		// listValue (e non value) del VarDescriptor della var di sinistra
 		if (rightVar.varType.equals("list")) {
@@ -629,7 +669,12 @@ public class MaltHandler {
 				String value = "\"" + rightVar.value + "\"";
 				assignTextPrimitiveVarValue(className, functionName, inFor, var1, value);
 			} else if (checkType(leftVar, rightVar)) {
-				assignComplexVarValue(className, functionName, inFor, rightVar.varType, var1, rightVar.value);
+				if (rightVar.varType.equals("fun")) {
+					assignComplexVarValue(className, functionName, inFor, rightVar.returnType, var1, rightVar.value);
+				} else {
+					assignComplexVarValue(className, functionName, inFor, rightVar.varType, var1, rightVar.value);
+				}
+
 			} else {
 				maltErrorHandler(NOT_MATCH_TYPE_ASSIGNMENT_ERROR, var2);
 				return;
@@ -742,6 +787,8 @@ public class MaltHandler {
 	}
 
 	/**
+	 * Chiamata di funzione: controlla se esiste la funzione / metodo e controlla se
+	 * il numero e il tipo di parametri corrisponde
 	 * 
 	 * @param className      Nome della classe
 	 * @param functionName   Nome della funzione
@@ -772,8 +819,6 @@ public class MaltHandler {
 
 		Hashtable<String, VarDescriptor> funcToCallTable = new Hashtable<String, VarDescriptor>();
 		VarDescriptor functionToCallVarDescriptor = new VarDescriptor("", "");
-
-		// edit
 
 		if (className != null && splitted[0].equals("this") && splitted.length == 2) {
 			String key = className.getText() + "." + splitted[1];
@@ -893,7 +938,7 @@ public class MaltHandler {
 		// cerco la funzione alla quale assegnare il valore di return
 		VarDescriptor functionVd = getFunctionVarDescriptor(className, functionName);
 
-		functionVd.varType = returnType;
+		functionVd.returnType = returnType;
 		functionVd.value = returnValue;
 	}
 
@@ -1052,8 +1097,6 @@ public class MaltHandler {
 			// formattext
 			values.add(value);
 		}
-
-		System.out.println("lungehzza splitted: " + splitted.length);
 
 		for (int i = 0; i < matches.size(); i++) {
 			String symbol = matches.get(i);

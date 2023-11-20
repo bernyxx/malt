@@ -1,43 +1,14 @@
-s3title p = "gino";
-table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
-
-list l2 = ["pino", "suino" , p];
-
-
-fun gino(){
-    title t1 = ("suino" + " maiale");
-    return t1;
+fun met(){
+    text t;
 }
 
-fun tab(){
-    table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
-    return tabella1;
-}
-
-s3title fromfun = gino();
-
-text t = l2[1];
-
-text t1; 
-t1 = "gino";
-
-title formatgino;
-
-title fstring = "suino %t suino";
-
-format(wrongformat, fstring, p);
-
-
-
-class albero{
-
-    fun pino(){
-        text t = "in albero";
+class gino{
+    fun met(){
+        text t = "testo";
         return t;
     }
 
-    this.pino();
+    text rtdata = this.met();
 }
 
-text res = gino();
-text res2 = albero.pino();
+text rtdata = met();
