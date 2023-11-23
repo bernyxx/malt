@@ -214,22 +214,7 @@ declareTableRule [Token className, Token functionName, boolean inFor]
 ;
 
 
-talignmentRule returns [String value]
-	:
-		v1=LSB v2=alignRule {String cycle = v2;} (t1=CM t2=alignRule {cycle = cycle + $t1.getText() + t2;})* v3=RSB {value = $v1.getText() + cycle + $v3.getText();}
-;
 
-
-alignRule returns [String value]
-	:
-		(v=L | v=C | v=R) {value = $v.getText();}
-;
-
-
-trowRule returns [String value]
-	:
-		v1=LSB v2=STRING {String cycle = $v2.getText();} (v3=CM v4=STRING {cycle = cycle + $v3.getText() + $v4.getText();})* v5=RSB {value = $v1.getText() + cycle + $v5.getText();}
-;
 
 
 declareImageRule [Token className, Token functionName, boolean inFor]
@@ -291,7 +276,24 @@ textListRule returns [String value]
 
 assignTableRule [Token className, Token functionName, boolean inFor, Token name]
 	:
-		EQ v1=talignmentRule? v2=LP v3=trowRule {String cycle = v3;} (t1=CM t2=trowRule {cycle = cycle + $t1.getText() + t2;})* v4=RP {h.assignComplexVarValue($className, $functionName, $inFor, "table", $name, v1 + $v2.getText() + cycle + $v4.getText());}
+		{ Vector<Vector<Token>> vct_data = new Vector<Vector<Token>>();} EQ v1=talignmentRule? v2=LP v3=trowRule {vct_data.add(v3);} (t1=CM t2=trowRule {vct_data.add(t2);})* v4=RP {h.assignTable($className, $functionName, $inFor, $name, v1, vct_data);}
+;
+
+talignmentRule returns [Vector<Token> alignment]
+	:
+		{Vector<Token> vct = new Vector<Token>();} v1=LSB v2=alignRule {vct.add(v2);} (t1=CM t2=alignRule {vct.add(t2);})* v3=RSB {alignment = vct;}
+;
+
+
+alignRule returns [Token value]
+	:
+		(v=L | v=C | v=R) {value = $v;}
+;
+
+
+trowRule returns [Vector<Token> row]
+	:
+		{Vector<Token> vct = new Vector<Token>();} v1=LSB v2=STRING {vct.add($v2);} (v3=CM v4=STRING {vct.add($v4);})* v5=RSB {row = vct;}
 ;
 
 

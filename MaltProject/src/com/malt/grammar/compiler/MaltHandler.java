@@ -52,9 +52,10 @@ public class MaltHandler {
 	public static int NOT_PRIMITIVE_VARIABLE_IN_FORMAT_ERROR = 34;
 	public static int NOT_MATCH_NUM_VARS_FORMAT_ERROR = 35;
 	public static int VOID_FUNCTION_ASSIGNMENT_ERROR = 36;
+	public static int TABLE_ROW_SIZE_ERROR = 37;
 
 	public Hashtable<String, VarDescriptor> symbolTable;
-	public Hashtable<String, Hashtable<String, VarDescriptor>> functionTables;
+	public Hashtable<String, Hashtable<String, VarDescriptor>> localTables;
 
 	List<String> errorList;
 	TokenStream input;
@@ -62,7 +63,7 @@ public class MaltHandler {
 	public MaltHandler(TokenStream input) {
 		this.input = input;
 		this.symbolTable = new Hashtable<String, VarDescriptor>();
-		this.functionTables = new Hashtable<String, Hashtable<String, VarDescriptor>>();
+		this.localTables = new Hashtable<String, Hashtable<String, VarDescriptor>>();
 		this.errorList = new ArrayList<String>();
 	}
 
@@ -139,7 +140,7 @@ public class MaltHandler {
 		} else if (code == FUNCTION_UNDECLARED_ERROR) {
 			errMsg += "La funzione non è stata dichiarata";
 		} else if (code == FUNCTION_PARAMETER_UNDECLARED_ERROR) {
-			errMsg += "Il parametro passato alla funzione non è stata dichiarata";
+			errMsg += "Il parametro passato alla funzione non è stata dichiarato";
 		} else if (code == FORMAT_VARIABLE_UNDECLARED_ERROR) {
 			errMsg += "La variabile passata alla format non è stata dichiarata";
 		} else if (code == EMPTY_LIST_ERROR) {
@@ -170,6 +171,8 @@ public class MaltHandler {
 			errMsg += "Il numero degli specificatori non corrisponde al numero di variabili passate alla funzione format";
 		} else if (code == VOID_FUNCTION_ASSIGNMENT_ERROR) {
 			errMsg += "Impossibile ottenere un valore di ritorno da una funzione senza return";
+		} else if (code == TABLE_ROW_SIZE_ERROR) {
+			errMsg += "La riga della tabella ha un numero di colonne errato";
 		}
 
 		errorList.add(errMsg);
@@ -208,7 +211,7 @@ public class MaltHandler {
 		if (className != null && name != null) {
 			String cn = className.getText();
 			String n = name.getText();
-			Hashtable<String, VarDescriptor> localTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = localTables.get("cl_" + cn);
 
 			if (localTable.containsKey("fun_" + n)) {
 				// il metodo è già stato dichiarato
@@ -217,7 +220,7 @@ public class MaltHandler {
 			} else {
 				VarDescriptor vd = new VarDescriptor(n, "fun");
 				localTable.put("fun_" + n, vd);
-				functionTables.put(cn + "." + n, new Hashtable<String, VarDescriptor>());
+				localTables.put(cn + "." + n, new Hashtable<String, VarDescriptor>());
 			}
 		} else if (className == null && name != null) {
 			// dichiarazione di una funzione top-level
@@ -231,7 +234,7 @@ public class MaltHandler {
 				maltErrorHandler(FUNCTION_ALREADY_DECLARED_ERROR, name);
 			} else {
 				symbolTable.put("fun_" + n, vd);
-				functionTables.put("fun_" + n, new Hashtable<String, VarDescriptor>());
+				localTables.put("fun_" + n, new Hashtable<String, VarDescriptor>());
 			}
 		} else if (className != null && name == null) {
 			// dichiarazione di una classe
@@ -244,7 +247,7 @@ public class MaltHandler {
 				maltErrorHandler(CLASS_ALREADY_DECLARED_ERROR, className);
 			} else {
 				symbolTable.put("cl_" + cn, vd);
-				functionTables.put("cl_" + cn, new Hashtable<String, VarDescriptor>());
+				localTables.put("cl_" + cn, new Hashtable<String, VarDescriptor>());
 			}
 		} else {
 			// parametri mancanti alla chiamata del metodo dell'handler declareFunCl
@@ -265,7 +268,7 @@ public class MaltHandler {
 		String n = name.getText();
 		VarDescriptor vd = new VarDescriptor(n, t);
 
-		Hashtable<String, VarDescriptor> forTable = functionTables.get("for");
+		Hashtable<String, VarDescriptor> forTable = localTables.get("for");
 
 		if (forTable.contains(n)) {
 			// la variabile è già stata dichiarata nel ciclo for
@@ -319,7 +322,7 @@ public class MaltHandler {
 			String fn = functionName.getText();
 
 			// localTable del metodo della classe
-			localTable = functionTables.get(cn + "." + fn);
+			localTable = localTables.get(cn + "." + fn);
 
 			if (localTable.containsKey(n)) {
 				// variabile già dichiarata all'interno del metodo
@@ -334,7 +337,7 @@ public class MaltHandler {
 			String fn = functionName.getText();
 
 			// localTable della funzione top-level
-			localTable = functionTables.get("fun_" + fn);
+			localTable = localTables.get("fun_" + fn);
 
 			if (localTable.containsKey(n)) {
 				// variabile già dichiarata nella funzione
@@ -347,7 +350,7 @@ public class MaltHandler {
 			String cn = className.getText();
 
 			// localTable della classe
-			localTable = functionTables.get("cl_" + cn);
+			localTable = localTables.get("cl_" + cn);
 
 			if (localTable.containsKey(n)) {
 				// campo della classe già dichiarato
@@ -402,7 +405,7 @@ public class MaltHandler {
 
 		if (className == null) {
 			// caso delle funzioni top-level
-			Hashtable<String, VarDescriptor> localTable = functionTables.get("fun_" + fn);
+			Hashtable<String, VarDescriptor> localTable = localTables.get("fun_" + fn);
 
 			if (localTable.containsKey(n)) {
 				// è stata dichiarata una funzione con due argomenti che hanno lo stesso nome
@@ -419,8 +422,8 @@ public class MaltHandler {
 			// caso dei metodi di una classe
 			String cn = className.getText();
 
-			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
-			Hashtable<String, VarDescriptor> localTable = functionTables.get(cn + "." + fn);
+			Hashtable<String, VarDescriptor> classTable = localTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> localTable = localTables.get(cn + "." + fn);
 
 			if (localTable.containsKey(n)) {
 				// è stato dichiarato un metodo con due argomenti che hanno lo stesso nome
@@ -497,6 +500,84 @@ public class MaltHandler {
 		}
 
 		vd.value = value;
+
+	}
+
+	public void assignTable(Token className, Token functionName, boolean inFor, Token name, Vector<Token> alignment,
+			Vector<Vector<Token>> data) {
+
+		VarDescriptor vd = getVarDescriptor(className, functionName, inFor, name);
+
+		if (vd == null) {
+			maltErrorHandler(VARIABLE_UNDECLARED_ERROR, name);
+			return;
+		}
+
+		if (!vd.varType.equals("table")) {
+			maltErrorHandler(NOT_MATCH_TYPE_ASSIGNMENT_ERROR, name);
+			return;
+		}
+
+		int numColumns = 0;
+		String valueString = "[";
+
+		if (alignment != null) {
+			numColumns = alignment.size();
+		} else {
+			numColumns = data.get(0).size();
+		}
+
+		// converti alignment a stringa
+		for (int i = 0; i < numColumns; i++) {
+
+			if (alignment != null) {
+				if (alignment.get(i) != null) {
+					valueString += alignment.get(i).getText();
+				}
+
+			} else {
+				valueString += "$c";
+			}
+
+			if (i != numColumns - 1) {
+				valueString += ",";
+			}
+		}
+
+		valueString += "](";
+
+		for (int nRow = 0; nRow < data.size(); nRow++) {
+			Vector<Token> row = data.get(nRow);
+
+			// controlla se la riga ha un numero errato di colonne
+			if (row.size() != numColumns) {
+				maltErrorHandler(TABLE_ROW_SIZE_ERROR, row.lastElement());
+				return;
+			}
+
+			// se la lunghezza della riga è corretta, converti la riga in stringa
+			for (int nColumn = 0; nColumn < row.size(); nColumn++) {
+				String tkStr = row.get(nColumn).getText();
+				tkStr = tkStr.substring(1, tkStr.length() - 1);
+				if (nColumn == 0) {
+					valueString += "[" + tkStr + ",";
+				} else if (nColumn == row.size() - 1) {
+					valueString += tkStr + "]";
+				} else {
+					valueString += tkStr + ",";
+				}
+			}
+
+			if (nRow != data.size() - 1) {
+				valueString += ",";
+			}
+
+		}
+
+		valueString += ")";
+
+		// va tutto bene, assegna la stringa
+		assignComplexVarValue(className, functionName, inFor, "table", name, valueString);
 
 	}
 
@@ -619,8 +700,8 @@ public class MaltHandler {
 					functionKey = "fun_" + splitted[1];
 				}
 
-				if (functionTables.containsKey(classKey)) {
-					Hashtable<String, VarDescriptor> classTable = functionTables.get(classKey);
+				if (localTables.containsKey(classKey)) {
+					Hashtable<String, VarDescriptor> classTable = localTables.get(classKey);
 
 					if (classTable.containsKey(functionKey)) {
 						rightVar = classTable.get(functionKey);
@@ -786,6 +867,24 @@ public class MaltHandler {
 
 	}
 
+	public boolean checkConvertibleTypes(VarDescriptor vd1, VarDescriptor vd2) {
+
+		if (checkType(vd1, vd2)) {
+			return true;
+		}
+
+		if (vd1.varType.contains("list") && vd2.varType.contains("list")) {
+			return true;
+		}
+
+		if (isPrimitiveTextVariable(vd1) && isPrimitiveTextVariable(vd2)) {
+			return true;
+		}
+
+		return false;
+
+	}
+
 	/**
 	 * Chiamata di funzione: controlla se esiste la funzione / metodo e controlla se
 	 * il numero e il tipo di parametri corrisponde
@@ -823,10 +922,10 @@ public class MaltHandler {
 		if (className != null && splitted[0].equals("this") && splitted.length == 2) {
 			String key = className.getText() + "." + splitted[1];
 
-			classTable = functionTables.get("cl_" + className.getText());
+			classTable = localTables.get("cl_" + className.getText());
 
-			if (functionTables.containsKey(key)) {
-				funcToCallTable = functionTables.get(key);
+			if (localTables.containsKey(key)) {
+				funcToCallTable = localTables.get(key);
 				functionToCallVarDescriptor = classTable.get("fun_" + splitted[1]);
 			} else {
 				maltErrorHandler(METHOD_UNDECLARED_ERROR, functionToCall);
@@ -834,10 +933,10 @@ public class MaltHandler {
 			}
 		} else if (splitted.length == 2) {
 			String key = splitted[0] + "." + splitted[1];
-			if (functionTables.containsKey(key)) {
-				funcToCallTable = functionTables.get(key);
+			if (localTables.containsKey(key)) {
+				funcToCallTable = localTables.get(key);
 
-				classTable = functionTables.get("cl_" + splitted[0]);
+				classTable = localTables.get("cl_" + splitted[0]);
 				functionToCallVarDescriptor = classTable.get("fun_" + splitted[1]);
 
 			} else {
@@ -845,8 +944,8 @@ public class MaltHandler {
 				return;
 			}
 		} else {
-			if (functionTables.containsKey("fun_" + funcToCall)) {
-				funcToCallTable = functionTables.get("fun_" + funcToCall);
+			if (localTables.containsKey("fun_" + funcToCall)) {
+				funcToCallTable = localTables.get("fun_" + funcToCall);
 				functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
 			} else {
 				maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionToCall);
@@ -877,18 +976,20 @@ public class MaltHandler {
 				argsVd.add(vd);
 			}
 
-			// per ogni argomento controlla se il tipo corrisponde con quello del parametro
-			// corrispondente e in caso positivo assegna il valore
+			// per ogni argomento controlla se il tipo corrisponde o è convertibile con
+			// quello del parametro corrispondente e in caso positivo assegna il valore
 			for (VarDescriptor vdInput : argsVd) {
 				String paramName = params.get(i);
 
 				// VarDescriptor del parametro della funzione
 				VarDescriptor vdParam = funcToCallTable.get(paramName);
 
-				if (!checkType(vdInput, vdParam)) {
+				if (!checkConvertibleTypes(vdInput, vdParam)) {
 					maltErrorHandler(NOT_MATCH_TYPE_ARG_ERROR, args.get(i));
 					return;
 
+				} else if (vdInput.varType.contains("list")) {
+					vdParam.listValue = vdInput.listValue;
 				} else {
 					vdParam.value = vdInput.value;
 					funcToCallTable.put(vdParam.varName, vdParam);
@@ -960,21 +1061,21 @@ public class MaltHandler {
 		Hashtable<String, VarDescriptor> localTable = null;
 
 		if (inFor) {
-			forTable = functionTables.get("for");
+			forTable = localTables.get("for");
 		}
 
 		if (className != null && functionName != null) {
 			String cn = className.getText();
 			String fn = functionName.getText();
 
-			localTable = functionTables.get(cn + "." + fn);
-			classTable = functionTables.get("cl_" + cn);
+			localTable = localTables.get(cn + "." + fn);
+			classTable = localTables.get("cl_" + cn);
 		} else if (className == null && functionName != null) {
 			String fn = functionName.getText();
-			localTable = functionTables.get("fun_" + fn);
+			localTable = localTables.get("fun_" + fn);
 		} else if (className != null && functionName == null) {
 			String cn = className.getText();
-			localTable = functionTables.get("cl_" + cn);
+			localTable = localTables.get("cl_" + cn);
 		}
 
 		if (forTable != null && forTable.containsKey(n)) {
@@ -1007,7 +1108,7 @@ public class MaltHandler {
 		if (className != null) {
 
 			String cn = className.getText();
-			Hashtable<String, VarDescriptor> classTable = functionTables.get("cl_" + cn);
+			Hashtable<String, VarDescriptor> classTable = localTables.get("cl_" + cn);
 
 			if (classTable.containsKey("fun_" + fn)) {
 				functionVd = classTable.get("fun_" + fn);
@@ -1156,13 +1257,13 @@ public class MaltHandler {
 	public void declareFor(Token className, Token functionName, boolean isIncr, Token name, Token it) {
 
 		Hashtable<String, VarDescriptor> forTable = null;
-		if (functionTables.containsKey("for")) {
-			functionTables.get("for").clear();
+		if (localTables.containsKey("for")) {
+			localTables.get("for").clear();
 		} else {
-			functionTables.put("for", new Hashtable<String, VarDescriptor>());
+			localTables.put("for", new Hashtable<String, VarDescriptor>());
 		}
 
-		forTable = functionTables.get("for");
+		forTable = localTables.get("for");
 
 		if (isIncr) {
 			// iterazione tramite counter
@@ -1215,12 +1316,12 @@ public class MaltHandler {
 		}
 		System.out.println("--------END GLOBAL TABLE--------\n\n");
 
-		System.out.println("--------BEGIN FUNCTION TABLE--------");
-		Set<String> keysL = functionTables.keySet();
+		System.out.println("--------BEGIN LOCAL TABLES--------");
+		Set<String> keysL = localTables.keySet();
 		for (String varL : keysL) {
 
-			System.out.println(varL + "-> " + functionTables.get(varL));
+			System.out.println(varL + "-> " + localTables.get(varL));
 		}
-		System.out.println("--------END FUNCTION TABLE--------");
+		System.out.println("--------END LOCAL TABLES--------");
 	}
 }

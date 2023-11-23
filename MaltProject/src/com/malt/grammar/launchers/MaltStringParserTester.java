@@ -49,7 +49,7 @@ public class MaltStringParserTester {
 
 			pr.parserResult = result;
 			pr.globalTable = h.symbolTable;
-			pr.functionsTable = h.functionTables;
+			pr.localTables = h.localTables;
 
 			return pr;
 

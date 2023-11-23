@@ -1,13 +1,10 @@
-list l1 = ["uno", "due", "tre"];
-olist l2 = ["uno", "due", "tre"];
-ulist l3 = ["uno", "due", "tre"];
-tlist l4 = ["uno", "due", "tre"];
-
-fun pino(text a1, s2title a2, img a3){
+fun esempio (codeblock a1, title a2, table a3, olist a4){
     text t;
 }
 
-olist gino = l2;
+text t1 = "testo";
+table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
 
-s4title p = l3[3];
+ulist l1 = ["pino", "luigi"];
 
+esempio(t1, t1, tabella1, l1);
