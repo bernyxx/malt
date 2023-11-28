@@ -9,7 +9,7 @@ import com.malt.grammar.compiler.MaltHandler;
 import com.malt.grammar.compiler.MaltLexer;
 import com.malt.grammar.compiler.MaltParser;
 
-public class MaltFileParserTester {
+public class MaltFileParserLauncher {
 
 	static MaltParser parser;
 
