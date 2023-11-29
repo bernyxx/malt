@@ -34,7 +34,7 @@ options {
 		String hdr = " * " + getErrorHeader(e);
 		String msg = " - " + getErrorMessage(e, tokenNames);
 		
-		// recuperoil token corrente  
+		// recupero il token corrente  
 		Token tk = input.LT(1);
 		
 		// lascio gestire il messaggio all'handler
@@ -56,7 +56,6 @@ parseJava
 		| classRule 
 		| assignRule[null, null, false] )+ 
 		EOF 
-		//{System.out.println("    - Ho riconosciuto un documento Malt");}
 ;
 
 
@@ -72,7 +71,6 @@ functionRule [Token className]
 		| assignRule[className, $n, false])+ 
 		returnRule[className, $n]? 
 		RCB
-		//{System.out.println("    - Ho riconosciuto una funzione");}
 ;
 
 
