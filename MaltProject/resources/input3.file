@@ -1,0 +1,10 @@
+fun esempio (codeblock a1, title a2, table a3, olist a4){
+    text t;
+}
+
+text t1 = "testo";
+table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+
+ulist l1 = ["pino", "luigi"];
+
+esempio(t1, t1, tabella1, l1);

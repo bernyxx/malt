@@ -7,7 +7,7 @@ public class VarDescriptor {
 	public String varName;
 	public String varType;
 	public String value;
-	public String[] listValue;
+	public Vector<String> listValue;
 	public String returnType;
 
 	private Vector<String> params;
@@ -16,7 +16,8 @@ public class VarDescriptor {
 		varName = n;
 		varType = t;
 		value = "";
-		listValue = new String[0];
+		// listValue = new String[0];
+		listValue = new Vector<String>();
 		params = new Vector<String>();
 		returnType = "";
 	}
@@ -34,14 +35,14 @@ public class VarDescriptor {
 	}
 
 	public int getListLength() {
-		return this.listValue.length;
+		return this.listValue.size();
 	}
 
 	@Override
 	public String toString() {
 		String str;
 		if (this.varType.contains("list")) {
-			str = this.varType + " | " + this.varName + " | " + Arrays.toString(this.listValue);
+			str = this.varType + " | " + this.varName + " | " + Arrays.toString(this.listValue.toArray());
 		} else {
 			str = this.varType + " | " + this.varName + " | " + this.value;
 		}

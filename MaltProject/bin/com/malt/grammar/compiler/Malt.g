@@ -34,7 +34,7 @@ options {
 		String hdr = " * " + getErrorHeader(e);
 		String msg = " - " + getErrorMessage(e, tokenNames);
 		
-		// recuperoil token corrente  
+		// recupero il token corrente  
 		Token tk = input.LT(1);
 		
 		// lascio gestire il messaggio all'handler
@@ -56,7 +56,6 @@ parseJava
 		| classRule 
 		| assignRule[null, null, false] )+ 
 		EOF 
-		//{System.out.println("    - Ho riconosciuto un documento Malt");}
 ;
 
 
@@ -72,7 +71,6 @@ functionRule [Token className]
 		| assignRule[className, $n, false])+ 
 		returnRule[className, $n]? 
 		RCB
-		//{System.out.println("    - Ho riconosciuto una funzione");}
 ;
 
 
@@ -181,6 +179,7 @@ declarationRule [Token className, Token functionName, boolean inFor]
 		| declareLinkRule [className, functionName, inFor] 
 		| functionCallRule[className, functionName]
 		| formatRule[className, functionName, inFor]
+		| listManipulationRule[className, functionName, inFor]
 		) SE)
 		| forRule[className, functionName]
 ;
@@ -417,8 +416,7 @@ assignLinkRule [Token className, Token functionName, boolean inFor, Token name]
 		v3=CM
 		v4=STRING
 		v5=RP {h.assignComplexVarValue($className, $functionName, $inFor, "link", $name,
-			$v1.getText() + v2 + $v3.getText() 
-																	+ $v4.getText() + $v5.getText());}
+			$v1.getText() + v2 + $v3.getText() + $v4.getText() + $v5.getText());}
 ;
 
 
@@ -462,6 +460,34 @@ formatRule [Token className, Token functionName, boolean inFor]
 		RP {h.handleFormat($className, $functionName, $inFor, $v1, $v2, vct);}
 ;
 
+listManipulationRule [Token className, Token functionName, boolean inFor]
+	:	
+		listPushRule [$className, $functionName, $inFor]
+		| listRemoveRule [$className, $functionName, $inFor]
+;
+
+listPushRule [Token className, Token functionName, boolean inFor]
+	:	
+		PUSH
+		LP
+		v1=VAR
+		CM
+		v2=VAR
+		RP
+		{h.handleListPush($className, $functionName, $inFor, $v1, $v2);}
+;
+
+listRemoveRule [Token className, Token functionName, boolean inFor]
+	:	REMOVE
+		LP
+		v1=VAR
+		CM
+		idx=(INTEGER | US)
+		CM
+		v2=(VAR | US)
+		RP
+		{h.handleListRemove($className, $functionName, $inFor, $v1, $idx, $v2);}
+;
 
 fragment
 EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
@@ -553,6 +579,8 @@ LIST : 'list';
 EQI : '=i';
 EQL : '=l';
 RETURN : 'return';
+PUSH	: 'push';
+REMOVE 	:  'remove';
 
 
 fragment

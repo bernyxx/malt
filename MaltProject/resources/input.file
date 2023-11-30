@@ -1,10 +1,36 @@
-fun esempio (codeblock a1, title a2, table a3, olist a4){
-    text t;
+title t = "Titolo";
+list l = ["pino", "gino", "suino"];
+
+fun esempio(text a1, text a2, list elenco){
+    text t1 = "prima parte";
+    text t2 = "seconda parte";
+
+    text res = (t1 + " " + t2);
+
+    return res;
 }
 
-text t1 = "testo";
-table tabella1 = [$l,$r,$c] (["uno","due","tre"],["quattro","cinque","sei"],["sette","otto","nove"]);
+class ReportVendite{
+    title t = "Report Vendite";
+    s1title cap_1 = "Capitolo 1";
+    s1title cap_2 = "Capitolo 2";
 
-ulist l1 = ["pino", "luigi"];
+    fun metodo1(text t){
+        list l;
+        for(i, 10){
+            push(l,i);
+        }
+    }
 
-esempio(t1, t1, tabella1, l1);
+    fun metodo2(text t){
+        list l;
+        ReportVendite.metodo1(t);
+    }
+
+}
+
+text res = esempio(t, t, l);
+
+ReportVendite.metodo2(res);
+
+

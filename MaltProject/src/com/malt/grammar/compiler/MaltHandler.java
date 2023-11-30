@@ -53,6 +53,7 @@ public class MaltHandler {
 	public static int NOT_MATCH_NUM_VARS_FORMAT_ERROR = 35;
 	public static int VOID_FUNCTION_ASSIGNMENT_ERROR = 36;
 	public static int TABLE_ROW_SIZE_ERROR = 37;
+	public static int NOT_LIST_MANIPULATION_ERROR = 38;
 
 	public Hashtable<String, VarDescriptor> symbolTable;
 	public Hashtable<String, Hashtable<String, VarDescriptor>> localTables;
@@ -173,6 +174,8 @@ public class MaltHandler {
 			errMsg += "Impossibile ottenere un valore di ritorno da una funzione senza return";
 		} else if (code == TABLE_ROW_SIZE_ERROR) {
 			errMsg += "La riga della tabella ha un numero di colonne errato";
+		} else if (code == NOT_LIST_MANIPULATION_ERROR) {
+			errMsg += "Impossibile eseguire istruzioni di manipolazione su una variabile non di tipo lista";
 		}
 
 		errorList.add(errMsg);
@@ -592,7 +595,9 @@ public class MaltHandler {
 	 */
 	public void assignListValue(Token className, Token functionName, boolean inFor, Token name, Vector<Token> value) {
 
-		String[] listValue = new String[value.size()];
+		// String[] listValue = new String[value.size()];
+
+		Vector<String> listValue = new Vector<String>();
 
 		VarDescriptor varVd = getVarDescriptor(className, functionName, inFor, name);
 
@@ -604,7 +609,8 @@ public class MaltHandler {
 		for (int i = 0; i < value.size(); i++) {
 			if (value.get(i).getText().contains("\"")) {
 				String itemStr = value.get(i).getText();
-				listValue[i] = itemStr.substring(1, itemStr.length() - 1);
+				// listValue[i] = itemStr.substring(1, itemStr.length() - 1);
+				listValue.add(itemStr.substring(1, itemStr.length() - 1));
 			} else {
 
 				VarDescriptor resVd = getVarDescriptor(className, functionName, inFor, value.get(i));
@@ -619,7 +625,8 @@ public class MaltHandler {
 					return;
 				}
 
-				listValue[i] = resVd.value;
+				// listValue[i] = resVd.value;
+				listValue.add(resVd.value);
 			}
 		}
 
@@ -798,7 +805,8 @@ public class MaltHandler {
 			return;
 		}
 
-		String item = rightVarVd.listValue[idx];
+		// String item = rightVarVd.listValue[idx];
+		String item = rightVarVd.listValue.get(idx);
 
 		leftVarVd.value = item;
 
@@ -1243,6 +1251,101 @@ public class MaltHandler {
 
 	}
 
+	public void handleListPush(Token className, Token functionName, boolean inFor, Token listName, Token newElement) {
+
+		VarDescriptor listVd = getVarDescriptor(className, functionName, inFor, listName);
+
+		// controlla se la variabile è stata dichiarata
+		if (listVd == null) {
+			maltErrorHandler(VARIABLE_UNDECLARED_ERROR, listName);
+			return;
+		}
+
+		// controlla se push è stato invocato su una variabile lista
+		if (!listVd.varType.contains("list")) {
+			maltErrorHandler(NOT_LIST_MANIPULATION_ERROR, listName);
+			return;
+		}
+
+		VarDescriptor elementVd = getVarDescriptor(className, functionName, inFor, newElement);
+
+		// controlla se l'elemento da inserire nella lista è stato dichiarato
+		if (elementVd == null) {
+			maltErrorHandler(VARIABLE_UNDECLARED_ERROR, newElement);
+			return;
+		}
+
+		// controlla se l'elemento da inserire nella lista è di tipo primitivo testuale
+		if (!isPrimitiveTextVariable(elementVd)) {
+			maltErrorHandler(NOT_LIST_MANIPULATION_ERROR, newElement);
+			return;
+		}
+
+		listVd.listValue.add(elementVd.value);
+
+	}
+
+	public void handleListRemove(Token className, Token functionName, boolean inFor, Token listName, Token idxTk,
+			Token saveVar) {
+
+		VarDescriptor listVd = getVarDescriptor(className, functionName, inFor, listName);
+
+		// controlla se la variabile è stata dichiarata
+		if (listVd == null) {
+			maltErrorHandler(VARIABLE_UNDECLARED_ERROR, listName);
+			return;
+		}
+
+		// controlla se push è stato invocato su una variabile lista
+		if (!listVd.varType.contains("list")) {
+			maltErrorHandler(NOT_LIST_MANIPULATION_ERROR, listName);
+			return;
+		}
+
+		if (listVd.getListLength() == 0) {
+			maltErrorHandler(EMPTY_LIST_ERROR, listName);
+			return;
+		}
+
+		int idx;
+
+		if (idxTk.getText().equals("_")) {
+			idx = listVd.getListLength() - 1;
+		} else {
+			idx = Integer.parseInt(idxTk.getText());
+		}
+
+		if (idx >= listVd.getListLength() || idx < 0) {
+			maltErrorHandler(OUT_OF_BOUND_ERROR, idxTk);
+			return;
+		}
+
+		if (!saveVar.getText().equals("_")) {
+
+			VarDescriptor saveVarVd = getVarDescriptor(className, functionName, inFor, saveVar);
+
+			// controlla se la variabile dove viene salvato il risultato della remove è
+			// stato
+			// dichiarato
+			if (saveVarVd == null) {
+				maltErrorHandler(VARIABLE_UNDECLARED_ERROR, saveVar);
+				return;
+			}
+
+			// controlla se la variabile dove viene salvato il risultato della remove è
+			// primitivo testuale
+			if (!isPrimitiveTextVariable(saveVarVd)) {
+				maltErrorHandler(NOT_LIST_MANIPULATION_ERROR, saveVar);
+				return;
+			}
+
+			saveVarVd.value = listVd.listValue.get(idx);
+		}
+
+		listVd.listValue.removeElementAt(idx);
+
+	}
+
 	/**
 	 * Gestisce i cicli for
 	 * 
@@ -1286,9 +1389,7 @@ public class MaltHandler {
 				return;
 			}
 
-			String[] values = vdIt.listValue;
-
-			int length = vdIt.listValue.length;
+			int length = vdIt.listValue.size();
 
 			// controllo la lunghezza della lista da iterare
 			if (length <= 0) {
@@ -1298,7 +1399,7 @@ public class MaltHandler {
 
 			// inizializzo l'iteratore con il primo valore della lista da iterare
 			VarDescriptor vd = new VarDescriptor(name.getText(), "text");
-			vd.value = values[0];
+			vd.value = vdIt.listValue.get(0);
 
 			forTable.put(name.getText(), vd);
 
