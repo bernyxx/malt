@@ -189,8 +189,8 @@ declareTitleRule [Token className, Token functionName, boolean inFor]
 	:
 		t=titleTypeRule
 		n=VAR {h.declareNew($className, $functionName, inFor, t, $n);}
-		refRule?
-		(assignStringRule[$className, $functionName, $inFor, $n]
+		ref=refRule?
+		(assignTitleRule[$className, $functionName, $inFor, $n, ref]
 		| assignVariableRule[$className, $functionName, $inFor, $n]
 		| assignExprRule[$className, $functionName, $inFor, $n])?
 ;
@@ -207,10 +207,12 @@ titleTypeRule returns [Token type]
 ;
 
 
-refRule
+refRule returns [Token ref]
 	:
-		LCB HA VAR RCB
+		LCB HA v=VAR RCB
+		{ref = $v;}
 ;
+		
 
 
 declareTextRule [Token className, Token functionName, boolean inFor] 
@@ -329,6 +331,13 @@ assignExprRule [Token className, Token functionName, boolean inFor, Token name]
 		(v2=STRING|v2=VAR)
 		{vct.add($v2);}
 		)* RP {h.assignExprToVar($className, $functionName, $inFor, $name, vct);}
+;
+
+assignTitleRule [Token className, Token functionName, boolean inFor, Token name, Token ref]
+	:
+		EQ
+		v=STRING 
+		{h.assignTitle($className, $functionName, $inFor, $name, ref, $v.getText());}
 ;
 
 

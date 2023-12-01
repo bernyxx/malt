@@ -1,4 +1,4 @@
-title t = "Titolo";
+s3title t {#pino} = "Titolo";
 list l = ["pino", "gino", "suino"];
 
 fun esempio(text a1, text a2, list elenco){
@@ -32,5 +32,8 @@ class ReportVendite{
 text res = esempio(t, t, l);
 
 ReportVendite.metodo2(res);
+
+text result;
+remove(l, 1, result);
 
 

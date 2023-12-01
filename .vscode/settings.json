@@ -1,8 +1,0 @@
-{
-  "java.project.referencedLibraries": {
-    "include": ["lib/**/*.jar", "d:\\Documenti\\ANTLR\\antlr-3.4-complete.jar"],
-    "exclude": [
-      "c:\\Users\\Martina\\Documents\\UNIBG\\2022-23\\PRIMO SEMESTRE\\Linguaggi formali e compilatori\\tutorati\\programma\\antlr-3.4-complete.jar"
-    ]
-  }
-}

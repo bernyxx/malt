@@ -476,6 +476,25 @@ public class MaltHandler {
 
 	}
 
+	public void assignTitle(Token className, Token functionName, boolean inFor, Token name, Token ref,
+			String value) {
+
+				// rimuovi le virgolette da value
+				
+
+				String valueWithRef;
+				if(ref != null){
+					value = value.substring(1, value.length());
+					valueWithRef = " {#" + ref.getText() + "}" + value;
+				}else {
+					valueWithRef = value;
+				}
+				
+
+				assignTextPrimitiveVarValue(className, functionName, inFor, name, valueWithRef);
+
+			}
+
 	/**
 	 * Assegna ad una variabile non primitiva testuale un valore
 	 * 
