@@ -15,7 +15,11 @@ public class MaltFileParserLauncher {
 
 	public static void main(String[] args) {
 		CommonTokenStream tokens;
-		String fileIn = ".\\resources\\input.file";
+		// eclipse
+		//String fileIn = ".\\resources\\input.file";
+		
+		// vscode
+		String fileIn = "./MaltProject/resources/input.file";
 
 		try {
 			System.out.println("Parsing con ANTLR lexer");

@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile="./malt.jar" -DgroupId="com.malt.grammar" -DartifactId="maltgrammar" -Dversion="1.0" -Dpackaging="jar"
