@@ -1,0 +1,88 @@
+s3title t {#pino} = "Titolo";
+ulist l = ["ovino", "bovino", "suino"];
+
+fun esempio(text a1, text a2, list elenco){
+    text t = "prima parte";
+    
+    blockquote bq = "seconda parte";
+
+    // img bq =i ("/percorso/immagine.jpg","Titolo immagine");
+
+    text res = (t + " " + bq + " terza parte");
+
+    return res;
+}
+
+class Report{
+    title t = "Report";
+    s1title cap_1 = "Capitolo 1";
+    s1title cap_2 = "Capitolo 2";
+
+    fun metodo1(text a){
+        list l;
+        for(i, 10){
+            push(l,i);
+        }
+    }
+
+    fun metodo2(s1title t){
+        list l;
+        this.metodo1(t);
+    }
+
+}
+
+class TextFormat{
+    title t = "Report Vendite";
+    s1title cap_1 = "Capitolo 1";
+    s1title cap_2 = "Capitolo 2";
+
+    text var;
+    text v1 = "Testo con parole in %b, %i, %bi.";
+    text v2 = "grassetto";
+    text v3 = "italico";
+    text v4 = "grassetto e italico";
+
+    // link v4 =l ("Sito web di Malt","www.malt.com");
+    format(var, v1, v2, v3, v4);
+    // format(var, v1, v2, v3, v5);
+
+    fun metodo1(){
+        s4title testo = l[1];
+        olist olist1 = ["primo", "secondo"];
+        ulist ulist2 = olist1;
+        tlist tlist3 = ulist2;
+        codeblock java cb1 = "public void toString() {}";
+        link link1 =l ("Sito web di Malt","www.malt.com");
+        img foto1 =i ("/percorso/immagine.jpg","Titolo immagine");
+    }
+
+    fun metodo2(text t){
+        list l;
+        l = ["pino","albero"];
+        text testo = l[0];
+        // text testo = l[4];
+        for(k in l){
+            text infor = ("valore di l: " + k);
+        }
+    }
+
+}
+
+text res = esempio(t, t, l);
+
+Report.metodo2(res);
+
+text result;
+text nuova_carne = "equino";
+push(l, nuova_carne);
+remove(l, 1, result);
+
+TextFormat.metodo2(result);
+
+table tabella1 = [$l,$r,$c] (["uno", "due", "tre"],["quattro", "cinque", "sei"]);
+// table tabella1 = [$l,$r,$c] (["uno", "due", "tre", "tre"],["quattro", "cinque", "sei"]);
+// table tabella1 = [$l,$r,$c,$c] (["uno", "due", "tre"],["quattro", "cinque", "sei"]);
+
+blockquote bq2 = "Secondo blockquote";
+blockquote bq3 = (bq2 + " Terzo " + t);

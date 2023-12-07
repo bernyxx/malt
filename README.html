@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Guida Utente MALT</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+/* From extension zhuangtongfa.material-theme */
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body {
+  box-sizing: border-box;
+  min-width: 200px;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body blockquote {
+  background-color: initial;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body pre {
+  color: initial;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body code, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body code, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body code, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body code {
+  color: inherit;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body pre code, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body pre code, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body pre code, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body pre code {
+  color: initial;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body code > div, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body code > div, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body code > div, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body code > div {
+  background: none;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body table th, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body table td, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body table th, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body table td, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body table th, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body table td, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body table th, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body table td {
+  border: 1px solid rgba(171, 178, 191, 0.5) !important;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body.showEditorSelection .code-active-line:before, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body.showEditorSelection .code-active-line:before, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body.showEditorSelection .code-active-line:before, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body.showEditorSelection .code-active-line:before {
+  border-left: none;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body.showEditorSelection .code-line:hover:before, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body.showEditorSelection .code-line:hover:before, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body.showEditorSelection .code-line:hover:before, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body.showEditorSelection .code-line:hover:before {
+  border-left: none;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body.showEditorSelection .code-line .code-line:hover:before, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body.showEditorSelection .code-line .code-line:hover:before, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body.showEditorSelection .code-line .code-line:hover:before, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body.showEditorSelection .code-line .code-line:hover:before {
+  border-left: none;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body p, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body dl, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body p, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body dl, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body p, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body dl, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body p, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body dl, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body pre {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+/* Generated from 'node_modules/github-markdown-css/github-markdown.css' */
+@font-face {
+  font-family: octicons-link;
+  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM+8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB/aFGpk3jaTY6xa8JAGMW/O62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v+k/0an2i+itHDw3v2+9+DBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3/I7AtxEJLtzzuZfI+VVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy/Lt7Kc+0vWY/gAgIIEqAN9we0pwKXreiMasxvabDQMM4riO+qxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw+ymhce7vwM9jSqO8JyVd5RH9gyTt2+J/yUmYlIR0s04n6+7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv/ocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi+W2+MjCzMIDApSwvXzC97Z4Ig8N/BxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh/8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT+AEjAwuDFpBmA9KMDEwMCh9i/v8H8sH0/4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9/lqYwOGZxeUelN2U2R6+cArgtCJpauW7UQBqnFkUsjAY/kOU1cP+DAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl+vvmM/byA48e6tWrKArm4ZJlCbdsrxksL1AwWn/yBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO//sdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd/89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF+9JOS0nbaaYDCQfwCJ7Au3AHj+LO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm+EBXuAbHmIMSRMs+4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL+hD7C1xoaHeLJSEao0FEW14ckxC+TU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13/+lm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl+9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O/AdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB///AA8AAQAAAAAAAAAAAAAAAAABAAAAAA==) format("woff");
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.5;
+  color: rgb(171, 178, 191);
+  line-height: 1.5;
+  word-wrap: break-word;
+  background: #282c34;
+  padding-top: 20px;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-c, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-c, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-c, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-c {
+  color: #6a737d;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-c1, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-s .pl-v, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-c1, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-s .pl-v, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-c1, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-s .pl-v, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-c1, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-s .pl-v {
+  color: #005cc5;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-e, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-en, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-e, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-en, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-e, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-en, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-e, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-en {
+  color: #6f42c1;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-smi, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-s .pl-s1, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-smi, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-s .pl-s1, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-smi, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-s .pl-s1, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-smi, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-s .pl-s1 {
+  color: #24292e;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-ent, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-ent, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-ent, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-ent {
+  color: #22863a;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-k, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-k, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-k, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-k {
+  color: #d73a49;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-s, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-pds, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-s .pl-pse .pl-s1, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-sr, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-sr .pl-cce, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-sr .pl-sre, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-sr .pl-sra, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-s, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-pds, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-s .pl-pse .pl-s1, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-sr, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-sr .pl-cce, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-sr .pl-sre, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-sr .pl-sra, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-s, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-pds, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-s .pl-pse .pl-s1, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-sr, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-sr .pl-cce, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-sr .pl-sre, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-sr .pl-sra, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-s, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-pds, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-s .pl-pse .pl-s1, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-sr, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-sr .pl-cce, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-sr .pl-sre, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-sr .pl-sra {
+  color: #032f62;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-v, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-smw, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-v, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-smw, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-v, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-smw, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-v, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-smw {
+  color: #e36209;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-bu, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-bu, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-bu, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-bu {
+  color: #b31d28;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-ii, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-ii, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-ii, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-ii {
+  color: #fafbfc;
+  background-color: #b31d28;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-c2, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-c2, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-c2, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-c2 {
+  color: #fafbfc;
+  background-color: #d73a49;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-c2::before, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-c2::before, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-c2::before, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-c2::before {
+  content: "^M";
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-sr .pl-cce, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-sr .pl-cce, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-sr .pl-cce, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-sr .pl-cce {
+  font-weight: bold;
+  color: #22863a;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-ml, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-ml, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-ml, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-ml {
+  color: #735c0f;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-mh, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-mh .pl-en, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-ms, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-mh, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-mh .pl-en, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-ms, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-mh, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-mh .pl-en, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-ms, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-mh, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-mh .pl-en, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-ms {
+  font-weight: bold;
+  color: #005cc5;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-mi, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-mi, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-mi, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-mi {
+  font-style: italic;
+  color: #24292e;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-mb, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-mb, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-mb, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-mb {
+  font-weight: bold;
+  color: #24292e;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-md, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-md, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-md, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-md {
+  color: #b31d28;
+  background-color: #ffeef0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-mi1, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-mi1, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-mi1, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-mi1 {
+  color: #22863a;
+  background-color: #f0fff4;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-mc, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-mc, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-mc, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-mc {
+  color: #e36209;
+  background-color: #ffebda;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-mi2, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-mi2, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-mi2, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-mi2 {
+  color: #f6f8fa;
+  background-color: #005cc5;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-mdr, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-mdr, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-mdr, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-mdr {
+  font-weight: bold;
+  color: #6f42c1;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-ba, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-ba, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-ba, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-ba {
+  color: #586069;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-sg, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-sg, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-sg, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-sg {
+  color: #959da5;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-corl, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-corl, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-corl, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-corl {
+  text-decoration: underline;
+  color: #032f62;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .octicon, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .octicon, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .octicon, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .octicon {
+  display: inline-block;
+  vertical-align: text-top;
+  fill: currentColor;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body a, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body a, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body a, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body a {
+  background-color: transparent;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body a:active, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body a:hover, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body a:active, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body a:hover, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body a:active, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body a:hover, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body a:active, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body a:hover {
+  outline-width: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body strong, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body strong, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body strong, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body strong {
+  font-weight: inherit;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body strong, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body strong, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body strong, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body strong {
+  font-weight: bolder;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h1 {
+  margin: 0.67em 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body img, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body img, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body img, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body img {
+  border-style: none;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body input, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body input, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body input, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body input {
+  font: inherit;
+  margin: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body input, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body input, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body input, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body input {
+  overflow: visible;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body [type=checkbox], .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body [type=checkbox], .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body [type=checkbox], .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body [type=checkbox] {
+  box-sizing: border-box;
+  padding: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body *, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body *, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body *, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body * {
+  box-sizing: border-box;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body input, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body input, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body input, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body input {
+  font-family: inherit;
+  line-height: inherit;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body a, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body a, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body a, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body a {
+  color: #528bff;
+  text-decoration: none;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body a:hover, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body a:hover, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body a:hover, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body a:hover {
+  text-decoration: underline;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body strong, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body strong, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body strong, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body strong {
+  font-weight: 600;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #dfe2e5;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body hr::before, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body hr::before, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body hr::before, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body hr::before {
+  display: table;
+  content: "";
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body hr::after, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body hr::after, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body hr::after, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body hr::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body td, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body th, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body td, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body th, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body td, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body th, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body td, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body th {
+  padding: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h3, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h4, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h5, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h3, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h4, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h5, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h3, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h4, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h5, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h3, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h4, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h5, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h1 {
+  font-weight: 600;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h2 {
+  font-weight: 600;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h3, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h3, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h3, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h3 {
+  font-weight: 600;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h4, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h4, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h4, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h4 {
+  font-weight: 600;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h5, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h5, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h5, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h5 {
+  font-weight: 600;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h6 {
+  font-weight: 600;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body p, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body p, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body p, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body blockquote {
+  margin: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ol {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ul ol {
+  list-style-type: lower-roman;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ul ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ul ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ol ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ol ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ul ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ul ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ol ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ol ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ul ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ul ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ol ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ol ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ul ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ul ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ol ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body dd, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body dd, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body dd, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body dd {
+  margin-left: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .octicon, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .octicon, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .octicon, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .octicon {
+  vertical-align: text-bottom;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-0, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-0, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-0, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-0 {
+  padding-left: 0 !important;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-1, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-1, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-1, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-1 {
+  padding-left: 4px !important;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-2, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-2, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-2, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-2 {
+  padding-left: 8px !important;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-3, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-3, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-3, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-3 {
+  padding-left: 16px !important;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-4, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-4, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-4, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-4 {
+  padding-left: 24px !important;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-5, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-5, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-5, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-5 {
+  padding-left: 32px !important;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .pl-6, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .pl-6, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .pl-6, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .pl-6 {
+  padding-left: 40px !important;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body::before, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body::before, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body::before, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body::before {
+  display: table;
+  content: "";
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body::after, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body::after, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body::after, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body > *:first-child, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body > *:first-child, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body > *:first-child, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body > *:first-child {
+  margin-top: 0 !important;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body > *:last-child, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body > *:last-child, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body > *:last-child, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body > *:last-child {
+  margin-bottom: 0 !important;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body a:not([href]), .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body a:not([href]), .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body a:not([href]), .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .anchor {
+  float: left;
+  padding-right: 4px;
+  margin-left: -20px;
+  line-height: 1;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .anchor:focus, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .anchor:focus, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .anchor:focus, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .anchor:focus {
+  outline: none;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body p, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body dl, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body p, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body dl, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body p, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body dl, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body p, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body dl, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #e1e4e8;
+  border: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body blockquote, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body blockquote {
+  /* padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5; */
+  padding: 8.5px 17px;
+  margin: 1.5em 0;
+  color: #7c879c;
+  border-color: #4b5362;
+  border-width: 4px;
+  border-left: 5px solid #4b5362;
+  background: transparent;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body blockquote > :first-child, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body blockquote > :first-child, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body blockquote > :first-child, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body blockquote > :first-child {
+  margin-top: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body blockquote > :last-child, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body blockquote > :last-child, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body blockquote > :last-child, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body blockquote > :last-child {
+  margin-bottom: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body kbd, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body kbd, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body kbd, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: solid 1px #c6cbd1;
+  border-bottom-color: #959da5;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #959da5;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h3, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h4, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h5, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h3, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h4, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h5, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h3, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h4, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h5, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h3, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h4, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h5, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: rgb(240, 240, 240);
+  border-bottom: none;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h1 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h2 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h3 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h4 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h5 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h6 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h1 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h2 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h3 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h4 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h5 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h6 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h1 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h2 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h3 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h4 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h5 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h6 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h1 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h2 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h3 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h4 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h5 .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h6 .octicon-link {
+  color: #1b1f23;
+  vertical-align: middle;
+  visibility: hidden;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h1:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h2:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h3:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h4:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h5:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h6:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h1:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h2:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h3:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h4:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h5:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h6:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h1:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h2:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h3:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h4:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h5:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h6:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h1:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h2:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h3:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h4:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h5:hover .anchor, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h6:hover .anchor {
+  text-decoration: none;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h1:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h2:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h3:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h4:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h5:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h6:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h1:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h2:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h3:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h4:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h5:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h6:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h1:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h2:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h3:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h4:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h5:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h6:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h1:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h2:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h3:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h4:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h5:hover .anchor .octicon-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h1, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h1 {
+  padding-bottom: 0.3em;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h2, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h2 {
+  padding-bottom: 0.3em;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body h6, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body h6 {
+  color: #6a737d;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ul, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ol {
+  padding-left: 2em;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ul ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body ol ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ul ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body ol ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ul ul, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body ol ul, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ul ul, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ul ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ol ol, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body li, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body li, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body li, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body li {
+  word-wrap: break-all;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body li > p, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body li > p, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body li > p, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body li > p {
+  margin-top: 16px;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body li + li, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body li + li, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body li + li, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body li + li {
+  margin-top: 0.25em;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body dl, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body dl, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body dl, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body dl {
+  padding: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body dl dt, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body dl dt, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body dl dt, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-style: italic;
+  font-weight: 600;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body dl dd, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body dl dd, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body dl dd, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body table, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body table th, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body table th, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body table th, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body table th {
+  font-weight: 700;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body table th, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body table td, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body table th, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body table td, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body table th, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body table td, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body table th, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body table td {
+  padding: 6px 13px;
+  /* border: 1px solid #dfe2e5; */
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body img, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body img, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body img, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body img {
+  max-width: 100%;
+  box-sizing: content-box;
+  display: inline-block;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body img[align=right], .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body img[align=right], .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body img[align=right], .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body img[align=right] {
+  padding-left: 20px;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body img[align=left], .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body img[align=left], .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body img[align=left], .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body img[align=left] {
+  padding-right: 20px;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body code, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body code, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body code, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  background-color: #3a3f4b;
+  border-radius: 3px;
+  color: white;
+  margin: 0 1px;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body pre {
+  word-wrap: normal;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body pre > code, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body pre > code, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body pre > code, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body pre > code {
+  padding: 0;
+  margin: 0;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .highlight, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .highlight, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .highlight, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .highlight {
+  margin-bottom: 16px;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .highlight pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .highlight pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .highlight pre, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .highlight pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .highlight pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .highlight pre, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body pre, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .highlight pre, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body pre {
+  padding: 16px;
+  overflow: auto;
+  line-height: 1.45;
+  /* background-color: #f6f8fa; */
+  border-radius: 3px;
+  background-color: #31363f;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body pre code, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body pre code, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body pre code, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body pre code {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+  color: rgb(171, 178, 191);
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .full-commit .btn-outline:not(:disabled):hover, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .full-commit .btn-outline:not(:disabled):hover, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .full-commit .btn-outline:not(:disabled):hover, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .full-commit .btn-outline:not(:disabled):hover {
+  color: #005cc5;
+  border-color: #005cc5;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body kbd, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body kbd, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body kbd, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: solid 1px #d1d5da;
+  border-bottom-color: #c6cbd1;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #c6cbd1;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body :checked + .radio-label, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body :checked + .radio-label, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body :checked + .radio-label, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body :checked + .radio-label {
+  position: relative;
+  z-index: 1;
+  border-color: #0366d6;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .task-list-item, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .task-list-item, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .task-list-item, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .task-list-item {
+  list-style-type: none;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .task-list-item + .task-list-item, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .task-list-item + .task-list-item, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .task-list-item + .task-list-item, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .task-list-item + .task-list-item {
+  margin-top: 3px;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body .task-list-item input, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body .task-list-item input, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body .task-list-item input, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body .task-list-item input {
+  margin: 0 0.2em 0.25em -1.6em;
+  vertical-align: middle;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"].vscode-body hr, .vscode-dark[data-vscode-theme-name="One Dark Pro"].vscode-body hr {
+  border-bottom-color: #eee;
+}
+
+/*
+
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+
+*/
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #abb2bf;
+  background: #282c34;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-comment,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-quote, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-comment,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-quote, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-comment,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-quote, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-comment,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-doctag,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-keyword,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-formula, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-doctag,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-keyword,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-formula, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-doctag,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-keyword,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-formula, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-doctag,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-keyword,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-formula {
+  color: #c678dd;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-section,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-name,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-selector-tag,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-deletion,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-subst, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-section,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-name,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-selector-tag,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-deletion,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-subst, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-section,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-name,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-selector-tag,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-deletion,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-subst, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-section,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-name,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-selector-tag,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-deletion,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-subst {
+  color: #e06c75;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-literal, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-literal, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-literal, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-literal {
+  color: #56b6c2;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-string,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-regexp,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-addition,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-attribute,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-meta-string, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-string,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-regexp,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-addition,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-attribute,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-meta-string, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-string,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-regexp,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-addition,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-attribute,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-meta-string, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-string,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-regexp,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-addition,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-attribute,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-meta-string {
+  color: #98c379;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-built_in,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-class .hljs-title, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-built_in,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-class .hljs-title, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-built_in,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-class .hljs-title, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-built_in,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-class .hljs-title {
+  color: #e6c07b;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-attr,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-variable,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-template-variable,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-type,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-selector-class,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-selector-attr,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-selector-pseudo,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-number, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-attr,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-variable,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-template-variable,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-type,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-selector-class,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-selector-attr,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-selector-pseudo,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-number, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-attr,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-variable,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-template-variable,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-type,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-selector-class,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-selector-attr,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-selector-pseudo,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-number, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-attr,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-variable,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-template-variable,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-type,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-selector-class,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-selector-attr,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-selector-pseudo,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-number {
+  color: #d19a66;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-symbol,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-bullet,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-link,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-meta,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-selector-id,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-title, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-symbol,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-bullet,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-link,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-meta,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-selector-id,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-title, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-symbol,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-bullet,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-link,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-meta,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-selector-id,
+.vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-title, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-symbol,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-bullet,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-link,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-meta,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-selector-id,
+.vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-title {
+  color: #61aeee;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-emphasis, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-emphasis, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-emphasis, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-emphasis {
+  font-style: italic;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-strong, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-strong, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-strong, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-strong {
+  font-weight: bold;
+}
+.vscode-dark[data-vscode-theme-name="One Dark Pro Mix"] .hljs-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Flat"] .hljs-link, .vscode-dark[data-vscode-theme-name="One Dark Pro Darker"] .hljs-link, .vscode-dark[data-vscode-theme-name="One Dark Pro"] .hljs-link {
+  text-decoration: underline;
+}
+
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="guida-utente-malt">Guida Utente MALT</h1>
+<h2 id="sommario">Sommario</h2>
+<ul>
+<li><a href="#guida-utente-malt">Guida Utente MALT</a>
+<ul>
+<li><a href="#sommario">Sommario</a></li>
+</ul>
+</li>
+<li><a href="#introduzione">Introduzione</a></li>
+<li><a href="#installazione">Installazione</a>
+<ul>
+<li><a href="#esecuzione-da-codice-sorgente">Esecuzione da codice sorgente</a></li>
+<li><a href="#installazione-tramite-docker">Installazione tramite Docker</a></li>
+</ul>
+</li>
+<li><a href="#linguaggio-malt">Linguaggio MALT</a>
+<ul>
+<li><a href="#vincoli-e-limitazioni">Vincoli e limitazioni</a></li>
+<li><a href="#variabili">Variabili</a></li>
+<li><a href="#commenti">Commenti</a></li>
+<li><a href="#tipi">Tipi</a>
+<ul>
+<li><a href="#variabili-primitive-testuali">Variabili Primitive Testuali</a></li>
+<li><a href="#variabili-lista">Variabili Lista</a></li>
+<li><a href="#variabili-multimediali">Variabili Multimediali</a></li>
+</ul>
+</li>
+<li><a href="#variabili-primitive-testuali-1">Variabili primitive testuali</a>
+<ul>
+<li><a href="#testo-semplice-text">Testo semplice (<em>text</em>)</a></li>
+<li><a href="#titolo-e-varianti">Titolo e varianti</a>
+<ul>
+<li><a href="#identificativo-del-titolo">Identificativo del titolo</a></li>
+</ul>
+</li>
+<li><a href="#blocco-citazione-blockquote">Blocco citazione (<em>blockquote</em>)</a></li>
+<li><a href="#blocco-di-codice-codeblock">Blocco di codice (<em>codeblock</em>)</a></li>
+<li><a href="#concatenazione-di-variabili-primitive-testuali">Concatenazione di variabili primitive testuali</a></li>
+<li><a href="#formattazione-di-variabili-primitive-testuali">Formattazione di variabili primitive testuali</a>
+<ul>
+<li><a href="#grassetto-e-corsivo">Grassetto e corsivo</a></li>
+<li><a href="#testo-cancellato-e-evidenziato">Testo cancellato e evidenziato</a></li>
+<li><a href="#pedici-e-apici">Pedici e apici</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#variabili-lista-1">Variabili lista</a>
+<ul>
+<li><a href="#lista-ordinata-olist">Lista ordinata (<em>olist</em>)</a></li>
+<li><a href="#lista-non-ordinata-ulist">Lista non ordinata (<em>ulist</em>)</a></li>
+<li><a href="#lista-con-caselle-di-spunta-tlist">Lista con caselle di spunta (<em>tlist</em>)</a></li>
+<li><a href="#lista-list">Lista (<em>list</em>)</a></li>
+<li><a href="#manipolazione-di-una-lista">Manipolazione di una lista</a>
+<ul>
+<li><a href="#aggiungere-un-elemento-in-coda-push">Aggiungere un elemento in coda (<em>push</em>)</a></li>
+<li><a href="#rimuovere-un-elemento-remove">Rimuovere un elemento (<em>remove</em>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#variabili-multimediali-1">Variabili multimediali</a>
+<ul>
+<li><a href="#tabella-table">Tabella (<em>table</em>)</a></li>
+<li><a href="#link-link">Link (<em>link</em>)</a></li>
+<li><a href="#immagine-img">Immagine (<em>img</em>)</a></li>
+</ul>
+</li>
+<li><a href="#format">Format</a>
+<ul>
+<li><a href="#specificatori-di-stringa">Specificatori di stringa</a></li>
+</ul>
+</li>
+<li><a href="#conversione-tra-tipi-type-casting">Conversione tra Tipi (Type Casting)</a></li>
+<li><a href="#cicli">Cicli</a>
+<ul>
+<li><a href="#ciclo-for">Ciclo for</a></li>
+<li><a href="#ciclo-for-each">Ciclo for-each</a></li>
+</ul>
+</li>
+<li><a href="#scope-delle-variabili">Scope delle variabili</a></li>
+<li><a href="#funzioni-fun">Funzioni (<em>fun</em>)</a>
+<ul>
+<li><a href="#scope-delle-variabili-in-una-funzione">Scope delle variabili in una funzione</a></li>
+</ul>
+</li>
+<li><a href="#classi-class">Classi (<em>class</em>)</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="introduzione">Introduzione</h1>
+<p>MALT è un linguaggio che consente di ottenere un file Markdown a partire da un nuovo linguaggio procedurale.</p>
+<p>Markdown è un linguaggio di markup e non consente l’utilizzo di liste, cicli, classi, funzioni e tutte quelle funzionalità che sono presenti nei linguaggi di programmazione.
+MALT permette di unire le funzionalità tipiche dei linguaggi di programmazione con la potente formattazione e strutturazione del testo tipica invece dei linguaggi di markup.</p>
+<p>Per poter eseguire il codice MALT è stata predisposta un’interfaccia web in cui è possibile scrivere direttamente oppure importare un file che contiene il codice che si vuole eseguire.</p>
+<h1 id="installazione">Installazione</h1>
+<p>Per installare ed eseguire l’ambiente che permette di eseguire il codice MALT sono disponibili diverse alternative: l'esecuzione in modalità sviluppatore direttamente dai script contenuti nel codice sorgente oppure l'esecuzione dell'ambiente pronto alla produzione tramite container Docker di immagini già costruite e pronte da utilizzare.</p>
+<h2 id="esecuzione-da-codice-sorgente">Esecuzione da codice sorgente</h2>
+<p>Il metodo piu semplice per utilizzare l'ambiente è quello di eseguire gli script utilizzati per provare il programma durante la fase di sviluppo. Questa modalità però non permette di simulare un ambiente reale con tutte le ottimizzazioni che i framework usano dopo aver eseguito il &quot;build&quot;.
+Il programma si divide in due parti: analizzatore (back-end) e interfaccia (front-end).</p>
+<blockquote>
+<p>Per il front-end è stato utilizzato Next.js che richiede l'installazione di Node.js e di npm sul sistema. Per scaricare Node.js basta andare a <a href="https://nodejs.org/en/download">questo indirizzo</a>. L'installazione di Node.js solitamente già include npm.</p>
+</blockquote>
+<p>Per eseguire il back-end basta entrare nella cartella &quot;malt_backend&quot; e lanciare il comando</p>
+<pre><code class="language-shell">./mvnw spring-boot:run
+</code></pre>
+<p>Verrà lanciato un server realizzato con spring-boot disponibile alla porta 8000.</p>
+<p>Per lanciare l'interfaccia invece basta entrare nella cartella &quot;malt_frontend&quot; ed eseguire il comando</p>
+<pre><code class="language-shell">npm run dev
+</code></pre>
+<p>Una volta avviato il front-end è possibile utilizzare l'interfaccia all'indirizzo <a href="http://localhost:3000">http://localhost:3000</a></p>
+<h2 id="installazione-tramite-docker">Installazione tramite Docker</h2>
+<p>Le immagini Docker sono un modo pratico e veloce per creare dei container che contengono già tutto il codice e le dipendenze necessarie per eseguire l'ambiente MALT senza installare nulla oltre al motore Docker.</p>
+<blockquote>
+<p>Per completare l'installazione tramite Docker è necessario avere Docker Engine installato sul proprio computer. Se non si è esperti con i comandi Docker all'interno del terminale si consiglia caldamente di installare l'interfaccia Docker Desktop che integra il sopracitato Docker Engine. I passaggi successivi della guida faranno riferimento all'interfaccia. La guida di installazione di Docker Desktop può essere trovata a questo <a href="https://docs.docker.com/desktop/">link</a>.</p>
+</blockquote>
+<blockquote>
+<p>Prima di eseguire i comandi per scaricare le immagini, assicurarsi di avere in esecuzione in background Docker Engine. Se avete installato Docker Desktop basterà avviarlo e in automatico verrà eseguito anche Docker Engine.</p>
+</blockquote>
+<p>Per scaricare l'immagine più recente del backend che esegue l'analisi lessicale, sintattica e semantica eseguire il comando</p>
+<pre><code class="language-shell">docker pull ghcr.io/kevin-bernardi/malt_backend:main
+</code></pre>
+<p>Invece, per scaricare l'immagine più recente del frontend, eseguire il comando</p>
+<pre><code class="language-shell">docker pull ghcr.io/kevin-bernardi/malt_frontend:main
+</code></pre>
+<p>Se non ci sono stati errori durante il download delle immagini dovrebbero essere comparse due immagini nella sezione &quot;Images&quot; di Docker Desktop.</p>
+<p>Per creare ed eseguire i container, sempre dalla sezione &quot;Images&quot; fare click sul tasto &quot;Play&quot; in fondo alla riga dell'immagine malt_backend. Aprire la sezione &quot;Optional settings&quot;, inserire un nome a piacere nel campo &quot;Container name&quot; e inserire obbligatoriamente 8080 nel campo &quot;Host port&quot;. Il resto va lasciato vuoto.
+Fare la stessa cosa per l'immagine malt_frontend specificando questa volta una &quot;Host port&quot; a piacere.</p>
+<p>Nella sezione &quot;Containers&quot; ora si potranno vedere i due container in esecuzione.</p>
+<p>L'installazione dell'ambiente è completata ed ora sarà possibile utilizzare l'interfaccia web all'url <a href="localhost:PORT">localhost:PORT</a> dove PORT è la &quot;Host port&quot; specificata nella creazione del container basato sull'immagine malt_frontend.</p>
+<h1 id="linguaggio-malt">Linguaggio MALT</h1>
+<p>Nei seguenti capitoli verranno esposte le funzionalità del linguaggio in ordine di difficoltà partendo dalle variabili e arrivando alla fine ad utilizzare tutto quello che serve per affrontare i casi d'uso più comuni.</p>
+<h2 id="vincoli-e-limitazioni">Vincoli e limitazioni</h2>
+<p>In MALT sono presenti alcuni vincoli e limitazioni:</p>
+<ul>
+<li>le funzioni, le classi e i metodi delle classi vengono eseguiti nel momento in cui vengono definiti e non nel momento delle loro chiamate;</li>
+<li>i cicli vengono eseguiti soltanto per un'iterazione e non per tutte le iterazioni che soddisfano la condizione del ciclo stesso;</li>
+<li>non è ancora disponibile la generazione del testo Markdown.</li>
+</ul>
+<h2 id="variabili">Variabili</h2>
+<p>La dichiarazione di variabili avviene in questo modo:</p>
+<pre><code class="language-java"><span class="hljs-type">tipo</span> <span class="hljs-variable">nome_variabile</span> <span class="hljs-operator">=</span> valore;
+</code></pre>
+<p>Ecco un esempio:</p>
+<pre><code class="language-java"><span class="hljs-type">text</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;sono un testo&quot;</span>;
+</code></pre>
+<p>Analizziamo parola per parola questa istruzione:</p>
+<ul>
+<li><em><code>text</code></em>: tipo della variabile. <em><code>text</code></em> rappresenta testo semplice (vedi sotto quali sono i tipi disponibili)</li>
+<li><em><code>t</code></em>: nome della variabile</li>
+<li><em><code>&quot;sono un testo&quot;</code></em>: valore assegnato alla variabile</li>
+</ul>
+<blockquote>
+<p>Il nome della variabile deve iniziare con una lettera e può contenere solo lettere, numeri e underscore (_).</p>
+</blockquote>
+<p>Il simbolo <em><code>'='</code></em> permette di assegnare il valore presente dopo il simbolo di uguaglianza alla variabile presente prima del simbolo.</p>
+<p>Ogni istruzione deve terminare con il simbolo <em><code>';'</code></em></p>
+<p>Riassumendo, l'istruzione permette di assegnare il valore <em><code>&quot;sono un testo&quot;</code></em> alla variabile <em><code>t</code></em> di tipo text.</p>
+<p>Il valore assegnabile ad una variabile dipende dal suo tipo.</p>
+<p>Una sintassi alternativa consiste nell'assegnare il valore della variabile in un momento successivo rispetto alla sua dichiarazione al posto di fare tutto sulla stessa riga:</p>
+<pre><code class="language-java">text t;
+
+<span class="hljs-comment">// ALTRO CODICE...</span>
+
+t = <span class="hljs-string">&quot;testo&quot;</span>;
+</code></pre>
+<h2 id="commenti">Commenti</h2>
+<p>MALT permette di inserire sia commenti su un'unica riga sia commenti multilinea.</p>
+<p>Nel primo caso la notazione è:</p>
+<pre><code class="language-java"><span class="hljs-comment">// commento...</span>
+</code></pre>
+<p>Invece nel caso di commenti multilinea serve scrivere:</p>
+<pre><code class="language-java"><span class="hljs-comment">/* commenti...
+commenti... */</span>
+</code></pre>
+<h2 id="tipi">Tipi</h2>
+<p>MALT è un linguaggio un po' diverso dagli altri linguaggi classici. Qui non esistono variabili che contengono valori numerici (int, float, double...) perché MALT è incentrato completamente sulla manipolazione testuale.</p>
+<p>Invece di avere molti tipi che gestiscono valori numerici, qui esistono molti tipi che gestiscono stringhe di testo. Come visto sopra, per assegnare il tipo di una variabile basta scriverlo prima del nome nella dichiarazione.</p>
+<p>I tipi sono organizzati in 3 diverse categorie che verranno esposte di seguito.</p>
+<h3 id="variabili-primitive-testuali">Variabili Primitive Testuali</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Descrizione</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td>Testo semplice</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>Titolo</td>
+</tr>
+<tr>
+<td><code>s1title</code></td>
+<td>Sotto titolo 1</td>
+</tr>
+<tr>
+<td><code>s2title</code></td>
+<td>Sotto titolo 2</td>
+</tr>
+<tr>
+<td><code>s3title</code></td>
+<td>Sotto titolo 3</td>
+</tr>
+<tr>
+<td><code>s4title</code></td>
+<td>Sotto titolo 4</td>
+</tr>
+<tr>
+<td><code>s5title</code></td>
+<td>Sotto titolo 5</td>
+</tr>
+<tr>
+<td><code>blockquote</code></td>
+<td>Blocco citazione</td>
+</tr>
+<tr>
+<td><code>codeblock</code></td>
+<td>Blocco di codice</td>
+</tr>
+</tbody>
+</table>
+<h3 id="variabili-lista">Variabili Lista</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Descrizione</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>olist</code></td>
+<td>Lista ordinata</td>
+</tr>
+<tr>
+<td><code>ulist</code></td>
+<td>Lista non ordinata</td>
+</tr>
+<tr>
+<td><code>tlist</code></td>
+<td>Lista con casella di spunta</td>
+</tr>
+<tr>
+<td><code>list</code></td>
+<td>Lista / Array</td>
+</tr>
+</tbody>
+</table>
+<h3 id="variabili-multimediali">Variabili Multimediali</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Descrizione</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>table</code></td>
+<td>Tabella</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td>Link</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>Immagine</td>
+</tr>
+</tbody>
+</table>
+<p>Nei successivi paragrafi verrà spiegato l'utilizzo di tutti i tipi appena elencati.</p>
+<h2 id="variabili-primitive-testuali-1">Variabili primitive testuali</h2>
+<p>Vengono definite variabili primitive testuali tutte quelle variabili a cui sono assegnabili direttamente una stringa di testo. Il tipo <code>text</code> visto prima ne è un esempio.</p>
+<p>Le stringhe di testo possono contenere lettere, numeri, simboli, spazi, ...</p>
+<p>Le stringhe devono essere racchiuse da doppie virgolette (&quot;).</p>
+<p>L'aggettivo &quot;primitive&quot; si riferisce al fatto che questi tipi possono contenere una ed una sola stringa di testo e non ad esempio una lista di stringhe o una tabella che contiene stringhe.</p>
+<p>I tipi delle variabili primitive testuali sono i seguenti:</p>
+<ul>
+<li><code>text</code></li>
+<li><code>title</code></li>
+<li><code>s1title</code></li>
+<li><code>s2title</code></li>
+<li><code>s3title</code></li>
+<li><code>s4title</code></li>
+<li><code>s5title</code></li>
+<li><code>blockquote</code></li>
+<li><code>codeblock</code></li>
+</ul>
+<p>L'assegnamento per queste variabili funziona in questo modo:</p>
+<pre><code class="language-java"><span class="hljs-type">tipo_pr_test</span> <span class="hljs-variable">nome_var</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;valore testuale&quot;</span>;
+</code></pre>
+<p>dove <em><code>tipo_pr_test</code></em> è uno dei tipi elencati sopra.</p>
+<blockquote>
+<p>Per codeblock esiste un parametro opzionale in più che può essere inserito tra il tipo e il nome della variabile nella dichiarazione. Consulta la sezione dei codeblock per saperne di più.</p>
+</blockquote>
+<p>Come già detto, l'assegnazione e la dichiarazione posso essere separate.</p>
+<p>Verranno ora presentati in dettaglio questi tipi.</p>
+<h3 id="testo-semplice-text">Testo semplice (<em>text</em>)</h3>
+<p><em><code>text</code></em> rappresenta del testo semplice, tutto quello che non è un titolo, una tabella, un'immagine, un codeblock...</p>
+<h3 id="titolo-e-varianti">Titolo e varianti</h3>
+<p>I tipi <em><code>title</code></em>, <em><code>s1title</code></em>, <em><code>s2title</code></em>, <em><code>s3title</code></em>, <em><code>s4title</code></em>, <em><code>s5title</code></em> fanno parte della categoria dei titoli.</p>
+<p>Tra MALT e Markdown c'è la seguente corrispondenza:</p>
+<table>
+<thead>
+<tr>
+<th>MALT</th>
+<th>Markdown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title t = &quot;Titolo&quot;;</td>
+<td># titolo</td>
+</tr>
+<tr>
+<td>s1title t = &quot;Titolo&quot;;</td>
+<td>## titolo</td>
+</tr>
+<tr>
+<td>s2title t = &quot;Titolo&quot;;</td>
+<td>### titolo</td>
+</tr>
+<tr>
+<td>s3title t = &quot;Titolo&quot;;</td>
+<td>#### titolo</td>
+</tr>
+<tr>
+<td>s4title t = &quot;Titolo&quot;;</td>
+<td>##### titolo</td>
+</tr>
+<tr>
+<td>s5title t = &quot;Titolo&quot;;</td>
+<td>###### titolo</td>
+</tr>
+</tbody>
+</table>
+<h4 id="identificativo-del-titolo">Identificativo del titolo</h4>
+<p>È possibile aggiungere un identificativo al titolo inserendo {<code>{#id}</code>} tra il nome della variabile e il simbolo &quot;=&quot; come in questo esempio:</p>
+<pre><code class="language-java">s1title titolo {#titolo} = <span class="hljs-string">&quot;Titolo con identificativo&quot;</span>;
+</code></pre>
+<h3 id="blocco-citazione-blockquote">Blocco citazione (<em>blockquote</em>)</h3>
+<p>Un <em><code>blockquote</code></em> è un blocco di testo dove viene inserita una citazione o del testo importante che si deve notare.</p>
+<pre><code class="language-java"><span class="hljs-type">blockquote</span> <span class="hljs-variable">bc</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Testo importante!&quot;</span>;
+</code></pre>
+<p>corrisponde in Markdown a:</p>
+<p>&lt; Testo importante!</p>
+<p>che verrà mostrato come:</p>
+<blockquote>
+<p>Testo importante!</p>
+</blockquote>
+<h3 id="blocco-di-codice-codeblock">Blocco di codice (<em>codeblock</em>)</h3>
+<p><em><code>codeblock</code></em> rappresenta un blocco di codice con supporto a syntax highlighting.
+La dichiarazione di un <em><code>codeblock</code></em> si differenzia dalle altre variabili primitive testuali per la presenza di un parametro opzionale nella dichiarazione.
+Questo parametro opzionale serve per specificare il linguaggio che viene scritto all'interno del blocco di codice per effettuare syntax highlighting in modo corretto.</p>
+<p>Ecco un esempio di un blocco di codice con codice Java al suo interno:</p>
+<pre><code class="language-java">codeblock <span class="hljs-type">java</span> <span class="hljs-variable">cb</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;
+  public class Malt {
+    public static void main(String[] args) {
+        System.out.println(&quot;</span>Testo<span class="hljs-string">&quot;);
+    }
+  }
+&quot;</span>;
+</code></pre>
+<p>Visto che il parametro per la specifica del linguaggio è opzionale avremmo anche potuto scrivere</p>
+<pre><code class="language-java"><span class="hljs-type">codeblock</span> <span class="hljs-variable">cb</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;
+  ....
+&quot;</span>;
+</code></pre>
+<p>senza ovviamente sfruttare il syntax highlighting.</p>
+<h3 id="concatenazione-di-variabili-primitive-testuali">Concatenazione di variabili primitive testuali</h3>
+<p>In MALT è possibile eseguire la concatenazione di più variabili primitive testuali (sia tramite il nome di queste variabili sia tramite il loro valore) durante un assegnamento seguendo la notazione del seguente esempio:</p>
+<pre><code class="language-java"><span class="hljs-type">text</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> (<span class="hljs-string">&quot;zero&quot;</span> + <span class="hljs-string">&quot;zero&quot;</span>); <span class="hljs-comment">// t1 vale &quot;zero zero&quot;</span>
+
+<span class="hljs-type">text</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;uno&quot;</span>;
+<span class="hljs-type">text</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> (s + <span class="hljs-string">&quot;due&quot;</span>); <span class="hljs-comment">// t2 vale &quot;uno due&quot;</span>
+
+<span class="hljs-type">blockquote</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;tre&quot;</span>;
+<span class="hljs-type">s3title</span> <span class="hljs-variable">t3</span> <span class="hljs-operator">=</span> (s + p); <span class="hljs-comment">// t3 vale &quot;uno tre&quot;</span>
+<span class="hljs-comment">// tutti i tipi primitivi testuali possono essere utilizzati in una concatenazione</span>
+<span class="hljs-comment">// MALT converte autometicamente i tipi</span>
+<span class="hljs-comment">// Ulteriori dettagli sulla conversione dei tipi è spiegata nell&#x27;apposito paragrafo più avanti</span>
+</code></pre>
+<h3 id="formattazione-di-variabili-primitive-testuali">Formattazione di variabili primitive testuali</h3>
+<p>Il valore delle variabili primitive testuali può essere formattato seguendo le stesse regole di Markdown.</p>
+<h4 id="grassetto-e-corsivo">Grassetto e corsivo</h4>
+<ul>
+<li>Grassetto: ** o __ attorno al testo;</li>
+<li>Corsivo: * o _ attorno al testo;</li>
+<li>Grassetto e corsivo: *** o ___ attorno al testo;</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-type">text</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;*Stringa* **con** ***formattazione***&quot;</span>;
+</code></pre>
+<p>corrisponde in Markdown a:</p>
+<p><em>Stringa</em> <strong>con</strong> <strong><em>formattazione</em></strong></p>
+<h4 id="testo-cancellato-e-evidenziato">Testo cancellato e evidenziato</h4>
+<ul>
+<li>Testo cancellato: ~~ attorno al testo;</li>
+<li>Testo evidenziato: == attorno al testo;</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-type">text</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;~~Testo cancellato~~ e ==testo evidenziato==&quot;</span>;
+</code></pre>
+<p>corrisponde in Markdown a:</p>
+<p><s>Testo cancellato</s> e <mark>testo evidenziato</mark></p>
+<h4 id="pedici-e-apici">Pedici e apici</h4>
+<ul>
+<li>Pedice: ~ attorno al pedice;</li>
+<li>Apice: ^ attorno all'apice;</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-type">text</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Formula bruta del glucosio: C ~6~ H ~12~ O ~6~&quot;</span>;
+<span class="hljs-type">text</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Isotopi dell&#x27;idrogeno: prozio ^1^H, deuterio ^2^H, trizio ^3^H&quot;</span>;
+
+<span class="hljs-comment">// gli spazi attorno ai simboli ~ e ^ non sono necessari</span>
+</code></pre>
+<p>corrispondono in Markdown a:</p>
+<p>Formula bruta del glucosio: C<sub>6</sub> H<sub>12</sub> O<sub>6</sub></p>
+<p>Isotopi dell'idrogeno: prozio <sup>1</sup>H, deuterio <sup>2</sup>H, trizio <sup>3</sup>H</p>
+<h2 id="variabili-lista-1">Variabili lista</h2>
+<p>Vengono definite variabili lista tutte quelle variabili che hanno una lista di testi come valore.</p>
+<p>Quindi, al contrario delle variabili primitive testuali, le variabili lista non contengono direttamente una stringa ma una lista di una o più stringhe.</p>
+<p>I tipi che definiscono le variabili lista sono le seguenti:</p>
+<ul>
+<li><em><code>olist</code></em>: lista ordinata</li>
+<li><em><code>ulist</code></em>: lista non ordinata</li>
+<li><em><code>tlist</code></em>: lista con casella di spunta</li>
+<li><em><code>list</code></em>: lista pura</li>
+</ul>
+<p>Tra i quattro tipi non ci sono differenze per quanto riguarda la loro dichiarazione o assegnamento.</p>
+<p>All'interno della lista possono esserci soltanto stringhe o variabili primitive testuali, che a loro volta verranno risolte in stringhe.</p>
+<p>Ecco un esempio:</p>
+<pre><code class="language-java"><span class="hljs-type">s3title</span> <span class="hljs-variable">numero_due</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;due&quot;</span>;
+<span class="hljs-type">olist</span> <span class="hljs-variable">lista_ordinata</span> <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;uno&quot;</span>, numero_due, <span class="hljs-string">&quot;tre&quot;</span>];
+
+<span class="hljs-comment">// corrisponde a [&quot;uno&quot;, &quot;due&quot;, &quot;tre&quot;]</span>
+</code></pre>
+<p>Andiamo a vedere più nel dettaglio i vari tipi per variabili lista.</p>
+<h3 id="lista-ordinata-olist">Lista ordinata (<em>olist</em>)</h3>
+<pre><code class="language-java"><span class="hljs-type">olist</span> <span class="hljs-variable">animali</span> <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;cane&quot;</span>, <span class="hljs-string">&quot;gatto&quot;</span>, <span class="hljs-string">&quot;coniglio&quot;</span>, <span class="hljs-string">&quot;gallina&quot;</span>];
+</code></pre>
+<p>in Markdown viene trasformato in:</p>
+<ol>
+<li>cane</li>
+<li>gatto</li>
+<li>coniglio</li>
+<li>gallina</li>
+</ol>
+<h3 id="lista-non-ordinata-ulist">Lista non ordinata (<em>ulist</em>)</h3>
+<pre><code class="language-java"><span class="hljs-type">ulist</span> <span class="hljs-variable">frutta</span> <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;mela&quot;</span>, <span class="hljs-string">&quot;pera&quot;</span>, <span class="hljs-string">&quot;pesca&quot;</span>, <span class="hljs-string">&quot;arancia&quot;</span>];
+</code></pre>
+<p>in Markdown viene trasformato in:</p>
+<ul>
+<li>mela</li>
+<li>pera</li>
+<li>pesca</li>
+<li>arancia</li>
+</ul>
+<h3 id="lista-con-caselle-di-spunta-tlist">Lista con caselle di spunta (<em>tlist</em>)</h3>
+<pre><code class="language-java"><span class="hljs-type">tlist</span> <span class="hljs-variable">cose_da_fare</span> <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;pulire&quot;</span>, <span class="hljs-string">&quot;_x_lavorare&quot;</span>, <span class="hljs-string">&quot;mangiare&quot;</span>, <span class="hljs-string">&quot;dormire&quot;</span>];
+</code></pre>
+<p>in Markdown viene trasformato in:</p>
+<ul class="contains-task-list">
+<li class="task-list-item enabled"><input class="task-list-item-checkbox"type="checkbox"> pulire</li>
+<li class="task-list-item enabled"><input class="task-list-item-checkbox" checked=""type="checkbox"> lavorare</li>
+<li class="task-list-item enabled"><input class="task-list-item-checkbox"type="checkbox"> mangiare</li>
+<li class="task-list-item enabled"><input class="task-list-item-checkbox"type="checkbox"> dormire</li>
+</ul>
+<p>Automaticamente, i valori della lista sono convertiti in righe senza spunta.</p>
+<p>Aggiungendo il simbolo speciale <code>_x_</code> all'inizio della stringa viene visualizzata la spunta.</p>
+<h3 id="lista-list">Lista (<em>list</em>)</h3>
+<p>Rispetto a <em><code>olist</code></em>, <em><code>ulist</code></em> e <em><code>tlist</code></em>, la <em><code>list</code></em> non viene trasformata in una lista in Markdown ma è una lista &quot;pura&quot;, una lista che viene solamente utilizzata per raccogliere un insieme di stringhe da usare all'interno del linguaggio in funzioni, cicli ecc...</p>
+<h3 id="manipolazione-di-una-lista">Manipolazione di una lista</h3>
+<p>MALT permette di aggiungere un elemento in coda e di rimuovere un elemento dato il suo indice.</p>
+<h4 id="aggiungere-un-elemento-in-coda-push">Aggiungere un elemento in coda (<em>push</em>)</h4>
+<p>Utilizzando la funzione <em><code>push(lst, el)</code></em> è possibile aggiungere la variabile primitiva testuale <em><code>el</code></em> alla lista <em><code>lst</code></em>.</p>
+<pre><code class="language-java">
+<span class="hljs-type">olist</span> <span class="hljs-variable">animali</span> <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;cane&quot;</span>, <span class="hljs-string">&quot;gatto&quot;</span>];
+<span class="hljs-type">text</span> <span class="hljs-variable">nuovo_elemento</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;gallina&quot;</span>;
+
+push(animali, nuovo_elemento);
+
+<span class="hljs-comment">// animali ora contiene [&quot;cane&quot;, &quot;gatto&quot;, &quot;gallina&quot;]</span>
+
+</code></pre>
+<h4 id="rimuovere-un-elemento-remove">Rimuovere un elemento (<em>remove</em>)</h4>
+<p>Utilizzando la funzione <em><code>remove(lst, idx, res)</code></em> è possibile rimuovere dalla lista <em><code>lst</code></em> il valore di indice <em><code>idx</code></em> e salvare l'elemento rimosso nella variabile <em><code>res</code></em>.</p>
+<p>Se si vuole rimuovere l'ultimo elemento senza specificare l'indice basta inserire il simbolo &quot;_&quot; nel campo <em><code>idx</code></em>.</p>
+<p>Se non si vuole salvare l'elemento estratto basta usare il simbolo &quot;_&quot; nel campo <em><code>res</code></em>.</p>
+<pre><code class="language-java">
+<span class="hljs-type">ulist</span> <span class="hljs-variable">animali</span> <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;cane&quot;</span>, <span class="hljs-string">&quot;gatto&quot;</span>, <span class="hljs-string">&quot;gallina&quot;</span>];
+
+text rimosso;
+remove(animali, <span class="hljs-number">1</span>, rimosso);
+
+<span class="hljs-comment">// animali ora contiene [&quot;cane&quot;, &quot;gallina&quot;] e rimosso contiene &quot;gatto&quot;</span>
+
+</code></pre>
+<pre><code class="language-java">
+<span class="hljs-type">ulist</span> <span class="hljs-variable">animali</span> <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;cane&quot;</span>, <span class="hljs-string">&quot;gatto&quot;</span>, <span class="hljs-string">&quot;gallina&quot;</span>];
+
+text rimosso;
+remove(animali, _, rimosso);  <span class="hljs-comment">// rimuovo l&#x27;ultimo elemento</span>
+
+<span class="hljs-comment">// animali ora contiene [&quot;cane&quot;, &quot;gatto&quot;] e rimosso contiene &quot;gallina&quot;</span>
+
+</code></pre>
+<pre><code class="language-java">
+<span class="hljs-type">ulist</span> <span class="hljs-variable">animali</span> <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;cane&quot;</span>, <span class="hljs-string">&quot;gatto&quot;</span>, <span class="hljs-string">&quot;gallina&quot;</span>];
+
+remove(animali, _, _);  <span class="hljs-comment">// rimuovo l&#x27;ultimo elemento e non lo salvo</span>
+
+<span class="hljs-comment">// animali ora contiene [&quot;cane&quot;, &quot;gatto&quot;]</span>
+
+</code></pre>
+<h2 id="variabili-multimediali-1">Variabili multimediali</h2>
+<p>Le variabili multimediali sono tre tipi di variabili che permettono di aggiungere tre nuovi contenuti al documento Markdown: tabelle, link e immagini.</p>
+<h3 id="tabella-table">Tabella (<em>table</em>)</h3>
+<p>Una tabella in MALT viene dichiarata e utilizzata nel modo seguente:</p>
+<pre><code class="language-java"><span class="hljs-type">table</span> <span class="hljs-variable">tabella</span> <span class="hljs-operator">=</span> [$l,$c,$r] ([<span class="hljs-string">&quot;uno&quot;</span>,<span class="hljs-string">&quot;due&quot;</span>,<span class="hljs-string">&quot;tre&quot;</span>],[<span class="hljs-string">&quot;quattro&quot;</span>,<span class="hljs-string">&quot;cinque&quot;</span>,<span class="hljs-string">&quot;sei&quot;</span>],[<span class="hljs-string">&quot;sette&quot;</span>,<span class="hljs-string">&quot;otto&quot;</span>,<span class="hljs-string">&quot;nove&quot;</span>]);
+</code></pre>
+<p>che viene traformata in Markdown come:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">uno</th>
+<th style="text-align:center">due</th>
+<th style="text-align:right">tre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">quattro</td>
+<td style="text-align:center">cinque</td>
+<td style="text-align:right">sei</td>
+</tr>
+<tr>
+<td style="text-align:left">sette</td>
+<td style="text-align:center">otto</td>
+<td style="text-align:right">nove</td>
+</tr>
+</tbody>
+</table>
+<p>La dichiarazione è simile a quanto visto fino ad ora: prima dell'uguale viene dichiarata una variabile <em><code>tabella</code></em> di tipo <em><code>table</code></em>.</p>
+<p>Il valore assegnato è invece composto da due parti.</p>
+<p>La prima parte è una lista che deve contenere un numero di specificatori pari al numero di colonne della tabella.
+Gli specificatori descrivono come devono essere allineati i testi all'interno delle celle della colonna corrispondente.</p>
+<p>Gli specificatori sono 3:</p>
+<table>
+<thead>
+<tr>
+<th>Specificatore</th>
+<th>Descrizione</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$l</code></td>
+<td>Allineamento a sinistra</td>
+</tr>
+<tr>
+<td><code>$c</code></td>
+<td>Allineamento al centro</td>
+</tr>
+<tr>
+<td><code>$r</code></td>
+<td>Allineamento a destra</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Questa prima parte è interamente opzionale. Se non viene specificata, viene utilizzato l'allineamento a sinistra per tutte le celle della tabella.</p>
+</blockquote>
+<p>La seconda parte invece descrive il contenuto della tabella. Tra le parentesi tonde vengono scritte tante liste quante sono le righe della tabella ed ogni lista è lunga tanto quanto il numero di colonne della tabella.
+La prima lista corrisponde all'intestazione della tabella.</p>
+<blockquote>
+<p>Tutte le liste devono avere la stessa lunghezza (non ci possono essere righe con un numero diverso di colonne dalle altre)</p>
+</blockquote>
+<h3 id="link-link">Link (<em>link</em>)</h3>
+<p>Un link si definisce nel modo seguente:</p>
+<pre><code class="language-java"><span class="hljs-type">link</span> <span class="hljs-variable">link1</span> <span class="hljs-operator">=</span>l (<span class="hljs-string">&quot;https://google.it&quot;</span>, <span class="hljs-string">&quot;Google&quot;</span>);
+</code></pre>
+<p>corrisponde in Markdown a:</p>
+<p><a href="https://www.google.it/">Google</a></p>
+<p>(Questo link potrebbe non funzionare in alcuni formati di visualizzazione. Nei casi in cui funziona, corrisponde ad
+un link che porta a Google)</p>
+<blockquote>
+<p>N.B. Per l'assegnamento di link si utilizza <code>=l</code> invece di <code>=</code></p>
+</blockquote>
+<p>Il primo parametro è l'url a cui il link deve reindirizzare.
+Il secondo paramentro è il testo visibile del link.</p>
+<h3 id="immagine-img">Immagine (<em>img</em>)</h3>
+<p>Un'immagine si definisce come mostrato di seguito:</p>
+<pre><code class="language-java"><span class="hljs-type">img</span> <span class="hljs-variable">foto</span> <span class="hljs-operator">=</span>i (<span class="hljs-string">&quot;/percorso/immagine.jpg&quot;</span>,<span class="hljs-string">&quot;Disascalia immagine&quot;</span>);
+<span class="hljs-type">img</span> <span class="hljs-variable">foto_web</span> <span class="hljs-operator">=</span>i (<span class="hljs-string">&quot;https://sitofoto.com/foto_albero.png&quot;</span>, <span class="hljs-string">&quot;Didascalia immagine web&quot;</span>);
+</code></pre>
+<blockquote>
+<p>N.B. Per l'assegnamento di immagini si utilizza <code>=i</code> invece di <code>=</code></p>
+</blockquote>
+<p>Il primo parametro è un percorso locale se si desidera utilizzare un'immagine presente sul computer. Mentre se si desidera utilizzare un'immagine non locale, si può inserire l'url della foto come nella seconda riga dell'esempio.</p>
+<p>Il secondo parametro permette di specificare una discalia dell'immagine.</p>
+<h2 id="format">Format</h2>
+<p>In MALT è stato introdotto un nuovo tipo di istruzione che consente di inserire testo che può essere formattato diversamente in base ai specificatori utilizzati. Un esempio di questa istruzione è:</p>
+<pre><code class="language-java"><span class="hljs-type">text</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;MALT è %i nuovo %b di programmazione.&quot;</span>;
+<span class="hljs-type">text</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;un&quot;</span>;
+<span class="hljs-type">text</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;linguaggio&quot;</span>;
+format(res,str,a,b)
+</code></pre>
+<p>che consente di ottenere:</p>
+<p>MALT è <em>un</em> nuovo <strong>linguaggio</strong> di programmazione.</p>
+<p>Nella format del precedente esempio, <em><code>res</code></em> corrisponde alla variabile in cui salvare il risultato di format mentre <em><code>str</code></em> rappresenta la stringa da formattare (che contiene gli specificatori). Invece <em><code>a</code></em> e <em><code>b</code></em> sono le variabili che vanno sostituite ai specificatori presenti in <em><code>str</code></em> seguendo l'ordine in cui sono riportati.</p>
+<blockquote>
+<p>Il numero di specificatori nella stringa da formattare deve corrispondere al numero di variabili riportati nella format (esclusi gli argomenti del risultato e della stringa da formattare).</p>
+</blockquote>
+<h3 id="specificatori-di-stringa">Specificatori di stringa</h3>
+<p>Gli specificatori di stringa sono 4:</p>
+<table>
+<thead>
+<tr>
+<th>Specificatore</th>
+<th>Descrizione</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%b</code></td>
+<td>Testo in grassetto</td>
+</tr>
+<tr>
+<td><code>%i</code></td>
+<td>Testo in corsivo</td>
+</tr>
+<tr>
+<td><code>%ib</code></td>
+<td>Testo in grassetto e corsivo</td>
+</tr>
+<tr>
+<td><code>%t</code></td>
+<td>Testo senza formattazione</td>
+</tr>
+</tbody>
+</table>
+<h2 id="conversione-tra-tipi-type-casting">Conversione tra Tipi (Type Casting)</h2>
+<p>MALT è un linguaggio abbastanza libero nella compatibilità tra tipi diversi e la conversione è sempre <strong>implicita</strong>.</p>
+<p>La conversione tra tipi è consentita solamente tra tipi della stessa categoria se la categoria è primitiva testuale o lista.</p>
+<p>Le variabili di tipo multimediale rappresentano oggetti troppo diversi per avere un qualche tipo di conversione che funzioni quindi l'assegnamento su queste variabili funziona solo quando il loro tipo è identico.</p>
+<p>Ecco alcuni esempi di conversioni:</p>
+<pre><code class="language-java"><span class="hljs-type">text</span> <span class="hljs-variable">testo</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;testo&quot;</span>;
+<span class="hljs-type">list</span> <span class="hljs-variable">numeri</span> <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;uno&quot;</span>, <span class="hljs-string">&quot;due&quot;</span>, <span class="hljs-string">&quot;tre&quot;</span>];
+
+<span class="hljs-type">s3title</span> <span class="hljs-variable">titolo</span> <span class="hljs-operator">=</span> testo;     <span class="hljs-comment">// CONSENTITO: sia titolo (tipo: s3title) che testo (tipo: text) sono primitivi testuali</span>
+<span class="hljs-type">codeblock</span> <span class="hljs-variable">cb</span> <span class="hljs-operator">=</span> testo;       <span class="hljs-comment">// CONSENTITO: sia cb (tipo: codeblock) che testo (tipo: text) sono primitivi testuali</span>
+<span class="hljs-type">codeblock</span> <span class="hljs-variable">cb2</span> <span class="hljs-operator">=</span> titolo;     <span class="hljs-comment">// CONSENTITO: sia cb2 (tipo: codeblock) che titolo (tipo: s3title) sono primitivi testuali</span>
+<span class="hljs-type">blockquote</span> <span class="hljs-variable">bq</span> <span class="hljs-operator">=</span> cb2;        <span class="hljs-comment">// CONSENTITO: sia bq (tipo: blockquote) che cb2 (tipo: codeblock) sono primitivi testuali</span>
+<span class="hljs-type">title</span> <span class="hljs-variable">titolo2</span> <span class="hljs-operator">=</span> numeri;     <span class="hljs-comment">// ERRORE: titolo2 (tipo: title) è primitiva testuale mentre numeri (tipo: list) è una lista</span>
+
+<span class="hljs-type">list</span> <span class="hljs-variable">l1</span> <span class="hljs-operator">=</span> cb;               <span class="hljs-comment">// ERRORE: l1 (tipo: list) è lista mentre cb (tipo: codeblock) è primitiva testuale</span>
+<span class="hljs-type">list</span> <span class="hljs-variable">l2</span> <span class="hljs-operator">=</span> numeri;           <span class="hljs-comment">// CONSENTITO: sia l2 (tipo: list) che numeri (tipo: list) sono liste</span>
+<span class="hljs-type">ulist</span> <span class="hljs-variable">ul</span> <span class="hljs-operator">=</span> numeri;          <span class="hljs-comment">// CONSENTITO: sia ul (tipo: ulist) che numeri (tipo: list) sono liste</span>
+<span class="hljs-type">tlist</span> <span class="hljs-variable">tl</span> <span class="hljs-operator">=</span> ul;              <span class="hljs-comment">// CONSENTITO: sia tl (tipo: tlist) che ul (tipo: ulist) sono liste</span>
+
+
+<span class="hljs-type">table</span> <span class="hljs-variable">tabella</span> <span class="hljs-operator">=</span> testo;      <span class="hljs-comment">// ERRORE: tabella (tipo: table) è multimediale mentre testo (tipo: text) è primitiva testuale</span>
+<span class="hljs-type">img</span> <span class="hljs-variable">foto</span> <span class="hljs-operator">=</span> cb;              <span class="hljs-comment">// ERRORE: foto (tipo: img) è multimediale mentre cb (tipo: codeblock) è primitiva testuale</span>
+<span class="hljs-type">img</span> <span class="hljs-variable">foto2</span> <span class="hljs-operator">=</span>i (<span class="hljs-string">&quot;/img/foto.png&quot;</span>, <span class="hljs-string">&quot;Foto&quot;</span>);
+<span class="hljs-type">img</span> <span class="hljs-variable">foto3</span> <span class="hljs-operator">=</span> foto2;          <span class="hljs-comment">// CONSENTITO: sia foto3 (tipo: img) che foto2 (tipo: img) sono dello stesso tipo</span>
+
+<span class="hljs-type">table</span> <span class="hljs-variable">tabella2</span> <span class="hljs-operator">=</span> foto3;     <span class="hljs-comment">// ERRORE: tabella2 (tipo: table) e foto3 (tipo: img) sono entrambe multimediali ma non sono dello stesso tipo</span>
+
+</code></pre>
+<h2 id="cicli">Cicli</h2>
+<p>In MALT è possibile inserire cicli, in particolare cicli for. Essi possono essere strutturati in due modi differenti: nel primo caso si ripetono le istruzioni in base ad un certo contatore che rappresenta il numero delle iterazioni, mentre nel secondo caso le iterazioni corrispondono alla lunghezza della lista.</p>
+<h3 id="ciclo-for">Ciclo for</h3>
+<p>Il ciclo for permette di iterare le istruzioni in esso contenute un numero di volte pari al valore del contatore passato nella condizione.
+Ne viene fornito un breve esempio:</p>
+<pre><code class="language-java">text i;
+
+<span class="hljs-keyword">for</span>(i, <span class="hljs-number">3</span>){
+
+  <span class="hljs-comment">// istruzioni da ripetere</span>
+
+}
+</code></pre>
+<p>In ciascuna iterazione del ciclo al contatore <em><code>i</code></em> viene assegnato un valore a partire da 0 e fino al valore <em><code>3</code></em> - 1 (valore massimo - 1).</p>
+<h3 id="ciclo-for-each">Ciclo for-each</h3>
+<p>Il ciclo for-each consente di eseguire le istruzioni contenute un numero di volte pari alla lunghezza della lista che si sta iterando.
+Inoltre, ad ogni iterazione si ha a disposizione il valore dell'elemento corrispondente della lista.
+Ecco un breve esempio:</p>
+<pre><code class="language-java"><span class="hljs-type">list</span> <span class="hljs-variable">lista_frutta</span> <span class="hljs-operator">=</span> [<span class="hljs-string">&quot;mela&quot;</span>, <span class="hljs-string">&quot;pera&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;arancia&quot;</span>];
+text frutto;
+
+<span class="hljs-keyword">for</span>(frutto in lista_frutta){
+
+  <span class="hljs-comment">// istruzioni da ripetere</span>
+
+}
+</code></pre>
+<p>Ad ogni iterazione la variabile <em><code>frutto</code></em> assumerà un valore diverso:</p>
+<ul>
+<li>Prima iterazione: <code>mela</code></li>
+<li>Seconda iterazione: <code>pera</code></li>
+<li>Terza iterazione: <code>banana</code></li>
+<li>Quarta iterazione: <code>arancia</code></li>
+</ul>
+<p>Il valore della variabile <em><code>frutto</code></em> potrà poi essere utilizzato per effettuare altre operazioni.</p>
+<h2 id="scope-delle-variabili">Scope delle variabili</h2>
+<p>Lo scope di una variabile definisce l'area in cui quella variabile è valida, definita e visibile.</p>
+<p>In MALT non esistono parole chiave per estendere o limitare lo scope.</p>
+<p>Lo scope di una variabile si estende sempre a partire dalla dichiarazione fino all'ultima istruzione del blocco dove è stata dichiarata.</p>
+<p>Fino ad ora sono definibili solo due possibili blocchi: il blocco globale e il blocco del ciclo for.</p>
+<p>Il blocco globale è un blocco sempre presente e si estende per tutto il codice.
+Il blocco del ciclo for è invece definito da un ciclo for e si estende per tutte le istruzioni ripetute dal ciclo for.</p>
+<pre><code class="language-java"><span class="hljs-comment">// inizio blocco globale</span>
+text testo_globale;
+
+<span class="hljs-keyword">for</span>(i, <span class="hljs-number">5</span>){
+  <span class="hljs-comment">// inizio blocco del ciclo for</span>
+  text testo_locale;
+
+  <span class="hljs-comment">// altre istruzioni...</span>
+
+  <span class="hljs-comment">//fine blocco del ciclo for</span>
+}
+
+<span class="hljs-comment">// fine blocco globale</span>
+</code></pre>
+<p>Nell'esempio la variabile <em><code>testo_globale</code></em> è definita nel blocco globale ed è visibile in tutto il codice (dopo la dichiarazione).</p>
+<p>La variabile <em><code>testo_locale</code></em> è invece definita nel blocco del ciclo for ed è visibile soltanto all'interno del ciclo dopo la dichiarazione della variabile.</p>
+<p>Per questo motivo le variabili dichiarate fuori dai cicli vengono definite &quot;globali&quot; mentre le variabili dichiarate nei cicli vengono definite &quot;locali&quot;.</p>
+<h2 id="funzioni-fun">Funzioni (<em>fun</em>)</h2>
+<p>In MALT si possono definire delle funzioni utilizzando la notazione utilizzata nel seguente esempio:</p>
+<pre><code class="language-java">fun <span class="hljs-title function_">esempio</span> <span class="hljs-params">(text tx, title tl)</span> {
+  <span class="hljs-comment">// altre istruzioni...</span>
+
+  <span class="hljs-keyword">return</span> tx;
+}
+</code></pre>
+<p>Nella funzione dell'esempio si hanno 2 argomenti, ma essi potrebbero anche non essere presenti oppure potrebbero essere uno o più.</p>
+<p>Anche l'istruzione con <em><code>return</code></em> può essere opzionale, ma essa consente di restituire in output il valore di una variabile (nell'esempio la variabile <em><code>tx</code></em> di tipo <em><code>text</code></em>) oppure direttamente una stringa.</p>
+<p>Una volta creata una funzione globale, essa può essere chiamata come nel prossimo esempio. Questa chiamata può avvenire seguendo due vincoli:</p>
+<ol>
+<li>
+<p>Si deve avere un numero di parametri nella chiamata pari al numero di argomenti della funzione;</p>
+</li>
+<li>
+<p>Ciascun parametro della chiamata deve presentare un tipo uguale o convertibile a quello del rispettivo argomento della funzione.</p>
+</li>
+</ol>
+<pre><code class="language-java"><span class="hljs-type">text</span> <span class="hljs-variable">tx1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Testo&quot;</span>;
+<span class="hljs-type">title</span> <span class="hljs-variable">tl1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Titolo&quot;</span>;
+
+<span class="hljs-comment">// definizione della funzione &quot;esempio&quot;</span>
+fun <span class="hljs-title function_">esempio</span> <span class="hljs-params">(text tx, title tl)</span> {
+  <span class="hljs-comment">//altre istruzioni...</span>
+
+  <span class="hljs-keyword">return</span> tx;
+}
+
+esempio(tx1,tl1); <span class="hljs-comment">// chiamata della funzione &quot;esempio&quot;</span>
+</code></pre>
+<h3 id="scope-delle-variabili-in-una-funzione">Scope delle variabili in una funzione</h3>
+<p>Anche per le funzioni, così come per i cicli for visti prima, viene creato un blocco. Lo scope delle variabili dichiarate all'interno della funzione si estende a partire dalla dichiarazione fino all'ultima istruzione del blocco.</p>
+<p>Di seguito viene mostrato un esempio:</p>
+<pre><code class="language-java"><span class="hljs-comment">// inizio blocco globale</span>
+
+<span class="hljs-type">text</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;TestoGlobale&quot;</span>;
+<span class="hljs-keyword">for</span>(i, <span class="hljs-number">3</span>){
+  <span class="hljs-comment">// inizio blocco for</span>
+
+  <span class="hljs-type">text</span> <span class="hljs-variable">t1f</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;TestoGlobaleFor&quot;</span>;
+  <span class="hljs-comment">// ...</span>
+
+  <span class="hljs-comment">// fine blocco for</span>
+}
+
+fun <span class="hljs-title function_">esempio</span> <span class="hljs-params">(text tx, title tl)</span> {
+  <span class="hljs-comment">// inizio blocco della funzione &quot;esempio&quot;</span>
+
+  <span class="hljs-type">text</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;TestoLocale&quot;</span>;
+  <span class="hljs-keyword">for</span>(i, <span class="hljs-number">3</span>){
+    <span class="hljs-comment">// inizio blocco for</span>
+
+    <span class="hljs-type">text</span> <span class="hljs-variable">t2f</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;TestoLocaleFor&quot;</span>;
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-comment">// fine blocco for</span>
+  }
+
+
+  <span class="hljs-keyword">return</span> tx;
+
+  <span class="hljs-comment">// fine blocco della funzione &quot;esempio&quot;</span>
+}
+
+<span class="hljs-comment">// fine blocco globale</span>
+</code></pre>
+<p>La variabile <em><code>t1</code></em> è globale e quindi risulta sempre visibile. Invece la variabile <em><code>t1f</code></em>, poichè è stata definita all'interno di un ciclo for, risulta visibile soltanto nel ciclo stesso e di conseguenza è locale al for.
+Le precedenti considerazioni cambiano leggermente per le variabili <em><code>t2</code></em> e <em><code>t2f</code></em> siccome sono state definite in due livelli diversi all'interno di una funzione. La variabile <em><code>t2</code></em> è stata definita all'interno della funzione <em><code>esempio</code></em> e quindi risulta visibile solo nella funzione (variabile locale alla funzione). Invece la variabile <em><code>t2f</code></em>, poichè è stata definita in un ciclo for a sua volta all'interno di una funzione, risulta visibile soltanto nello specifico ciclo for della funzione <em><code>esempio</code></em> (variabile locale al ciclo for della funzione).</p>
+<h2 id="classi-class">Classi (<em>class</em>)</h2>
+<p>MALT consente di definire delle classi. Questo è possibile tramite la notazione del seguente esempio:</p>
+<pre><code class="language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ClasseEsempio</span> {
+
+  text campo1;
+  text campo2;
+
+  fun <span class="hljs-title function_">metodo1</span> <span class="hljs-params">(text t1)</span>{
+    <span class="hljs-comment">// ...</span>
+  }
+
+  fun <span class="hljs-title function_">metodo2</span> <span class="hljs-params">()</span>{
+    <span class="hljs-comment">// ...</span>
+  }
+
+  <span class="hljs-comment">// ...</span>
+
+}
+</code></pre>
+<p>In una classe si possono definire campi e metodi. I campi non sono altro che variabili locali alla classe e quindi visibili solo all'interno di essa.
+I metodi sono delle funzioni legate alla classe. Le variabili definite al loro interno seguono le stesse regole di visibilità di una normale funzione.</p>
+<p>I metodi hanno accesso ai campi della classe ma i primi sono visibili globalmente e possono essere chiamati ovunque nel codice utilizzando la dot notation in due modi diversi in base alla posizione della chiamata: all'interno della classe del metodo o esternamente.</p>
+<p>Nel caso in cui si volesse chiamare il metodo all'interno della classe in cui è stato definito, la chiamata prevede l'utilizzo della parola chiave <em>this</em> seguita dal nome del metodo. Ne viene riportato un esempio</p>
+<pre><code class="language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Obj</span> {
+  <span class="hljs-type">text</span> <span class="hljs-variable">txlocal</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Testo locale&quot;</span>;
+  <span class="hljs-type">title</span> <span class="hljs-variable">tllocal</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Titolo locale&quot;</span>;
+  fun <span class="hljs-title function_">print</span> <span class="hljs-params">(text tx, title tl)</span> {
+    <span class="hljs-comment">//altre istruzioni...</span>
+
+    <span class="hljs-keyword">return</span> tx;
+  }
+
+  <span class="hljs-built_in">this</span>.print(txlocal,tllocal);  <span class="hljs-comment">// chiamata all&#x27;interno della stessa classe</span>
+                                <span class="hljs-comment">// del metodo print</span>
+}
+
+text txglobal;
+
+<span class="hljs-built_in">this</span>.print(txglobal, txglobal);  <span class="hljs-comment">// ERRORE!, non siamo all&#x27;interno</span>
+                                 <span class="hljs-comment">// della classe del metodo print</span>
+</code></pre>
+<p>Invece, nel caso in cui si volesse chiamare il metodo all'esterno della classe in cui è stato definito, la chiamata prevede l'utilizzo del nome della classe seguito del nome del metodo. Un esempio di questa chiamata è riportato di seguito:</p>
+<pre><code class="language-java"><span class="hljs-type">text</span> <span class="hljs-variable">txglobal</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Testo globale&quot;</span>;
+<span class="hljs-type">title</span> <span class="hljs-variable">tlglobal</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Titolo globale&quot;</span>;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Obj</span> {
+  fun <span class="hljs-title function_">print</span> <span class="hljs-params">(text tx, title tl)</span> {
+    <span class="hljs-comment">//altre istruzioni...</span>
+
+    <span class="hljs-keyword">return</span> tx;
+  }
+}
+
+Obj.print(txglobal,tlglobal);
+</code></pre>
+<blockquote>
+<p>Se si proviene da un linguaggio orientato agli oggetti è importante notare che al contrario di questi, in MALT non è possibile creare oggetti chiamando il costruttore della classe. In questo linguaggio, la classe fa solo da &quot;collezione&quot; di variabili (campi) e funzioni (metodi). Inoltre i campi sono sempre e solo locali alla classe (visibiità &quot;private&quot;) e i metodi sono sempre e solo pubblici e accessibili ovunque (visibilità &quot;public&quot;).</p>
+</blockquote>
+<blockquote>
+<p>In MALT, non esistendo il concetto di oggetto, non esiste nemmeno il concetto di costruttore / distruttore.
+`</p>
+</blockquote>
+
+        <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </body>
+    </html>

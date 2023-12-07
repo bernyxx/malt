@@ -184,8 +184,7 @@ public class MaltHandler {
 	public boolean isPrimitiveTextVariable(VarDescriptor vd) {
 		// posso assegnare un'espressione solo a tipi string
 		String[] primitiveTextTypes = { "title", "s1title", "s2title", "s3title", "s4title", "s5title", "text",
-				"blockquote",
-				"codeblock" };
+				"blockquote", "codeblock" };
 
 		String varType;
 
@@ -479,21 +478,19 @@ public class MaltHandler {
 	public void assignTitle(Token className, Token functionName, boolean inFor, Token name, Token ref,
 			String value) {
 
-				// rimuovi le virgolette da value
-				
+		// rimuovi le virgolette da value
 
-				String valueWithRef;
-				if(ref != null){
-					value = value.substring(1, value.length());
-					valueWithRef = " {#" + ref.getText() + "}" + value;
-				}else {
-					valueWithRef = value;
-				}
-				
+		String valueWithRef;
+		if (ref != null) {
+			value = value.substring(1, value.length());
+			valueWithRef = " {#" + ref.getText() + "}" + value;
+		} else {
+			valueWithRef = value;
+		}
 
-				assignTextPrimitiveVarValue(className, functionName, inFor, name, valueWithRef);
+		assignTextPrimitiveVarValue(className, functionName, inFor, name, valueWithRef);
 
-			}
+	}
 
 	/**
 	 * Assegna ad una variabile non primitiva testuale un valore
@@ -872,7 +869,7 @@ public class MaltHandler {
 					return;
 				}
 
-				if (checkType(nameVd, resVd)) {
+				if (checkConvertibleTypes(nameVd, resVd)) {
 					listValue[i] = resVd.value;
 				} else {
 					maltErrorHandler(NOT_MATCH_TYPE_ASSIGNMENT_ERROR, exps.get(i));

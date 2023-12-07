@@ -12,12 +12,12 @@ public class MaltFileScannerLauncher {
 
 	public static void main(String[] args) throws IOException {
 		// inserire il path-name del file di input
-		
+
 		// eclipse
-		//String fileIn = ".\\resources\\input.file";
-		
+		String fileIn = ".\\resources\\input.malt";
+
 		// vscode
-		String fileIn = "./MaltProject/resources/input.file";
+		// String fileIn = "./MaltProject/resources/input.malt";
 
 		Token tk;
 		int i;
