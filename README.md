@@ -129,21 +129,32 @@ Inoltre l'interfaccia consente di consultare questa guida utente in modo da supp
 
 Una volta eseguita l'installazione dell'ambiente (descritta nel capitolo precedente), si può aprire l'interfaccia web all'url <localhost:PORT>.
 
-Come prima pagina viene visualiazzata l'homepage (in figura 1), in cui viene mostrato un esempio di utilizzo di MALT e dei risultati che esso può produrre.
-Per procedere con l'esecuzione concreta del parser e/o dello scanner, si può cliccare sul pulsante nella barra in cima alla pagina oppure su quello in fondo alla pagina stessa entrambi denominati _EDITOR_.
+Come prima pagina viene visualiazzata l'homepage (in figura 1), in cui viene mostrato un esempio di utilizzo di MALT e dei risultati che esso può produrre. A questa pagina si può sempre tornare cliccando sul pulsante _MALT_ della barra di navigazione in cima alla pagina.
+Per procedere con l'esecuzione concreta del parser e/o dello scanner, si può cliccare sul pulsante nella barra di navigazione in cima alla pagina oppure su quello in fondo alla pagina stessa entrambi denominati _EDITOR_.
 
 ![Homepage dell'interfaccia web di MALT](/MaltProject/images/localhost_3000_.png)
 _Figura 1_
 
-Una volta entrato nella pagina _EDITOR_ (in figura 2), l'utente come primo passaggio può caricare un file (con estensione _.malt_) contenente il testo da analizzare tramite il pulsante _CARICA CODICE DA FILE_ oppure può scrivere direttamente il testo nell'apposito campo. Cliccando invece ìl pulsante _PULISCI_ viene svuotata l'area di testo. Successivamente per iniziare le analisi del testo, l'utente può eseguire il parser cliccando sul pulsante _ESEGUI PARSER_ oppure può eseguire il scanner cliccando sul pulsante _ESEGUI SCANNER_.
+Una volta entrato nella pagina _EDITOR_ (in figura 2), l'utente come primo passaggio può caricare un file (con estensione _.malt_) contenente il testo da analizzare tramite il pulsante _CARICA CODICE DA FILE_ oppure può scrivere direttamente il testo nell'apposito campo. Cliccando invece ìl pulsante _PULISCI_ viene svuotata l'area di testo.
+Successivamente per iniziare le analisi del testo, l'utente può eseguire il parser cliccando sul pulsante _ESEGUI PARSER_ oppure può eseguire il scanner cliccando sul pulsante _ESEGUI SCANNER_.
 
 ![Editor dell'interfaccia web di MALT](/MaltProject/images/localhost_3000_editor.png)
 _Figura 2_
 
-PARSER
-SCANNER
+Nel caso in cui si desidera eseguire il parser, dopo aver premuto il pulsante _ESEGUI PARSER_ si visualizzano a video eventuali messaggi risultanti dalla rispettiva analisi (un esempio è mostrato nella figura 3). Inoltre al di sotto di questa area di testo è possibile decidere se mostrare la tabella globale e/o le tabelle locali di variabili, funzioni e classi.
 
-In caso di necessità, l'utente ha sempre la possibilità di consultare la guida utente di MALT tramite il pulsante _GUIDA_ nella barra di navigazione in cima a ciascuna pagina.
+![Parser dell'interfaccia web di MALT](/MaltProject/images/localhost_3000_editor_parser.png)
+_Figura 3_
+
+Invece nel caso in cui si desidera eseguire lo scanner, dopo aver premuto il pulsante _ESEGUI SCANNER_ compare a video un'area di testo contenente l'analisi effettuata dallo scanner (l'applicazione dello scanner al precedente esempio è mostrata nella figura 4).
+
+![Scanner dell'interfaccia web di MALT](/MaltProject/images/localhost_3000_editor_scanner.png)
+_Figura 4_
+
+In caso di necessità, l'utente ha sempre la possibilità di consultare la guida utente di MALT (in figura 5) tramite il pulsante _GUIDA_ nella barra di navigazione in cima a ciascuna pagina.
+
+![Guida dell'interfaccia web di MALT](/MaltProject/images/localhost_3000_guide.png)
+_Figura 5_
 
 # Linguaggio MALT
 
