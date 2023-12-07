@@ -733,6 +733,12 @@ hue-6-2: #e6c07b
 <li><a href="#installazione-tramite-docker">Installazione tramite Docker</a></li>
 </ul>
 </li>
+<li><a href="#interfaccia-web-di-malt">Interfaccia web di MALT</a>
+<ul>
+<li><a href="#funzionalit%C3%A0-dellinterfaccia">Funzionalità dell'interfaccia</a></li>
+<li><a href="#uso-dellinterfaccia">Uso dell'interfaccia</a></li>
+</ul>
+</li>
 <li><a href="#linguaggio-malt">Linguaggio MALT</a>
 <ul>
 <li><a href="#vincoli-e-limitazioni">Vincoli e limitazioni</a></li>
@@ -848,6 +854,20 @@ Il programma si divide in due parti: analizzatore (back-end) e interfaccia (fron
 Fare la stessa cosa per l'immagine malt_frontend specificando questa volta una &quot;Host port&quot; a piacere.</p>
 <p>Nella sezione &quot;Containers&quot; ora si potranno vedere i due container in esecuzione.</p>
 <p>L'installazione dell'ambiente è completata ed ora sarà possibile utilizzare l'interfaccia web all'url <a href="localhost:PORT">localhost:PORT</a> dove PORT è la &quot;Host port&quot; specificata nella creazione del container basato sull'immagine malt_frontend.</p>
+<h1 id="interfaccia-web-di-malt">Interfaccia web di MALT</h1>
+<h2 id="funzionalità-dellinterfaccia">Funzionalità dell'interfaccia</h2>
+<p>Per poter usufruire al meglio di MALT, è stata creata un'interfaccia web che consente di eseguire il parser e/o lo scanner su un testo. Questo testo può essere digitato manualmente oppure può essere estratto da un file caricato nell'apposito spazio dell'interfaccia.
+Inoltre l'interfaccia consente di consultare questa guida utente in modo da supportare l'utente nelle analisi che desidera eseguire.</p>
+<h2 id="uso-dellinterfaccia">Uso dell'interfaccia</h2>
+<p>Una volta eseguita l'installazione dell'ambiente (descritta nel capitolo precedente), si può aprire l'interfaccia web all'url <a href="localhost:PORT">localhost:PORT</a>.</p>
+<p>Come prima pagina viene visualiazzata l'homepage (in figura 1), in cui viene mostrato un esempio di utilizzo di MALT e dei risultati che esso può produrre.
+Per procedere con l'esecuzione concreta del parser e/o dello scanner, si può cliccare sul pulsante nella barra in cima alla pagina oppure su quello in fondo alla pagina stessa entrambi denominati <em>EDITOR</em>.</p>
+<p><img src="file:////MaltProject/images/localhost_3000_.png" alt="Homepage dell'interfaccia web di MALT">
+<em>Figura 1</em></p>
+<p>Una volta entrato nella pagina <em>EDITOR</em> (in figura 2), l'utente come primo passaggio può caricare un file (con estensione <em>.malt</em>) contenente il testo da analizzare oppure può scrivere direttamente il testo nell'apposito campo. Successivamente per iniziare le analisi del testo, l'utente può eseguire il parser cliccando sul pulsante denominato TODO oppure può eseguire il scanner cliccando sul pulsante denominato TODO.</p>
+<p><img src="file:////MaltProject/images/localhost_3000_editor.png" alt="Editor dell'interfaccia web di MALT">
+<em>Figura 2</em></p>
+<p>In caso di necessità, l'utente ha sempre la possibilità di consultare la guida utente di MALT tramite il pulsante denominato TODO nella barra in cima a ciascuna pagina.</p>
 <h1 id="linguaggio-malt">Linguaggio MALT</h1>
 <p>Nei seguenti capitoli verranno esposte le funzionalità del linguaggio in ordine di difficoltà partendo dalle variabili e arrivando alla fine ad utilizzare tutto quello che serve per affrontare i casi d'uso più comuni.</p>
 <h2 id="vincoli-e-limitazioni">Vincoli e limitazioni</h2>
@@ -1578,8 +1598,7 @@ Obj.print(txglobal,tlglobal);
 <p>Se si proviene da un linguaggio orientato agli oggetti è importante notare che al contrario di questi, in MALT non è possibile creare oggetti chiamando il costruttore della classe. In questo linguaggio, la classe fa solo da &quot;collezione&quot; di variabili (campi) e funzioni (metodi). Inoltre i campi sono sempre e solo locali alla classe (visibiità &quot;private&quot;) e i metodi sono sempre e solo pubblici e accessibili ovunque (visibilità &quot;public&quot;).</p>
 </blockquote>
 <blockquote>
-<p>In MALT, non esistendo il concetto di oggetto, non esiste nemmeno il concetto di costruttore / distruttore.
-`</p>
+<p>In MALT, non esistendo il concetto di oggetto, non esiste nemmeno il concetto di costruttore / distruttore.</p>
 </blockquote>
 
         <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>

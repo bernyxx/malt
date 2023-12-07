@@ -8,6 +8,9 @@
 - [Installazione](#installazione)
   - [Esecuzione da codice sorgente](#esecuzione-da-codice-sorgente)
   - [Installazione tramite Docker](#installazione-tramite-docker)
+- [Interfaccia web di MALT](#interfaccia-web-di-malt)
+  - [Funzionalità dell'interfaccia](#funzionalità-dellinterfaccia)
+  - [Uso dell'interfaccia](#uso-dellinterfaccia)
 - [Linguaggio MALT](#linguaggio-malt)
   - [Vincoli e limitazioni](#vincoli-e-limitazioni)
   - [Variabili](#variabili)
@@ -114,6 +117,33 @@ Fare la stessa cosa per l'immagine malt_frontend specificando questa volta una "
 Nella sezione "Containers" ora si potranno vedere i due container in esecuzione.
 
 L'installazione dell'ambiente è completata ed ora sarà possibile utilizzare l'interfaccia web all'url <localhost:PORT> dove PORT è la "Host port" specificata nella creazione del container basato sull'immagine malt_frontend.
+
+# Interfaccia web di MALT
+
+## Funzionalità dell'interfaccia
+
+Per poter usufruire al meglio di MALT, è stata creata un'interfaccia web che consente di eseguire il parser e/o lo scanner su un testo. Questo testo può essere digitato manualmente oppure può essere estratto da un file caricato nell'apposito spazio dell'interfaccia.
+Inoltre l'interfaccia consente di consultare questa guida utente in modo da supportare l'utente nelle analisi che desidera eseguire.
+
+## Uso dell'interfaccia
+
+Una volta eseguita l'installazione dell'ambiente (descritta nel capitolo precedente), si può aprire l'interfaccia web all'url <localhost:PORT>.
+
+Come prima pagina viene visualiazzata l'homepage (in figura 1), in cui viene mostrato un esempio di utilizzo di MALT e dei risultati che esso può produrre.
+Per procedere con l'esecuzione concreta del parser e/o dello scanner, si può cliccare sul pulsante nella barra in cima alla pagina oppure su quello in fondo alla pagina stessa entrambi denominati _EDITOR_.
+
+![Homepage dell'interfaccia web di MALT](/MaltProject/images/localhost_3000_.png)
+_Figura 1_
+
+Una volta entrato nella pagina _EDITOR_ (in figura 2), l'utente come primo passaggio può caricare un file (con estensione _.malt_) contenente il testo da analizzare tramite il pulsante _CARICA CODICE DA FILE_ oppure può scrivere direttamente il testo nell'apposito campo. Cliccando invece ìl pulsante _PULISCI_ viene svuotata l'area di testo. Successivamente per iniziare le analisi del testo, l'utente può eseguire il parser cliccando sul pulsante _ESEGUI PARSER_ oppure può eseguire il scanner cliccando sul pulsante _ESEGUI SCANNER_.
+
+![Editor dell'interfaccia web di MALT](/MaltProject/images/localhost_3000_editor.png)
+_Figura 2_
+
+PARSER
+SCANNER
+
+In caso di necessità, l'utente ha sempre la possibilità di consultare la guida utente di MALT tramite il pulsante _GUIDA_ nella barra di navigazione in cima a ciascuna pagina.
 
 # Linguaggio MALT
 
@@ -905,4 +935,3 @@ Obj.print(txglobal,tlglobal);
 > Se si proviene da un linguaggio orientato agli oggetti è importante notare che al contrario di questi, in MALT non è possibile creare oggetti chiamando il costruttore della classe. In questo linguaggio, la classe fa solo da "collezione" di variabili (campi) e funzioni (metodi). Inoltre i campi sono sempre e solo locali alla classe (visibiità "private") e i metodi sono sempre e solo pubblici e accessibili ovunque (visibilità "public").
 
 > In MALT, non esistendo il concetto di oggetto, non esiste nemmeno il concetto di costruttore / distruttore.
-`
