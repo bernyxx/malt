@@ -126,8 +126,7 @@ forRule [Token className, Token functionName]
 		LP
 		n=VAR
 		(forInRule [className, functionName, $n]
-		| forIncrRule[className, functionName, $n])
-		
+		| forIncrRule[className, functionName, $n])		
 ;
 
 
@@ -211,8 +210,7 @@ refRule returns [Token ref]
 	:
 		LCB HA v=VAR RCB
 		{ref = $v;}
-;
-		
+;	
 
 
 declareTextRule [Token className, Token functionName, boolean inFor] 
@@ -316,7 +314,6 @@ assignVariableRule [Token className, Token functionName, boolean inFor, Token na
 		   {h.assignListItemToVar($className, $functionName, $inFor, $name, $v2, n);}
 		   | v3=functionCallRule[$className, $functionName]
 		   {h.assignVarToVar($className, $functionName, $inFor, true, $name, v3);})
-		
 ;
 
 

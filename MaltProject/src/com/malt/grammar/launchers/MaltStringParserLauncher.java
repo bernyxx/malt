@@ -48,7 +48,7 @@ public class MaltStringParserLauncher {
 							":\t" + h.getErrorList().get(i) + "\n";
 
 			pr.parserResult = result;
-			pr.globalTable = h.symbolTable;
+			pr.globalTable = h.globalTable;
 			pr.localTables = h.localTables;
 
 			return pr;

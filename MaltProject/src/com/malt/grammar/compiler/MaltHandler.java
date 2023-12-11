@@ -55,15 +55,14 @@ public class MaltHandler {
 	public static int TABLE_ROW_SIZE_ERROR = 37;
 	public static int NOT_LIST_MANIPULATION_ERROR = 38;
 
-	public Hashtable<String, VarDescriptor> symbolTable;
-	public Hashtable<String, Hashtable<String, VarDescriptor>> localTables;
-
-	List<String> errorList;
 	TokenStream input;
+	List<String> errorList;
+	public Hashtable<String, VarDescriptor> globalTable;
+	public Hashtable<String, Hashtable<String, VarDescriptor>> localTables;
 
 	public MaltHandler(TokenStream input) {
 		this.input = input;
-		this.symbolTable = new Hashtable<String, VarDescriptor>();
+		this.globalTable = new Hashtable<String, VarDescriptor>();
 		this.localTables = new Hashtable<String, Hashtable<String, VarDescriptor>>();
 		this.errorList = new ArrayList<String>();
 	}
@@ -231,11 +230,11 @@ public class MaltHandler {
 
 			VarDescriptor vd = new VarDescriptor(n, "fun");
 
-			if (symbolTable.containsKey("fun_" + n)) {
+			if (globalTable.containsKey("fun_" + n)) {
 				// la funzione top-level è già stata dischiarata
 				maltErrorHandler(FUNCTION_ALREADY_DECLARED_ERROR, name);
 			} else {
-				symbolTable.put("fun_" + n, vd);
+				globalTable.put("fun_" + n, vd);
 				localTables.put("fun_" + n, new Hashtable<String, VarDescriptor>());
 			}
 		} else if (className != null && name == null) {
@@ -244,11 +243,11 @@ public class MaltHandler {
 
 			VarDescriptor vd = new VarDescriptor(cn, "class");
 
-			if (symbolTable.containsKey("cl_" + cn)) {
+			if (globalTable.containsKey("cl_" + cn)) {
 				// classe già dichiarata
 				maltErrorHandler(CLASS_ALREADY_DECLARED_ERROR, className);
 			} else {
-				symbolTable.put("cl_" + cn, vd);
+				globalTable.put("cl_" + cn, vd);
 				localTables.put("cl_" + cn, new Hashtable<String, VarDescriptor>());
 			}
 		} else {
@@ -292,12 +291,12 @@ public class MaltHandler {
 		String n = name.getText();
 		VarDescriptor vd = new VarDescriptor(n, t);
 
-		if (symbolTable.containsKey(n)) {
+		if (globalTable.containsKey(n)) {
 			// la variabile top-level è già stata dichiarata
 			maltErrorHandler(VARIABLE_ALREADY_DECLARED_TOP_ERROR, name);
 		} else {
 			// aggiungi la variabile alla tabella globale
-			symbolTable.put(n, vd);
+			globalTable.put(n, vd);
 		}
 	}
 
@@ -417,7 +416,7 @@ public class MaltHandler {
 				localTable.put(n, new VarDescriptor(n, t));
 
 				// aggiorna il numero dei parametri nel VarDescriptor della funzione
-				symbolTable.get("fun_" + fn).addParam(n);
+				globalTable.get("fun_" + fn).addParam(n);
 			}
 
 		} else {
@@ -970,7 +969,7 @@ public class MaltHandler {
 		} else {
 			if (localTables.containsKey("fun_" + funcToCall)) {
 				funcToCallTable = localTables.get("fun_" + funcToCall);
-				functionToCallVarDescriptor = symbolTable.get("fun_" + funcToCall);
+				functionToCallVarDescriptor = globalTable.get("fun_" + funcToCall);
 			} else {
 				maltErrorHandler(FUNCTION_UNDECLARED_ERROR, functionToCall);
 				return;
@@ -1108,8 +1107,8 @@ public class MaltHandler {
 			return localTable.get(n);
 		} else if (classTable != null && classTable.containsKey(n)) {
 			return classTable.get(n);
-		} else if (symbolTable.containsKey(n)) {
-			return symbolTable.get(n);
+		} else if (globalTable.containsKey(n)) {
+			return globalTable.get(n);
 		} else {
 			return null;
 		}
@@ -1136,16 +1135,16 @@ public class MaltHandler {
 
 			if (classTable.containsKey("fun_" + fn)) {
 				functionVd = classTable.get("fun_" + fn);
-			} else if (symbolTable.containsKey("fun_" + fn)) {
-				functionVd = symbolTable.get("fun_" + fn);
+			} else if (globalTable.containsKey("fun_" + fn)) {
+				functionVd = globalTable.get("fun_" + fn);
 			} else {
 				return null;
 			}
 
 		} else {
 
-			if (symbolTable.containsKey("fun_" + fn)) {
-				functionVd = symbolTable.get("fun_" + fn);
+			if (globalTable.containsKey("fun_" + fn)) {
+				functionVd = globalTable.get("fun_" + fn);
 			} else {
 				return null;
 			}
@@ -1427,9 +1426,9 @@ public class MaltHandler {
 	 */
 	public void printTable() {
 		System.out.println("\n\n--------BEGIN GLOBAL TABLE--------");
-		Set<String> keysG = symbolTable.keySet();
+		Set<String> keysG = globalTable.keySet();
 		for (String varG : keysG) {
-			System.out.println(varG + "-> " + symbolTable.get(varG));
+			System.out.println(varG + "-> " + globalTable.get(varG));
 		}
 		System.out.println("--------END GLOBAL TABLE--------\n\n");
 

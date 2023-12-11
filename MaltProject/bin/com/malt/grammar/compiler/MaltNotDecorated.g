@@ -34,7 +34,7 @@ options {
 		String hdr = " * " + getErrorHeader(e);
 		String msg = " - " + getErrorMessage(e, tokenNames);
 		
-		// recuperoil token corrente  
+		// recupero il token corrente  
 		Token tk = input.LT(1);
 		
 		// lascio gestire il messaggio all'handler
@@ -51,43 +51,43 @@ options {
 parseJava
 @init
 	:
-		(functionRule
-		| declarationRule
+		(functionRule[null] 
+		| declarationRule[null, null, false] 
 		| classRule 
-		| assignRule)+ 
+		| assignRule[null, null, false] )+ 
 		EOF 
 ;
 
 
-functionRule
+functionRule [Token className]
 	:
-		FUN 
-		VAR
+		f=FUN 
+		n=VAR 
 		LP
-		(argumentsRule)? 
+		(argumentsRule[className, $n])? 
 		RP 
 		LCB 
-		( declarationRule
-		| assignRule)+ 
-		returnRule? 
+		( declarationRule[className,$n, false] 
+		| assignRule[className, $n, false])+ 
+		returnRule[className, $n]? 
 		RCB
 ;
 
 
-argumentsRule
+argumentsRule [Token className, Token functionName]
 	: 	
-		argumentTypeRule 
-		VAR
+		t=argumentTypeRule 
+		n=VAR 
 		( CM 
-		  argumentTypeRule 
-		  VAR)*
+		  t=argumentTypeRule 
+		  n=VAR)*
 ;
 
 
-argumentTypeRule
+argumentTypeRule returns [Token type]
 	:
-		(titleTypeRule
-		| (TEXT 
+		(res=titleTypeRule 
+		| t=(TEXT 
 		| BLOCKQUOTE 
 		| OLIST 
 		| ULIST 
@@ -97,106 +97,105 @@ argumentTypeRule
 		| IMG 
 		| TABLE 
 		| FORMATTEXT 
-		| LIST)) 
-		
+		| LIST))
 ;
 
 
-functionCallRule
+functionCallRule [Token className, Token functionName] returns [Token calledFunction]
 	:
-		(VAR |DOTVAR) 
-		LP
-		(VAR (CM VAR )*)? 
+		(v1=VAR | v1=DOTVAR) 
+		LP 
+		(t1=VAR (CM t2=VAR)*)? 
 		RP
 ;
 
 
-returnRule
+returnRule [Token className, Token functionName]
 	:
 		RETURN
-		(VAR | STRING)
+		(v=VAR | v=STRING)
 		SE
 ;
 
 
-forRule
+forRule [Token className, Token functionName]
 	:
 		FOR
 		LP
-		VAR
-		(forInRule
-		| forIncrRule)
-		
+		n=VAR
+		(forInRule [className, functionName, $n]
+		| forIncrRule[className, functionName, $n])		
 ;
 
 
-forInRule
+forInRule [Token className, Token functionName, Token name]
 	:
 		IN
-		VAR
+		i=VAR
 		RP
 		LCB
-		(declarationRule
-		| assignRule)+
+		(declarationRule[className, functionName, true]
+		| assignRule[className, functionName, true])+
 		RCB
 ;
 
 
-forIncrRule
+forIncrRule [Token className, Token functionName, Token name]
 	:
 		CM
-		INTEGER
+		i=INTEGER
 		RP
 		LCB
-		(declarationRule
-		| assignRule)+
+		(declarationRule[className, functionName, true]
+		| assignRule[className, functionName, true])+
 		RCB
 ;
 
 
 classRule
 	:
-		CLASS
-		VAR
+		f=CLASS
+		n=VAR
 		LCB
-		(declarationRule
-		| functionRule
-		| assignRule)*
+		(declarationRule[$n,null, false]
+		| functionRule[$n]
+		| assignRule[$n, null, false])*
 		RCB
 ;
 
 
-declarationRule
+declarationRule [Token className, Token functionName, boolean inFor]
 	:
-		(( declareTitleRule 
-		| declareTextRule
-		| declareBlockQuoteRule
-		| declareCodeBlockRule
-		| declareListRule
-		| declareTableRule 
-		| declareImageRule
-		| declareLinkRule
-		| functionCallRule
-		| formatRule
+		(( declareTitleRule [className, functionName, inFor] 
+		| declareTextRule [className, functionName, inFor] 
+		| declareBlockQuoteRule [className, functionName, inFor] 
+		| declareCodeBlockRule [className, functionName, inFor]
+		| declareListRule [className, functionName, inFor] 
+		| declareTableRule [className, functionName, inFor] 
+		| declareImageRule [className, functionName, inFor]
+		| declareLinkRule [className, functionName, inFor] 
+		| functionCallRule[className, functionName]
+		| formatRule[className, functionName, inFor]
+		| listManipulationRule[className, functionName, inFor]
 		) SE)
-		| forRule
+		| forRule[className, functionName]
 ;
 
 
-declareTitleRule 
+declareTitleRule [Token className, Token functionName, boolean inFor]
 	:
-		titleTypeRule
-		VAR
-		refRule?
-		(assignStringRule
-		| assignVariableRule
-		| assignExprRule)?
+		t=titleTypeRule
+		n=VAR
+		ref=refRule?
+		(assignTitleRule[$className, $functionName, $inFor, $n, ref]
+		| assignVariableRule[$className, $functionName, $inFor, $n]
+		| assignExprRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-titleTypeRule
+titleTypeRule returns [Token type]
 	:
-		TITLE
+		t=(TITLE
 		| S1TITLE
 		| S2TITLE
 		| S3TITLE
@@ -205,246 +204,279 @@ titleTypeRule
 ;
 
 
-refRule
+refRule returns [Token ref]
 	:
-		LCB HA VAR RCB
+		LCB HA v=VAR RCB
+;	
+
+
+declareTextRule [Token className, Token functionName, boolean inFor] 
+	:
+		t=TEXT
+		n=VAR
+		(assignStringRule[$className, $functionName, $inFor, $n]
+		| assignVariableRule[$className, $functionName, $inFor, $n]
+		| assignExprRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-declareTextRule
+declareBlockQuoteRule [Token className, Token functionName, boolean inFor]
 	:
-		TEXT
-		VAR
-		(assignStringRule
-		| assignVariableRule
-		| assignExprRule)?
+		t=BLOCKQUOTE
+		n=VAR
+		(assignStringRule[$className, $functionName, $inFor, $n]
+		| assignVariableRule[$className, $functionName, $inFor, $n]
+		| assignExprRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-declareBlockQuoteRule
+declareCodeBlockRule [Token className, Token functionName, boolean inFor]
 	:
-		BLOCKQUOTE
-		VAR
-		(assignStringRule
-		| assignVariableRule
-		| assignExprRule)?
-;
-
-
-declareCodeBlockRule
-	:
-		CODEBLOCK
+		t=CODEBLOCK
 		VAR?
-		VAR  
-		(assignStringRule
-		| assignVariableRule
-		| assignExprRule)?
+		n=VAR
+		(assignStringRule[$className, $functionName, $inFor, $n]
+		| assignVariableRule[$className, $functionName, $inFor, $n]
+		| assignExprRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-declareListRule
+declareListRule [Token className, Token functionName, boolean inFor]
 	:
-		typeListRule 
-		VAR
-		( assignListRule
-		| assignVariableRule)?
+		t=typeListRule 
+		n=VAR 
+		( assignListRule[$className, $functionName, $inFor, $n] 
+		| assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-typeListRule
+typeListRule returns [Token type]
 	:
-		(LIST
+		t=(LIST
 		| OLIST
 		| ULIST
 		| TLIST)
 ;
 
 
-declareTableRule
+declareTableRule [Token className, Token functionName, boolean inFor]
 	:
-		TABLE
-		VAR
-		(assignTableRule
-		| assignVariableRule)?
+		t=TABLE
+		n=VAR
+		(assignTableRule[$className, $functionName, $inFor, $n]
+		| assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-declareImageRule
+declareImageRule [Token className, Token functionName, boolean inFor]
 	:
-		IMG
-		VAR
-		(assignImageRule
-		| assignVariableRule)?
+		t=IMG
+		n=VAR
+		(assignImageRule[$className, $functionName, $inFor, $n]
+		| assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-declareLinkRule
+declareLinkRule [Token className, Token functionName, boolean inFor] returns [Token name, Token type]
 	:
-		LINK
-		VAR
-		(assignLinkRule
-		| assignVariableRule)?
+		t=LINK
+		n=VAR
+		(assignLinkRule[$className, $functionName, $inFor, $n]
+		| assignVariableRule[$className, $functionName, $inFor, $n])?
 ;
 
 
-assignRule
+assignRule [Token className, Token functionName, boolean inFor]
 	:
-		VAR
-		(assignVariableRule
-		| assignExprRule
-		| assignStringRule
-		| assignTextListRule
-		| assignTableRule
-	     	| assignImageRule
-	     	| assignLinkRule
-	     	| assignListRule
+		n=VAR
+		(assignVariableRule[$className, $functionName, inFor, $n]
+		| assignExprRule[$className, $functionName, inFor, $n]
+		| assignStringRule[$className, $functionName, inFor, $n]
+		| assignTextListRule[$className, $functionName, inFor, $n] 
+		| assignTableRule[$className, $functionName, inFor, $n]
+	     	| assignImageRule[$className, $functionName, inFor, $n]
+	     	| assignLinkRule[$className, $functionName, inFor, $n]
+	     	| assignListRule[$className, $functionName, inFor, $n]
 	     	) SE
 ;
 
 
-assignVariableRule
+assignVariableRule [Token className, Token functionName, boolean inFor, Token name]
 	:  
-		EQ (VAR
-		   | VAR
+		EQ (v1=VAR 
+		   | v2=VAR
 		   LSB
-		   INTEGER
+		   n=INTEGER
 		   RSB
-		   | functionCallRule)	
+		   | v3=functionCallRule[$className, $functionName])
 ;
 
 
-assignExprRule
+assignExprRule [Token className, Token functionName, boolean inFor, Token name]
 	:  
 		EQ
 		LP
-		(STRING|VAR)
+		(v1=STRING|v1=VAR)
 		(PLUS
-		(STRING|VAR)
-		)* RP 
-;
-
-
-assignStringRule
-	:
-		EQ
-		STRING
-;
-
-
-assignTextListRule
-	:
-		EQ
-		textListRule
-;
-
-
-textListRule
-	:
-		LP
-		STRING
-		(CM
-		STRING
-		)+ RP
-;
-
-
-assignTableRule
-	:
-		EQ
-		talignmentRule?
-		LP
-		trowRule
-		(CM
-		trowRule
+		(v2=STRING|v2=VAR)
 		)* RP
 ;
 
-talignmentRule
+assignTitleRule [Token className, Token functionName, boolean inFor, Token name, Token ref]
 	:
-		LSB
-		alignRule
-		(CM
-		alignRule
-		)* RSB
+		EQ
+		v=STRING
 ;
 
 
-alignRule
+assignStringRule [Token className, Token functionName, boolean inFor, Token name]
 	:
-		(L | C | R)
+		EQ
+		v=STRING
 ;
 
 
-trowRule
+assignTextListRule [Token className, Token functionName, boolean inFor, Token name]
 	:
-		LSB
-		STRING 
-		(CM
-		STRING 
-		)* RSB 
+		EQ
+		v=textListRule
 ;
 
 
-assignImageRule
+textListRule returns [String value]
+	:
+		v1=LP
+		v2=STRING
+		(t1=CM
+		t2=STRING
+		)+ v3=RP
+;
+
+
+assignTableRule [Token className, Token functionName, boolean inFor, Token name]
+	:
+		EQ
+		v1=talignmentRule?
+		v2=LP
+		v3=trowRule
+		(t1=CM
+		t2=trowRule
+		)* v4=RP
+;
+
+talignmentRule returns [Vector<Token> alignment]
+	:
+		v1=LSB
+		v2=alignRule
+		(t1=CM
+		t2=alignRule
+		)* v3=RSB
+;
+
+
+alignRule returns [Token value]
+	:
+		(v=L | v=C | v=R)
+;
+
+
+trowRule returns [Vector<Token> row]
+	:
+		v1=LSB
+		v2=STRING
+		(v3=CM
+		v4=STRING
+		)* v5=RSB
+;
+
+
+assignImageRule [Token className, Token functionName, boolean inFor, Token name]
 	:
 		EQI
-		LP
-		STRING
-		(CM
-		STRING
-		)? RP
+		v1=LP
+		v2=STRING
+		(o1=CM
+		o2=STRING
+		)? v3=RP
 ;
 
 
-assignLinkRule
+assignLinkRule [Token className, Token functionName, boolean inFor, Token name]
 	:
 		EQL
-		LP
-		(STRING)
-		CM
-		STRING
-		RP
+		v1=LP
+		(t=STRING | ir=imageRule)
+		v3=CM
+		v4=STRING
+		v5=RP
 ;
 
 
 imageRule returns [String value]
 	:
-		IMG
-		LP
-		STRING
-		(CM
-		STRING
-		)? RP
+		v1=IMG
+		v2=LP
+		v3=STRING
+		(t1=CM
+		t2=STRING
+		)? v4=RP
 ;
 
 
-assignListRule
+assignListRule [Token className, Token functionName, boolean inFor, Token name]
 	:
 		EQ
 		LSB
-		((STRING|VAR)
+		((v=STRING|v=VAR) 
 		(CM
-		(STRING|VAR)
-		)*)?
+		(t=STRING|t=VAR))*)?
 		RSB
 ;
 
 
-formatRule
+formatRule [Token className, Token functionName, boolean inFor]
 	:
 		FORMAT
 		LP
-		VAR
+		v1=VAR
 		CM
-		VAR
+		v2=VAR
 		CM
-		VAR
+		v3=VAR
 		(CM
-		VAR 
+		v4=VAR
 		)*
 		RP
 ;
 
+listManipulationRule [Token className, Token functionName, boolean inFor]
+	:	
+		listPushRule [$className, $functionName, $inFor]
+		| listRemoveRule [$className, $functionName, $inFor]
+;
+
+listPushRule [Token className, Token functionName, boolean inFor]
+	:	
+		PUSH
+		LP
+		v1=VAR
+		CM
+		v2=VAR
+		RP
+		{h.handleListPush($className, $functionName, $inFor, $v1, $v2);}
+;
+
+listRemoveRule [Token className, Token functionName, boolean inFor]
+	:	REMOVE
+		LP
+		v1=VAR
+		CM
+		idx=(INTEGER | US)
+		CM
+		v2=(VAR | US)
+		RP
+		{h.handleListRemove($className, $functionName, $inFor, $v1, $idx, $v2);}
+;
 
 fragment
 EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
@@ -536,6 +568,8 @@ LIST : 'list';
 EQI : '=i';
 EQL : '=l';
 RETURN : 'return';
+PUSH	: 'push';
+REMOVE 	:  'remove';
 
 
 fragment
@@ -567,6 +601,9 @@ WS  :   ( ' '
         )+ {$channel=HIDDEN;}
     ;
 
+
+
+//STR 	:	LP (~(LP | RP | '"'))* RP;
 
 STRING	: 	'"' ( ESC_SEQ | ~('\\'|'"'|'['|']'|'*') )* '"';
 
